@@ -1,0 +1,4 @@
+1471065723278	Move type 'ImagePanel' to new file
+1471065728726	Move compilation unit
+1471069312182	Rename method 'child_width_calculator'
+1471069326220	Rename method 'child_height_calculator'

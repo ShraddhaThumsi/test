@@ -1,0 +1,248 @@
+package org.neu.picbreeder;
+
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
+import java.util.List;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+
+import org.apache.commons.io.FileUtils;
+import org.neu.picbreeder.ImageFileReader.FileCriteria;
+
+
+public class Blender {
+	private final List<String> parent_list;
+	private String resultFileLocation;
+	public Blender(ImageFileReader fileReader, FileCriteria criteria) {
+		this.parent_list = fileReader.getImageFiles("jpg", criteria);
+		resultFileLocation = fileReader.getPath() + "/tmp/"+criteria.name+"/";
+//		File dir = new File(resultFileLocation);
+//		if(dir.exists()) {
+//			try {
+//				FileUtils.deleteDirectory(dir);
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
+//		}
+	}
+	
+	public List<String> getParents() {
+		return parent_list;
+	}
+	
+	public BufferedImage blend2(int weight) throws IOException {
+		int number_of_generations = 4;
+		int numberOfChildrenPerGen = 9;
+
+		File dir = new File(resultFileLocation);
+		if(!dir.exists()) {
+			dir.mkdirs();
+		}
+		
+		
+		String tmpFileName = "tmp_blended" + new Date().getTime();
+		String blendedLocationToUse = null;
+		List<String> list = parent_list;
+		
+		
+			System.out.println("IN LOOP1");
+			for(int gen=0;gen<number_of_generations;gen++) {
+		    System.out.println("IN LOOP2");
+			int childCount = 0;	
+			if(list.size() >= 2) {
+				resultFileLocation = resultFileLocation + "gen" + gen + "/";
+				File genDir = new File(resultFileLocation);
+				if(!genDir.exists()) {
+					genDir.mkdir();
+				}
+				for(int i=0;i<list.size()-1;i++) {
+					String img1 = list.get(i);
+					for(int j=0;j<list.size();j++) {
+						if(i==j) continue;
+						String img2 = list.get(j);
+						BufferedImage blended = blend2(weight, img1, img2);
+						File blendedImageFile = new File(resultFileLocation+tmpFileName+"_"+i+"_"+j+".jpg");
+						if(!blendedImageFile.exists()) {
+							blendedImageFile.createNewFile();
+						}
+						ImageIO.write(blended, "jpg", blendedImageFile);
+						childCount++;
+						System.out.println("child count incremented");
+						
+						
+						blendedLocationToUse = blendedImageFile.getAbsolutePath();
+						if (childCount > numberOfChildrenPerGen)
+							break;
+						
+						
+						
+					}
+					//childCount++;
+					//System.out.println("child count incremented");
+					if (childCount > numberOfChildrenPerGen)
+						break;
+					
+					
+				}
+				ImageFileReader childFileReader = new ImageFileReader(genDir.getAbsolutePath(), -1);
+				list = childFileReader.getAllImages("jpg");
+				
+			}
+			
+		}
+			
+		
+
+		ImageIcon finalImage = new ImageIcon(blendedLocationToUse);
+		finalImage.getImage().flush();
+		finalImage = new ImageIcon(blendedLocationToUse);
+		BufferedImage image = new BufferedImage(finalImage.getIconWidth(), finalImage.getIconHeight(), BufferedImage.TYPE_INT_RGB);
+		Graphics2D graphics_im1 = image.createGraphics();
+		graphics_im1.drawImage(finalImage.getImage(), 0, 0, finalImage.getIconWidth(), finalImage.getIconHeight(), null);
+		graphics_im1.dispose();
+		return image;
+	}
+	
+	/*private BufferedImage blendBackup(int weight, String imagePath1, String imagePath2) {
+		
+		ImageIcon icon1 = new ImageIcon(imagePath1);
+		BufferedImage image = new BufferedImage(icon1.getIconWidth(), icon1.getIconHeight(), BufferedImage.TYPE_INT_RGB);
+		Graphics2D graphics_im1 = image.createGraphics();
+		graphics_im1.drawImage(icon1.getImage(), 0, 0, icon1.getIconWidth(), icon1.getIconHeight(), null);
+		graphics_im1.dispose();
+
+		ImageIcon icon2 = new ImageIcon(imagePath2);
+		BufferedImage nextImage = new BufferedImage(icon2.getIconWidth(), icon2.getIconHeight(), BufferedImage.TYPE_INT_RGB);
+		Graphics2D graphics_im2 = nextImage.createGraphics();
+		graphics_im2.drawImage(icon2.getImage(), 0, 0, icon2.getIconWidth(), icon2.getIconHeight(), null);
+		graphics_im2.dispose();
+
+		int buf_im1_width= icon1.getIconWidth(), buf_im1_height=icon1.getIconHeight();
+		double feature_weight = weight/100.0;
+		BufferedImage blended_image = new BufferedImage(buf_im1_width, buf_im1_height, BufferedImage.TYPE_INT_RGB);
+		int[] rgb_im1 = new int[buf_im1_width];
+		int[] rgb_im2 = new int[icon1.getIconWidth()];
+		int[] rgb_im3 = new int[blended_image.getWidth()];
+		
+		for(int row_count = 0; row_count<buf_im1_height; row_count++)
+		{
+			image.getRGB(0, row_count, buf_im1_width, 1, rgb_im1,0, buf_im1_width);
+			nextImage.getRGB(0, row_count, nextImage.getWidth(), 1, rgb_im2,0, nextImage.getWidth());
+			for(int column_count = 0; column_count < buf_im1_width; column_count++)
+			{
+				int rgb1 = rgb_im1[column_count];
+				int red1 = (rgb1 >> 16) & 255;
+				int green1 = (rgb1 >> 8) & 255;
+				int blue1 = rgb1 & 255;
+				
+				int rgb2 = rgb_im2[column_count];
+				int red2 = (rgb2 >> 16) & 255;
+				int green2 = (rgb2 >> 8) & 255;
+				int blue2 = rgb2 & 255;
+				
+				int red3 = (int) (red1 * feature_weight + red2 * (1.0 - feature_weight));
+				int green3 = (int) (green1 * feature_weight + green2 * (1.0 - feature_weight));
+				int blue3 = (int) (blue1 * feature_weight + blue2 * (1.0 - feature_weight));
+				rgb_im3 [column_count] = (red3 << 16) | (green3 << 8) | blue3;
+			}
+			blended_image.setRGB(0, row_count, buf_im1_width, 1, rgb_im3, 0, buf_im1_width);
+		}
+		return blended_image;
+	}*/
+	
+//	private double feature_weight_calculator(double feature_weight,double cross_over_prob,double random_selection_prob,double mutation_prob)
+//	{
+//	
+//		if(cross_over_prob > 0.95)
+//		{
+//			cross_over_prob = 0.95;
+//			mutation_prob = 0.05;
+//			random_selection_prob = 0.00;
+//			feature_weight = cross_over_prob * feature_weight + mutation_prob * feature_weight;
+//			return feature_weight;
+//		}
+//		if((cross_over_prob < 0.90) && (random_selection_prob > 0.03))
+//		{
+//			cross_over_prob = 0.90;
+//			random_selection_prob = 0.03;
+//			mutation_prob = 1 - random_selection_prob;
+//			feature_weight = cross_over_prob * feature_weight + mutation_prob * feature_weight;
+//			return feature_weight;
+//		}
+//		feature_weight = cross_over_prob * feature_weight + random_selection_prob * feature_weight + mutation_prob * feature_weight;
+//		return feature_weight;
+//	}
+//	
+	private int getChildWidth(BufferedImage  bufIm1, BufferedImage bufIm2)
+	{
+		return (bufIm1.getWidth() < bufIm2.getWidth())?bufIm1.getWidth():bufIm2.getWidth();
+	}
+	
+	private int getChildHeight(BufferedImage bufIm1, BufferedImage bufIm2)
+	{
+		return (bufIm1.getHeight() < bufIm2.getHeight())?bufIm1.getHeight():bufIm2.getHeight();
+	}
+	
+	
+	private BufferedImage blend2(int weight, String imagePath1, String imagePath2) {
+		
+		ImageIcon icon1 = new ImageIcon(imagePath1);
+		
+		BufferedImage image = new BufferedImage(icon1.getIconWidth(), icon1.getIconHeight(), BufferedImage.TYPE_INT_RGB);
+		Graphics2D graphics_im1 = image.createGraphics();
+		graphics_im1.drawImage(icon1.getImage(), 0, 0, icon1.getIconWidth(), icon1.getIconHeight(), null);
+		graphics_im1.dispose();
+
+		ImageIcon icon2 = new ImageIcon(imagePath2);
+		BufferedImage nextImage = new BufferedImage(icon2.getIconWidth(), icon2.getIconHeight(), BufferedImage.TYPE_INT_RGB);
+		Graphics2D graphics_im2 = nextImage.createGraphics();
+		graphics_im2.drawImage(icon2.getImage(), 0, 0, icon2.getIconWidth(), icon2.getIconHeight(), null);
+		graphics_im2.dispose();
+		
+		int childWidth, childHeight;
+		childWidth = getChildWidth(image, nextImage);
+		childHeight = getChildHeight(image, nextImage);
+		
+		
+
+		int buf_im1_width= icon1.getIconWidth(), buf_im1_height=icon1.getIconHeight();
+		double feature_weight = weight/100.0;
+		BufferedImage blended_image = new BufferedImage(childWidth, childHeight, BufferedImage.TYPE_INT_RGB);
+		int[] rgb_im1 = new int[buf_im1_width];
+		int[] rgb_im2 = new int[icon2.getIconWidth()];
+		int[] rgb_im3 = new int[childWidth];
+		
+		for(int row_count = 0; row_count<childHeight; row_count++)
+		{
+			image.getRGB(0, row_count, buf_im1_width, 1, rgb_im1,0, buf_im1_width);
+			nextImage.getRGB(0, row_count, nextImage.getWidth(), 1, rgb_im2,0, nextImage.getWidth());
+			for(int column_count = 0; column_count < childWidth; column_count++)
+			{
+				int rgb1 = rgb_im1[column_count];
+				int red1 = (rgb1 >> 16) & 255;
+				int green1 = (rgb1 >> 8) & 255;
+				int blue1 = rgb1 & 255;
+				
+				int rgb2 = rgb_im2[column_count];
+				int red2 = (rgb2 >> 16) & 255;
+				int green2 = (rgb2 >> 8) & 255;
+				int blue2 = rgb2 & 255;
+				
+				int red3 = (int) (red1 * feature_weight + red2 * (1.0 - feature_weight));
+				int green3 = (int) (green1 * feature_weight + green2 * (1.0 - feature_weight));
+				int blue3 = (int) (blue1 * feature_weight + blue2 * (1.0 - feature_weight));
+				rgb_im3 [column_count] = (red3 << 16) | (green3 << 8) | blue3;
+			}
+			blended_image.setRGB(0, row_count, childWidth, 1, rgb_im3, 0, childHeight);
+		}
+		return blended_image;
+	}
+
+
+}
+
+

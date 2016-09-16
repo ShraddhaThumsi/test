@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<server port="8080">
+  <module context="AISummer2Shraddha_GP" name="AISummer2Shraddha_GP" path="/Users/shraddha/Documents/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/AISummer2Shraddha_GP" type="j2ee"/>
+</server>
