@@ -76,61 +76,61 @@
 
 </div>
 
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">
-                Fixed Top
-            </a>
-            <p class="navbar-text pull-right">
-                <a href="#" class="navbar-link">
-          <span class="glyphicon glyphicon-plus">
-          </span>
-                </a>
-            </p>
-        </div>
-    </div>
-</nav>
-
-<nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">
-                Fixed Bottom
-            </a>
-        </div>
-    </div>
-</nav>
-
-<nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container">
-        <div class="row navbar-text">
-            <div class="col-xs-3 text-center">
-                <a href="#">
-                    <span class="glyphicon glyphicon-ok"></span>
-                </a>
-            </div>
-            <div class="col-xs-3 text-center">
-                <a href="#">
-                    <span class="glyphicon glyphicon-plus"></span>
-                </a>
-            </div>
-            <div class="col-xs-3 text-center">
-                <a href="#">
-                    <span class="glyphicon glyphicon-star"></span>
-                </a>
-            </div>
-            <div class="col-xs-3 text-center">
-                <a href="#">
-                    <span class="glyphicon glyphicon-heart"></span>
-                </a>
-            </div>
-        </div>
-    </div>
-</nav>
 
 <div class="container">
     <h1> Bootstrap forms</h1>
+
+    <form action = "forms.html">
+
+        <input id = "firstName" placeholder ="your first name"type ="text" class ="form-control"/>
+
+        <label for ="firstName">First name</label>
+
+        <input id = "lastName" placeholder ="your last name"type ="text" class ="form-control"/>
+        <label for = "lastName">Last name</label><br>
+        <input id ="email" type ="email" placeholder = "yourname@domain.com"class ="form-control">
+        <label for ="email">Email</label>
+        <input id = "dob" placeholder = "mm/dd/yyyy" type ="date" class="form-control"/>
+        <label for ="dob">Your date of birth</label>
+    </form>
+</div>
+
+<div class="container">
+    <h1>Bootstrap Tabs</h1>
+
+    <h2>Tabs</h2>
+
+    <ul class="nav nav-tabs">
+        <li role="presentation" class="active"><a href="#">Home</a></li>
+        <li role="presentation"><a href="#">Profile</a></li>
+        <li role="presentation"><a href="#">Messages</a></li>
+    </ul>
+
+    <h2>Pills</h2>
+
+    <ul class="nav nav-pills">
+        <li role="presentation" class="active"><a href="#">Home</a></li>
+        <li role="presentation"><a href="#">Profile</a></li>
+        <li role="presentation"><a href="#">Messages</a></li>
+    </ul>
+
+    <h2>Stacked</h2>
+
+    <ul class="nav nav-pills nav-stacked">
+        <li role="presentation" class="active"><a href="#">Home</a></li>
+        <li role="presentation"><a href="#">Profile</a></li>
+        <li role="presentation"><a href="#">Messages</a></li>
+    </ul>
+
+    <h2>Justified</h2>
+
+    <ul class="nav nav-tabs nav-justified">
+        <li role="presentation" class="active"><a href="#">Home</a></li>
+        <li role="presentation"><a href="#">Profile</a></li>
+        <li role="presentation"><a href="#">Messages</a></li>
+    </ul>
+
+
 </div>
 </body>
 </html>
