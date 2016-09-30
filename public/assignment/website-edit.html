@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>website-edit</title>
     <meta name = "viewport" content = "width=device-width, initial-scale=1">
-    <title>website-new</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="css/style.css" rel="stylesheet"/>
 </head>
@@ -19,7 +19,7 @@
                 </a>
             </p>
             <p class="navbar-brand" href="#">
-                New Website
+                Edit Website
             </p>
             <p class="navbar-text pull-right">
                 <a href="website-list.html" class="navbar-link">
@@ -35,11 +35,18 @@
 <div class="container" id = "websitelistSpaceMaker">
     <form class = "form-group">
         <label for = "newWebsiteName">Name</label>
-        <input type = "text" id = "newWebsiteName" placeholder = "Name" class = "form-control"/>
+        <input type = "text" id = "newWebsiteName" placeholder = "Blogger" class = "form-control"/>
         <label for = "newWebsiteDescription">Description</label>
-        <textarea rows = "10" cols = "50" id = "newWebsiteDescription" class = "form-control" placeholder="Description">
+        <textarea rows = "10" cols = "50" id = "newWebsiteDescription" class = "form-control" placeholder="This is WebDev Assignment2">
         </textarea>
+
     </form>
+    <div class = "row">
+        <div class = "col-xs-12">
+            <a class="btn btn-danger btn-block form-control"
+               href="website-list.html">Delete Website</a>
+        </div>
+    </div>
 </div>
 
 
