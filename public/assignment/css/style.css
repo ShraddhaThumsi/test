@@ -28,4 +28,21 @@ body {
 #newPageSpaceMaker label
 {
     padding-top: 30px;
+    padding-bottom: 0px;
+}
+
+.navbar-header-style {
+    background-color: cornflowerblue;
+}
+
+.floatRectifier
+{
+    float: none;
+}
+
+.widgetGlyphAligner
+{
+    margin-right: 0px;
+    padding-right: 0px;
+    border-right: 0px;
 }
