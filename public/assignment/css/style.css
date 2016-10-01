@@ -93,3 +93,38 @@ body {
 {
     background-color: chocolate;
 }
+
+.pagelistSpaceMaker .row
+{
+    padding-top: 30px;
+}
+
+#BlogPost
+{
+    padding-top: 40px;
+}
+
+.pagelistColorMaker a
+{
+    color: darkred;
+}
+
+.widgetColorRenderer
+{
+    background-color: limegreen;
+}
+
+#websitelistSpaceMaker
+{
+    padding-top: 40px;
+}
+
+.widgetFontRenderer a
+{
+    color: darkolivegreen;
+}
+
+#BlogPost
+{
+    padding-top: 40px;
+}

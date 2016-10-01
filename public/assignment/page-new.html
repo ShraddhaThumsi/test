@@ -8,21 +8,21 @@
     <title>page-new</title>
 </head>
 <body>
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top pageColorRenderer">
     <div class="container-fluid">
-        <div class="navbar-header">
+        <div class="navbar-header floatRectifier">
             <p class="navbar-text pull-left">
                 <a href="page-list.html" class="navbar-link">
-          <span class="glyphicon glyphicon-menu-left">
+          <span class="glyphicon glyphicon-menu-left glyphColorRectifier widgetGlyphAligner">
           </span>
                 </a>
             </p>
-            <p class="navbar-brand" href="#">
+            <p class="navbar-brand">
                 New Page
             </p>
-            <p class="navbar-text pull-right">
+            <p class="navbar-text pull-right widgetGlyphAligner" id = "webListPlus">
                 <a href="page-list.html" class="navbar-link">
-          <span class="glyphicon glyphicon-ok">
+          <span class="glyphicon glyphicon-ok glyphColorRectifier">
           </span>
                 </a>
             </p>
@@ -33,7 +33,7 @@
 
 <div class="container newPageSpaceMaker" id = "newPageSpaceMaker">
     <form class = "form-group">
-        <label for = "newWebsiteName">Name</label>
+        <label for = "newWebsiteName" class = "newWebsiteSpaceMaker">Name</label>
         <input type = "text" id = "newWebsiteName" placeholder = "Page Name" class = "form-control"/>
         <label for = "newWebsiteDescription">Title</label>
         <input type = "text" id = "newWebsiteDescription" placeholder = "Page Title" class = "form-control"/>
@@ -41,18 +41,17 @@
 </div>
 
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container">
-        <div class="row navbar-text">
-            <div class="col-xs-3 text-center">
-                <a href="#">
-                    <span class="glyphicon glyphicon-user"></span>
+<nav class="navbar navbar-default navbar-fixed-bottom pageColorRenderer">
+    <div class="container-fluid">
+        <div class="navbar-header floatRectifier">
+            <p class="navbar-text pull-right widgetGlyphAligner">
+                <a href="profile.html" class="navbar-link" id = "webListUser">
+          <span class="glyphicon glyphicon-user glyphColorRectifier">
+          </span>
                 </a>
-            </div>
-
+            </p>
         </div>
     </div>
 </nav>
-
 </body>
 </html>
