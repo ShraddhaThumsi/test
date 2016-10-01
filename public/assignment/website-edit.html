@@ -9,12 +9,12 @@
 </head>
 <body>
 
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top profileColorRenderer">
     <div class="container-fluid">
-        <div class="navbar-header">
+        <div class="navbar-header floatRectifier">
             <p class="navbar-text pull-left">
                 <a href="website-list.html" class="navbar-link">
-          <span class="glyphicon glyphicon-menu-left">
+          <span class="glyphicon glyphicon-menu-left glyphColorRectifier glyphPosRectifier">
           </span>
                 </a>
             </p>
@@ -23,7 +23,7 @@
             </p>
             <p class="navbar-text pull-right">
                 <a href="website-list.html" class="navbar-link">
-          <span class="glyphicon glyphicon-ok">
+          <span class="glyphicon glyphicon-ok glyphColorRectifier glyphPosRectifier">
           </span>
                 </a>
             </p>
@@ -31,10 +31,9 @@
     </div>
 </nav>
 
-
 <div class="container" id = "websitelistSpaceMaker">
     <form class = "form-group">
-        <label for = "newWebsiteName">Name</label>
+        <label for = "newWebsiteName" class = "newWebsiteSpaceMaker">Name</label>
         <input type = "text" id = "newWebsiteName" placeholder = "Blogger" class = "form-control"/>
         <label for = "newWebsiteDescription">Description</label>
         <textarea rows = "10" cols = "50" id = "newWebsiteDescription" class = "form-control" placeholder="This is WebDev Assignment2">
@@ -50,15 +49,15 @@
 </div>
 
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container">
-        <div class="row navbar-text">
-            <div class="col-xs-3 text-center">
-                <a href="#">
-                    <span class="glyphicon glyphicon-user"></span>
+<nav class="navbar navbar-default navbar-fixed-bottom profileColorRenderer">
+    <div class="container-fluid">
+        <div class="navbar-header floatRectifier">
+            <p class="navbar-text pull-right widgetGlyphAligner">
+                <a href="profile.html" class="navbar-link" id = "webListUser">
+          <span class="glyphicon glyphicon-user glyphColorRectifier">
+          </span>
                 </a>
-            </div>
-
+            </p>
         </div>
     </div>
 </nav>
