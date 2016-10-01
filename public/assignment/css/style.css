@@ -61,3 +61,14 @@ body {
 .navbar-default .navbar-brand{
     color: #fff;
 }
+
+.glyphPosRectifier
+{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#AddBookApp
+{
+    padding-top: 40px;
+}
