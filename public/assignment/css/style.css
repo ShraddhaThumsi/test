@@ -66,9 +66,20 @@ body {
 {
     padding-left: 10px;
     padding-right: 10px;
+    margin-right: 10px;
 }
 
 #AddBookApp
 {
     padding-top: 40px;
+}
+
+#webListPlus
+{
+    margin-right: 25px;
+}
+
+#webListUser
+{
+    margin-right: 25px;
 }
