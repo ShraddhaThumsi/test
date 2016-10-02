@@ -10,36 +10,107 @@
 <body>
 
 <nav class="navbar navbar-default navbar-fixed-top profileColorRenderer">
-    <div class="container-fluid">
-        <div class="navbar-header floatRectifier">
-            <p class="navbar-text pull-left">
-                <a href="website-list.html" class="navbar-link">
-          <span class="glyphicon glyphicon-menu-left glyphColorRectifier glyphPosRectifier">
+    <div class="row container-fluid">
+        <div class = "col-md-4 hidden-sm hidden-xs">
+            <div class="navbar-header floatRectifier">
+                <p class="navbar-text pull-left">
+                    <a href="profile.html" class="navbar-link">
+          <span class="glyphicon glyphicon-menu-left glyphColorRectifier widgetGlyphAligner">
           </span>
-                </a>
-            </p>
-            <p class="navbar-brand" href="#">
-                New Website
-            </p>
-            <p class="navbar-text pull-right">
-                <a href="website-list.html" class="navbar-link">
-          <span class="glyphicon glyphicon-ok glyphColorRectifier glyphPosRectifier">
+                    </a>
+                </p>
+                <p class="navbar-brand" href="#">
+                    Websites
+                </p>
+                <p class="navbar-text pull-right widgetGlyphAligner" id = "webListPlus">
+                    <a href="website-new.html" class="navbar-link">
+          <span class="glyphicon glyphicon-plus glyphColorRectifier">
           </span>
-                </a>
-            </p>
+                    </a>
+                </p>
+            </div>
+        </div>
+
+        <div class = "col-md-8">
+            <div class="navbar-header floatRectifier">
+                <p class="navbar-brand" href="#" id = "newWebSiteSpace">
+                    New Website
+                </p>
+                <p class="navbar-text pull-right">
+                    <a href="website-list.html" class="navbar-link">
+              <span class="glyphicon glyphicon-ok glyphColorRectifier glyphPosRectifier">
+              </span>
+                    </a>
+                </p>
+            </div>
         </div>
     </div>
 </nav>
 
 
-<div class="container" id = "websitelistSpaceMaker">
-    <form class = "form-group">
-        <label for = "newWebsiteName" class = "newWebsiteSpaceMaker">Name</label>
-        <input type = "text" id = "newWebsiteName" placeholder = "Name" class = "form-control"/>
-        <label for = "newWebsiteDescription">Description</label>
-        <textarea rows = "10" cols = "50" id = "newWebsiteDescription" class = "form-control" placeholder="Description">
-        </textarea>
-    </form>
+<div class="container">
+    <div class = "row">
+        <div class = "col-md-4 hidden-sm hidden-xs">
+            <div class="container websitelistSpaceMaker" id = "websitelistSpaceMaker">
+
+                <div class = "row" id = "AddBookApp">
+                    <div class = "col-md-10">
+                        <a href = "page-list.html">Address Book App</a>
+                    </div>
+                    <div class = "col-md-2">
+                        <a href="website-edit.html">
+                            <span class="glyphicon glyphicon-cog"></span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class = "row">
+                    <div class = "col-md-10">
+                        <a href = "page-list.html">Blogger</a>
+                    </div>
+                    <div class = "col-md-2">
+                        <a href="website-edit.html">
+                            <span class="glyphicon glyphicon-cog"></span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class = "row">
+                    <div class = "col-md-10">
+                        <a href = "page-list.html">Blogging App</a>
+                    </div>
+                    <div class = "col-md-2">
+                        <a href="website-edit.html">
+                            <span class="glyphicon glyphicon-cog"></span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class = "row">
+                    <div class = "col-md-10">
+                        <p><a href = "page-list.html">Script Testing App</a></p>
+                    </div>
+                    <div class = "col-md-2">
+                        <p><a href="website-edit.html">
+                            <span class="glyphicon glyphicon-cog"></span>
+                        </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class = "col-md-8">
+            <form class = "form-group">
+                <label for = "newWebsiteName" class = "newWebsiteSpaceMaker">Name</label>
+                <input type = "text" id = "newWebsiteName" placeholder = "Name" class = "form-control"/>
+                <label for = "newWebsiteDescription">Description</label>
+                <textarea rows = "10" cols = "50" id = "newWebsiteDescription" class = "form-control" placeholder="Description">
+                </textarea>
+            </form>
+        </div>
+    </div>
 </div>
 
 

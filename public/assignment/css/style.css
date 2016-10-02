@@ -4,6 +4,7 @@ input.form-control {
 
 body {
     padding-top: 36px;
+    overflow: hidden;
 }
 
 .container .websitelistSpaceMaker
@@ -127,4 +128,12 @@ body {
 #BlogPost
 {
     padding-top: 40px;
+}
+
+#newWebSiteSpace
+{
+    margin-left: 0px;
+    padding-left: 0px;
+    padding-right: 10px;
+
 }
