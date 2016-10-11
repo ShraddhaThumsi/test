@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hiding and showing content</title>
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <meta name = "viewport" content = "width=device-width, initial-scale=1">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
+    <script>
+        $(start);
+        var p1Showing = true;
+        var p2Showing = true;
+        function start()
+        {
+            $("#t1").click(t1Click);
+            $("#t2").click(t2Click);
+        }
+
+        function t1Click()
+        {
+            if(p1Showing)
+            {
+                $("#p1").hide();
+                p1Showing = false;
+            }
+            else
+            {
+                $("#p1").show();
+                p1Showing = true;
+            }
+
+        }
+
+        function t2Click()
+        {
+            if(p2Showing)
+            {
+                $("#p2").hide();
+                p2Showing = false;
+            }
+            else
+            {
+                $("#p2").show();
+                p2Showing = true;
+            }
+
+        }
+    </script>
+</head>
+<body>
+<h1>hiding and showing content</h1>
+<h2 id ="t1">Title 1</h2>
+<p id="p1">To improve your experience, we would like to collect data on the plugins and features you use.</p>
+<h2 id ="t2">Title 2</h2>
+<p id = "p2">To improve your experience, we would like to collect data on the plugins and features you use.</p>
+</body>
+</html>

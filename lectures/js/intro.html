@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>intro to JavaScript</title>
+    <meta name = "viewport" content = "width=device-width, initial-scale=1">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
+    <script>
+        //alert("Hello!");
+        var a = 2;
+        var b = 4;
+        var c = Math.pow(a,b);
+        //alert(c);
+        var fact = 1;
+        for (var i = 1; i <= 7; i++)
+        {
+            fact = fact * i;
+        }
+        //alert(fact);
+
+        var array = [10,20,3,70,78,98,76];
+        var arrayMin = array[0];
+        var arrayMax = array[0];
+        for(var j = 0; j < array.length; j++)
+        {
+            if (array[j] < arrayMin)
+                arrayMin = array[j];
+            if (array[j] > arrayMax)
+                arrayMax = array[j];
+
+        }
+//        alert("Min: " + arrayMin);
+//        alert("Max: " + arrayMax);
+//        alert("Array: " + array);
+
+        function minFunc(array)
+        {
+            var arrayMin = array[0];
+            for(var j = 0; j < array.length; j++)
+            {
+                console.log(array[j]);
+                if (array[j] < arrayMin)
+                    arrayMin = array[j];
+
+            }
+            return arrayMin;
+        }
+        //var minArray = minFunc(array);
+        alert("Min: " + minFunc(array));
+    </script>
+</head>
+<body>
+    <h1> Intro to Javascript</h1>
+</body>
+</html>
