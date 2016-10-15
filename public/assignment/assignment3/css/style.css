@@ -171,3 +171,14 @@ body {
 .zero-right-padding {
     padding-right: 0px;
 }
+
+.input-group
+{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.glyphicon .glyphicon-play
+{
+    padding-right: 15px;
+}

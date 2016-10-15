@@ -1,6 +1,6 @@
 (function() {
     angular
-        .module("TestApp", [])
+        .module("WebAppMaker", [])
         .controller("TestController", TestController)
         .filter('reverse', function() {
             return function(items) {
