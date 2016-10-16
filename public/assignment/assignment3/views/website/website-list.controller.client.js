@@ -8,9 +8,12 @@
     function WebsiteListController($scope) {
         console.log("hello from website list controller");
         var websites = [
-            {"name": "Facebook",
-            "description": "most popular social networking"},
-            {"name": "Wikipedia", "description": "world's encyclopedia"}
+            {   "_id": 123,
+                "name": "Facebook",
+                "description": "most popular social networking"},
+            {   "_id": 234,
+                "name": "Wikipedia",
+                "description": "world's encyclopedia"}
         ];
 
         $scope.websites = websites;

@@ -33,82 +33,17 @@
 
 
 <div class="container websitelistSpaceMaker" id = "websitelistSpaceMaker">
-    {{websites}}
+    <!--{{websites}}-->
     <div ng-repeat = "website in websites" class = "row" id = "AddBookApp">
         <div class = "col-xs-10" >
-            <a href = "#/page">Address Book App</a>
+            <a href = "#/page">{{website.name}}</a>
         </div>
         <div class = "col-xs-2">
-            <a href="#/website/123">
+            <a href="#/website/{{website._id}}">
                 <span class="glyphicon glyphicon-cog"></span>
             </a>
         </div>
-    </div>
 
-    <div class = "row">
-        <div class = "col-xs-10">
-            <a href = "#/page">Blogger</a>
-        </div>
-        <div class = "col-xs-2">
-            <a href="#/website/234">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </div>
-    </div>
-
-    <div class = "row">
-        <div class = "col-xs-10">
-            <a href = "#/page">Blogging App</a>
-        </div>
-        <div class = "col-xs-2">
-            <a href="#/website/345">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </div>
-    </div>
-
-    <div class = "row">
-        <div class = "col-xs-10">
-            <p><a href = "#/page">Script Testing App</a></p>
-        </div>
-        <div class = "col-xs-2">
-            <p><a href="#/website/456">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            </p>
-        </div>
-    </div>
-    <div class = "row" id = "AddBookApp">
-        <div class = "col-xs-10" >
-            <a href = "#/page">Address Book App</a>
-        </div>
-        <div class = "col-xs-2">
-            <a href="#/website/123">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </div>
-    </div>
-
-    <div class = "row">
-        <div class = "col-xs-10">
-            <a href = "#/page">Blogger</a>
-        </div>
-        <div class = "col-xs-2">
-            <a href="#/website/234">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </div>
-    </div>
-
-    <div class = "row">
-        <div class = "col-xs-10">
-            <a href = "#/page">Blogging App</a>
-        </div>
-        <div class = "col-xs-2">
-            <a href="#/website/345">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </div>
     </div>
 </div>
 
