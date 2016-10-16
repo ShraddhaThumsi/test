@@ -23,7 +23,7 @@
         <form>
             <div class="form-group">
                 <label for="username" class = "newWebsiteSpaceMaker" id = "websitelistSpaceMaker">Username</label>
-                <input type="text" class="form-control" id="username" placeholder="Username">
+                <input ng-model= "username" type="text" class="form-control" id="username" placeholder="Username">
             </div>
             <div class="form-group">
                 <label for="email">Email address</label>
@@ -38,7 +38,7 @@
                 <input type="text" class="form-control" id="last-name" placeholder="Wonderland">
             </div>
         </form>
-
+        {{username}}
         <a class="btn btn-primary btn-block"
            href="#/website">Websites</a>
         <a class="btn btn-danger  btn-block"

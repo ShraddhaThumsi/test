@@ -8,40 +8,38 @@
         .config(Config);
     function Config($routeProvider) {
         $routeProvider
-            /*.when("/login", {
-                templateUrl: "/views/user/login.view.client.html"
-            })*/
+
             .when("/login", {
-                templateUrl: "user/login.view.client.html"
-            })
-            .when("/", {
-                templateUrl: "user/login.view.client.html"
+                templateUrl: "views/user/login.view.client.html",
+                controller: "LoginController"
             })
             .when("/register", {
-                templateUrl: "user/register.view.client.html"
+                templateUrl: "views/user/register.view.client.html"
             })
             .when("/profile", {
-                templateUrl: "user/profile.view.client.html"
+                templateUrl: "views/user/profile.view.client.html",
+                controller: "ProfileController"
+
             })
             .when("/website", {
-                templateUrl: "website/website-list.view.client.html"
+                templateUrl: "views/website/website-list.view.client.html",
+                controller: "WebsiteListController"
             })
             .when("/website/new", {
-                templateUrl: "website/website-new.view.client.html"
+                templateUrl: "views/website/website-new.view.client.html"
             })
             .when("/website/:wid", {
-                templateUrl: "website/website-edit.view.client.html"
+                templateUrl: "views/website/website-edit.view.client.html"
             })
             .when("/page", {
-                templateUrl: "page-list.html"
+                templateUrl: "views/page/page-list.view.client.html"
             })
             .when("/page/new", {
-                templateUrl: "page-new.html"
+                templateUrl: "views/page/page-new.view.client.html"
             })
             .when("/page/:pid", {
-                templateUrl: "page-edit.html"
+                templateUrl: "views/page/page-edit.view.client.html"
             })
-
             .otherwise({redirectTo: "/login"});
     }
 })();
