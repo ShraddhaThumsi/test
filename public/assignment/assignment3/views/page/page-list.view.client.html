@@ -24,9 +24,9 @@
 
 <div class="container websitelistSpaceMaker" id = "websitelistSpaceMaker">
 
-    <div class = "row" id = "AddBookApp">
+    <div ng-repeat = "page in model.pages" class = "row" id = "AddBookApp">
         <div class = "col-xs-10" >
-            <a href = "#/widget">Blog Post</a>
+            <a href = "#/widget">{{page.name}}</a>
         </div>
         <div class = "col-xs-2">
             <a href="#/page/abc">
@@ -35,51 +35,6 @@
         </div>
     </div>
 
-    <div class = "row">
-        <div class = "col-xs-10">
-            <a href = "#/widget">Blogs</a>
-        </div>
-        <div class = "col-xs-2">
-            <a href="#/page/bcd">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </div>
-    </div>
-
-    <div class = "row">
-        <div class = "col-xs-10">
-            <a href = "#/widget">Home</a>
-        </div>
-        <div class = "col-xs-2">
-            <a href="#/page/cde">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </div>
-    </div>
-
-    <div class = "row">
-        <div class = "col-xs-10">
-            <p><a href = "#/widget">About</a></p>
-        </div>
-        <div class = "col-xs-2">
-            <p><a href="#/page/def">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            </p>
-        </div>
-    </div>
-
-    <div class = "row">
-        <div class = "col-xs-10">
-            <p><a href = "#/widget">Contact Us</a></p>
-        </div>
-        <div class = "col-xs-2">
-            <p><a href="#/page/efg">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            </p>
-        </div>
-    </div>
 
 </div>
 

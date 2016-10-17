@@ -30,12 +30,30 @@
 
         function findPageByWebsiteId(websiteId)
         {
-
+            var result = [];
+            for(var p in pages)
+            {
+                if(parseInt(pages[p].wid) === websiteId)
+                {
+                    result.push(pages[p]);
+                }
+            }
+            console.log(result);
+            return result;
         }
 
         function findPageById(pageId)
         {
-
+            var result = [];
+            for(var p in pages)
+            {
+                if(parseInt(pages[p]._id) === pageId)
+                {
+                    result.push(pages[p]);
+                }
+            }
+            console.log(result);
+            return result;
         }
 
         function updatePage(pageId, page)

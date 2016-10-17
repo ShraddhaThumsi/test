@@ -36,7 +36,9 @@
                 templateUrl: "views/website/website-edit.view.client.html"
             })
             .when("/website/:wid/page", {
-                templateUrl: "views/page/page-list.view.client.html"
+                templateUrl: "views/page/page-list.view.client.html",
+                controller:"PageListController",
+                controllerAs: "model"
             })
             .when("/page/new", {
                 templateUrl: "views/page/page-new.view.client.html"
