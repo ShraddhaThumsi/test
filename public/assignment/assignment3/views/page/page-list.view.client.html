@@ -21,11 +21,12 @@
     </div>
 </nav>
 
+<!--
 <div class="container websitelistSpaceMaker" id = "websitelistSpaceMaker">
 
     <div ng-repeat = "page in model.pages" class = "row" id = "AddBookApp">
         <div class = "col-xs-10" >
-            <!--<a href = "#/page/{{page._id}}/widget">{{page.name}}</a>-->
+            &lt;!&ndash;<a href = "#/page/{{page._id}}/widget">{{page.name}}</a>&ndash;&gt;
             <a href = "#/widget">{{page.name}}</a>
         </div>
         <div class = "col-xs-2">
@@ -34,8 +35,26 @@
             </a>
         </div>
     </div>
-</div>
+</div>-->
 
+<!--{{model.pages}}-->
+<div  class="container websitelistSpaceMaker" id = "websitelistSpaceMaker">
+    <!--{{websites}}-->
+    <!--{{model.websites}}-->
+    <!--<span ng-bind = "model.uid.websites"></span>-->
+    <div ng-repeat = "page in model.pages" class = "row" id = "AddBookApp">
+        <div class = "col-xs-10" >
+            <a href = "#/page/{{page._id}}/widget">{{page.name}}</a>
+
+
+        </div>
+        <div class = "col-xs-2">
+            <a href="#/page/{{page._id}}">
+                <span class="glyphicon glyphicon-cog"></span>
+            </a>
+        </div>
+    </div>
+</div>
 
 
 
