@@ -32,9 +32,11 @@
 </nav>
 
 
-<div class="container websitelistSpaceMaker" id = "websitelistSpaceMaker">
+<div  class="container websitelistSpaceMaker" id = "websitelistSpaceMaker">
     <!--{{websites}}-->
-    <div ng-repeat = "website in websites" class = "row" id = "AddBookApp">
+    <!--{{model.websites}}-->
+    <!--<span ng-bind = "model.uid.websites"></span>-->
+    <div ng-repeat = "website in model.websites" class = "row" id = "AddBookApp">
         <div class = "col-xs-10" >
             <a href = "#/page">{{website.name}}</a>
         </div>
@@ -43,7 +45,6 @@
                 <span class="glyphicon glyphicon-cog"></span>
             </a>
         </div>
-
     </div>
 </div>
 

@@ -1,6 +1,7 @@
 /**
  * Created by shraddha on 10/16/16.
  */
+/*
 (function(){
     angular
         .module("WebAppMaker")
@@ -17,5 +18,19 @@
         ];
 
         $scope.websites = websites;
+    }
+})();*/
+
+(function(){
+    angular
+        .module("WebAppMaker")
+        .controller("WebsiteListController", WebsiteListController);
+
+    function WebsiteListController($routeParams, WebsiteService)
+    {
+        var vm = this;
+        var userId = parseInt($routeParams['uid']);
+        vm.websites = WebsiteService.findWebsitesByUser(userId);
+
     }
 })();
