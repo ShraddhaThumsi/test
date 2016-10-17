@@ -15,7 +15,7 @@
             vm.pages = pages;
             console.log("found list of pages");
         }*/
-
+        vm.pages = pages;
 
     }
 })();

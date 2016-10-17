@@ -63,7 +63,17 @@
 
         function deletePage(pageId)
         {
-            return null;
+            var result = [];
+            for(var p in pages)
+            {
+                if(parseInt(pages[p]._id) === pageId)
+                {
+                    continue;
+                }
+                result.push(pages[p]);
+            }
+            console.log(result);
+            return result;
         }
     }
 })();

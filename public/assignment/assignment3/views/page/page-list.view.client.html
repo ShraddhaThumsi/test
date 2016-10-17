@@ -1,74 +1,74 @@
+    <div>
+    <nav class="navbar navbar-default navbar-fixed-top pageColorRenderer">
+        <div class="container-fluid">
+            <div class="navbar-header floatRectifier">
+                <p class="navbar-text pull-left">
+                    <a href="#/website" class="navbar-link">
+              <span class="glyphicon glyphicon-menu-left glyphColorRectifier widgetGlyphAligner">
+              </span>
+                    </a>
+                </p>
+                <p class="navbar-brand" href="#">
+                    Pages
+                </p>
+                <p class="navbar-text pull-right widgetGlyphAligner" id = "webListPlus">
+                    <a href="#/page/new" class="navbar-link">
+              <span class="glyphicon glyphicon-plus glyphColorRectifier glyphPosRectifier">
+              </span>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </nav>
 
-<nav class="navbar navbar-default navbar-fixed-top pageColorRenderer">
-    <div class="container-fluid">
-        <div class="navbar-header floatRectifier">
-            <p class="navbar-text pull-left">
-                <a href="#/website" class="navbar-link">
-          <span class="glyphicon glyphicon-menu-left glyphColorRectifier widgetGlyphAligner">
-          </span>
+    <div  class="container websitelistSpaceMaker" id = "websitelistSpaceMaker">
+        <div ng-repeat = "page in model.pages" class = "row" id = "AddBookApp">
+            <div class = "col-xs-10" >
+                <a href = "#/page/{{page._id}}/widget">{{page.name}}</a>
+
+
+            </div>
+            <div class = "col-xs-2">
+                <a href="#/page/{{page._id}}">
+                    <span class="glyphicon glyphicon-cog"></span>
                 </a>
-            </p>
-            <p class="navbar-brand" href="#">
-                Pages
-            </p>
-            <p class="navbar-text pull-right widgetGlyphAligner" id = "webListPlus">
-                <a href="#/page/new" class="navbar-link">
-          <span class="glyphicon glyphicon-plus glyphColorRectifier glyphPosRectifier">
-          </span>
-                </a>
-            </p>
+            </div>
         </div>
     </div>
-</nav>
 
-<!--
-<div class="container websitelistSpaceMaker" id = "websitelistSpaceMaker">
+        <!--<div class="container-fluid">
+            <div class="container-fluid zero-right-padding">
+                "HELLO"
+                <ul class="container-fluid list-group profile-body">
+                    <li ng-repeat="page in model.pages"
+                        class="list-group-item no-border zero-left-padding zero-right-padding">
+                        <a href = "#">
+                            {{page.name}}
+                        </a>
+                        <a href="#/page/{{page._id}}">
+                            <span class="glyphicon glyphicon-cog"></span>
+                        </a>
+                        &lt;!&ndash;<a ng-click="model.navigateToEditWebsite(website)"
+                           class="pointer pull-right">
+                            <span class="glyphicon glyphicon-cog"></span>
+                        </a>&ndash;&gt;
+                    </li>
+                </ul>
+            </div>
+        </div>-->
 
-    <div ng-repeat = "page in model.pages" class = "row" id = "AddBookApp">
-        <div class = "col-xs-10" >
-            &lt;!&ndash;<a href = "#/page/{{page._id}}/widget">{{page.name}}</a>&ndash;&gt;
-            <a href = "#/widget">{{page.name}}</a>
+
+
+    <nav class="navbar navbar-default navbar-fixed-bottom pageColorRenderer">
+        <div class="container-fluid">
+            <div class="navbar-header floatRectifier">
+                <p class="navbar-text pull-right widgetGlyphAligner">
+                    <a href="#/profile" class="navbar-link" id = "webListUser">
+              <span class="glyphicon glyphicon-user glyphColorRectifier">
+              </span>
+                    </a>
+                </p>
+            </div>
         </div>
-        <div class = "col-xs-2">
-            <a href="#/page/{{page._id}}">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </div>
+    </nav>
     </div>
-</div>-->
-
-<!--{{model.pages}}-->
-<div  class="container websitelistSpaceMaker" id = "websitelistSpaceMaker">
-    <!--{{websites}}-->
-    <!--{{model.websites}}-->
-    <!--<span ng-bind = "model.uid.websites"></span>-->
-    <div ng-repeat = "page in model.pages" class = "row" id = "AddBookApp">
-        <div class = "col-xs-10" >
-            <a href = "#/page/{{page._id}}/widget">{{page.name}}</a>
-
-
-        </div>
-        <div class = "col-xs-2">
-            <a href="#/page/{{page._id}}">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </div>
-    </div>
-</div>
-
-
-
-
-<nav class="navbar navbar-default navbar-fixed-bottom pageColorRenderer">
-    <div class="container-fluid">
-        <div class="navbar-header floatRectifier">
-            <p class="navbar-text pull-right widgetGlyphAligner">
-                <a href="#/profile" class="navbar-link" id = "webListUser">
-          <span class="glyphicon glyphicon-user glyphColorRectifier">
-          </span>
-                </a>
-            </p>
-        </div>
-    </div>
-</nav>
-

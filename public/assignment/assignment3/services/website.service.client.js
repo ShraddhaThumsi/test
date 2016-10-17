@@ -80,7 +80,16 @@
 
         function deleteWebsite(websiteId)
         {
-            return null;
+            for(var w in websites)
+            {
+                if(parseInt(websites[w]._id) === websiteId)
+                {
+                   continue;
+                }
+                result.push(websites[w]);
+            }
+            console.log(result);
+            return result;
         }
 
 

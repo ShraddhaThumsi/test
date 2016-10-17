@@ -6,33 +6,33 @@
         .module("WebAppMaker")
         .factory("UserService", UserService);
 
-    function UserService(){
-        var users = /*[
-            {username: 'alice', password: 'ewq', _id: 123, first: 'Alice', last: 'Wonderland', email: 'alice@wonderland.com'},
-            {username: 'bob', password: 'ewq', _id: 234, first: 'Bob', last: 'Marley', email: 'bob@marley.com'},
-            {username: 'charlie', password: 'ewq', _id: 345, first: 'Charlie', last: 'Garcia', email: 'charlie@garcia.com'}
-        ];*/
+    function UserService() {
+        /*var users = /*[
+         {username: 'alice', password: 'ewq', _id: 123, first: 'Alice', last: 'Wonderland', email: 'alice@wonderland.com'},
+         {username: 'bob', password: 'ewq', _id: 234, first: 'Bob', last: 'Marley', email: 'bob@marley.com'},
+         {username: 'charlie', password: 'ewq', _id: 345, first: 'Charlie', last: 'Garcia', email: 'charlie@garcia.com'}
+         ];*/
 
-        [
-            {_id: 123, username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
-            {_id: 234, username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  },
-            {_id: 345, username: "charly",   password: "charly",   firstName: "Charly", lastName: "Garcia"  },
-            {_id: 456, username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi" }
+        var users = [
+            {_id: 123, username: "alice", password: "alice", firstName: "Alice", lastName: "Wonder"},
+            {_id: 234, username: "bob", password: "bob", firstName: "Bob", lastName: "Marley"},
+            {_id: 345, username: "charly", password: "charly", firstName: "Charly", lastName: "Garcia"},
+            {_id: 456, username: "jannunzi", password: "jannunzi", firstName: "Jose", lastName: "Annunzi"}
         ];
 
         var api = {
             findUserByCredentials: findUserByCredentials,
             findUserById: findUserById,
             createUser: createUser,
-            findUserByUsername: findUserByUsername ,
+            findUserByUsername: findUserByUsername,
             updateUser: updateUser,
             deleteUser: deleteUser
 
         };
         return api;
 
-        function findUserById(userId){
-            for(var u in users) {
+        function findUserById(userId) {
+            for (var u in users) {
                 var user = users[u];
                 if (user._id === userId) {
                     console.log(user);
@@ -42,9 +42,8 @@
             return null;
         }
 
-        function findUserByCredentials(username, password)
-        {
-            for(var u in users) {
+        function findUserByCredentials(username, password) {
+            for (var u in users) {
                 var user = users[u];
                 if (user.username === username
                     && user.password === password) {
@@ -52,28 +51,40 @@
                     return user;
                 }
             }
-                return null;
+            return null;
+        }
+
+
+        function createUser(user) {
+
+        }
+
+        function findUserByUsername(username) {
+            for (var u in users) {
+                var user = users[u];
+                if (user.username === username) {
+                    console.log(user);
+                    return user;
+                }
             }
-        }
-
-        function createUser(user)
-        {
+            return null;
 
         }
 
-        function findUserByUsername(username)
-        {
+        function updateUser(userId, user) {
 
         }
 
-        function updateUser(userId, user)
-        {
-
+        function deleteUser(userId) {
+            var result = [];
+            for (var u in users) {
+                if (parseInt(users[u]._id) === userId) {
+                    continue;
+                }
+                result.push(users[u]);
+            }
+            console.log(result);
+            return result;
         }
-
-        function deleteUser(userId)
-        {
-
-        }
-
+    }
 })();

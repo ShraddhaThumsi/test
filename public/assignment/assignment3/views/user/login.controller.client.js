@@ -19,7 +19,10 @@
             else
                 {
                     $location.url("/user/" + user._id);
+                    vm.success = "Your Profile was successfully saved!";
                 }
+
+            var userByName = UserService.findUserByUsername(username);
         }
 
     }
