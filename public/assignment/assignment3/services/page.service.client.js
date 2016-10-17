@@ -25,7 +25,7 @@
 
         function createPage(websiteId, page)
         {
-
+            return null;
         }
 
         function findPageByWebsiteId(websiteId)
@@ -58,12 +58,12 @@
 
         function updatePage(pageId, page)
         {
-
+            return null;
         }
 
         function deletePage(pageId)
         {
-
+            return null;
         }
     }
 })();

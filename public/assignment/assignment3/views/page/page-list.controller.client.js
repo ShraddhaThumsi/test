@@ -11,5 +11,11 @@
         var vm = this;
         var websiteId = parseInt($routeParams['wid']);
         var pages = PageService.findPageByWebsiteId(websiteId);
+        /*if(pages != null){
+            vm.pages = pages;
+            console.log("found list of pages");
+        }*/
+
+
     }
 })();

@@ -70,17 +70,17 @@
 
         function createWebsite(userId, website)
         {
-
+            return null;
         }
 
         function updateWebsite(websiteId, website)
         {
-
+            return null;
         }
 
         function deleteWebsite(websiteId)
         {
-
+            return null;
         }
 
 
