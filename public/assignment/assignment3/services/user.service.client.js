@@ -75,7 +75,7 @@
             }
 
 
-            userExists = false;
+            /*userExists = false;*/
             var newUser = {
                 _id: idGenerator + 1,
                 username: newUser.username,
@@ -85,7 +85,8 @@
                 email: newUser.email
             };
             users.push(newUser);
-            console.log(newUser);
+            /*console.log(newUser);*/
+            console.log(users);
             return newUser;
                 /*tempoDatabase = tempoDatabase.push(newUser);
                  return tempoDatabase;*/

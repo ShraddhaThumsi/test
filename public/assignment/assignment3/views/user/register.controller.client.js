@@ -20,7 +20,7 @@
                 lastName: vm.lastName,
                 email: vm.email
             };
-            
+
             if (potentialUser.password1 === potentialUser.password2) {
                 var newUser = {
                     username: vm.username,
@@ -40,11 +40,11 @@
                  console.log(vm.newEntry);
                  }*/
 
-                if (userExists) {
+                if (userExists !== null) {
                     alert("User exists");
                 }
 
-                else vm.error = "User Already Exists, please try to login";
+                else vm.registerUser = userExists;
             }
 
             else vm.error = "Passwords Do not match, please try again";
