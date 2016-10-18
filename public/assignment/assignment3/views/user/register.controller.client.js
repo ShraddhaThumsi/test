@@ -6,7 +6,7 @@
         .module("WebAppMaker")
         .controller("RegisterController", RegisterController);
 
-    function RegisterController(UserService)
+    function RegisterController($location, UserService)
     {
         var vm = this;
         var potentialUser = {
@@ -29,12 +29,16 @@
             };
 
             var success = UserService.createUser(newUser);
-            if(success)
+
+            if(!(success === true))
             {
-                vm.error = "User Already Exists, please try to login";
+
+                vm.newEntry = UserService.createUser(newUser);
+                $location.url("/user/" + vm.newEntry._id);
+                console.log(vm.newEntry);
             }
 
-            else UserService.createUser(newUser);
+            else vm.error = "User Already Exists, please try to login";
         }
 
         else vm.error = "Passwords Do not match, please try again";

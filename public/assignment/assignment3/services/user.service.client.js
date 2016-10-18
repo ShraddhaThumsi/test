@@ -54,40 +54,47 @@
             return null;
         }
 
+        function generateNewId() {
+
+        }
+
         function createUser(newUser) {
-            var userExists = false;
-            var idGenerator = 700;
-            /*var tempoDatabase = users;*/
-            for(var u in users)
-            {
-                var user = users[u];
-                if(user.username === newUser.username
-                    && user.password === newUser.password)
-                {
-                    userExists = true;
-                    return userExists;
+            //while(true) {
+                var userExists = false;
+                var idGenerator = 700;
+                /*var tempoDatabase = users;*/
+
+                for (var u in users) {
+                    var user = users[u];
+                    if (user.username === newUser.username
+                        && user.password === newUser.password) {
+                        userExists = true;
+                        return userExists;
+                    }
+
+                    else {
+                        userExists = false;
+                        var newUser = {
+                            _id: idGenerator + 1,
+                            username: newUser.username,
+                            password: newUser.password,
+                            firstName: newUser.firstName,
+                            lastName: newUser.lastName,
+                            email: newUser.email
+                        };
+                        users.push(newUser);
+                        console.log(user);
+                        return user;
+                        /*tempoDatabase = tempoDatabase.push(newUser);
+                         return tempoDatabase;*/
+                    }
+
                 }
 
-                else
-                {
-                    userExists = false;
-                    var newUser = {_id: idGenerator+1,
-                    username: newUser.username,
-                    password: newUser.password,
-                    firstName: newUser.firstName,
-                    lastName: newUser.lastName,
-                    email: newUser.email};
-                    users.push(newUser);
-                    console.log(users);
-                    return users;
-                    /*tempoDatabase = tempoDatabase.push(newUser);
-                    return tempoDatabase;*/
-                }
-            }
-
-            /*return tempoDatabase;*/
-            console.log(users);
-            return users;
+                /*return tempoDatabase;*/
+                console.log(users);
+                return users;
+            //}
         }
 
         function findUserByUsername(username) {
