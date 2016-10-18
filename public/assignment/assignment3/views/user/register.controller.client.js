@@ -9,41 +9,47 @@
     function RegisterController($location, UserService)
     {
         var vm = this;
-        var potentialUser = {
-            username: vm.username,
-            password1: vm.password1,
-            password2: vm.password2,
-            firstName: vm.firstName,
-            lastName: vm.lastName,
-            email: vm.email
-        };
+        vm.registerUser = registerUser;
 
-        if(potentialUser.password1 === potentialUser.password2)
-        {
-            var newUser = {
+        function registerUser() {
+            var potentialUser = {
                 username: vm.username,
-                password: vm.password1,
+                password1: vm.password1,
+                password2: vm.password2,
                 firstName: vm.firstName,
                 lastName: vm.lastName,
                 email: vm.email
             };
+            
+            if (potentialUser.password1 === potentialUser.password2) {
+                var newUser = {
+                    username: vm.username,
+                    password: vm.password1,
+                    firstName: vm.firstName,
+                    lastName: vm.lastName,
+                    email: vm.email
+                };
 
-            var success = UserService.createUser(newUser);
+                var userExists = UserService.createUser(newUser);
 
-            if(!(success === true))
-            {
+                /*if(!(userExists === true))
+                 {
 
-                vm.newEntry = UserService.createUser(newUser);
-                $location.url("/user/" + vm.newEntry._id);
-                console.log(vm.newEntry);
+                 vm.newEntry = UserService.createUser(newUser);
+                 $location.url("/user/" + vm.newEntry._id);
+                 console.log(vm.newEntry);
+                 }*/
+
+                if (userExists) {
+                    alert("User exists");
+                }
+
+                else vm.error = "User Already Exists, please try to login";
             }
 
-            else vm.error = "User Already Exists, please try to login";
+            else vm.error = "Passwords Do not match, please try again";
+
         }
-
-        else vm.error = "Passwords Do not match, please try again";
-
-
 
     }
 })();

@@ -58,43 +58,37 @@
 
         }
 
+        var idGenerator = 700;
+
         function createUser(newUser) {
             //while(true) {
-                var userExists = false;
-                var idGenerator = 700;
-                /*var tempoDatabase = users;*/
+            var userExists = false;
 
-                for (var u in users) {
-                    var user = users[u];
-                    if (user.username === newUser.username
-                        && user.password === newUser.password) {
-                        userExists = true;
-                        return userExists;
-                    }
+            /*var tempoDatabase = users;*/
 
-                    else {
-                        userExists = false;
-                        var newUser = {
-                            _id: idGenerator + 1,
-                            username: newUser.username,
-                            password: newUser.password,
-                            firstName: newUser.firstName,
-                            lastName: newUser.lastName,
-                            email: newUser.email
-                        };
-                        users.push(newUser);
-                        console.log(user);
-                        return user;
-                        /*tempoDatabase = tempoDatabase.push(newUser);
-                         return tempoDatabase;*/
-                    }
-
+            for (var u in users) {
+                var user = users[u];
+                if (user.username === newUser.username) {
+                    userExists = true;
+                    return userExists;
                 }
+            }
 
-                /*return tempoDatabase;*/
-                console.log(users);
-                return users;
-            //}
+
+            userExists = false;
+            var newUser = {
+                _id: idGenerator + 1,
+                username: newUser.username,
+                password: newUser.password,
+                firstName: newUser.firstName,
+                lastName: newUser.lastName,
+                email: newUser.email
+            };
+            users.push(newUser);
+            console.log(newUser);
+            return newUser;
+                /*tempoDatabase = tempoDatabase.push(newUser);
+                 return tempoDatabase;*/
         }
 
         function findUserByUsername(username) {
