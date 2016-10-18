@@ -1,15 +1,33 @@
 
     <div class="container">
+        <div ng-show = "model.error" class ="alert alert-danger" role="alert">
+            {{model.error}}
+        </div>
         <h1>Register</h1>
         <input type="text"
+               ng-model = "username"
                class="form-control"
                placeholder="username"/>
         <input type="password"
+               ng-model = "password1"
                class="form-control"
                placeholder="password"/>
         <input type="password"
+               ng-model = "password2"
                class="form-control"
                placeholder="very password"/>
+        <input type="email"
+               ng-model = "email"
+               class="form-control"
+               placeholder="Email"/>
+        <input type="text"
+               ng-model = "firstName"
+               class="form-control"
+               placeholder="FirstName"/>
+        <input type="text"
+               ng-model = "lastName"
+               class="form-control"
+               placeholder="LastName"/>
         <a class="btn btn-primary btn-block"
            href="#/profile">Register</a>
         <a class="btn btn-danger  btn-block"

@@ -14,5 +14,8 @@
             console.log("found user");
         }
 
+        var updatedUser = UserService.updateUser(userId, vm.user);
+        vm.updatedUser = updatedUser;
+
     }
 })();
