@@ -17,5 +17,12 @@
         var updatedUser = UserService.updateUser(userId, vm.user);
         vm.updatedUser = updatedUser;
 
+        function deleteUser(userId)
+        {var deletedUser = UserService.deleteUser(userId);
+            console.log(deletedUser);
+        /*vm.deletedUser = deletedUser;
+        vm.success = "Profile successfully deleted";
+        console.log(vm.success);*/}
+
     }
 })();

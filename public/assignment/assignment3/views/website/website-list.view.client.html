@@ -22,7 +22,7 @@
                 Websites
             </p>
             <p class="navbar-text pull-right widgetGlyphAligner" id = "webListPlus">
-                <a href="#/website/new" class="navbar-link">
+                <a href="#/user/{{model.userId}}/website/new" class="navbar-link">
           <span class="glyphicon glyphicon-plus glyphColorRectifier glyphPosRectifier">
           </span>
                 </a>
@@ -42,7 +42,7 @@
             <a ng-click="model.goToPageList(website)">{{website.name}}</a>
         </div>
         <div class = "col-xs-2">
-            <a href="#/website/{{website._id}}">
+            <a href="#/user/{{website.uid}}/website/{{website._id}}">
                 <span class="glyphicon glyphicon-cog"></span>
             </a>
         </div>

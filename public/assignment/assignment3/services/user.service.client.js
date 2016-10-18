@@ -8,15 +8,17 @@
 
     function UserService() {
 
+        var idGenerator = 700;
+        console.log(idGenerator);
 
         var users = [
-            {_id: 123, username: "alice", password: "alice",
+            {_id: "123", username: "alice", password: "alice",
                 firstName: "Alice", lastName: "Wonder", email: "alice@wonderland.com"},
-            {_id: 234, username: "bob", password: "bob",
+            {_id: "234", username: "bob", password: "bob",
                 firstName: "Bob", lastName: "Marley", email: "bob@marley.com"},
-            {_id: 345, username: "charly", password: "charly",
+            {_id: "345", username: "charly", password: "charly",
                 firstName: "Charly", lastName: "Garcia", email: "charly@garcia.com"},
-            {_id: 456, username: "jannunzi", password: "jannunzi",
+            {_id: "456", username: "jannunzi", password: "jannunzi",
                 firstName: "Jose", lastName: "Annunzi", email: "jose@annunzi.com"}
         ];
 
@@ -46,7 +48,7 @@
         function findUserById(userId) {
             for (var u in users) {
                 var user = users[u];
-                if (user._id === userId) {
+                if (parseInt(user._id) === userId) {
                     console.log(user);
                     return user;
                 }
@@ -58,8 +60,6 @@
 
         }
 
-        var idGenerator = 700;
-
         function createUser(newUser) {
             //while(true) {
             var userExists = false;
@@ -70,22 +70,24 @@
                 var user = users[u];
                 if (user.username === newUser.username) {
                     userExists = true;
-                    return userExists;
+                    return null;
                 }
             }
 
 
             /*userExists = false;*/
             var newUser = {
-                _id: idGenerator + 1,
+                _id: (idGenerator + 1).toString(),
                 username: newUser.username,
                 password: newUser.password,
                 firstName: newUser.firstName,
                 lastName: newUser.lastName,
                 email: newUser.email
             };
+            console.log(idGenerator);
             users.push(newUser);
             /*console.log(newUser);*/
+            console.log(newUser._id);
             console.log(users);
             return newUser;
                 /*tempoDatabase = tempoDatabase.push(newUser);
@@ -109,7 +111,7 @@
             var user;
             for (var u in users) {
                 user = users[u];
-                if (user._id === userId) {
+                if (parseInt(user._id) === userId) {
                     user.firstName = newUser.firstName;
                     user.lastName = newUser.lastName;
                     user.email = newUser.email;
@@ -128,7 +130,7 @@
             for(var u in users)
             {
                 user = users[u];
-                if(user._id === userId)
+                if(parseInt(user._id) === userId)
                 {
                     users.remove(user);
                     console.log(users);

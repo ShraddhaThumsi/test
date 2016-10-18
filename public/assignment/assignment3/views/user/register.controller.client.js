@@ -32,6 +32,7 @@
 
                 var userExists = UserService.createUser(newUser);
 
+
                 /*if(!(userExists === true))
                  {
 
@@ -40,11 +41,15 @@
                  console.log(vm.newEntry);
                  }*/
 
-                if (userExists !== null) {
+                if (userExists == true) {
                     alert("User exists");
                 }
 
-                else vm.registerUser = userExists;
+                else {var userId = userExists._id;
+                    vm.userId = userId;
+                    vm.registerUser = userExists;
+                $location.url("/user/" + vm.userId);
+                }
             }
 
             else vm.error = "Passwords Do not match, please try again";
