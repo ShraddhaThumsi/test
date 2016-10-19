@@ -97,17 +97,22 @@
 
         function updateWebsite(websiteId, newWebsite)
         {
+            console.log(websiteId)
+            console.log(newWebsite)
             var website;
             for (var w in websites) {
                 website = websites[w];
-                if (parseInt(website._id) === websiteId) {
+                if (website._id.toString() === websiteId.toString()) {
                     /*website.name = newWebsite.name;
                     website.uid = newWebsite.uid;
                     website.description = newWebsite.description;*/
-                    website = {name: newWebsite.name,
+                    /*website = {name: newWebsite.name,
                     uid: newWebsite.uid,
                     description: newWebsite.description};
-                    console.log(website);
+                    console.log(website);*/
+                    website.name = newWebsite.name;
+                    website.description = newWebsite.description;
+                    console.log(websites);
                     return website;
                 }
             }

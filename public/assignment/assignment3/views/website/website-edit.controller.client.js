@@ -20,9 +20,12 @@
         console.log(vm.currentWebsite);
         console.log(vm.name);
         console.log(vm.description);
-        function updateWebsite(websiteId, website)
+
+        function updateWebsite(name, description)
         {
-            var updatedWebsite = WebsiteService.updateWebsite(websiteId, website);
+            vm.name = name;
+            vm.description = description;
+            var updatedWebsite = WebsiteService.updateWebsite(websiteId, {name: name, description: description});
             $location.url("/user/" + vm.userId + "/website/");
         }
 
