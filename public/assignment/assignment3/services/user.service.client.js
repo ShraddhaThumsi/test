@@ -84,11 +84,11 @@
                 lastName: newUser.lastName,
                 email: newUser.email
             };
-            console.log(idGenerator);
+            /*console.log("user id" + idGenerator);*/
             users.push(newUser);
             /*console.log(newUser);*/
-            console.log(newUser._id);
-            console.log(users);
+            console.log("user id" + newUser._id);
+            console.log("updated list of users: " + users);
             return newUser;
                 /*tempoDatabase = tempoDatabase.push(newUser);
                  return tempoDatabase;*/
@@ -120,25 +120,47 @@
                 }
             }
 
-            console.log(user);
+            /*console.log(user);*/
             return user;
         }
 
         function deleteUser(userId)
         {
-            var user;
-            for(var u in users)
-            {
-                user = users[u];
-                if(parseInt(user._id) === userId)
-                {
-                    users.remove(user);
-                    console.log(users);
-                }
+            //while(true) {
+            var userExists = false;
 
+            /*var tempoDatabase = users;*/
+
+            var deletedUser;
+
+            for (var u in users) {
+                var user = users[u];
+                if (user._id === userId) {
+                    userExists = true;
+                    deletedUser = user;
+                    users.pop();
+                    return null;
+                }
             }
+
+
+            /*userExists = false;*/
+            /*var newUser = {
+                _id: (idGenerator + 1).toString(),
+                username: newUser.username,
+                password: newUser.password,
+                firstName: newUser.firstName,
+                lastName: newUser.lastName,
+                email: newUser.email
+            };*/
+            /*console.log(idGenerator);*/
+
+            /*console.log(newUser);*/
+            /*console.log(newUser._id);*/
             console.log(users);
-            return users;
+            return deletedUser;
+            /*tempoDatabase = tempoDatabase.push(newUser);
+             return tempoDatabase;*/
         }
     }
 })();

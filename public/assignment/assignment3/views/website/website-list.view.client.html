@@ -39,7 +39,7 @@
     <div ng-repeat = "website in model.websites" class = "row" id = "AddBookApp">
         <div class = "col-xs-10" >
             <!--<a href = "#/website/{{website._id}}/page">{{website.name}}</a>-->
-            <a ng-click="model.goToPageList(website)">{{website.name}}</a>
+            <a ng-click="model.goToPageList(model.website)">{{website.name}}</a>
         </div>
         <div class = "col-xs-2">
             <a href="#/user/{{website.uid}}/website/{{website._id}}">

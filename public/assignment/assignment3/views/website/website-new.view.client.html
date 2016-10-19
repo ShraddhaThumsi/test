@@ -14,7 +14,7 @@
                     Websites
                 </p>
                 <p class="navbar-text pull-right widgetGlyphAligner" id = "webListPlus">
-                    <a href="#/website/new" class="navbar-link">
+                    <a href="#/user/{{model.userId}}/website/new" class="navbar-link">
           <span class="glyphicon glyphicon-plus glyphColorRectifier widgetGlyphAligner">
           </span>
                     </a>
@@ -28,10 +28,6 @@
                     New Website
                 </p>
                 <p class="navbar-text pull-right">
-                    <a href="#/website" class="navbar-link">
-              <span class="glyphicon glyphicon-ok glyphColorRectifier glyphPosRectifier">
-              </span>
-                    </a>
                 </p>
             </div>
         </div>
@@ -580,20 +576,12 @@
         <div class = "col-md-8">
             <form class = "form-group">
                 <label for = "newWebsiteName" class = "newWebsiteSpaceMaker">Name</label>
-                <input type = "text" id = "newWebsiteName" placeholder = "Name" class = "form-control"/>
+                <input ng-model="model.name" type = "text" id = "newWebsiteName" placeholder = "Name" class = "form-control"/>
                 <label for = "newWebsiteDescription">Description</label>
-                <textarea rows = "10" cols = "50" id = "newWebsiteDescription" class = "form-control" placeholder="Description">
+                <textarea ng-model="model.description" rows = "10" cols = "50" id = "newWebsiteDescription" class = "form-control" placeholder="Description">
 
                 </textarea>
-
-                <div class="input-group">
-      <span class="input-group-addon">
-        <input type="checkbox" aria-label="...">
-      </span>
-                    <input type="text" value = "Single" READONLY class="form-control" aria-label="...">
-                </div>
-
-                <a href="#/website" class = "btn btn-block btn-primary form-group">Submit</a>
+                <a ng-click = "model.createWebsite(model.name, model.description)" class = "btn btn-block btn-primary form-group">Submit</a>
             </form>
         </div>
     </div>

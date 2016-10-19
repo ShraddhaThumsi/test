@@ -6,13 +6,15 @@
         .module("WebAppMaker")
         .factory("WebsiteService", WebsiteService);
     function WebsiteService() {
+        var idGenerator = 900;
+        console.log(idGenerator);
         var websites = [
-            { _id: "123", name: "Facebook",    uid: "456" },
-            { _id: "234", name: "Twitter",     uid: "456" },
-            { _id: "456", name: "Gizmodo",     uid: "456" },
-            { _id: "567", name: "Tic Tac Toe", uid: "123" },
-            { _id: "678", name: "Checkers",    uid: "123" },
-            { _id: "789", name: "Chess",       uid: "234" }
+            { _id: "123", name: "Facebook",    uid: "456", description: "most popular social networking website" },
+            { _id: "234", name: "Twitter",     uid: "456", description: "the favourite blog site for celebs" },
+            { _id: "456", name: "Gizmodo",     uid: "456", description: "all things technical" },
+            { _id: "567", name: "Tic Tac Toe", uid: "123", description: "the classic old x's and o's" },
+            { _id: "678", name: "Checkers",    uid: "123", description: "mind game" },
+            { _id: "789", name: "Chess",       uid: "234", description: "mind game" }
         ];
 
        /* [
@@ -56,26 +58,71 @@
         }
 
         function findWebsiteById(websiteId){
-            var result = [];
             for(var w in websites)
             {
                 if(parseInt(websites[w]._id) === websiteId)
                 {
-                    result.push(websites[w]);
+                    return websites[w];
                 }
             }
-            console.log(result);
-            return result;
+            return false;
         }
 
         function createWebsite(userId, website)
         {
-            return null;
+            var websiteExists = false;
+            for(var w in websites)
+            {
+                var existingWebsite = websites[w];
+                if(existingWebsite.name === website.name)
+                {
+                    websiteExists = true;
+                    return null;
+                }
+            }
+
+            var newWebSite = {
+                _id: (idGenerator + 1).toString(),
+                name: website.name,
+                uid: userId,
+                description: website.description
+            };
+
+            /*console.log("website id:" + idGenerator);*/
+            websites.push(newWebSite);
+            console.log("website id:" + newWebSite._id);
+            console.log("updated list of websites: " + websites);
+            return newWebSite;
         }
 
-        function updateWebsite(websiteId, website)
+        function updateWebsite(websiteId, newWebsite)
         {
-            return null;
+            var website;
+            for (var w in websites) {
+                website = websites[w];
+                if (parseInt(website._id) === websiteId) {
+                    website.name = newWebsite.name;
+                    website.uid = newWebsite.uid;
+                    website.description = newWebsite.description;
+                    console.log(website);
+                    return website;
+                }
+            }
+            return website;
+            /*var currentWebsite;
+            for (var w in websites)
+            {
+                currentWebsite = websites[w];
+                if(parseInt(currentWebsite._id) === websiteId)
+                {
+                    currentWebsite.name = website.name;
+                    currentWebsite.uid = website.uid;
+                    currentWebsite.description = website.description;
+                    console.log(currentWebsite);
+                    return currentWebsite;
+                }
+            }
+            return currentWebsite;*/
         }
 
         function deleteWebsite(websiteId)

@@ -5,7 +5,7 @@
     angular
         .module("WebAppMaker")
         .controller("ProfileController", ProfileController);
-    function ProfileController($routeParams, UserService) {
+    function ProfileController($routeParams, $location, UserService) {
         var vm = this;
         var userId = parseInt($routeParams.uid);
         var user = UserService.findUserById(userId);
@@ -14,15 +14,16 @@
             console.log("found user");
         }
 
-        var updatedUser = UserService.updateUser(userId, vm.user);
-        vm.updatedUser = updatedUser;
+        vm.updateUser = updateUser;
+        function updateUser(username,email,firstName,lastName){
+            var updatedUser = UserService.updateUser(username,email,firstName,lastName);
+
+            $location.url("/user/" + userId);}
 
         function deleteUser(userId)
         {var deletedUser = UserService.deleteUser(userId);
             console.log(deletedUser);
-        /*vm.deletedUser = deletedUser;
-        vm.success = "Profile successfully deleted";
-        console.log(vm.success);*/}
+        }
 
     }
 })();

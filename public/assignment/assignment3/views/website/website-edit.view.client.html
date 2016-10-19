@@ -1,11 +1,9 @@
-
-
-<nav class="navbar navbar-default navbar-fixed-top profileColorRenderer">
+<nav class="navbar navbar-default navbar-fixed-top profileColorRenderer" xmlns="http://www.w3.org/1999/html">
     <div class="row container-fluid">
         <div class = "col-md-4 hidden-sm hidden-xs">
             <div class="navbar-header floatRectifier">
                 <p class="navbar-text pull-left">
-                    <a href="#/website" class="navbar-link">
+                    <a href="#/user/{{model.userId}}/website" class="navbar-link">
           <span class="glyphicon glyphicon-menu-left glyphColorRectifier widgetGlyphAligner">
           </span>
                     </a>
@@ -14,7 +12,7 @@
                     Websites
                 </p>
                 <p class="navbar-text pull-right widgetGlyphAligner" id = "webListPlus">
-                    <a href="#/website/new" class="navbar-link">
+                    <a href="#/user/{{model.userId}}/website/new" class="navbar-link">
           <span class="glyphicon glyphicon-plus glyphColorRectifier widgetGlyphAligner">
           </span>
                     </a>
@@ -27,12 +25,12 @@
                 <p class="navbar-brand" href="#" id = "newWebSiteSpace">
                     Edit Website
                 </p>
-                <p class="navbar-text pull-right">
-                    <a href="#/website" class="navbar-link">
+                <!--<p class="navbar-text pull-right">
+                    <a href="#/user/{{model.userId}}/website/{{model._id}}" class="navbar-link">
               <span class="glyphicon glyphicon-ok glyphColorRectifier glyphPosRectifier">
               </span>
                     </a>
-                </p>
+                </p>-->
             </div>
         </div>
     </div>
@@ -44,20 +42,7 @@
         <div class = "col-md-4 hidden-sm hidden-xs container websitelistSpaceMaker" id = "websitelistSpaceMaker">
 
             <ul class="list-group">
-                <!--<li class="list-group-item">
-                    <div class = "col-md-10">
-                        <a href = "#">
-                        Cras justo odio
-                        </a>
-                    </div>
-                    <div class = "col-md-1">
-                        <a href = "#"><span class = "glyphicon glyphicon-play"></span></a>
-                    </div>
-                    <div class = "col-md-1">
-                        <a href = "#"><span class = "glyphicon glyphicon-cog"></span></a>
-                    </div>
 
-                </li>-->
                 <li class="list-group-item">
                     <a href = "#">
                         cras justo odio
@@ -593,21 +578,15 @@
 
         <div class = "col-md-8">
             <form class = "form-group">
-                <label for = "newWebsiteName" class = "newWebsiteSpaceMaker">Name</label>
-                <input type = "text" id = "newWebsiteName" placeholder = "Name" class = "form-control"/>
-                <label for = "newWebsiteDescription">Description</label>
-                <textarea rows = "10" cols = "50" id = "newWebsiteDescription" class = "form-control" placeholder="Description">
+                <label for = "newWebsiteName" class = "newWebsiteSpaceMaker"></label>
+                <input ng-model = "model.name" type = "text" id = "newWebsiteName" placeholder = "Name" class = "form-control">{{model.name}}</input>
+                <label for = "newWebsiteDescription"></label>
+                <textarea ng-model = "model.description" rows = "10" cols = "50" id = "newWebsiteDescription" class = "form-control" placeholder="Description">
+                    {{model.description}}
 
                 </textarea>
 
-                <div class="input-group">
-      <span class="input-group-addon">
-        <input type="checkbox" aria-label="...">
-      </span>
-                    <input type="text" value = "Single" READONLY class="form-control" aria-label="...">
-                </div>
-
-                <a href="#/website" class = "btn btn-block btn-primary form-group">Submit</a>
+                <a ng-click="model.updateWebsite(model.name, model.description)" class = "btn btn-block btn-primary form-group">Submit</a>
 
                 <a href="#/website" class = "btn btn-block btn-danger form-group">Delete Website</a>
             </form>
@@ -620,7 +599,7 @@
     <div class="container-fluid">
         <div class="navbar-header floatRectifier">
             <p class="navbar-text pull-right widgetGlyphAligner">
-                <a href="#/profile" class="navbar-link" id = "webListUser">
+                <a href="#/user/{{model.userId}}" class="navbar-link" id = "webListUser">
           <span class="glyphicon glyphicon-user glyphColorRectifier">
           </span>
                 </a>
