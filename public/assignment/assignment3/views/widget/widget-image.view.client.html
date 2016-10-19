@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>widget-youtube</title>
+    <title>widget-image</title>
     <meta name = "viewport" content = "width=device-width, initial-scale=1">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="../../css/style.css" rel="stylesheet"/>
@@ -12,7 +12,7 @@
     <div class="container-fluid">
         <div class="navbar-header floatRectifier">
             <p class="navbar-text pull-left">
-                <a href="widget-list.html" class="navbar-link">
+                <a href="widget-list.view.client.html" class="navbar-link">
           <span class="glyphicon glyphicon-menu-left glyphColorRectifier widgetGlyphAligner">
           </span>
                 </a>
@@ -21,7 +21,7 @@
                 Edit Widget
             </p>
             <p class="navbar-text pull-right widgetGlyphAligner" id = "webListPlus">
-                <a href="widget-list.html" class="navbar-link">
+                <a href="widget-list.view.client.html" class="navbar-link">
           <span class="glyphicon glyphicon-ok glyphColorRectifier glyphPosRectifier">
           </span>
                 </a>
@@ -36,16 +36,18 @@
         <label for = "newImageName">Name</label>
         <input type = "text" id = "newImageName" class = "form-control"/>
         <label for = "newImageText">Text</label>
-        <input type = "text" id = "newImageText"  class = "form-control"/>
+        <input type = "text" id = "newImageText" placeholder = "An Open Letter To Tech Conference Organizers" class = "form-control"/>
         <label for = "newImageURL">URL</label>
-        <input type = "text" id = "newImageURL" class = "form-control" placeholder="https://www.youtube.com/embed/Uks8psEpmB4"/>
+        <input type = "text" id = "newImageURL" class = "form-control" placeholder="https://static.pexels.com/photos/186422/pexels-photo-186422.jpeg"/>
         <label for = "newImageWidth">Width</label>
-        <input type = "text" id = "newImageWidth" class = "form-control"/>
+        <input type = "text" id = "newImageWidth" class = "form-control" placeholder = "100%"/>
+        <label for = "newImageSource">Upload</label>
+        <input type = "file" id = "newImageSource" class = "form-control" placeholder = "100%"/>
     </form>
     <div class = "row">
         <div class = "col-xs-12">
             <a class="btn btn-danger btn-block form-control"
-               href="widget-list.html">Delete Widget</a>
+               href="widget-list.view.client.html">Delete Widget</a>
         </div>
     </div>
 </div>
