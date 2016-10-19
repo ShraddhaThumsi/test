@@ -126,41 +126,16 @@
 
         function deleteUser(userId)
         {
-            //while(true) {
-            var userExists = false;
-
-            /*var tempoDatabase = users;*/
-
-            var deletedUser;
-
-            for (var u in users) {
-                var user = users[u];
-                if (user._id === userId) {
-                    userExists = true;
-                    deletedUser = user;
-                    users.pop();
-                    return null;
+            for(var i in users)
+            {
+                if(users[i]._id === userId)
+                {
+                    users.splice(i,1);
+                    console.log(users);
+                    return true;
                 }
             }
-
-
-            /*userExists = false;*/
-            /*var newUser = {
-                _id: (idGenerator + 1).toString(),
-                username: newUser.username,
-                password: newUser.password,
-                firstName: newUser.firstName,
-                lastName: newUser.lastName,
-                email: newUser.email
-            };*/
-            /*console.log(idGenerator);*/
-
-            /*console.log(newUser);*/
-            /*console.log(newUser._id);*/
-            console.log(users);
-            return deletedUser;
-            /*tempoDatabase = tempoDatabase.push(newUser);
-             return tempoDatabase;*/
+            return false;
         }
     }
 })();

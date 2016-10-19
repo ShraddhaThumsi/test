@@ -101,42 +101,32 @@
             for (var w in websites) {
                 website = websites[w];
                 if (parseInt(website._id) === websiteId) {
-                    website.name = newWebsite.name;
+                    /*website.name = newWebsite.name;
                     website.uid = newWebsite.uid;
-                    website.description = newWebsite.description;
+                    website.description = newWebsite.description;*/
+                    website = {name: newWebsite.name,
+                    uid: newWebsite.uid,
+                    description: newWebsite.description};
                     console.log(website);
                     return website;
                 }
             }
             return website;
-            /*var currentWebsite;
-            for (var w in websites)
-            {
-                currentWebsite = websites[w];
-                if(parseInt(currentWebsite._id) === websiteId)
-                {
-                    currentWebsite.name = website.name;
-                    currentWebsite.uid = website.uid;
-                    currentWebsite.description = website.description;
-                    console.log(currentWebsite);
-                    return currentWebsite;
-                }
-            }
-            return currentWebsite;*/
         }
 
         function deleteWebsite(websiteId)
         {
-            for(var w in websites)
+            for(var i in websites)
             {
-                if(parseInt(websites[w]._id) === websiteId)
+                if(websites[i]._id === websiteId)
                 {
-                   continue;
+                    websites.splice(i, 1);
+                    console.log(websites);
+                    return true;
                 }
-                result.push(websites[w]);
             }
-            console.log(result);
-            return result;
+            return false;
+
         }
 
 

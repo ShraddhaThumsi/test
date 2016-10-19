@@ -8,6 +8,7 @@
     function ProfileController($routeParams, $location, UserService) {
         var vm = this;
         var userId = parseInt($routeParams.uid);
+        vm.userId = userId;
         var user = UserService.findUserById(userId);
         if(user != null){
             vm.user = user;
@@ -20,9 +21,19 @@
 
             $location.url("/user/" + userId);}
 
+            vm.deleteUser = deleteUser;
         function deleteUser(userId)
-        {var deletedUser = UserService.deleteUser(userId);
-            console.log(deletedUser);
+        {
+            var result = UserService.deleteUser(userId);
+            if(result)
+            {
+                $location.url("#/login");
+            }
+
+            else {
+                vm.error = "unable to delete user profile";
+            }
+
         }
 
     }
