@@ -17,24 +17,6 @@
             { _id: "789", name: "Chess",       uid: "234", description: "mind game" }
         ];
 
-       /* [
-            { _id: "123", "name": "Facebook",    "developerId": "456" },
-            { "_id": "234", "name": "Tweeter",     "developerId": "456" },
-            { "_id": "456", "name": "Gizmodo",     "developerId": "456" },
-            { "_id": "567", "name": "Tic Tac Toe", "developerId": "123" },
-            { "_id": "678", "name": "Checkers",    "developerId": "123" },
-            { "_id": "789", "name": "Chess",       "developerId": "234" }
-        ];*/
-       // check if this is the correct data format
-
-
-
-
-        /*[
-         {name: 'facebook.com', uid: 123},
-         {name: 'twitter.com', uid: 234},
-         {name: 'wikipedia.org', uid: 123}
-         ];*/
         var api ={
             findWebsitesByUser: findWebsitesByUser,
             findWebsiteById: findWebsiteById,
@@ -88,7 +70,6 @@
                 description: website.description
             };
 
-            /*console.log("website id:" + idGenerator);*/
             websites.push(newWebSite);
             console.log("website id:" + newWebSite._id);
             console.log("updated list of websites: " + websites);
@@ -97,19 +78,12 @@
 
         function updateWebsite(websiteId, newWebsite)
         {
-            console.log(websiteId)
-            console.log(newWebsite)
+            console.log(websiteId);
+            console.log(newWebsite);
             var website;
             for (var w in websites) {
                 website = websites[w];
                 if (website._id.toString() === websiteId.toString()) {
-                    /*website.name = newWebsite.name;
-                    website.uid = newWebsite.uid;
-                    website.description = newWebsite.description;*/
-                    /*website = {name: newWebsite.name,
-                    uid: newWebsite.uid,
-                    description: newWebsite.description};
-                    console.log(website);*/
                     website.name = newWebsite.name;
                     website.description = newWebsite.description;
                     console.log(websites);

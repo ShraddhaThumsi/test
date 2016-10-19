@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="navbar-header floatRectifier">
             <p class="navbar-text pull-left">
-                <a href="#/page" class="navbar-link">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link">
           <span class="glyphicon glyphicon-menu-left glyphColorRectifier widgetGlyphAligner">
           </span>
                 </a>
@@ -12,7 +12,7 @@
                 Edit Page
             </p>
             <p class="navbar-text pull-right widgetGlyphAligner" id = "webListPlus">
-                <a href="#/page" class="navbar-link">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link">
           <span class="glyphicon glyphicon-ok glyphColorRectifier glyphPosRectifier">
           </span>
                 </a>
@@ -25,14 +25,20 @@
 <div class="container" id = "newPageSpaceMaker">
     <form class = "form-group">
         <label for = "newPageName" class = "newWebsiteSpaceMaker">Name</label>
-        <input type = "text" id = "newPageName" placeholder = "Blog Post" class = "form-control"/>
+        <input ng-model ="model.name" type = "text" id = "newPageName" placeholder = "Blog Post" class = "form-control"/>
         <label for = "newPageDescription">Title</label>
         <input type = "text" id = "newpageDescription" placeholder = "Page Title" class = "form-control"/>
     </form>
     <div class = "row">
         <div class = "col-xs-12">
+            <a class="btn btn-primary btn-block form-control"
+               ng-click = "model.updatePage(model.pageId, model.currentPage)">Submit</a>
+        </div>
+    </div>
+    <div class = "row">
+        <div class = "col-xs-12">
             <a class="btn btn-danger btn-block form-control"
-               href="#/page">Delete Page</a>
+               ng-click = "model.deletePage(model.pageId)">Delete Page</a>
         </div>
     </div>
 </div>
@@ -42,7 +48,7 @@
     <div class="container-fluid">
         <div class="navbar-header floatRectifier">
             <p class="navbar-text pull-right widgetGlyphAligner">
-                <a href="#/profile" class="navbar-link" id = "webListUser">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link" id = "webListUser">
           <span class="glyphicon glyphicon-user glyphColorRectifier">
           </span>
                 </a>

@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <div class="navbar-header floatRectifier">
                 <p class="navbar-text pull-left">
-                    <a href="#/website" class="navbar-link">
+                    <a href="#/user/{{model.userId}}/website" class="navbar-link">
               <span class="glyphicon glyphicon-menu-left glyphColorRectifier widgetGlyphAligner">
               </span>
                     </a>
@@ -25,10 +25,10 @@
     <div  class="container websitelistSpaceMaker" id = "websitelistSpaceMaker">
         <div ng-repeat = "page in model.pages" class = "row" id = "AddBookApp">
             <div class = "col-xs-10" >
-                <a href = "#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget">{{page.name}}</a>
+                <a ng-click = "model.goToWidgetList(page)">{{page.name}}</a>
             </div>
             <div class = "col-xs-2">
-                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}">
                     <span class="glyphicon glyphicon-cog"></span>
                 </a>
             </div>
@@ -41,7 +41,7 @@
         <div class="container-fluid">
             <div class="navbar-header floatRectifier">
                 <p class="navbar-text pull-right widgetGlyphAligner">
-                    <a href="#/profile" class="navbar-link" id = "webListUser">
+                    <a href="#/user/{{model.userId}}" class="navbar-link" id = "webListUser">
               <span class="glyphicon glyphicon-user glyphColorRectifier">
               </span>
                     </a>

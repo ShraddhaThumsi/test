@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="navbar-header floatRectifier">
             <p class="navbar-text pull-left">
-                <a href="#/page" class="navbar-link">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link">
           <span class="glyphicon glyphicon-menu-left glyphColorRectifier widgetGlyphAligner">
           </span>
                 </a>
@@ -12,7 +12,7 @@
                 New Page
             </p>
             <p class="navbar-text pull-right widgetGlyphAligner" id = "webListPlus">
-                <a href="#/page" class="navbar-link">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link">
           <span class="glyphicon glyphicon-ok glyphColorRectifier glyphPosRectifier">
           </span>
                 </a>
@@ -25,9 +25,10 @@
 <div class="container newPageSpaceMaker" id = "newPageSpaceMaker">
     <form class = "form-group">
         <label for = "newWebsiteName" class = "newWebsiteSpaceMaker">Name</label>
-        <input type = "text" id = "newWebsiteName" placeholder = "Page Name" class = "form-control"/>
+        <input ng-model="model.name" type = "text" id = "newWebsiteName" placeholder = "Page Name" class = "form-control"/>
         <label for = "newWebsiteDescription">Title</label>
         <input type = "text" id = "newWebsiteDescription" placeholder = "Page Title" class = "form-control"/>
+        <a ng-click = "model.createPage(model.name)" class = "btn btn-block btn-primary form-group">Submit</a>
     </form>
 </div>
 
@@ -36,7 +37,7 @@
     <div class="container-fluid">
         <div class="navbar-header floatRectifier">
             <p class="navbar-text pull-right widgetGlyphAligner">
-                <a href="#/profile" class="navbar-link" id = "webListUser">
+                <a href="#/user/{{model.userId}}" class="navbar-link" id = "webListUser">
           <span class="glyphicon glyphicon-user glyphColorRectifier">
           </span>
                 </a>
