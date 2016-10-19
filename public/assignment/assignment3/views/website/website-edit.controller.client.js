@@ -8,9 +8,9 @@
     function editWebsiteController($routeParams, WebsiteService, $location)
     {
         var vm = this;
-        var userId = parseInt($routeParams['uid']);
+        var userId = $routeParams['uid'];
         vm.userId = userId;
-        var websiteId = parseInt($routeParams['wid']);
+        var websiteId = $routeParams['wid'];
         vm.websiteId = websiteId;
         vm.updateWebsite = updateWebsite;
         var currentWebsite = WebsiteService.findWebsiteById(websiteId);
@@ -29,7 +29,9 @@
         vm.deleteWebsite = deleteWebsite;
         function deleteWebsite(websiteId)
         {
+            console.log(websiteId)
             var result = WebsiteService.deleteWebsite(websiteId);
+            console.log(result)
             if(result)
             {
                 $location.url("/user/"+vm.userId+"/website");

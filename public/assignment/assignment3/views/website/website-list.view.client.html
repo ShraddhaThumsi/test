@@ -1,6 +1,4 @@
 
-
-<!--
 <nav class="navbar navbar-default navbar-fixed-top profileColorRenderer">
     <div class="container-fluid">
         <div class="navbar-header floatRectifier">
@@ -25,68 +23,8 @@
 
 
 <div  class="container websitelistSpaceMaker" id = "websitelistSpaceMaker">
-    &lt;!&ndash;{{websites}}&ndash;&gt;
-    &lt;!&ndash;{{model.websites}}&ndash;&gt;
-    &lt;!&ndash;<span ng-bind = "model.uid.websites"></span>&ndash;&gt;
-    <div ng-repeat = "website in model.websites" class = "row" id = "AddBookApp">
-        <div class = "col-xs-10">
-            <a ng-click="model.goToPageList(model.website)">{{website.name}}</a>
-        </div>
-        <div class = "col-xs-2">
-            <a href="#/user/{{website.uid}}/website/{{website._id}}">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </div>
-    </div>
-</div>
-
-
-<nav class="navbar navbar-default navbar-fixed-bottom profileColorRenderer">
-    <div class="container-fluid">
-        <div class="navbar-header floatRectifier">
-            <p class="navbar-text pull-right widgetGlyphAligner">
-                <a href="#/profile" class="navbar-link" id = "webListUser">
-          <span class="glyphicon glyphicon-user glyphColorRectifier">
-          </span>
-                </a>
-            </p>
-        </div>
-    </div>
-</nav>
--->
-
-
-
-<nav class="navbar navbar-default navbar-fixed-top profileColorRenderer">
-    <div class="container-fluid">
-        <div class="navbar-header floatRectifier">
-            <p class="navbar-text pull-left">
-                <a href="#/profile" class="navbar-link">
-          <span class="glyphicon glyphicon-menu-left glyphColorRectifier widgetGlyphAligner">
-          </span>
-                </a>
-            </p>
-            <p class="navbar-brand" href="#">
-                Websites
-            </p>
-            <p class="navbar-text pull-right widgetGlyphAligner" id = "webListPlus">
-                <a href="#/user/{{model.userId}}/website/new" class="navbar-link">
-          <span class="glyphicon glyphicon-plus glyphColorRectifier glyphPosRectifier">
-          </span>
-                </a>
-            </p>
-        </div>
-    </div>
-</nav>
-
-
-<div  class="container websitelistSpaceMaker" id = "websitelistSpaceMaker">
-    <!--{{websites}}-->
-    <!--{{model.websites}}-->
-    <!--<span ng-bind = "model.uid.websites"></span>-->
     <div ng-repeat = "website in model.websites" class = "row" id = "AddBookApp">
         <div class = "col-xs-10" >
-            <!--<a href = "#/website/{{website._id}}/page">{{website.name}}</a>-->
             <a ng-click="model.goToPageList(website)">{{website.name}}</a>
         </div>
         <div class = "col-xs-2">

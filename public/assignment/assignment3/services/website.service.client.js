@@ -116,17 +116,25 @@
 
         function deleteWebsite(websiteId)
         {
-            for(var i in websites)
+            var i;
+            var found = false;
+            for(i in websites)
             {
-                if(websites[i]._id === websiteId)
+                console.log(typeof websites[i]._id)
+                console.log(typeof websiteId)
+                if(websites[i]._id.toString() === websiteId.toString())
                 {
-                    websites.splice(i, 1);
                     console.log(websites);
-                    return true;
+                    found = true;
+                    break;
                 }
             }
+            if (found) {
+                console.log(i)
+                websites.splice(i, 1);
+                return true;
+            }
             return false;
-
         }
 
 
