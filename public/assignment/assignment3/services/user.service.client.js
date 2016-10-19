@@ -126,14 +126,25 @@
 
         function deleteUser(userId)
         {
-            for(var i in users)
+            var i;
+            var found = false;
+            for(i in users)
             {
-                if(users[i]._id === userId)
+                console.log(typeof users[i]._id);
+                console.log(typeof userId);
+                if(users[i]._id.toString() === userId.toString())
                 {
-                    users.splice(i,1);
                     console.log(users);
-                    return true;
+                    found = true;
+                    break;
                 }
+            }
+
+            if(found)
+            {
+                console.log(i);
+                users.splice(i,1);
+                return true;
             }
             return false;
         }

@@ -24,14 +24,17 @@
             vm.deleteUser = deleteUser;
         function deleteUser(userId)
         {
+            console.log(userId);
             var result = UserService.deleteUser(userId);
+            console.log(result);
             if(result)
             {
-                $location.url("#/login");
-            }
+                $location.url("/login");
 
-            else {
-                vm.error = "unable to delete user profile";
+            }
+            else
+            {
+                vm.error = "Unable to delete user profile";
             }
 
         }
