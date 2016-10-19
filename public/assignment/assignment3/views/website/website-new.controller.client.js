@@ -11,6 +11,10 @@
         var vm = this;
         var userId = parseInt($routeParams['uid']);
         vm.userId = userId;
+        var websiteId = parseInt($routeParams['wid']);
+        vm.websiteId = websiteId;
+        var websites = WebsiteService.findWebsitesByUser(userId);
+        vm.websites = websites;
         vm.createWebsite = createWebsite;
         function createWebsite(name, description){
             console.log(vm.name);
@@ -25,6 +29,14 @@
             {
                 vm.error = "Unable to create website";
             }
+        }
+
+        vm.goToPageList = goToPageList;
+        function goToPageList(website)
+        {
+            console.log(website);
+            console.log("/user/" + userId + "/website/" + website._id + "/page");
+            $location.url("/user/" + userId.toString() + "/website/" + website._id.toString() + "/page");
         }
     }
 })();

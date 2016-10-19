@@ -32,15 +32,6 @@
 
                 var userExists = UserService.createUser(newUser);
 
-
-                /*if(!(userExists === true))
-                 {
-
-                 vm.newEntry = UserService.createUser(newUser);
-                 $location.url("/user/" + vm.newEntry._id);
-                 console.log(vm.newEntry);
-                 }*/
-
                 if (userExists == true) {
                     alert("User exists");
                 }

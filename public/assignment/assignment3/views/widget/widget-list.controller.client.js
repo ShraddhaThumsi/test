@@ -4,9 +4,10 @@
 (function(){
     angular
         .module("WebAppMaker")
-        .controller("WidgetListController");
+        .controller("WidgetListController", WidgetListController);
 
-    function WidgetListController(){
-        console.log("hello from widget list controller");
+    function WidgetListController($routeParams, WidgetService){
+        var vm = this;
+        vm.widgets = WidgetService.findWidgetsByPageId();
     }
 })();
