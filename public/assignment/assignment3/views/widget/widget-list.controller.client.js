@@ -38,11 +38,6 @@
 
         }
 
-        vm.checkSafeImageSrc = checkSafeImageSrc;
-        function checkSafeImageSrc(url)
-        {
-
-        }
 
     }
 })();

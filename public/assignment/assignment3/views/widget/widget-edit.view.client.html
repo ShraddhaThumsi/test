@@ -1,6 +1,6 @@
 <nav class="navbar navbar-default navbar-fixed-top profileColorRenderer" xmlns="http://www.w3.org/1999/html">
     <div class="row container-fluid">
-        <div class = "col-md-4 hidden-sm hidden-xs">
+        <!--<div class = "col-md-4 hidden-sm hidden-xs">
             <div class="navbar-header floatRectifier">
                 <p class="navbar-text pull-left">
                     <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link">
@@ -19,8 +19,14 @@
                     </a>
                 </p>
             </div>
-        </div>
+        </div>-->
 
+        <p class="navbar-text pull-left">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-link">
+                    <span class="glyphicon glyphicon-menu-left glyphColorRectifier widgetGlyphAligner floatRectifier">
+                    </span>
+            </a>
+        </p>
         <div class = "col-md-8">
             <div class="navbar-header floatRectifier">
                 <p class="navbar-brand" href="#" id = "newWebSiteSpace">
@@ -35,40 +41,31 @@
     {{model.error}}
 </div>
 <div class="container">
-    <div class = "row">
-        <div class = "col-md-4 hidden-sm hidden-xs container websitelistSpaceMaker" id = "websitelistSpaceMaker">
+    <div class = "row jga-widget"
+         ng-repeat = "widget in model.widgets"
+         ng-switch = "widget.widgetType">
+        <!--<div class = "col-md-4 hidden-sm hidden-xs container websitelistSpaceMaker jga-widget-tool" id = "websitelistSpaceMaker">
 
             <ul class="list-group">
                 <li ng-repeat = "widget in model.widgets" class="list-group-item">
-                    <!--<a ng-click="model.goToPageList(website)">
-                        {{model.widget}}
-                    </a>-->
                     {{widget}}
                     <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/
                     {{widget._id}}"><span class = "glyphicon glyphicon-cog pull-right"></span></a>
                 </li>
             </ul>
-        </div>
+        </div>-->
 
 
-        <div class = "col-md-8">
-            <form class = "form-group">
-                <label for = "newWebsiteName" class = "newWebsiteSpaceMaker"></label>
-                <input ng-model = "model.name" type = "text" id = "newWebsiteName" placeholder = "Name"
-                       class = "form-control">{{model.name}}</input>
-                <label for = "newWebsiteDescription"></label>
-                <textarea ng-model = "model.description" rows = "10" cols = "50" id = "newWebsiteDescription"
-                          class = "form-control" placeholder="Description">
-                    {{model.description}}
-
-                </textarea>
-
-                <a ng-click="model.updateWidget(model.widgetId, model.currentWidget)"
-                   class = "btn btn-block btn-primary form-group">Submit</a>
-
-                <a ng-click="model.deleteWidget(model.widgetId)"
-                   class = "btn btn-block btn-danger form-group">Delete widget</a>
-            </form>
+        <div class = "col-md-8 jga-widget-tool">
+            <div ng-switch-when = "HEADER">
+                <ng-include src ="'/views/widget/widget-heading-editor.view.client.html'">{{widget.text}}</ng-include>
+            </div>
+            <div ng-switch-when = "YOUTUBE">
+                <ng-include src ="'/views/widget/widget-youtube-editor.view.client.html'"></ng-include>
+            </div>
+            <div ng-switch-when = "IMAGE">
+                <ng-include src ="'/views/widget/widget-image-editor.view.client.html'"></ng-include>
+            </div>
         </div>
     </div>
 </div>

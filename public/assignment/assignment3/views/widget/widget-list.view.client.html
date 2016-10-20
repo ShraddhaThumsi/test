@@ -4,8 +4,8 @@
         <div class="navbar-header floatRectifier">
             <p class="navbar-text pull-left">
                 <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link">
-          <span class="glyphicon glyphicon-menu-left glyphColorRectifier widgetGlyphAligner floatRectifier">
-          </span>
+                    <span class="glyphicon glyphicon-menu-left glyphColorRectifier widgetGlyphAligner floatRectifier">
+                    </span>
                 </a>
             </p>
             <p class="navbar-brand" href="#">
@@ -29,6 +29,7 @@
 
 
             <div ng-switch = "widget.size" ng-switch-when = "HEADER">
+                <ng-include src ="'/views/widget/widget-heading-editor.view.client.html'"></ng-include>
                 <h1 ng-switch-when = "1">{{widget.text}}</h1>
                 <h2 ng-switch-when = "2">{{widget.text}}</h2>
                 <h3 ng-switch-when = "3">{{widget.text}}</h3>
@@ -37,10 +38,12 @@
                 <h6 ng-switch-when = "6">{{widget.text}}</h6>
             </div>
             <div ng-switch-when = "YOUTUBE">
+                <ng-include src ="'/views/widget/widget-youtube-editor.view.client.html'"></ng-include>
                 <iframe width="560" height="315" ng-src="{{model.checkSafeYouTubeUrl(widget.url)}}"
                         frameborder="0" allowfullscreen></iframe>
             </div>
             <div ng-switch-when = "IMAGE" ng-src="{{model.checkSafeImageSrc(widget.url)}}">
+                <ng-include src ="'/views/widget/widget-image-editor.view.client.html'"></ng-include>
                 <img ng-src="{{widget.url}}" width="{{model.width}}"/>
             </div>
             <div ng-switch-when = "HTML" ng-bind-html = "model.checkSafeHtml(widget.text)">
@@ -50,7 +53,7 @@
             <div ng-switch-default>Unknown widget</div>
         </div>
         <div class = "col-xs-1">
-            <a href="#/user/{{website.uid}}/website/{{website._id}}/page/{{model.pageId}}/widget/{{widget._id}}">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
                 <span class="glyphicon glyphicon-cog widgetGlyphAligner"></span>
             </a>
         </div>
