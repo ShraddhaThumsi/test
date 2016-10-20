@@ -12,7 +12,8 @@
                     widgets
                 </p>
                 <p class="navbar-text pull-right widgetGlyphAligner" id = "webListPlus">
-                    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new" class="navbar-link">
+                    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new"
+                       class="navbar-link">
           <span class="glyphicon glyphicon-plus glyphColorRectifier widgetGlyphAligner">
           </span>
                     </a>
@@ -30,7 +31,9 @@
     </div>
 </nav>
 
-
+<div ng-show = "model.error" class ="alert alert-danger" role="alert">
+    {{model.error}}
+</div>
 <div class="container">
     <div class = "row">
         <div class = "col-md-4 hidden-sm hidden-xs container websitelistSpaceMaker" id = "websitelistSpaceMaker">
@@ -41,7 +44,8 @@
                         {{model.widget}}
                     </a>-->
                     {{widget}}
-                    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}"><span class = "glyphicon glyphicon-cog pull-right"></span></a>
+                    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/
+                    {{widget._id}}"><span class = "glyphicon glyphicon-cog pull-right"></span></a>
                 </li>
             </ul>
         </div>
@@ -50,16 +54,20 @@
         <div class = "col-md-8">
             <form class = "form-group">
                 <label for = "newWebsiteName" class = "newWebsiteSpaceMaker"></label>
-                <input ng-model = "model.name" type = "text" id = "newWebsiteName" placeholder = "Name" class = "form-control">{{model.name}}</input>
+                <input ng-model = "model.name" type = "text" id = "newWebsiteName" placeholder = "Name"
+                       class = "form-control">{{model.name}}</input>
                 <label for = "newWebsiteDescription"></label>
-                <textarea ng-model = "model.description" rows = "10" cols = "50" id = "newWebsiteDescription" class = "form-control" placeholder="Description">
+                <textarea ng-model = "model.description" rows = "10" cols = "50" id = "newWebsiteDescription"
+                          class = "form-control" placeholder="Description">
                     {{model.description}}
 
                 </textarea>
 
-                <a ng-click="model.updateWebsite(model.name, model.description)" class = "btn btn-block btn-primary form-group">Submit</a>
+                <a ng-click="model.updateWidget(model.widgetId, model.currentWidget)"
+                   class = "btn btn-block btn-primary form-group">Submit</a>
 
-                <a ng-click="model.deleteWebsite(model.websiteId)" class = "btn btn-block btn-danger form-group">Delete Website</a>
+                <a ng-click="model.deleteWidget(model.widgetId)"
+                   class = "btn btn-block btn-danger form-group">Delete widget</a>
             </form>
         </div>
     </div>

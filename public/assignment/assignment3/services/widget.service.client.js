@@ -42,20 +42,70 @@
         function createWidget(pageId, widget)
         {
             var widgetExists = false;
-            /*for(var wg in widgets)
+            for(var wg in widgets)
             {
                 var existingWidget = widgets[wg];
-            }*/
+                if((existingWidget.widgetType === widget.widgetType
+                    && existingWidget.text === widget.text) ||
+                    (existingWidget.widgetType === widget.widgetType
+                    && existingWidget.url === widget.url))
+                {
+                    widgetExists = true;
+                    return null;
+                }
+            }
+            switch(widget.widgetType)
+            {
+                case "HEADER":
+                    var newWidget = {
+                    _id: (idGenerator + 1).toString(),
+                    widgetType: widget.widgetType,
+                    pageId: widget.pageId,
+                    size: widget.size,
+                    text: widget.text
+                    };
+                    widgets.push(newWidget);
+                    return newWidget;
 
-            var newWidget = {
-                _id: (idGenerator + 1).toString(),
-                widgetType: widget.widgetType,
-                pageId: widget.pageId
-            };
-            widgets.push(newWidget);
+                case "HTML":
+                    var newWidget = {
+                        _id: (idGenerator + 1).toString(),
+                        widgetType: widget.widgetType,
+                        pageId: widget.pageId,
+                        text: widget.text
+                    };
+                    widgets.push(newWidget);
+                    return newWidget;
+
+                case "IMAGE":
+                    var newWidget = {
+                        _id: (idGenerator + 1).toString(),
+                        widgetType: widget.widgetType,
+                        pageId: widget.pageId,
+                        width: widget.width,
+                        text: widget.text
+                    };
+                    widgets.push(newWidget);
+                    return newWidget;
+
+                case "YOUTUBE":
+                    var newWidget = {
+                        _id: (idGenerator + 1).toString(),
+                        widgetType: widget.widgetType,
+                        pageId: widget.pageId,
+                        width: widget.width,
+                        text: widget.text
+                    };
+                    widgets.push(newWidget);
+                    return newWidget;
+
+                default: widgets.push(newWidget);
+                        return newWidget;
+            }
+
+
             console.log("widget id:" + newWidget._id);
             console.log("updated list of widgets: " + widgets);
-            return newWidget;
         }
 
         function findWidgetsByPageId(pageId)
@@ -87,8 +137,59 @@
 
         function updateWidget(widgetId, widget)
         {
-            return null;
+            var existingWidget;
+            for(var wg in widgets)
+            {
+                existingWidget = widgets[wg];
+                if(existingWidget._id.toString === widget._id.toString())
+                {
+                    switch(widget.widgetType)
+                    {
+                        case "HEADER":
+                            var newWidget = {
+                                _id: (idGenerator + 1).toString(),
+                                widgetType: widget.widgetType,
+                                pageId: widget.pageId,
+                                size: widget.size,
+                                text: widget.text
+                            };
+                            return newWidget;
 
+                        case "HTML":
+                            var newWidget = {
+                                _id: (idGenerator + 1).toString(),
+                                widgetType: widget.widgetType,
+                                pageId: widget.pageId,
+                                text: widget.text
+                            };
+                            return newWidget;
+
+                        case "IMAGE":
+                            var newWidget = {
+                                _id: (idGenerator + 1).toString(),
+                                widgetType: widget.widgetType,
+                                pageId: widget.pageId,
+                                width: widget.width,
+                                text: widget.text
+                            };
+                            return newWidget;
+
+                        case "YOUTUBE":
+                            var newWidget = {
+                                _id: (idGenerator + 1).toString(),
+                                widgetType: widget.widgetType,
+                                pageId: widget.pageId,
+                                width: widget.width,
+                                text: widget.text
+                            };
+                            return newWidget;
+
+                        default: return newWidget;
+                    }
+
+                }
+            }
+            return widget;
         }
 
         function deleteWidget(widgetId)

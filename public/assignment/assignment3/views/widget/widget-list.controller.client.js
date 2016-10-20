@@ -17,6 +17,8 @@
         vm.pageId = pageId;
         var widgets = WidgetService.findWidgetsByPageId(pageId);
         vm.widgets = widgets;
+        var widgetId = parseInt($routeParams['wgid']);
+        vm.widgetId = widgetId;
         console.log(vm.widgets);
         vm.checkSafeHtml = checkSafeHtml;
         vm.checkSafeYouTubeUrl = checkSafeYouTubeUrl;

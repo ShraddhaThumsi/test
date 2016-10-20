@@ -17,14 +17,38 @@
         var widgetId = parseInt($routeParams['wgid']);
         vm.widgetId = widgetId;
         var currentWidget = WidgetService.findWidgetById(widgetId);
+        vm.currentWidget = currentWidget;
         var widgets = WidgetService.findWidgetsByPageId(pageId);
         vm.widgets = widgets;
         vm.updateWidget = updateWidget;
         function updateWidget(widgetId, widget)
         {
-            var updatedWidget = WidgetService.updateWidget(widgetId, {});
+            switch(widget.widgetType)
+            {
+                case "HEADER":
+                    var updatedWidget = WidgetService.updateWidget(widgetId, {size: widget.size, text: widget.text});
+                    $location.url("/user/" + vm.userId + "/website/" +
+                        vm.websiteId + "/page/" + vm.pageId + "/widget");
+                    break;
+                case "HTML":var updatedWidget = WidgetService.updateWidget(widgetId, {text: widget.text});
+                    $location.url("/user/" + vm.userId + "/website/" +
+                        vm.websiteId + "/page/" + vm.pageId + "/widget");
+                    break;
+                case "YOUTUBE":var updatedWidget =
+                    WidgetService.updateWidget(widgetId, {width: widget.width, url:widget.url});
+                    $location.url("/user/" + vm.userId + "/website/" +
+                        vm.websiteId + "/page/" + vm.pageId + "/widget");
+                    break;
+                case "IMAGE":var updatedWidget =
+                    WidgetService.updateWidget(widgetId, {width: widget.width, url:widget.url});
+                    $location.url("/user/" + vm.userId + "/website/" +
+                        vm.websiteId + "/page/" + vm.pageId + "/widget");
+                    break;
+                default: vm.error = "Unknown widget type";
+            }
+            /*var updatedWidget = WidgetService.updateWidget(widgetId, {});
             $location.url("/user/" + vm.userId + "/website/" +
-                vm.websiteId + "/page/" + vm.pageId + "/widget");
+                vm.websiteId + "/page/" + vm.pageId + "/widget");*/
         }
 
         vm.deleteWidget = deleteWidget;
