@@ -33,6 +33,13 @@
             url = "https://www.youtube.com/embed/"+id;
             console.log(url);
             return $sce.trustAsResourceUrl(url);
+
+        }
+
+        vm.checkSafeImageSrc = checkSafeImageSrc;
+        function checkSafeImageSrc(url)
+        {
+
         }
 
     }

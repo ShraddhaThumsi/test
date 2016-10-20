@@ -23,55 +23,41 @@
 </nav>
 
 <div class="container">
-
-    <!--<div class = "row" class = "newWebsiteSpaceMaker" id = "websitelistSpaceMaker">
-        {{model.widgets}}
-        &lt;!&ndash;<div class = "col-xs-10">&ndash;&gt;
-            &lt;!&ndash;</h1><b> <i> GIZMODO </i></b>&ndash;&gt;
-        &lt;!&ndash;</div>&ndash;&gt;
-        &lt;!&ndash;<div class = "col-xs-1">&ndash;&gt;
-            &lt;!&ndash;<a href="widget-heading.view.client.html">&ndash;&gt;
-                &lt;!&ndash;<span class="glyphicon glyphicon-cog widgetGlyphAligner"></span>&ndash;&gt;
-            &lt;!&ndash;</a>&ndash;&gt;
-        &lt;!&ndash;</div>&ndash;&gt;
-        &lt;!&ndash;<div class = "col-xs-1">&ndash;&gt;
-            &lt;!&ndash;<span class="glyphicon glyphicon-align-justify"></span>&ndash;&gt;
-        &lt;!&ndash;</div>&ndash;&gt;
-    </div>-->
-
     <div ng-switch = "widget.widgetType"
-         ng-repeat = "widget in model.widgets" class = "row">
-        <div class = "col-xs-10">
-            {{widget}}
-            </div>
+         ng-repeat = "widget in model.widgets" class = "row jga-widget">
+        <div class = "col-xs-10 jga-widget-tool">
+
+
             <div ng-switch = "widget.size" ng-switch-when = "HEADER">
-                <h1 ng-switch-when = "1">{{widget.text}}</h1>h1>
-                <h2 ng-switch-when = "2">{{widget.text}}</h2>h1>
-                <h3 ng-switch-when = "3">{{widget.text}}</h3>h1>
-                <h4 ng-switch-when = "4">{{widget.text}}</h4>h1>
-                <h5 ng-switch-when = "5">{{widget.text}}</h5>h1>
-                <h6 ng-switch-when = "6">{{widget.text}}</h6>h1>
+                <h1 ng-switch-when = "1">{{widget.text}}</h1>
+                <h2 ng-switch-when = "2">{{widget.text}}</h2>
+                <h3 ng-switch-when = "3">{{widget.text}}</h3>
+                <h4 ng-switch-when = "4">{{widget.text}}</h4>
+                <h5 ng-switch-when = "5">{{widget.text}}</h5>
+                <h6 ng-switch-when = "6">{{widget.text}}</h6>
             </div>
             <div ng-switch-when = "YOUTUBE">
                 <iframe width="560" height="315" ng-src="{{model.checkSafeYouTubeUrl(widget.url)}}"
                         frameborder="0" allowfullscreen></iframe>
             </div>
-            <div ng-switch-when = "IMAGE">
-                image
+            <div ng-switch-when = "IMAGE" ng-src="{{model.checkSafeImageSrc(widget.url)}}">
+                <img ng-src="{{widget.url}}" width="{{model.width}}"/>
             </div>
             <div ng-switch-when = "HTML" ng-bind-html = "model.checkSafeHtml(widget.text)">
                 {{widget.text}}
             </div>
-        <!--<div class = "col-xs-1">
-            <a href="#">
+
+            <div ng-switch-default>Unknown widget</div>
+        </div>
+        <div class = "col-xs-1">
+            <a href="widget-heading.view.client.html">
                 <span class="glyphicon glyphicon-cog widgetGlyphAligner"></span>
             </a>
         </div>
         <div class = "col-xs-1">
             <span class="glyphicon glyphicon-align-justify"></span>
-        </div>-->
+        </div>
     </div>
-
 </div>
 
 
