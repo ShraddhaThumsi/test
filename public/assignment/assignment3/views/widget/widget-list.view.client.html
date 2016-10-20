@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="navbar-header floatRectifier">
             <p class="navbar-text pull-left">
-                <a href="page-list.html" class="navbar-link">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link">
           <span class="glyphicon glyphicon-menu-left glyphColorRectifier widgetGlyphAligner floatRectifier">
           </span>
                 </a>
@@ -12,7 +12,8 @@
                 Widget List
             </p>
             <p class="navbar-text pull-right widgetGlyphAligner" id = "webListPlus">
-                <a href="widget-choose.view.client.html" class="navbar-link">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new"
+                   class="navbar-link">
           <span class="glyphicon glyphicon-plus glyphColorRectifier glyphPosRectifier">
           </span>
                 </a>
@@ -23,92 +24,52 @@
 
 <div class="container">
 
-    <div class = "row" class = "newWebsiteSpaceMaker" id = "websitelistSpaceMaker">
+    <!--<div class = "row" class = "newWebsiteSpaceMaker" id = "websitelistSpaceMaker">
         {{model.widgets}}
-        <!--<div class = "col-xs-10">-->
-            <!--</h1><b> <i> GIZMODO </i></b>-->
-        <!--</div>-->
-        <!--<div class = "col-xs-1">-->
-            <!--<a href="widget-heading.view.client.html">-->
-                <!--<span class="glyphicon glyphicon-cog widgetGlyphAligner"></span>-->
-            <!--</a>-->
-        <!--</div>-->
-        <!--<div class = "col-xs-1">-->
-            <!--<span class="glyphicon glyphicon-align-justify"></span>-->
-        <!--</div>-->
-    </div>
+        &lt;!&ndash;<div class = "col-xs-10">&ndash;&gt;
+            &lt;!&ndash;</h1><b> <i> GIZMODO </i></b>&ndash;&gt;
+        &lt;!&ndash;</div>&ndash;&gt;
+        &lt;!&ndash;<div class = "col-xs-1">&ndash;&gt;
+            &lt;!&ndash;<a href="widget-heading.view.client.html">&ndash;&gt;
+                &lt;!&ndash;<span class="glyphicon glyphicon-cog widgetGlyphAligner"></span>&ndash;&gt;
+            &lt;!&ndash;</a>&ndash;&gt;
+        &lt;!&ndash;</div>&ndash;&gt;
+        &lt;!&ndash;<div class = "col-xs-1">&ndash;&gt;
+            &lt;!&ndash;<span class="glyphicon glyphicon-align-justify"></span>&ndash;&gt;
+        &lt;!&ndash;</div>&ndash;&gt;
+    </div>-->
 
-    <div class = "row">
+    <div ng-switch = "widget.widgetType"
+         ng-repeat = "widget in model.widgets" class = "row">
         <div class = "col-xs-10">
-            An Open Letter To Tech Conference Organizers
-        </div>
-        <div class = "col-xs-1">
+            {{widget}}
+            </div>
+            <div ng-switch = "widget.size" ng-switch-when = "HEADER">
+                <h1 ng-switch-when = "1">{{widget.text}}</h1>h1>
+                <h2 ng-switch-when = "2">{{widget.text}}</h2>h1>
+                <h3 ng-switch-when = "3">{{widget.text}}</h3>h1>
+                <h4 ng-switch-when = "4">{{widget.text}}</h4>h1>
+                <h5 ng-switch-when = "5">{{widget.text}}</h5>h1>
+                <h6 ng-switch-when = "6">{{widget.text}}</h6>h1>
+            </div>
+            <div ng-switch-when = "YOUTUBE">
+                <iframe width="560" height="315" ng-src="{{model.checkSafeYouTubeUrl(widget.url)}}"
+                        frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div ng-switch-when = "IMAGE">
+                image
+            </div>
+            <div ng-switch-when = "HTML" ng-bind-html = "model.checkSafeHtml(widget.text)">
+                {{widget.text}}
+            </div>
+        <!--<div class = "col-xs-1">
             <a href="#">
                 <span class="glyphicon glyphicon-cog widgetGlyphAligner"></span>
             </a>
         </div>
         <div class = "col-xs-1">
             <span class="glyphicon glyphicon-align-justify"></span>
-        </div>
-    </div>
-
-    <div class = "row">
-        <div class = "col-xs-10">
-            <img src="https://static.pexels.com/photos/186422/pexels-photo-186422.jpeg" width="200" height="200" class = "img-responsive" alt = "sample"/>
-
-        </div>
-        <div class = "col-xs-1">
-            <a href="widget-image.view.client.html">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </div>
-        <div class = "col-xs-1">
-            <span class="glyphicon glyphicon-align-justify"></span>
-        </div>
-    </div>
-
-    <div class = "row">
-        <div class = "col-xs-10">
-            Peter Capaldi is the Twelfth Doctor of the BBC series and is still mulling his decision to continue in the role.
-        </div>
-        <div class = "col-xs-1">
-            <a href="#">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </div>
-        <div class = "col-xs-1">
-            <span class="glyphicon glyphicon-align-justify"></span>
-        </div>
-    </div>
-
-    <div class = "row">
-        <div class = "col-xs-10">
-            <p>Hoboken Train Crash Leaves at Least One Dead and Dozens Injured</p>
-        </div>
-        <div class = "col-xs-1">
-            <p><a href="#">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            </p>
-        </div>
-        <div class = "col-xs-1">
-            <span class="glyphicon glyphicon-align-justify"></span>
-        </div>
-    </div>
-
-    <div class = "row">
-        <div class = "col-xs-10">
-            <iframe width="200" height="200" src="https://www.youtube.com/embed/Uks8psEpmB4" frameborder="0" allowfullscreen></iframe>
-        </div>
-        <div class = "col-xs-1">
-            <p><a href="widget-youtube.view.client.html">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            </p>
-        </div>
-        <div class = "col-xs-1">
-            <span class="glyphicon glyphicon-align-justify"></span>
-        </div>
+        </div>-->
     </div>
 
 </div>
@@ -118,7 +79,7 @@
     <div class="container-fluid">
         <div class="navbar-header floatRectifier">
             <p class="navbar-text pull-right widgetGlyphAligner">
-                <a href="profile.html" class="navbar-link" id = "webListUser">
+                <a href="#/user/{{model.userId}}" class="navbar-link" id = "webListUser">
                 <span class="glyphicon glyphicon-user glyphColorRectifier">
                 </span>
                 </a>
