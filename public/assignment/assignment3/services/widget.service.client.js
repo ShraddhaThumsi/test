@@ -36,17 +36,47 @@
 
         function createWidget(pageId, widget)
         {
-            return null;
+            var widgetExists = false;
+            /*for(var wg in widgets)
+            {
+                var existingWidget = widgets[wg];
+            }*/
+
+            var newWidget = {
+                _id: (idGenerator + 1).toString(),
+                widgetType: widget.widgetType,
+                pageId: widget.pageId
+            };
+            widgets.push(newWidget);
+            console.log("widget id:" + newWidget._id);
+            console.log("updated list of widgets: " + widgets);
+            return newWidget;
         }
 
         function findWidgetsByPageId(pageId)
         {
-            return null;
+            var result = [];
+            for(var wg in widgets)
+            {
+                if(parseInt(widgets[wg].pageId) === pageId)
+                {
+                    result.push(widgets[wg]);
+                }
+            }
+            console.log(result);
+            return result;
         }
 
         function findWidgetById(widgetId)
         {
-            return null;
+            for(var wg in widgets)
+            {
+                if(parseInt(widgets[wg]._id) === widgetId)
+                {
+                    return widgets[wg];
+                }
+            }
+            return false;
 
         }
 
@@ -58,7 +88,25 @@
 
         function deleteWidget(widgetId)
         {
-            return null;
+            var i;
+            var found = false;
+            for(i in widgets)
+            {
+                if(widgets[i]._id.toString() === widgetId.toString())
+                {
+                    found = true;
+                    break;
+
+                }
+            }
+
+            if(found)
+            {
+                console.log(i);
+                widgets.splice(i,1);
+                return true;
+            }
+            return false;
 
         }
 

@@ -33,9 +33,9 @@
         vm.deleteWebsite = deleteWebsite;
         function deleteWebsite(websiteId)
         {
-            console.log(websiteId)
+            console.log(websiteId);
             var result = WebsiteService.deleteWebsite(websiteId);
-            console.log(result)
+            console.log(result);
             if(result)
             {
                 $location.url("/user/"+vm.userId+"/website");
