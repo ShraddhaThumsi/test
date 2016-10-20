@@ -68,5 +68,24 @@
                 vm.error = "Unable to delete widget";
             }
         }
+
+
+        vm.checkSafeHtml = checkSafeHtml;
+        vm.checkSafeYouTubeUrl = checkSafeYouTubeUrl;
+        function checkSafeHtml(html)
+        {
+            return $sce.trustAsHtml(html);
+        }
+
+        function checkSafeYouTubeUrl(url)
+        {
+            var parts = url.split('/');
+            var id = parts[parts.length - 1];
+
+            url = "https://www.youtube.com/embed/"+id;
+            console.log(url);
+            return $sce.trustAsResourceUrl(url);
+
+        }
     }
 })();
