@@ -56,6 +56,9 @@
                 widgets.push(newWidget);
                 console.log("widget id:" + newWidget._id);
                 console.log("updated list of widgets: " + widgets);
+                console.log(newWidget);
+                console.log("HEADER created")
+                console.log(widgets);
                 return newWidget;
             }
 
@@ -69,6 +72,9 @@
                     text: widget.text
                 };
                 widgets.push(newWidget);
+                console.log(newWidget);
+                console.log("IMAGE created")
+                console.log(widgets);
                 return newWidget;
             }
 
@@ -82,6 +88,9 @@
                     text: widget.text
                 };
                 widgets.push(newWidget);
+                console.log("YOUTUBE created")
+                console.log(newWidget);
+                console.log(widgets);
                 return newWidget;
             }
 
@@ -94,12 +103,12 @@
                     text: widget.text
                 };
                 widgets.push(newWidget);
+                console.log("HTML created")
+                console.log(newWidget);
+                console.log(widgets);
                 return newWidget;
             }
-
-
-            console.log("widget id:" + newWidget._id);
-            console.log("updated list of widgets: " + widgets);
+            return null;
         }
 
         function findWidgetsByPageId(pageId)
@@ -131,6 +140,8 @@
 
         function updateWidget(widgetId, widget)
         {
+            console.log(widgetId);
+            console.log(widget);
             if(widget.widgetType.toString() == "HEADER")
             {
                var newWidget = {

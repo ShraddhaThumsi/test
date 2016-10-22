@@ -16,26 +16,14 @@
         var pageId = parseInt($routeParams['pid']);
         vm.pageId = pageId;
 
-
-            /*var widget = {};
-        var newWidget = WidgetService.createWidget(pageId, widget);
-        if(newWidget)
-        {
-            $location.url("/user/" + vm.userId + "/website/" +
-                vm.websiteId + "/page/" + vm.pageId + "/widget");
-        }
-
-        else
-        {
-            vm.error = "Unable to create widget";
-        }*/
+        console.log(pageId)
 
         vm.createHeaderWidget = createHeaderWidget;
         function createHeaderWidget()
         {
-            var widget = {"_id": 0, "widgetType": "HEADER", "pageId": pageId, "size": 0, "text": " "};
+            var widget = {"_id": 0, "widgetType": "HEADER", "pageId": pageId, "size": 2, "text": " "};
             var newHeaderWidget = WidgetService.createWidget(pageId, widget);
-            vm.newHeaderWidget = newHeaderWidget;
+            //vm.newHeaderWidget = newHeaderWidget;
             console.log(newHeaderWidget);
             if(newHeaderWidget)
             {
@@ -50,7 +38,7 @@
         {
             var widget = {"_id": 0, "widgetType": "HTML", "pageId": pageId, "text": " "};
             var newHtmlWidget = WidgetService.createWidget(pageId, widget);
-            vm.newHtmlWidget = newHtmlWidget;
+            //vm.newHtmlWidget = newHtmlWidget;
             console.log(newHtmlWidget);
             if(newHtmlWidget)
             {
@@ -66,7 +54,7 @@
             var widget = {"_id": 0, "widgetType": "IMAGE", "pageId": pageId, "width": 0, "url": " "};
             var newImageWidget = WidgetService.createWidget(pageId, widget);
             console.log(newImageWidget);
-            vm.newImageWidget = newImageWidget;
+            //vm.newImageWidget = newImageWidget;
             if(newImageWidget)
             {
                 $location.url("/user/" + vm.userId + "/website/" +
@@ -80,7 +68,7 @@
         {
             var widget = {"_id": 0, "widgetType": "YOUTUBE", "pageId": pageId, "width": 0, "url": " "};
             var newYoutubeWidget = WidgetService.createWidget(pageId, widget);
-            vm.newYoutubeWidget = newYoutubeWidget;
+            //vm.newYoutubeWidget = newYoutubeWidget;
             console.log(newYoutubeWidget);
             if(newYoutubeWidget)
             {

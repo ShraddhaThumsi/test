@@ -11,7 +11,7 @@
                 Edit Widget
             </p>
             <p class="navbar-text pull-right widgetGlyphAligner" id = "webListPlus">
-                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-link">
+                <a ng-click="model.updateWidget(model.widgetId, model.currentWidget)" class="navbar-link">
           <span class="glyphicon glyphicon-ok glyphColorRectifier glyphPosRectifier">
           </span>
                 </a>
@@ -30,6 +30,7 @@
     <div class = "container">
         <div ng-include="'views/widget/widget-'+model.currentWidget.widgetType.toLowerCase()+
         '-editor.view.client.html'"></div>
+        <!--<div ng-include="'views/widget/widget-image-editor.view.client.html'"></div>-->
     </div>
 </div>
 

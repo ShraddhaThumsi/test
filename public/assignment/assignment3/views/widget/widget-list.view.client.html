@@ -12,7 +12,7 @@
                 Widget List
             </p>
             <p class="navbar-text pull-right widgetGlyphAligner" id = "webListPlus">
-                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new"
+                <a ng-click="model.goToChooseWidget()"
                    class="navbar-link">
           <span class="glyphicon glyphicon-plus glyphColorRectifier glyphPosRectifier">
           </span>
@@ -22,10 +22,10 @@
     </div>
 </nav>
 
-<div class="container">
+<div class="container-fluid">
     <div ng-switch = "widget.widgetType"
          ng-repeat = "widget in model.widgets" class = "row jga-widget">
-        <div class = "col-xs-10 jga-widget-tool">
+        <div class = "col-xs-10 ">
 
             <div ng-switch = "widget.size" ng-switch-when = "HEADER">
                 <!--<ng-include src ="'/views/widget/widget-header-editor.view.client.html'"></ng-include>-->
@@ -41,9 +41,9 @@
                 <iframe width="560" height="315" ng-src="{{model.checkSafeYouTubeUrl(widget.url)}}"
                         frameborder="0" allowfullscreen></iframe>
             </div>
-            <div ng-switch-when = "IMAGE" ng-src="{{model.checkSafeImageSrc(widget.url)}}">
+            <div ng-switch-when = "IMAGE">
                 <!--<ng-include src ="'#/views/widget/widget-image-editor.view.client.html'"></ng-include>-->
-                <img ng-src="{{widget.url}}" width="{{model.width}}"/>
+                <img ng-src="{{model.checkSafeImageSrc(widget.url)}}" width="{{model.width}}"/>
             </div>
             <div ng-switch-when = "HTML" ng-bind-html = "model.checkSafeHtml(widget.text)">
                 {{widget.text}}

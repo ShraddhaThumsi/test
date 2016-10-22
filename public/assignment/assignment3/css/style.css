@@ -4,7 +4,6 @@ input.form-control {
 
 body {
     padding-top: 36px;
-    overflow: hidden;
 }
 
 .container .websitelistSpaceMaker
@@ -139,23 +138,6 @@ body {
 
 }
 
-/*
-.cogSuperImposer
-{
-    top: 0px;
-    right: 50px;
-    position: absolute;
-    z-index: 3;
-}
-
-.justifySuperImposer
-{
-    top: 0px;
-    right: 0px;
-    position: absolute;
-    z-index: 3;
-}*/
-
 .relative-position {
     position: relative;
 }
@@ -182,3 +164,4 @@ body {
 {
     padding-right: 15px;
 }
+

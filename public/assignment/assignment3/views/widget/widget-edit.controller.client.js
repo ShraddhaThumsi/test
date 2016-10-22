@@ -18,41 +18,50 @@
         vm.widgetId = widgetId;
         var currentWidget = WidgetService.findWidgetById(widgetId);
         vm.currentWidget = currentWidget;
-        var widgets = WidgetService.findWidgetsByPageId(pageId);
-        vm.widgets = widgets;
+        //var widgets = WidgetService.findWidgetsByPageId(pageId);
+        //vm.widgets = widgets;
         vm.updateWidget = updateWidget;
+
         function updateWidget(widgetId, widget)
         {
 
-                if(widget.widgetType.toString() == "HEADER")
-                {
-                    var updatedWidget = WidgetService.updateWidget(widgetId, {size: widget.size, text: widget.text});
-                    $location.url("/user/" + vm.userId + "/website/" +
-                        vm.websiteId + "/page/" + vm.pageId + "/widget/" + widgetId);
-                }
+            console.log(widgetId);
+            console.log(widget);
+            console.log(widget.widgetType.toString() == "HEADER");
+            console.log(widget.widgetType.toString() == "HTML");
+            console.log(widget.widgetType.toString() == "IMAGE");
+            console.log(widget.widgetType.toString() == "YOUTUBE");
+            if(widget.widgetType.toString() == "HEADER")
+            {
+                //var updatedWidget = WidgetService.updateWidget(widgetId, {size: widget.size, text: widget.text});
+                var updatedWidget = WidgetService.updateWidget(widgetId, widget);
+                $location.url("/user/" + vm.userId + "/website/" +
+                    vm.websiteId + "/page/" + vm.pageId + "/widget/");
+            }
 
-                if(widget.widgetType.toString() == "HTML")
-                {
-                    var updatedWidget = WidgetService.updateWidget(widgetId, {text: widget.text});
-                    $location.url("/user/" + vm.userId + "/website/" +
-                        vm.websiteId + "/page/" + vm.pageId + "/widget/" + widgetId);
-                }
+            else if(widget.widgetType.toString() == "HTML")
+            {
+                var updatedWidget = WidgetService.updateWidget(widgetId, {text: widget.text});
+                $location.url("/user/" + vm.userId + "/website/" +
+                    vm.websiteId + "/page/" + vm.pageId + "/widget/" + widgetId);
+            }
 
-                if(widget.widgetType.toString() == "YOUTUBE")
-                {
-                    var updatedWidget =
-                        WidgetService.updateWidget(widgetId, {width: widget.width, url:widget.url});
-                    $location.url("/user/" + vm.userId + "/website/" +
-                        vm.websiteId + "/page/" + vm.pageId + "/widget/" + widgetId);
-                }
+            else if(widget.widgetType.toString() == "YOUTUBE")
+            {
+                console.log(widget.widgetType);
+                var updatedWidget =
+                    WidgetService.updateWidget(widgetId, {width: widget.width, url:widget.url});
+                $location.url("/user/" + vm.userId + "/website/" +
+                    vm.websiteId + "/page/" + vm.pageId + "/widget/" + widgetId);
+            }
 
-                if(widget.widgetType.toString() == "IMAGE")
-                {
-                    var updatedWidget =
-                        WidgetService.updateWidget(widgetId, {width: widget.width, url:widget.url});
-                    $location.url("/user/" + vm.userId + "/website/" +
-                        vm.websiteId + "/page/" + vm.pageId + "/widget/" + widgetId);
-                }
+            else if(widget.widgetType.toString() == "IMAGE")
+            {
+                var updatedWidget =
+                    WidgetService.updateWidget(widgetId, {width: widget.width, url:widget.url});
+                $location.url("/user/" + vm.userId + "/website/" +
+                    vm.websiteId + "/page/" + vm.pageId + "/widget/" + widgetId);
+            }
 
 
         }
@@ -76,7 +85,7 @@
         }
 
 
-        vm.checkSafeHtml = checkSafeHtml;
+        /*vm.checkSafeHtml = checkSafeHtml;
         vm.checkSafeYouTubeUrl = checkSafeYouTubeUrl;
         function checkSafeHtml(html)
         {
@@ -92,6 +101,6 @@
             console.log(url);
             return $sce.trustAsResourceUrl(url);
 
-        }
+        }*/
     }
 })();

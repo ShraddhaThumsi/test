@@ -22,6 +22,8 @@
         console.log(vm.widgets);
         vm.checkSafeHtml = checkSafeHtml;
         vm.checkSafeYouTubeUrl = checkSafeYouTubeUrl;
+        vm.goToChooseWidget = goToChooseWidget;
+
         function checkSafeHtml(html)
         {
             return $sce.trustAsHtml(html);
@@ -38,6 +40,9 @@
 
         }
 
+        function goToChooseWidget() {
+            $location.url("user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/new");
+        }
 
     }
 })();
