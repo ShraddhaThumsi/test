@@ -1,5 +1,5 @@
 
-<nav class="navbar navbar-default navbar-fixed-top widgetColorRenderer">
+<!--<nav class="navbar navbar-default navbar-fixed-top widgetColorRenderer">
     <div class="container-fluid">
         <div class="navbar-header floatRectifier">
             <p class="navbar-text pull-left">
@@ -21,10 +21,10 @@
             </p>
         </div>
     </div>
-</nav>
+</nav>-->
 
 
-<div class="container" id = "newPageSpaceMaker">
+<!--<div class="container" id = "newPageSpaceMaker">
     <form class = "form-group" class = "newWebsiteSpaceMaker" id = "websitelistSpaceMaker">
         {{model.widget}}
         <div ng-include = "'views/widget/widget-'+model.widget.widgetType+'-editor.html'"></div>
@@ -36,10 +36,25 @@
                 Delete Widget</a>
         </div>
     </div>
+</div>-->
+
+<div class="container form-group" id = "newPageSpaceMaker">
+    <form class = "form-group" class = "newWebsiteSpaceMaker" id = "websitelistSpaceMaker">
+        <label for="text">Text</label>
+        <input id="text" ng-model="model.currentWidget.text" placeholder="Heading" value="{{model.currentWidget.text}}">
+    </form>
+    <div>
+        <!--<a class="btn btn-danger btn-block form-control"
+               href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
+                Delete Widget</a>-->
+        <a class="btn btn-danger btn-block form-control"
+           ng-click="model.deleteWidget(model.currentWidget._id)">
+            Delete Widget</a>
+    </div>
 </div>
 
 
-<nav class="navbar navbar-default navbar-fixed-bottom widgetColorRenderer">
+<!--<nav class="navbar navbar-default navbar-fixed-bottom widgetColorRenderer">
     <div class="container-fluid">
         <div class="navbar-header floatRectifier">
             <p class="navbar-text pull-right widgetGlyphAligner">
@@ -50,4 +65,4 @@
             </p>
         </div>
     </div>
-</nav>
+</nav>-->

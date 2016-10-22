@@ -27,9 +27,8 @@
          ng-repeat = "widget in model.widgets" class = "row jga-widget">
         <div class = "col-xs-10 jga-widget-tool">
 
-
             <div ng-switch = "widget.size" ng-switch-when = "HEADER">
-                <ng-include src ="'/views/widget/widget-heading-editor.view.client.html'"></ng-include>
+                <!--<ng-include src ="'/views/widget/widget-header-editor.view.client.html'"></ng-include>-->
                 <h1 ng-switch-when = "1">{{widget.text}}</h1>
                 <h2 ng-switch-when = "2">{{widget.text}}</h2>
                 <h3 ng-switch-when = "3">{{widget.text}}</h3>
@@ -38,12 +37,12 @@
                 <h6 ng-switch-when = "6">{{widget.text}}</h6>
             </div>
             <div ng-switch-when = "YOUTUBE">
-                <ng-include src ="'/views/widget/widget-youtube-editor.view.client.html'"></ng-include>
+                <!--<ng-include src ="'#/views/widget/widget-youtube-editor.view.client.html'"></ng-include>-->
                 <iframe width="560" height="315" ng-src="{{model.checkSafeYouTubeUrl(widget.url)}}"
                         frameborder="0" allowfullscreen></iframe>
             </div>
             <div ng-switch-when = "IMAGE" ng-src="{{model.checkSafeImageSrc(widget.url)}}">
-                <ng-include src ="'/views/widget/widget-image-editor.view.client.html'"></ng-include>
+                <!--<ng-include src ="'#/views/widget/widget-image-editor.view.client.html'"></ng-include>-->
                 <img ng-src="{{widget.url}}" width="{{model.width}}"/>
             </div>
             <div ng-switch-when = "HTML" ng-bind-html = "model.checkSafeHtml(widget.text)">

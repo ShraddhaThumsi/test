@@ -26,24 +26,25 @@
     {{model.error}}
 </div>
 <div class="container">
-    <div class = "row jga-widget"
-         ng-repeat = "widget in model.widgets"
-         ng-switch = "widget.widgetType">
-
+    <!--<div class = "row jga-widget"
+         ng-switch = "model.currentWidget.widgetType">
 
         <div class = "col-md-8 jga-widget-tool">
             <div ng-switch-when = "HEADER">
-                <ng-include src ="'/views/widget/widget-heading-editor.view.client.html'"></ng-include>
+                <ng-include src ="'#/views/widget/widget-heading-editor.view.client.html'"></ng-include>
             </div>
             <div ng-switch-when = "YOUTUBE">
-                <ng-include src ="'/views/widget/widget-youtube-editor.view.client.html'"></ng-include>
+                <ng-include src ="'#/views/widget/widget-youtube-editor.view.client.html'"></ng-include>
 
             </div>
             <div ng-switch-when = "IMAGE">
-                <ng-include src ="'/views/widget/widget-image-editor.view.client.html'"></ng-include>
+                <ng-include src ="'#/views/widget/widget-image-editor.view.client.html'"></ng-include>
 
             </div>
         </div>
+    </div>-->
+    <div class = "container">
+        <div ng-include="'views/widget/widget-'+model.currentWidget.widgetType.toLowerCase()+'-editor.view.client.html'"></div>
     </div>
 </div>
 
