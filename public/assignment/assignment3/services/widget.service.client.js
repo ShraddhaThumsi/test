@@ -41,8 +41,9 @@
 
         function createWidget(pageId, widget)
         {
+            console.log(widget);
             var widgetExists = false;
-            for(var wg in widgets)
+            /*for(var wg in widgets)
             {
                 var existingWidget = widgets[wg];
                 if((existingWidget.widgetType === widget.widgetType
@@ -53,8 +54,8 @@
                     widgetExists = true;
                     return null;
                 }
-            }
-            switch(widget.widgetType)
+            }*/
+            /*switch(widget.widgetType)
             {
                 case "HEADER":
                     var newWidget = {
@@ -101,6 +102,59 @@
 
                 default: widgets.push(newWidget);
                         return newWidget;
+            }
+*/
+            if(widget.widgetType.toString() == "HEADER")
+            {
+                var newWidget = {
+                    _id: (idGenerator + 1).toString(),
+                    widgetType: widget.widgetType,
+                    pageId: widget.pageId,
+                    size: widget.size,
+                    text: widget.text
+                };
+                widgets.push(newWidget);
+                console.log("widget id:" + newWidget._id);
+                console.log("updated list of widgets: " + widgets);
+                return newWidget;
+            }
+
+            if(widget.widgetType.toString() == "IMAGE")
+            {
+                var newWidget = {
+                    _id: (idGenerator + 1).toString(),
+                    widgetType: widget.widgetType,
+                    pageId: widget.pageId,
+                    width: widget.width,
+                    text: widget.text
+                };
+                widgets.push(newWidget);
+                return newWidget;
+            }
+
+            if(widget.widgetType.toString() == "YOUTUBE")
+            {
+                var newWidget = {
+                    _id: (idGenerator + 1).toString(),
+                    widgetType: widget.widgetType,
+                    pageId: widget.pageId,
+                    width: widget.width,
+                    text: widget.text
+                };
+                widgets.push(newWidget);
+                return newWidget;
+            }
+
+            if(widget.widgetType.toString() == "HTML")
+            {
+                var newWidget = {
+                    _id: (idGenerator + 1).toString(),
+                    widgetType: widget.widgetType,
+                    pageId: widget.pageId,
+                    text: widget.text
+                };
+                widgets.push(newWidget);
+                return newWidget;
             }
 
 

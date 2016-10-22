@@ -23,32 +23,38 @@
         vm.updateWidget = updateWidget;
         function updateWidget(widgetId, widget)
         {
-            switch(widget.widgetType)
-            {
-                case "HEADER":
+
+                if(widget.widgetType.toString() == "HEADER")
+                {
                     var updatedWidget = WidgetService.updateWidget(widgetId, {size: widget.size, text: widget.text});
                     $location.url("/user/" + vm.userId + "/website/" +
                         vm.websiteId + "/page/" + vm.pageId + "/widget");
-                    break;
-                case "HTML":var updatedWidget = WidgetService.updateWidget(widgetId, {text: widget.text});
+                }
+
+                if(widget.widgetType.toString() == "HTML")
+                {
+                    var updatedWidget = WidgetService.updateWidget(widgetId, {text: widget.text});
                     $location.url("/user/" + vm.userId + "/website/" +
                         vm.websiteId + "/page/" + vm.pageId + "/widget");
-                    break;
-                case "YOUTUBE":var updatedWidget =
-                    WidgetService.updateWidget(widgetId, {width: widget.width, url:widget.url});
+                }
+
+                if(widget.widgetType.toString() == "YOUTUBE")
+                {
+                    var updatedWidget =
+                        WidgetService.updateWidget(widgetId, {width: widget.width, url:widget.url});
                     $location.url("/user/" + vm.userId + "/website/" +
                         vm.websiteId + "/page/" + vm.pageId + "/widget");
-                    break;
-                case "IMAGE":var updatedWidget =
-                    WidgetService.updateWidget(widgetId, {width: widget.width, url:widget.url});
+                }
+
+                if(widget.widgetType.toString() == "IMAGE")
+                {
+                    var updatedWidget =
+                        WidgetService.updateWidget(widgetId, {width: widget.width, url:widget.url});
                     $location.url("/user/" + vm.userId + "/website/" +
                         vm.websiteId + "/page/" + vm.pageId + "/widget");
-                    break;
-                default: vm.error = "Unknown widget type";
-            }
-            /*var updatedWidget = WidgetService.updateWidget(widgetId, {});
-            $location.url("/user/" + vm.userId + "/website/" +
-                vm.websiteId + "/page/" + vm.pageId + "/widget");*/
+                }
+
+
         }
 
         vm.deleteWidget = deleteWidget;
