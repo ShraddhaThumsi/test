@@ -28,14 +28,14 @@
                 {
                     var updatedWidget = WidgetService.updateWidget(widgetId, {size: widget.size, text: widget.text});
                     $location.url("/user/" + vm.userId + "/website/" +
-                        vm.websiteId + "/page/" + vm.pageId + "/widget");
+                        vm.websiteId + "/page/" + vm.pageId + "/widget/" + widgetId);
                 }
 
                 if(widget.widgetType.toString() == "HTML")
                 {
                     var updatedWidget = WidgetService.updateWidget(widgetId, {text: widget.text});
                     $location.url("/user/" + vm.userId + "/website/" +
-                        vm.websiteId + "/page/" + vm.pageId + "/widget");
+                        vm.websiteId + "/page/" + vm.pageId + "/widget/" + widgetId);
                 }
 
                 if(widget.widgetType.toString() == "YOUTUBE")
@@ -43,7 +43,7 @@
                     var updatedWidget =
                         WidgetService.updateWidget(widgetId, {width: widget.width, url:widget.url});
                     $location.url("/user/" + vm.userId + "/website/" +
-                        vm.websiteId + "/page/" + vm.pageId + "/widget");
+                        vm.websiteId + "/page/" + vm.pageId + "/widget/" + widgetId);
                 }
 
                 if(widget.widgetType.toString() == "IMAGE")
@@ -51,7 +51,7 @@
                     var updatedWidget =
                         WidgetService.updateWidget(widgetId, {width: widget.width, url:widget.url});
                     $location.url("/user/" + vm.userId + "/website/" +
-                        vm.websiteId + "/page/" + vm.pageId + "/widget");
+                        vm.websiteId + "/page/" + vm.pageId + "/widget/" + widgetId);
                 }
 
 
