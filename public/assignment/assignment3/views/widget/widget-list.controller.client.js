@@ -23,6 +23,11 @@
         vm.checkSafeHtml = checkSafeHtml;
         vm.checkSafeYouTubeUrl = checkSafeYouTubeUrl;
         vm.goToChooseWidget = goToChooseWidget;
+        vm.checkSafeImageSrc = checkSafeImageSrc;
+        function checkSafeImageSrc(url)
+        {
+            return $sce.trustAsResourceUrl(url);
+        }
 
         function checkSafeHtml(html)
         {
