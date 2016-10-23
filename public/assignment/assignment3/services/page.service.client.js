@@ -57,9 +57,11 @@
             var result = [];
             for(var p in pages)
             {
-                if(parseInt(pages[p].wid) === websiteId)
+                var tempo = pages[p];
+                console.log("reporting from page service, this is the datatype of page name: " + typeof tempo.name);
+                if(parseInt(tempo.wid) === parseInt(websiteId))
                 {
-                    result.push(pages[p]);
+                    result.push(tempo);
                 }
             }
             console.log(result);
@@ -68,16 +70,15 @@
 
         function findPageById(pageId)
         {
-            var result = [];
+
             for(var p in pages)
             {
                 if(parseInt(pages[p]._id) === pageId)
                 {
-                    result.push(pages[p]);
+                    return pages[p];
                 }
             }
-            console.log(result);
-            return result;
+            return false;
         }
 
         function updatePage(pageId, page)
@@ -90,8 +91,9 @@
                 currentPage = pages[p];
                 if(currentPage._id.toString() === pageId.toString())
                 {
+                    console.log(typeof currentPage);
                     currentPage.name = page.name;
-                    console.log(pages);
+
                     return currentPage;
                 }
             }

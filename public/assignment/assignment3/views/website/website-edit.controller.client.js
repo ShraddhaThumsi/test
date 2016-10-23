@@ -16,9 +16,8 @@
         vm.currentWebsite = currentWebsite;
         vm.name = currentWebsite.name;
         vm.description = currentWebsite.description;
-        console.log(vm.currentWebsite);
-        console.log(vm.name);
-        console.log(vm.description);
+        console.log("reporting from website edit controller, this is the datatype of current website:");
+        console.log(typeof vm.currentWebsite);
         var websites = WebsiteService.findWebsitesByUser(userId);
         vm.websites = websites;
         vm.updateWebsite = updateWebsite;

@@ -15,19 +15,20 @@
         vm.websiteId = websiteId;
         var pageId = $routeParams['pid'];
         vm.pageId = pageId;
+        console.log("reporting from page edit controller, datatype of page id:" + typeof pageId);
         vm.updatePage = updatePage;
-        var currentPage = PageService.findPageByWebsiteId(websiteId);
+        var currentPage = PageService.findPageById(pageId);
         vm.currentPage = currentPage;
         vm.name = currentPage.name;
         vm.wid = currentPage.wid;
-        console.log(vm.currentPage);
-        console.log(vm.name);
-        console.log(vm.description);
-        function updatePage(pageId, page)
+        console.log("reporting from page edit controller, this is the datatype of current page:");
+        console.log(typeof vm.currentPage);
+        console.log("reporting from page edit controller, datatype of page name: " + typeof vm.name);
+        function updatePage(name, title)
         {
-            vm.name = page.name;
-            vm.wid = page.wid;
-            var updatedPage = PageService.updatePage(pageId, page);
+            vm.name = name.toString();
+            vm.title = title;
+            var updatedPage = PageService.updatePage(pageId, {name: vm.name, wid: vm.websiteId});
             $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/");
         }
 

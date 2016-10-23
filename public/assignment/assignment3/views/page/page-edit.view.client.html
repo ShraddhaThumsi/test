@@ -11,12 +11,12 @@
             <p class="navbar-brand" href="#">
                 Edit Page
             </p>
-            <p class="navbar-text pull-right widgetGlyphAligner" id = "webListPlus">
-                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link">
+            <!--<p class="navbar-text pull-right widgetGlyphAligner" id = "webListPlus">
+                <a ng-click = "model.updatePage(model.pageId, model.currentPage)" class="navbar-link">
           <span class="glyphicon glyphicon-ok glyphColorRectifier glyphPosRectifier">
           </span>
                 </a>
-            </p>
+            </p>-->
         </div>
     </div>
 </nav>
@@ -29,18 +29,18 @@
         <label for = "newPageDescription">Title</label>
         <input type = "text" id = "newpageDescription" placeholder = "Page Title" class = "form-control"/>
     </form>
-    <div class = "row">
-        <div class = "col-xs-12">
-            <a class="btn btn-primary btn-block form-control"
-               ng-click = "model.updatePage(model.pageId, model.currentPage)">Submit</a>
-        </div>
-    </div>
-    <div class = "row">
-        <div class = "col-xs-12">
-            <a class="btn btn-danger btn-block form-control"
+
+
+            <a class="btn btn-primary btn-block form-group"
+               ng-click = "model.updatePage(model.name, model.title)">Submit</a>
+
+
+
+
+            <a class="btn btn-danger btn-block form-group"
                ng-click = "model.deletePage(model.pageId)">Delete Page</a>
-        </div>
-    </div>
+
+
 </div>
 
 
