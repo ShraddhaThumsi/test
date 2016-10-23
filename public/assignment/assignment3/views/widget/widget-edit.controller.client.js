@@ -18,8 +18,6 @@
         vm.widgetId = widgetId;
         var currentWidget = WidgetService.findWidgetById(widgetId);
         vm.currentWidget = currentWidget;
-        //var widgets = WidgetService.findWidgetsByPageId(pageId);
-        //vm.widgets = widgets;
         vm.updateWidget = updateWidget;
 
         function updateWidget(widgetId, widget)
@@ -33,7 +31,6 @@
             console.log(widget.widgetType.toString() == "YOUTUBE");
             if(widget.widgetType.toString() == "HEADER")
             {
-                //var updatedWidget = WidgetService.updateWidget(widgetId, {size: widget.size, text: widget.text});
                 var updatedWidget = WidgetService.updateWidget(widgetId, widget);
                 $location.url("/user/" + vm.userId + "/website/" +
                     vm.websiteId + "/page/" + vm.pageId + "/widget/");

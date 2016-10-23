@@ -5,8 +5,8 @@
             <p class="navbar-text pull-left">
                 <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"
                    class="navbar-link">
-          <span class="glyphicon glyphicon-menu-left glyphColorRectifier widgetGlyphAligner">
-          </span>
+                    <span class="glyphicon glyphicon-menu-left glyphColorRectifier widgetGlyphAligner">
+                    </span>
                 </a>
             </p>
             <p class="navbar-brand">
@@ -29,20 +29,14 @@
         <label for = "newImageWidth">Width</label>
         <input type = "text" id = "newImageWidth" class = "form-control"/>
     </form>
-
-
-            <a class="btn btn-primary btn-block form-group"
-               ng-click="model.updateWidget(model.widgetId, model.currentWidget)"">
-                Submit</a>
-
-
-
-
-            <a class="btn btn-danger btn-block form-group"
-               ng-click="model.deleteWidget(model.currentWidget._id)">
-                Delete Widget</a>
-
-
+    <a class="btn btn-primary btn-block form-group"
+       ng-click="model.updateWidget(model.widgetId, model.currentWidget)">
+    Submit
+    </a>
+    <a class="btn btn-danger btn-block form-group"
+       ng-click="model.deleteWidget(model.currentWidget._id)">
+       Delete Widget
+    </a>
 </div>
 
 
@@ -51,8 +45,8 @@
         <div class="navbar-header floatRectifier">
             <p class="navbar-text pull-right widgetGlyphAligner">
                 <a href="#/user/{{model.userId}}" class="navbar-link" id = "webListUser">
-          <span class="glyphicon glyphicon-user glyphColorRectifier">
-          </span>
+                    <span class="glyphicon glyphicon-user glyphColorRectifier">
+                    </span>
                 </a>
             </p>
         </div>

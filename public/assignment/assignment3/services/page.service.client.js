@@ -58,7 +58,8 @@
             for(var p in pages)
             {
                 var tempo = pages[p];
-                console.log("reporting from page service, this is the datatype of page name: " + typeof tempo.name);
+                console.log("reporting from page service, this is the datatype of page name: " +
+                    typeof tempo.name);
                 if(parseInt(tempo.wid) === parseInt(websiteId))
                 {
                     result.push(tempo);

@@ -6,8 +6,8 @@
             <div class="navbar-header floatRectifier">
                 <p class="navbar-text pull-left">
                     <a href="#/user/{{model.userId}}/website" class="navbar-link">
-          <span class="glyphicon glyphicon-menu-left glyphColorRectifier widgetGlyphAligner">
-          </span>
+                        <span class="glyphicon glyphicon-menu-left glyphColorRectifier widgetGlyphAligner">
+                        </span>
                     </a>
                 </p>
                 <p class="navbar-brand" href="#">
@@ -15,8 +15,8 @@
                 </p>
                 <p class="navbar-text pull-right widgetGlyphAligner" id = "webListPlus">
                     <a href="#/user/{{model.userId}}/website/new" class="navbar-link">
-          <span class="glyphicon glyphicon-plus glyphColorRectifier widgetGlyphAligner">
-          </span>
+                        <span class="glyphicon glyphicon-plus glyphColorRectifier widgetGlyphAligner">
+                        </span>
                     </a>
                 </p>
             </div>
@@ -44,7 +44,8 @@
                     <a ng-click="model.goToPageList(website)">
                         {{website.name}}
                     </a>
-                    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}"><span class = "glyphicon glyphicon-cog pull-right"></span></a>
+                    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}">
+                        <span class = "glyphicon glyphicon-cog pull-right"></span></a>
                 </li>
             </ul>
         </div>
@@ -53,12 +54,15 @@
         <div class = "col-md-8">
             <form class = "form-group">
                 <label for = "newWebsiteName" class = "newWebsiteSpaceMaker">Name</label>
-                <input ng-model="model.name" type = "text" id = "newWebsiteName" placeholder = "Name" class = "form-control"/>
+                <input ng-model="model.name" type = "text" id = "newWebsiteName" placeholder = "Name"
+                       class = "form-control"/>
                 <label for = "newWebsiteDescription">Description</label>
-                <textarea ng-model="model.description" rows = "10" cols = "50" id = "newWebsiteDescription" class = "form-control" placeholder="Description">
+                <textarea ng-model="model.description" rows = "10" cols = "50" id = "newWebsiteDescription"
+                          class = "form-control" placeholder="Description">
 
                 </textarea>
-                <a ng-click = "model.createWebsite(model.name, model.description)" class = "btn btn-block btn-primary form-group">Submit</a>
+                <a ng-click = "model.createWebsite(model.name, model.description)"
+                   class = "btn btn-block btn-primary form-group">Submit</a>
             </form>
         </div>
     </div>
@@ -70,8 +74,8 @@
         <div class="navbar-header floatRectifier">
             <p class="navbar-text pull-right widgetGlyphAligner">
                 <a href="#/user/{{model.userId}}" class="navbar-link" id = "webListUser">
-          <span class="glyphicon glyphicon-user glyphColorRectifier">
-          </span>
+                    <span class="glyphicon glyphicon-user glyphColorRectifier">
+                    </span>
                 </a>
             </p>
         </div>
