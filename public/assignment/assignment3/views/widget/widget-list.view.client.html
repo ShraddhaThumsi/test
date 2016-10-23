@@ -24,11 +24,10 @@
 
 <div class="container-fluid spaceMaker">
     <div ng-switch = "widget.widgetType"
-         ng-repeat = "widget in model.widgets" class = "row jga-widget">
-        <div class = "col-xs-10 ">
+         ng-repeat = "widget in model.widgets" class = "row">
+        <div class = "col-xs-10 pos-rect">
 
             <div ng-switch = "widget.size" ng-switch-when = "HEADER">
-                <!--<ng-include src ="'/views/widget/widget-header-editor.view.client.html'"></ng-include>-->
                 <h1 ng-switch-when = "1">{{widget.text}}</h1>
                 <h2 ng-switch-when = "2">{{widget.text}}</h2>
                 <h3 ng-switch-when = "3">{{widget.text}}</h3>
@@ -37,12 +36,10 @@
                 <h6 ng-switch-when = "6">{{widget.text}}</h6>
             </div>
             <div ng-switch-when = "YOUTUBE">
-                <!--<ng-include src ="'#/views/widget/widget-youtube-editor.view.client.html'"></ng-include>-->
                 <iframe width="560" height="315" ng-src="{{model.checkSafeYouTubeUrl(widget.url)}}"
                         frameborder="0" allowfullscreen></iframe>
             </div>
             <div ng-switch-when = "IMAGE">
-                <!--<ng-include src ="'#/views/widget/widget-image-editor.view.client.html'"></ng-include>-->
                 <img ng-src="{{model.checkSafeImageSrc(widget.url)}}" width="{{model.width}}"/>
             </div>
             <div ng-switch-when = "HTML" ng-bind-html = "model.checkSafeHtml(widget.text)">
@@ -53,11 +50,11 @@
         </div>
         <div class = "col-xs-1">
             <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
-                <span class="glyphicon glyphicon-cog widgetGlyphAligner"></span>
+                <span class="glyphicon glyphicon-cog pos-rect"></span>
             </a>
         </div>
         <div class = "col-xs-1">
-            <span class="glyphicon glyphicon-align-justify"></span>
+            <span class="glyphicon glyphicon-align-justify pos-rect"></span>
         </div>
     </div>
 </div>

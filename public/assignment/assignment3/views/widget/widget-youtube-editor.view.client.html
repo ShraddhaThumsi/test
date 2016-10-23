@@ -12,13 +12,6 @@
             <p class="navbar-brand">
                 Edit Widget
             </p>
-            <p class="navbar-text pull-right widgetGlyphAligner" id = "webListPlus">
-                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"
-                   class="navbar-link">
-          <span class="glyphicon glyphicon-ok glyphColorRectifier glyphPosRectifier">
-          </span>
-                </a>
-            </p>
         </div>
     </div>
 </nav>
@@ -36,13 +29,20 @@
         <label for = "newImageWidth">Width</label>
         <input type = "text" id = "newImageWidth" class = "form-control"/>
     </form>
-    <div class = "row">
-        <div class = "col-xs-12">
-            <a class="btn btn-danger btn-block form-control"
+
+
+            <a class="btn btn-primary btn-block form-group"
+               ng-click="model.updateWidget(model.widgetId, model.currentWidget)"">
+                Submit</a>
+
+
+
+
+            <a class="btn btn-danger btn-block form-group"
                ng-click="model.deleteWidget(model.currentWidget._id)">
                 Delete Widget</a>
-        </div>
-    </div>
+
+
 </div>
 
 
