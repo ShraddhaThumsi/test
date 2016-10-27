@@ -6,12 +6,12 @@
         .module("WebAppMaker")
         .factory("UserService", UserService);
 
-    function UserService() {
+    function UserService($http) {
 
         var idGenerator = 700;
         console.log(idGenerator);
 
-        var users = [
+        /*var users = [
             {_id: "123", username: "alice", password: "alice",
                 firstName: "Alice", lastName: "Wonder", email: "alice@wonderland.com"},
             {_id: "234", username: "bob", password: "bob",
@@ -20,7 +20,7 @@
                 firstName: "Charly", lastName: "Garcia", email: "charly@garcia.com"},
             {_id: "456", username: "jannunzi", password: "jannunzi",
                 firstName: "Jose", lastName: "Annunzi", email: "jose@annunzi.com"}
-        ];
+        ];*/
 
         var api = {
             findUserByCredentials: findUserByCredentials,
@@ -43,6 +43,7 @@
                 }
             }
             return null;
+
         }
 
         function findUserById(userId) {

@@ -1,0 +1,53 @@
+import java.util.Scanner;
+
+public class holeCalculator {
+	private int hole(int num)
+	{
+		int holesPerRem;
+		int totalNumOfHoles = 0;
+		while(num >= 0)
+		{
+			
+			int rem = num % 10;
+			System.out.println("remainder when " + num + " is divided by 10: " + rem);
+			num = (int)num/10;
+			System.out.println("quotient when " + num + " is divided by 10:" + num);
+			if((rem == 0)||(rem == 4)||(rem == 6)||(rem == 9))
+			{
+				holesPerRem = 1;
+				System.out.println("Number of holes for this remainder is: " + holesPerRem);
+				totalNumOfHoles = totalNumOfHoles + holesPerRem;
+				
+				return totalNumOfHoles;
+			}
+			if(rem == 8)
+			{
+				holesPerRem = 2;
+				System.out.println("Number of holes for this remainder is: " + holesPerRem);
+				
+				totalNumOfHoles = totalNumOfHoles + holesPerRem;
+				return totalNumOfHoles;
+			}
+			else
+			{
+				holesPerRem = 0;
+				System.out.println("Number of holes for this remainder is: " + holesPerRem);
+				totalNumOfHoles = totalNumOfHoles + holesPerRem;
+				
+				return totalNumOfHoles;
+			}
+		}
+		return totalNumOfHoles;
+	}
+	
+	public static void main(String[] args)
+	{
+		holeCalculator hc = new holeCalculator();
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter your integer input here:");
+		int input = sc.nextInt();
+		int result = hc.hole(input);
+		sc.close();
+		System.out.println("Number of holes for given number is: " + result);
+	}
+}

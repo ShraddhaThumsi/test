@@ -1,0 +1,47 @@
+import java.util.LinkedList;
+import java.util.Scanner;
+
+public class HoleCalculator 
+{
+	int number; 
+	LinkedList<Integer> linkedList = new LinkedList<Integer>();
+	
+	private int hole(int num)
+	{
+		int remainder;
+		int numOfHoles = 0;
+		while (number > 0) 
+		{
+			remainder = number % 10;
+			linkedList.push(remainder);
+			number = number / 10;
+		}
+
+		while (!linkedList.isEmpty()) 
+		{
+			 int digToBeChecked = linkedList.pop();
+			 if((digToBeChecked == 0) || (digToBeChecked == 4) || (digToBeChecked == 6) 
+					 || (digToBeChecked == 9))
+					 {
+				 		numOfHoles = numOfHoles + 1;
+				 		return numOfHoles;
+				 
+					 }
+			 if(digToBeChecked == 8)
+			 {
+				 numOfHoles = numOfHoles + 2;
+			 		return numOfHoles;
+			 }
+			 
+			 else return numOfHoles;
+		}
+		return numOfHoles;
+	}
+	
+	public static void main(String[] args)
+	{
+		HoleCalculator hc = new HoleCalculator();
+		
+	}
+}
+

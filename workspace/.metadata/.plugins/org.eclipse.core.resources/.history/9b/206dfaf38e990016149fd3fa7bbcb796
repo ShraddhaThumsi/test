@@ -1,0 +1,24 @@
+import java.util.LinkedList;
+import java.util.Scanner;
+
+public class holeCalculator 
+{
+	int number; 
+	LinkedList<Integer> linkedList = new LinkedList<Integer>();
+	private int hole(int num)
+	{
+		while (number > 0) 
+		{
+			int remainder = number % 10;
+			linkedList.push(remainder);
+			number = number / 10;
+		}
+
+		while (!linkedList.isEmpty()) 
+		{
+			/* print(stack.pop());*/
+		}
+	
+	}
+}
+

@@ -1,0 +1,15 @@
+import java.util.Scanner;
+
+public class ScannerObject {
+	String result;
+	String input = "a b c"+"\n"+"d e "+"\n"+"f  "+"\n"+"g  ";
+	Scanner scan = new Scanner(System.in);
+	result = scan.next();
+	
+	public static void main(String[] args)
+	{
+		System.out.println(result);
+	}
+	
+	
+}

@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class HashStairCase {
+	private void hashMaker(int n)
+	{
+		
+		for(int i = 1; i<=n; i++)
+		{
+			System.out.println(" " + "#");
+		}
+	}
+	
+	public static void main(String[] args)
+	{
+		HashStairCase hm = new HashStairCase();
+		Scanner sc = new Scanner(System.in);
+		int input = sc.nextInt();
+		sc.close();
+		hm.hashMaker(input);
+		
+	}
+	
+}

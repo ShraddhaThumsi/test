@@ -5,7 +5,7 @@
     angular
         .module("WebAppMaker")
         .factory("WebsiteService", WebsiteService);
-    function WebsiteService() {
+    function WebsiteService($http) {
         var idGenerator = 900;
         console.log(idGenerator);
         var websites = [
@@ -37,6 +37,7 @@
             }
             console.log(result);
             return result;
+            /*$http.get("/website");*/
         }
 
         function findWebsiteById(websiteId){

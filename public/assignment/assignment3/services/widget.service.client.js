@@ -6,7 +6,7 @@
         .module("WebAppMaker")
         .factory("WidgetService", WidgetService);
 
-    function WidgetService()
+    function WidgetService($http)
     {
         var idGenerator = 1500;
         console.log(idGenerator);
@@ -123,6 +123,7 @@
             }
             console.log(result);
             return result;
+            /*$http.get("/widget");*/
         }
 
         function findWidgetById(widgetId)

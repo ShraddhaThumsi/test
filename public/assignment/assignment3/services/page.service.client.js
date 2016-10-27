@@ -6,7 +6,7 @@
         .module("WebAppMaker")
         .factory("PageService", PageService);
 
-    function PageService(){
+    function PageService($http){
         var idGenerator = 1200;
         console.log(idGenerator);
         var pages = [
@@ -67,6 +67,7 @@
             }
             console.log(result);
             return result;
+           /* $http.get("/page");*/
         }
 
         function findPageById(pageId)
