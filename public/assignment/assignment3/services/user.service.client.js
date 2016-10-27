@@ -34,7 +34,9 @@
         return api;
 
         function findUserByCredentials(username, password) {
-            for (var u in users) {
+            var url = "/api/user?username="+username+"&password="+password;
+            return $http.get(url);
+           /* for (var u in users) {
                 var user = users[u];
                 if (user.username === username
                     && user.password === password) {
@@ -43,18 +45,20 @@
                 }
             }
             return null;
-
+*/
         }
 
         function findUserById(userId) {
-            for (var u in users) {
+            var url = "/api/user/" + userId;
+            return $http.get(url);
+            /* for (var u in users) {
                 var user = users[u];
                 if (parseInt(user._id) === userId) {
                     console.log(user);
                     return user;
                 }
             }
-            return null;
+            return null;*/
         }
 
         function generateNewId() {

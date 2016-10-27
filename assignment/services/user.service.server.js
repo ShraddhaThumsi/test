@@ -17,8 +17,9 @@ module.exports = function(app){
 
     function findUser(req,res)
     {
-        var params = req.params;
+        /*var params = req.params;*/
         var query = req.query;
+        console.log(req.query);
         if(query.username && query.password)
         {
             findUserByCredentials(req, res);

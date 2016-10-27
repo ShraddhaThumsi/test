@@ -9,11 +9,23 @@
         var vm = this;
         var userId = parseInt($routeParams.uid);
         vm.userId = userId;
-        var user = UserService.findUserById(userId);
-        if(user != null){
-            vm.user = user;
-            console.log("found user");
+        function init()
+        {
+        var promise = UserService.findUserById(userId);
+        promise
+            .success(function user(user){
+
+
+            if(user != '0'){
+                vm.user = user;
+                console.log("found user");
+            }
+        })
+            .error(function(){
+                
+            })
         }
+        init();
 
         vm.updateUser = updateUser;
         function updateUser(username,email,firstName,lastName){
