@@ -12,7 +12,7 @@
         function init()
         {
         var promise = UserService.findUserById(userId);
-        promise
+            promise
             .success(function user(user){
 
 
@@ -22,7 +22,7 @@
             }
         })
             .error(function(){
-                
+
             })
         }
         init();

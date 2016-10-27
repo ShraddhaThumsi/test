@@ -11,16 +11,6 @@
         var idGenerator = 700;
         console.log(idGenerator);
 
-        /*var users = [
-            {_id: "123", username: "alice", password: "alice",
-                firstName: "Alice", lastName: "Wonder", email: "alice@wonderland.com"},
-            {_id: "234", username: "bob", password: "bob",
-                firstName: "Bob", lastName: "Marley", email: "bob@marley.com"},
-            {_id: "345", username: "charly", password: "charly",
-                firstName: "Charly", lastName: "Garcia", email: "charly@garcia.com"},
-            {_id: "456", username: "jannunzi", password: "jannunzi",
-                firstName: "Jose", lastName: "Annunzi", email: "jose@annunzi.com"}
-        ];*/
 
         var api = {
             findUserByCredentials: findUserByCredentials,
@@ -36,29 +26,13 @@
         function findUserByCredentials(username, password) {
             var url = "/api/user?username="+username+"&password="+password;
             return $http.get(url);
-           /* for (var u in users) {
-                var user = users[u];
-                if (user.username === username
-                    && user.password === password) {
-                    console.log(user);
-                    return user;
-                }
-            }
-            return null;
-*/
+
         }
 
         function findUserById(userId) {
             var url = "/api/user/" + userId;
             return $http.get(url);
-            /* for (var u in users) {
-                var user = users[u];
-                if (parseInt(user._id) === userId) {
-                    console.log(user);
-                    return user;
-                }
-            }
-            return null;*/
+
         }
 
         function generateNewId() {
@@ -66,10 +40,11 @@
         }
 
         function createUser(newUser) {
+            return $http.post("/api/user", newUser);
             //while(true) {
-            var userExists = false;
+            /*var userExists = false;
 
-            /*var tempoDatabase = users;*/
+            /!*var tempoDatabase = users;*!/
 
             for (var u in users) {
                 var user = users[u];
@@ -80,7 +55,7 @@
             }
 
 
-            /*userExists = false;*/
+            /!*userExists = false;*!/
             var newUser = {
                 _id: (idGenerator + 1).toString(),
                 username: newUser.username,
@@ -89,14 +64,14 @@
                 lastName: newUser.lastName,
                 email: newUser.email
             };
-            /*console.log("user id" + idGenerator);*/
+            /!*console.log("user id" + idGenerator);*!/
             users.push(newUser);
-            /*console.log(newUser);*/
+            /!*console.log(newUser);*!/
             console.log("user id" + newUser._id);
             console.log("updated list of users: " + users);
             return newUser;
-                /*tempoDatabase = tempoDatabase.push(newUser);
-                 return tempoDatabase;*/
+                /!*tempoDatabase = tempoDatabase.push(newUser);
+                 return tempoDatabase;*!/*/
         }
 
         function findUserByUsername(username) {

@@ -30,8 +30,11 @@
                     email: vm.email
                 };
 
-                var userExists = UserService.createUser(newUser);
 
+                var promise = UserService.createUser(newUser);
+
+                promise
+                    .success(function(userExists){
                 if (userExists == true) {
                     alert("User exists");
                 }
@@ -41,6 +44,10 @@
                     vm.registerUser = userExists;
                 $location.url("/user/" + vm.userId);
                 }
+                })
+                    .error(function(aaa){
+                        console.log(aaa);
+                    });
             }
 
             else vm.error = "Passwords Do not match, please try again";
