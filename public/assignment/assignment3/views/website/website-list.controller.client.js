@@ -13,8 +13,23 @@
         vm.goToPageList = goToPageList;
         vm.userId = userId;
 
-        vm.websites = WebsiteService.findWebsitesByUser(userId);
-        console.log(vm.websites);
+        function init(){
+            var promise = WebsiteService.findWebsitesByUser(userId);
+            promise
+                .success(function website(websites){
+                    if(websites != '0')
+                    {
+                        vm.websites = websites;
+                        console.log(websites);
+                    }
+
+                })
+                .error(function(aaa){
+                    console.log(aaa);
+                });
+        /*vm.websites = WebsiteService.findWebsitesByUser(userId);
+        console.log(vm.websites);*/}
+        init();
 
         function goToPageList(website)
         {

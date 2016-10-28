@@ -8,14 +8,7 @@
     function WebsiteService($http) {
         var idGenerator = 900;
         console.log(idGenerator);
-        var websites = [
-            { _id: "123", name: "Facebook",    uid: "456", description: "most popular social networking website"},
-            { _id: "234", name: "Twitter",     uid: "456", description: "the favourite blog site for celebs"},
-            { _id: "456", name: "Gizmodo",     uid: "456", description: "all things technical"},
-            { _id: "567", name: "Tic Tac Toe", uid: "123", description: "the classic old x's and o's"},
-            { _id: "678", name: "Checkers",    uid: "123", description: "mind game"},
-            { _id: "789", name: "Chess",       uid: "234", description: "mind game"}
-        ];
+
 
         var api ={
             findWebsitesByUser: findWebsitesByUser,
@@ -27,7 +20,7 @@
         };
         return api;
         function findWebsitesByUser(uid){
-            var result = [];
+            /*var result = [];
             for(var w in websites)
             {
                 if(parseInt(websites[w].uid) === uid)
@@ -37,22 +30,29 @@
             }
             console.log(result);
             return result;
-            /*$http.get("/website");*/
+            /!*$http.get("/website");*!/*/
+            var url = "/api/user/" + uid + "/website";
+            return $http.get(url);
         }
 
         function findWebsiteById(websiteId){
-            for(var w in websites)
+            /*for(var w in websites)
             {
                 if(parseInt(websites[w]._id) === websiteId)
                 {
                     return websites[w];
                 }
             }
-            return false;
+            return false;*/
+
+            var url = "/api/user/:uid/website/" + websiteId;
+            return $http.get(url);
         }
 
         function createWebsite(userId, website)
-        {
+        {   return $http.post("/api/user/:uid/website", website);
+
+            /*
             var websiteExists = false;
             for(var w in websites)
             {
@@ -74,7 +74,7 @@
             websites.push(newWebSite);
             console.log("website id:" + newWebSite._id);
             console.log("updated list of websites: " + websites);
-            return newWebSite;
+            return newWebSite;*/
         }
 
         function updateWebsite(websiteId, newWebsite)

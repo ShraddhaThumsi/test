@@ -21,8 +21,8 @@
                 console.log("found user");
             }
         })
-            .error(function(){
-
+            .error(function(aaa){
+                console.log(aaa);
             })
         }
         init();
