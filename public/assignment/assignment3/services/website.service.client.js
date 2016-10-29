@@ -50,7 +50,8 @@
         }
 
         function createWebsite(userId, website)
-        {   return $http.post("/api/user/:uid/website", website);
+        {   var url = "/api/user/"+userId+"/website"
+            return $http.post(url, website);
 
             /*
             var websiteExists = false;

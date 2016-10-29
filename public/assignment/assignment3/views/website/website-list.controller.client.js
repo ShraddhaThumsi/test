@@ -17,18 +17,19 @@
             var promise = WebsiteService.findWebsitesByUser(userId);
             promise
                 .success(function website(websites){
-                    if(websites != '0')
+                    if(websites)
                     {
+
                         vm.websites = websites;
                         console.log(websites);
                     }
 
                 })
-                .error(function(aaa){
+                .error(function errorHandler(aaa){
                     console.log(aaa);
                 });
-        /*vm.websites = WebsiteService.findWebsitesByUser(userId);
-        console.log(vm.websites);*/}
+
+        }
         init();
 
         function goToPageList(website)

@@ -17,7 +17,7 @@
         vm.pageId = pageId;
         console.log("reporting from page edit controller, datatype of page id:" + typeof pageId);
         vm.updatePage = updatePage;
-        var currentPage = PageService.findPageById(pageId);
+        var currentPage = PageService.findPageById(userId, websiteId, pageId);
         vm.currentPage = currentPage;
         vm.name = currentPage.name;
         vm.wid = currentPage.wid;

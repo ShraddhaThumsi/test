@@ -24,14 +24,22 @@ module.exports = function(app){
 
     function findAllWebsitesForUser(req, res){
         var userId = parseInt(req.params.uid);
-        for (var w in websites){
-            if(parseInt(websites[w].uid) === userId)
-            {
-                res.send(websites[w]);
-                return;
+        var sitesForUser = new Array;
+        websites.forEach(function(w){
+            if(w.uid == userId){
+                sitesForUser.push(w);
             }
-        }
-        res.send('0');
+        })
+
+
+        /*for (var w in websites){
+            if(websites[w].uid == userId)
+            {
+                sitesForUser.push(websites[w]);
+            }
+        }*/
+        res.send(sitesForUser);
+
     }
 
     function findWebsiteById(req, res){

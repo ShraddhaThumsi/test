@@ -9,11 +9,11 @@
     function PageService($http){
         var idGenerator = 1200;
         console.log(idGenerator);
-        var pages = [
+        /*var pages = [
             { _id: "321", name: "Post 1", wid: 456},
             { _id: "432", name: "Post 2", wid: 456},
             { _id: "543", name: "Post 3", wid: 456}
-        ];
+        ];*/
 
         var api =
         {
@@ -27,7 +27,9 @@
 
         function createPage(websiteId, page)
         {
-            var pageExists = false;
+            var url = "/api/user/:uid/website/"+websiteId+"/page"
+            return $http.post(url, page);
+            /*var pageExists = false;
             for(var p in pages)
             {
                 var existingPage = pages[p];
@@ -48,13 +50,15 @@
             pages.push(newPage);
             console.log("page id:" + newPage._id);
             console.log("updated list of pages: " + pages);
-            return newPage;
+            return newPage;*/
 
         }
 
         function findPageByWebsiteId(websiteId)
         {
-            var result = [];
+            var url = "/api/user/:uid/website/"+websiteId+"/page";
+            return $http.get(url);
+            /*var result = [];
             for(var p in pages)
             {
                 var tempo = pages[p];
@@ -66,21 +70,23 @@
                 }
             }
             console.log(result);
-            return result;
-           /* $http.get("/page");*/
+            return result;*/
+
         }
 
-        function findPageById(pageId)
+        function findPageById(uid, websiteId, pageId)
         {
+            var url = "/api/user/"+uid+"/website/"+websiteId+"/page/"+pageId;
+            return $http.get(url);
 
-            for(var p in pages)
+            /*for(var p in pages)
             {
                 if(parseInt(pages[p]._id) === pageId)
                 {
                     return pages[p];
                 }
             }
-            return false;
+            return false;*/
         }
 
         function updatePage(pageId, page)
