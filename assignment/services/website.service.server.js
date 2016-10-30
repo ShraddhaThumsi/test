@@ -52,8 +52,6 @@ module.exports = function(app){
     function updateWebsite(req, res)
     {
         var website = req.body;
-        console.log(website);
-        console.log("above is the content of body of request, as received from website server service");
         var websiteId = req.params['wid'];
         for(var w in websites)
         {

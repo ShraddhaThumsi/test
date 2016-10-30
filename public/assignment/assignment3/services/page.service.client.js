@@ -79,19 +79,14 @@
             var url = "/api/user/"+uid+"/website/"+websiteId+"/page/"+pageId;
             return $http.get(url);
 
-            /*for(var p in pages)
-            {
-                if(parseInt(pages[p]._id) === pageId)
-                {
-                    return pages[p];
-                }
-            }
-            return false;*/
         }
 
         function updatePage(pageId, page)
         {
-            console.log(pageId);
+
+            var url = "/api/user/:uid/website/:wid/page/"+pageId;
+            return $http.put(url, page);
+            /*console.log(pageId);
             console.log(page);
             var currentPage;
             for(var p in pages)
@@ -105,12 +100,15 @@
                     return currentPage;
                 }
             }
-            return currentPage;
+            return currentPage;*/
         }
 
         function deletePage(pageId)
         {
-            var i;
+            var url = "/api/user/:uid/website/:wid/page/"+pageId;
+            return $http.delete(url, pageId);
+
+            /*var i;
             var found = false;
             for(i in pages)
             {
@@ -131,7 +129,7 @@
                 pages.splice(i,1);
                 return true;
             }
-            return false;
+            return false;*/
         }
     }
 })();

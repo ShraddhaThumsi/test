@@ -11,6 +11,8 @@ module.exports = function(app)
     app.post("/api/user/:uid/website/:wid/page", createPage);
     app.get("/api/user/:uid/website/:wid/page", findAllPagesForWebsite);
     app.get("/api/user/:uid/website/:wid/page/:pid", findPageById);
+    app.put("/api/user/:uid/website/:wid/page/:pid", updatePage);
+    app.delete("/api/user/:uid/website/:wid/page/:pid", deletePage);
 
     function createPage(req, res)
     {
@@ -18,6 +20,33 @@ module.exports = function(app)
         page._id = (new Date()).getTime();
         pages.push(page);
         res.send(page);
+    }
+
+    function updatePage(req, res)
+    {
+        var page = req.body;
+        var pageId = req.params['pid'];
+        for(var p in pages)
+        {
+            if(pages[p]._id == pageId)
+            {
+                pages[p].name = page.name;
+            }
+        }
+        res.sendStatus(200);
+    }
+
+    function deletePage(req, res)
+    {
+        var pageId = req.params['pid'];
+        for(var p in pages)
+        {
+            if(pages[p]._id == pageId)
+            {
+                pages.splice(p, 1);
+            }
+        }
+        res.send(200);
     }
 
     function findAllPagesForWebsite(req, res)

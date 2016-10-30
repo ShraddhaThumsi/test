@@ -45,45 +45,14 @@
             console.log(website);
             var url = "/api/user/:uid/website/"+websiteId;
             return $http.put(url, website);
-            /*
-            console.log(websiteId);
-            console.log(newWebsite);
-            var website;
-            for (var w in websites) {
-                website = websites[w];
-                if (website._id.toString() === websiteId.toString()) {
-                    website.name = newWebsite.name;
-                    website.description = newWebsite.description;
-                    console.log(websites);
-                    return website;
-                }
-            }
-            return website;*/
+
         }
 
         function deleteWebsite(websiteId)
         {
             var url = "/api/user/:uid/website/"+websiteId;
             return $http.delete(url);
-            /*var i;
-            var found = false;
-            for(i in websites)
-            {
-                console.log(typeof websites[i]._id)
-                console.log(typeof websiteId)
-                if(websites[i]._id.toString() === websiteId.toString())
-                {
-                    console.log(websites);
-                    found = true;
-                    break;
-                }
-            }
-            if (found) {
-                console.log(i)
-                websites.splice(i, 1);
-                return true;
-            }
-            return false;*/
+
         }
 
 

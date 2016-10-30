@@ -15,27 +15,44 @@
         vm.websiteId = websiteId;
         var pageId = $routeParams['pid'];
         vm.pageId = pageId;
-        console.log("reporting from page edit controller, datatype of page id:" + typeof pageId);
+
         vm.updatePage = updatePage;
-        var currentPage = PageService.findPageById(userId, websiteId, pageId);
+        vm.deletePage = deletePage;
+        /*var currentPage = PageService.findPageById(userId, websiteId, pageId);
         vm.currentPage = currentPage;
         vm.name = currentPage.name;
-        vm.wid = currentPage.wid;
-        console.log("reporting from page edit controller, this is the datatype of current page:");
-        console.log(typeof vm.currentPage);
-        console.log("reporting from page edit controller, datatype of page name: " + typeof vm.name);
-        function updatePage(name, title)
+        vm.wid = currentPage.wid;*/
+
+
+        function updatePage(pageId, name, title)
         {
-            vm.name = name.toString();
+            var promise = PageService.updatePage(pageId, {name: vm.name, title: vm.title});
+            promise
+                .success(function page(page){
+                    $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+                })
+                .error(function errorHandler(aaa){
+                    console.log(aaa);
+                })
+
+           /* vm.name = name.toString();
             vm.title = title;
             var updatedPage = PageService.updatePage(pageId, {name: vm.name, wid: vm.websiteId});
-            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/");
+            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/");*/
         }
 
-        vm.deletePage = deletePage;
+
         function deletePage(pageId)
         {
-            console.log(pageId);
+            var promise = PageService.deletePage(vm.pageId);
+            promise
+                .success(function(){
+                    $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+                })
+                .error(function(){
+
+                });
+            /*console.log(pageId);
             var result = PageService.deletePage(pageId);
             console.log(result);
             if(result)
@@ -45,7 +62,7 @@
             else
             {
                 vm.error = "Unable to delete page";
-            }
+            }*/
 
         }
 
