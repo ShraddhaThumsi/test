@@ -30,18 +30,16 @@
         vm.updateUser = updateUser;
         function updateUser()
         {
-
-
-
             var updatedUser = UserService.updateUser(vm.user);
 
-            /*$location.url("/user/" + userId);*/
+
+            $location.url("/user/" + userId);
         }
 
 
 
 
-            vm.deleteUser = deleteUser;
+        vm.deleteUser = deleteUser;
         function deleteUser()
         {
 

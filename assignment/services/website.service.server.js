@@ -13,6 +13,8 @@ module.exports = function(app){
     app.get("/api/user/:uid/website", findAllWebsitesForUser);
     app.get("/api/user/:uid/website/:wid", findWebsiteById);
     app.post("/api/user/:uid/website", createWebsite);
+    app.put("/api/user/:uid/website/:wid", updateWebsite);
+    app.delete("/api/user/:uid/website/:wid", deleteWebsite);
 
     function createWebsite(req,res)
     {
@@ -31,13 +33,6 @@ module.exports = function(app){
             }
         })
 
-
-        /*for (var w in websites){
-            if(websites[w].uid == userId)
-            {
-                sitesForUser.push(websites[w]);
-            }
-        }*/
         res.send(sitesForUser);
 
     }
@@ -52,6 +47,36 @@ module.exports = function(app){
             }
         }
         res.send('0');
+    }
+
+    function updateWebsite(req, res)
+    {
+        var website = req.body;
+        console.log(website);
+        console.log("above is the content of body of request, as received from website server service");
+        var websiteId = req.params['wid'];
+        for(var w in websites)
+        {
+            if(websites[w]._id == websiteId)
+            {
+                websites[w].name = website.name;
+                websites[w].description = website.description;
+            }
+        }
+        res.sendStatus(200);
+    }
+
+    function deleteWebsite(req, res)
+    {
+        var websiteId = req.params['wid'];
+        for(var w in websites)
+        {
+            if(websites[w]._id == websiteId)
+            {
+                websites.splice(w, 1);
+            }
+        }
+        res.send(200);
     }
 
 }

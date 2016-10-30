@@ -20,66 +20,32 @@
         };
         return api;
         function findWebsitesByUser(uid){
-            /*var result = [];
-            for(var w in websites)
-            {
-                if(parseInt(websites[w].uid) === uid)
-                {
-                    result.push(websites[w]);
-                }
-            }
-            console.log(result);
-            return result;
-            /!*$http.get("/website");*!/*/
+
             var url = "/api/user/" + uid + "/website";
             return $http.get(url);
         }
 
         function findWebsiteById(websiteId){
-            /*for(var w in websites)
-            {
-                if(parseInt(websites[w]._id) === websiteId)
-                {
-                    return websites[w];
-                }
-            }
-            return false;*/
+
 
             var url = "/api/user/:uid/website/" + websiteId;
             return $http.get(url);
         }
 
         function createWebsite(userId, website)
-        {   var url = "/api/user/"+userId+"/website"
+        {   var url = "/api/user/"+userId+"/website";
             return $http.post(url, website);
 
-            /*
-            var websiteExists = false;
-            for(var w in websites)
-            {
-                var existingWebsite = websites[w];
-                if(existingWebsite.name === website.name)
-                {
-                    websiteExists = true;
-                    return null;
-                }
-            }
 
-            var newWebSite = {
-                _id: (idGenerator + 1).toString(),
-                name: website.name,
-                uid: userId,
-                description: website.description
-            };
-
-            websites.push(newWebSite);
-            console.log("website id:" + newWebSite._id);
-            console.log("updated list of websites: " + websites);
-            return newWebSite;*/
         }
 
-        function updateWebsite(websiteId, newWebsite)
+        function updateWebsite(websiteId, website)
         {
+            console.log("website to be updated");
+            console.log(website);
+            var url = "/api/user/:uid/website/"+websiteId;
+            return $http.put(url, website);
+            /*
             console.log(websiteId);
             console.log(newWebsite);
             var website;
@@ -92,12 +58,14 @@
                     return website;
                 }
             }
-            return website;
+            return website;*/
         }
 
         function deleteWebsite(websiteId)
         {
-            var i;
+            var url = "/api/user/:uid/website/"+websiteId;
+            return $http.delete(url);
+            /*var i;
             var found = false;
             for(i in websites)
             {
@@ -115,7 +83,7 @@
                 websites.splice(i, 1);
                 return true;
             }
-            return false;
+            return false;*/
         }
 
 
