@@ -28,26 +28,31 @@
         init();
 
         vm.updateUser = updateUser;
-        function updateUser(username,email,firstName,lastName){
-            var updatedUser = UserService.updateUser(username,email,firstName,lastName);
+        function updateUser()
+        {
 
-            $location.url("/user/" + userId);}
+
+
+            var updatedUser = UserService.updateUser(vm.user);
+
+            /*$location.url("/user/" + userId);*/
+        }
+
+
+
 
             vm.deleteUser = deleteUser;
-        function deleteUser(userId)
+        function deleteUser()
         {
-            console.log(userId);
-            var result = UserService.deleteUser(userId);
-            console.log(result);
-            if(result)
-            {
-                $location.url("/login");
 
-            }
-            else
-            {
-                vm.error = "Unable to delete user profile";
-            }
+            var promise = UserService.deleteUser(vm.user._id);
+            promise
+                .success(function(){
+                    $location.url("/login");
+                })
+                .error(function(){
+
+                })
 
         }
 

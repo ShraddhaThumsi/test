@@ -7,10 +7,7 @@
                 Profile
             </p>
             <p class="navbar-text pull-right widgetGlyphAligner" id = "webListPlus">
-                <a ng-click = "model.updateUser(model.user.username,
-                                                model.user.email,
-                                                model.user.first,
-                                                model.user.last)"
+                <a ng-click = "model.updateUser()"
                    class="navbar-link">
           <span class="glyphicon glyphicon-ok glyphColorRectifier glyphPosRectifier">
           </span>
@@ -50,8 +47,8 @@
         <a class="btn btn-primary btn-block"
            href="#/user/{{model.user._id}}/website">Websites</a>
 
-        <a class="btn btn-danger  btn-block"
-           ng-click = "model.deleteUser(model.userId)">Delete Profile</a>
+        <a class="btn btn-warning  btn-block"
+           ng-click = "model.deleteUser()">Delete Profile</a>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom profileColorRenderer">

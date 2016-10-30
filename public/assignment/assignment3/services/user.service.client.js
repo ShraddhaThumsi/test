@@ -35,43 +35,10 @@
 
         }
 
-        function generateNewId() {
-
-        }
 
         function createUser(newUser) {
             return $http.post("/api/user", newUser);
-            //while(true) {
-            /*var userExists = false;
 
-            /!*var tempoDatabase = users;*!/
-
-            for (var u in users) {
-                var user = users[u];
-                if (user.username === newUser.username) {
-                    userExists = true;
-                    return null;
-                }
-            }
-
-
-            /!*userExists = false;*!/
-            var newUser = {
-                _id: (idGenerator + 1).toString(),
-                username: newUser.username,
-                password: newUser.password,
-                firstName: newUser.firstName,
-                lastName: newUser.lastName,
-                email: newUser.email
-            };
-            /!*console.log("user id" + idGenerator);*!/
-            users.push(newUser);
-            /!*console.log(newUser);*!/
-            console.log("user id" + newUser._id);
-            console.log("updated list of users: " + users);
-            return newUser;
-                /!*tempoDatabase = tempoDatabase.push(newUser);
-                 return tempoDatabase;*!/*/
         }
 
         function findUserByUsername(username) {
@@ -87,46 +54,18 @@
             return user;
         }
 
-        function updateUser(userId, newUser) {
-            var user;
-            for (var u in users) {
-                user = users[u];
-                if (parseInt(user._id) === userId) {
-                    user.firstName = newUser.firstName;
-                    user.lastName = newUser.lastName;
-                    user.email = newUser.email;
-                    console.log(user);
-                    return user;
-                }
-            }
+        function updateUser(user) {
+            var url = "/api/user/"+user._id;
+            $http.put(url, user);
 
-            /*console.log(user);*/
-            return user;
         }
 
         function deleteUser(userId)
         {
-            var i;
-            var found = false;
-            for(i in users)
-            {
-                console.log(typeof users[i]._id);
-                console.log(typeof userId);
-                if(users[i]._id.toString() === userId.toString())
-                {
-                    console.log(users);
-                    found = true;
-                    break;
-                }
-            }
+            var url = "/api/user/"+userId;
+            return $http.delete(url);
 
-            if(found)
-            {
-                console.log(i);
-                users.splice(i,1);
-                return true;
-            }
-            return false;
+
         }
     }
 })();

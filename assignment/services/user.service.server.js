@@ -15,12 +15,41 @@ module.exports = function(app){
     app.get('/api/user', findUser);
     app.get('/api/user/:uid', findUserById);
     app.post('/api/user', createUser);
+    app.put('/api/user/:uid', updateUser);
+    app.delete('/api/user/:uid', deleteUser);
 
     function createUser(req, res){
         var user = req.body;
         user._id = (new Date()).getTime();
         users.push(user);
         res.send(user);
+    }
+
+    function updateUser(req, res)
+    {
+        var user = req.body;
+        var userId = req.params['uid'];
+        for(var u in users)
+        {
+            if(users[u]._id == userId)
+            {
+                users[u] = user;
+            }
+        }
+        res.send(200);
+    }
+
+    function deleteUser(req, res)
+    {
+        var userId = req.params['uid'];
+        for(var u in users)
+        {
+            if(users[u]._id == userId)
+            {
+                users.splice(u, 1);
+            }
+        }
+        res.send(200);
     }
 
     function findUser(req,res)
