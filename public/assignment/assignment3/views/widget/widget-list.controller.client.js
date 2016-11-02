@@ -15,8 +15,7 @@
         vm.websiteId = websiteId;
         var pageId = parseInt($routeParams['pid']);
         vm.pageId = pageId;
-        var widgets = WidgetService.findWidgetsByPageId(pageId);
-        vm.widgets = widgets;
+
         var widgetId = parseInt($routeParams['wgid']);
         vm.widgetId = widgetId;
         console.log(vm.widgets);
@@ -48,6 +47,15 @@
         function goToChooseWidget() {
             $location.url("user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/new");
         }
+
+
+        function init(){
+            var widgets = WidgetService.findWidgetsByPageId(pageId);
+            vm.widgets = widgets;
+            var allWidgets = $(".wam-widgets");
+            alert(allWidgets.length);
+        }
+        init();
 
     }
 })();

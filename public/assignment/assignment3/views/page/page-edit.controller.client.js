@@ -18,10 +18,7 @@
 
         vm.updatePage = updatePage;
         vm.deletePage = deletePage;
-        /*var currentPage = PageService.findPageById(userId, websiteId, pageId);
-        vm.currentPage = currentPage;
-        vm.name = currentPage.name;
-        vm.wid = currentPage.wid;*/
+
 
 
         function updatePage(pageId, name, title)
@@ -35,10 +32,7 @@
                     console.log(aaa);
                 })
 
-           /* vm.name = name.toString();
-            vm.title = title;
-            var updatedPage = PageService.updatePage(pageId, {name: vm.name, wid: vm.websiteId});
-            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/");*/
+
         }
 
 
@@ -52,17 +46,7 @@
                 .error(function(){
 
                 });
-            /*console.log(pageId);
-            var result = PageService.deletePage(pageId);
-            console.log(result);
-            if(result)
-            {
-                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
-            }
-            else
-            {
-                vm.error = "Unable to delete page";
-            }*/
+
 
         }
 

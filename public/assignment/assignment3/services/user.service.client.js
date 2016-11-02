@@ -42,7 +42,7 @@
         }
 
         function findUserByUsername(username) {
-            var user = null;
+            /*var user = null;
             for (var u in users) {
                 user = users[u];
                 if (user.username === username) {
@@ -51,7 +51,9 @@
                 }
             }
             console.log(user);
-            return user;
+            return user;*/
+            var url = "/api/user?username="+username;
+            return $http.get(url);
         }
 
         function updateUser(user) {

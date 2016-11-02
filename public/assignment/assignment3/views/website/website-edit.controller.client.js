@@ -12,8 +12,8 @@
         vm.userId = userId;
         var websiteId = parseInt($routeParams['wid']);
         vm.websiteId = websiteId;
-        var websites = WebsiteService.findWebsitesByUser(userId);
-        vm.websites = websites;
+        /*var websites = WebsiteService.findWebsitesByUser(userId);
+        vm.websites = websites;*/
         vm.updateWebsite = updateWebsite;
         vm.deleteWebsite = deleteWebsite;
 
@@ -54,6 +54,26 @@
             console.log("/user/" + userId + "/website/" + website._id + "/page");
             $location.url("/user/" + userId.toString() + "/website/" + website._id.toString() + "/page");
         }
+
+
+        function init(){
+            var promise = WebsiteService.findWebsitesByUser(userId);
+            promise
+                .success(function website(websites){
+                    if(websites)
+                    {
+
+                        vm.websites = websites;
+                        console.log(websites);
+                    }
+
+                })
+                .error(function errorHandler(aaa){
+                    console.log(aaa);
+                });
+
+        }
+        init();
 
     }
 })();
