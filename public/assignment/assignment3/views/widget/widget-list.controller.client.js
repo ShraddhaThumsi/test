@@ -16,6 +16,9 @@
         var pageId = parseInt($routeParams['pid']);
         vm.pageId = pageId;
 
+        console.log("reporting from widget list controller client, i have the following datatype and contents of page id, as received from the view.");
+        console.log(vm.pageId);
+        console.log(typeof vm.pageId);
         var widgetId = parseInt($routeParams['wgid']);
         vm.widgetId = widgetId;
         /*console.log(vm.widgets);*/
@@ -50,22 +53,26 @@
         }
 
 
-        function init(){
-            var widgets = WidgetService.findWidgetsByPageId(pageId);
-            vm.widgets = widgets;
-            /*var promise = WidgetService.findWidgetsByPageId(pageId);
+
+            /*var widgets = WidgetService.findWidgetsByPageId(pageId);
+            vm.widgets = widgets;*/
+
+
+            var promise = WidgetService.findWidgetsByPageId(pageId);
             promise
                 .success(function widgets(widgets){
+                    console.log("reporting from widget list controller, the following is the status of list of widgets, that i received from widget service");
+                    console.log(widgets);
                     vm.widgets = widgets;
                 })
                 .error(function(aaa){
+                    console.log("list of widgets seems to be empty, check the widget service server and client. The empty list should be sent from there.");
                     console.log(aaa);
-                });*/
+                });
 
             /*var allWidgets = $(".wam-widgets");
             alert(allWidgets.length);*/
-        }
-        init();
+
 
     }
 })();

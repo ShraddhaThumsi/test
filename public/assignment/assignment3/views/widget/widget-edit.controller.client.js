@@ -29,62 +29,65 @@
             console.log(widget.widgetType.toString() == "HTML");
             console.log(widget.widgetType.toString() == "IMAGE");
             console.log(widget.widgetType.toString() == "YOUTUBE");
+
             if(widget.widgetType.toString() == "HEADER")
             {
-                var updatedWidget = WidgetService.updateWidget(widgetId, widget);
+                /*var updatedWidget = WidgetService.updateWidget(widgetId, widget);
                 if(updatedWidget)
                 {
                     $location.url("/user/" + vm.userId + "/website/" +
                         vm.websiteId + "/page/" + vm.pageId + "/widget");
-                }
-                /*var promise = WidgetService.updateWidget(widgetId, widget);*/
-                /*promise
+                }*/
+                var promise = WidgetService.updateWidget(widgetId, widget);
+                promise
                     .success(function updatedWidget(updatedWidget){
                         if(updatedWidget)
                         {
                             $location.url("/user/" + vm.userId + "/website/" +
-                            vm.websiteId + "/page/" + vm.pageId + "/widget");
+                            vm.websiteId + "/page/" + vm.pageId + "/widget/"+vm.widgetId);
                         }
                     })
                     .error(function(aaa){
+                        console.log("reporting from widget choose controller, header widget could not be updated")
                         console.log(aaa);
-                    })*/
+                    })
 
 
             }
 
             else if(widget.widgetType.toString() == "HTML")
             {
-                var updatedWidget = WidgetService.updateWidget(widgetId, {text: widget.text});
+                /*var updatedWidget = WidgetService.updateWidget(widgetId, {text: widget.text});
                 if(updatedWidget)
                 {
                     $location.url("/user/" + vm.userId + "/website/" +
                         vm.websiteId + "/page/" + vm.pageId + "/widget");
-                }
-                /*var promise = WidgetService.updateWidget(widgetId, {text: widget.text});
+                }*/
+                var promise = WidgetService.updateWidget(widgetId, {text: widget.text});
                 promise
                     .success(function updatedWidget(updatedWidget){
                         if(updatedWidget)
                         {
                             $location.url("/user/" + vm.userId + "/website/" +
-                            vm.websiteId + "/page/" + vm.pageId + "/widget");
+                            vm.websiteId + "/page/" + vm.pageId + "/widget/"+vm.widgetId);
                         }
                     })
                     .error(function(aaa){
+                        console.log("reporting from widget choose controller, html widget could not be updated")
                         console.log(aaa);
-                    })*/
+                    })
 
             }
 
             else if(widget.widgetType.toString() == "YOUTUBE")
             {
-                var updatedWidget = WidgetService.updateWidget(widgetId, {width: widget.width, url:widget.url});
+                /*var updatedWidget = WidgetService.updateWidget(widgetId, {width: widget.width, url:widget.url});
                 if(updatedWidget)
                 {
                     $location.url("/user/" + vm.userId + "/website/" +
                         vm.websiteId + "/page/" + vm.pageId + "/widget");
-                }
-                /*console.log(widget.widgetType);
+                }*/
+                console.log(widget.widgetType);
                 var promise =
                     WidgetService.updateWidget(widgetId, {width: widget.width, url:widget.url});
 
@@ -93,24 +96,25 @@
                         if(updatedWidget)
                         {
                             $location.url("/user/" + vm.userId + "/website/" +
-                                vm.websiteId + "/page/" + vm.pageId + "/widget");
+                                vm.websiteId + "/page/" + vm.pageId + "/widget/"+vm.widgetId);
                         }
                     })
                     .error(function(aaa)
                     {
+                        console.log("reporting from widget choose controller, youtube widget could not be updated")
                         console.log(aaa);
-                    });*/
+                    });
             }
 
             else if(widget.widgetType.toString() == "IMAGE")
             {
-                var updatedWidget = WidgetService.updateWidget(widgetId, {width: widget.width, url:widget.url});
+                /*var updatedWidget = WidgetService.updateWidget(widgetId, {width: widget.width, url:widget.url});
                 if(updatedWidget)
                 {
                     $location.url("/user/" + vm.userId + "/website/" +
                         vm.websiteId + "/page/" + vm.pageId + "/widget");
-                }
-                /*var promise =
+                }*/
+                var promise =
                     WidgetService.updateWidget(widgetId, {width: widget.width, url:widget.url});
 
                 promise
@@ -119,26 +123,27 @@
                         if(updatedWidget)
                         {
                             $location.url("/user/" + vm.userId + "/website/" +
-                                vm.websiteId + "/page/" + vm.pageId + "/widget");
+                                vm.websiteId + "/page/" + vm.pageId + "/widget/"+vm.widgetId);
                         }
                     })
                     .error(function(aaa)
                     {
+                        console.log("reporting from widget choose controller, image widget could not be updated")
                         console.log(aaa);
-                    });*/
+                    });
             }
         }
 
         vm.deleteWidget = deleteWidget;
         function deleteWidget(widgetId)
         {
-            var result = WidgetService.deleteWidget(widgetId);
+            /*var result = WidgetService.deleteWidget(widgetId);
             if(result)
             {
                 $location.url("/user/" + vm.userId + "/website/" +
                     vm.websiteId + "/page/" + vm.pageId + "/widget");
-            }
-            /*console.log("deleting widget no. : " + widgetId);
+            }*/
+            console.log("deleting widget no. : " + widgetId);
             var promise = WidgetService.deleteWidget(widgetId);
             console.log(result);
             promise
@@ -150,8 +155,9 @@
                     }
                 })
                 .error(function(aaa){
+                    console.log("reporting from widget choose controller, widget could not be deleted")
                     console.log(aaa);
-                })*/
+                })
         }
     }
 })();

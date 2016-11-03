@@ -106,11 +106,14 @@ module.exports = function(app)
 
     function findWidgetsByPageId(req, res)
     {
-        var pageId = req.params.pageId;
+        console.log(req.params);
+        console.log(typeof req.params.pid);
+        console.log("above is the datatype of the pid parameter of the incoming request, check how to extract pageId");
+        var pageId = parseInt(req.params.pid);
         var result = [];
         for(var wg in widgets)
         {
-            if(widgets[wg].pageId == pageId)
+            if(parseInt(widgets[wg].pageId) === pageId)
             {
                 result.push(widgets[wg]);
                 console.log("reporting from widget server service, " +
