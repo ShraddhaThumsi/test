@@ -43,8 +43,9 @@ module.exports = function(app)
             console.log("widget id:" + newWidget._id);
             console.log("updated list of widgets: " + widgets);
             console.log(newWidget);
-            console.log("HEADER created")
+            console.log("HEADER created");
             console.log(widgets);
+            /*res.sendStatus(newWidget);*/
             res.send(newWidget);
         }
 
@@ -61,6 +62,7 @@ module.exports = function(app)
             console.log(newWidget);
             console.log("IMAGE created")
             console.log(widgets);
+            /*res.sendStatus(newWidget);*/
             res.send(newWidget);
         }
 
@@ -77,6 +79,8 @@ module.exports = function(app)
             console.log("YOUTUBE created")
             console.log(newWidget);
             console.log(widgets);
+            /*res.sendStatus(newWidget);*/
+            /*res.sendStatus(200);*/
             res.send(newWidget);
         }
 
@@ -89,9 +93,11 @@ module.exports = function(app)
                 text: newWidget.text
             };
             widgets.push(newWidget);
-            console.log("HTML created")
+            console.log("HTML created");
             console.log(newWidget);
             console.log(widgets);
+            /*res.sendStatus(newWidget);*/
+            /*res.sendStatus(200);*/
             res.send(newWidget);
         }
     }
@@ -107,8 +113,13 @@ module.exports = function(app)
             if(widgets[wg].pageId == pageId)
             {
                 result.push(widgets[wg]);
+                console.log("reporting from widget server service, " +
+                    "this is the status of the list of widgets for the given pageId");
+                console.log(result);
             }
         }
+        /*res.sendStatus(result);*/
+        /*res.sendStatus(200);*/
         res.send(result);
     }
 
@@ -117,8 +128,12 @@ module.exports = function(app)
         var widgetId = req.params.wgid;
         for(var wg in widgets)
         {
-            if(widgets[wg]._id== widgetId)
+            if(widgets[wg]._id == widgetId)
             {
+                /*res.sendStatus(widgets[wg]);*/
+                /*res.sendStatus(200);*/
+                console.log("reporting from widget server service, this is the widget found for the given ID");
+                console.log(widgets[wg]);
                 res.send(widgets[wg]);
             }
         }
