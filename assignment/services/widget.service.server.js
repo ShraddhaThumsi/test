@@ -20,4 +20,179 @@ module.exports = function(app)
                 "url": "https://youtu.be/AM2Ivdi9c4E" },
             { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
         ];
+
+    app.post("/api/user/:uid/website/:wid/page/:pid/widget", createWidget);
+    app.get("/api/user/:uid/website/:wid/page/:pid/widget", findWidgetsByPageId);
+    app.get("/api/user/:uid/website/:wid/page/:pid/widget/:wgid", findWidgetById);
+    app.put("/api/user/:uid/website/:wid/page/:pid/widget/:wgid", updateWidget);
+    app.delete("/api/user/:uid/website/:wid/page/:pid/widget/:wid", deleteWidget);
+
+    function createWidget(req,res)
+    {
+        var newWidget = req.body;
+        if(newWidget.widgetType.toString() == "HEADER")
+        {
+            var newWidget = {
+                _id: (new Date()).getTime(),
+                widgetType: newWidget.widgetType,
+                pageId: newWidget.pageId,
+                size: newWidget.size,
+                text: newWidget.text
+            };
+            widgets.push(newWidget);
+            console.log("widget id:" + newWidget._id);
+            console.log("updated list of widgets: " + widgets);
+            console.log(newWidget);
+            console.log("HEADER created")
+            console.log(widgets);
+            res.send(newWidget);
+        }
+
+        if(newWidget.widgetType.toString() == "IMAGE")
+        {
+            var newWidget = {
+                _id: (new Date()).getTime(),
+                widgetType: newWidget.widgetType,
+                pageId: newWidget.pageId,
+                width: newWidget.width,
+                text: newWidget.text
+            };
+            widgets.push(newWidget);
+            console.log(newWidget);
+            console.log("IMAGE created")
+            console.log(widgets);
+            res.send(newWidget);
+        }
+
+        if(newWidget.widgetType.toString() == "YOUTUBE")
+        {
+            var newWidget = {
+                _id: (new Date()).getTime(),
+                widgetType: newWidget.widgetType,
+                pageId: newWidget.pageId,
+                width: newWidget.width,
+                text: newWidget.text
+            };
+            widgets.push(newWidget);
+            console.log("YOUTUBE created")
+            console.log(newWidget);
+            console.log(widgets);
+            res.send(newWidget);
+        }
+
+        if(newWidget.widgetType.toString() == "HTML")
+        {
+            var newWidget = {
+                _id: (new Date()).getTime(),
+                widgetType: newWidget.widgetType,
+                pageId: newWidget.pageId,
+                text: newWidget.text
+            };
+            widgets.push(newWidget);
+            console.log("HTML created")
+            console.log(newWidget);
+            console.log(widgets);
+            res.send(newWidget);
+        }
+    }
+
+
+
+    function findWidgetsByPageId(req, res)
+    {
+        var pageId = req.params.pageId;
+        var result = [];
+        for(var wg in widgets)
+        {
+            if(widgets[wg].pageId == pageId)
+            {
+                result.push(widgets[wg]);
+            }
+        }
+        res.send(result);
+    }
+
+    function findWidgetById(req, res)
+    {
+        var widgetId = req.params.wid;
+        for(var wg in widgets)
+        {
+            if(widgets[wg]._id== widgetId)
+            {
+                res.send(widgets[wg]);
+            }
+        }
+
+    }
+
+
+    function updateWidget(req, res)
+    {
+        var widget = req.body;
+        var pageId = req.params['pid'];
+        if(widget.widgetType.toString() == "HEADER")
+        {
+            var newWidget = {
+                _id: widget._id,
+                widgetType: widget.widgetType,
+                pageId: widget.pageId,
+                size: widget.size,
+                text: widget.text
+            };
+            res.sendStatus(200);
+
+        }
+
+        if(widget.widgetType.toString() == "HTML")
+        {
+            var newWidget = {
+                _id: widget._id,
+                widgetType: widget.widgetType,
+                pageId: widget.pageId,
+                text: widget.text
+            };
+            res.sendStatus(200);
+
+        }
+
+        if(widget.widgetType.toString() == "IMAGE")
+        {
+            var newWidget = {
+                _id: widget._id,
+                widgetType: widget.widgetType,
+                pageId: widget.pageId,
+                width: widget.width,
+                text: widget.text
+            };
+            res.sendStatus(200);
+
+        }
+
+        if(widget.widgetType.toString() == "YOUTUBE")
+        {
+            var newWidget = {
+                _id: widget._id,
+                widgetType: widget.widgetType,
+                pageId: widget.pageId,
+                width: widget.width,
+                text: widget.text
+            };
+            res.sendStatus(200);
+
+        }
+    }
+
+
+    function deleteWidget(req, res)
+    {
+        var widgetId = req.params['wgid'];
+        for(var w in widgets)
+        {
+            if(widgets[w]._id == widgetId)
+            {
+                widgets.splice(w, 1);
+            }
+        }
+        res.send(200);
+    }
 }

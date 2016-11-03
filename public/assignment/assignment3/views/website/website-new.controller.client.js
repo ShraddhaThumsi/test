@@ -17,18 +17,20 @@
         vm.websites = websites;
         vm.createWebsite = createWebsite;
         function createWebsite(name, description){
-            console.log(vm.name);
-            console.log(vm.description);
+
             var website = {_id:"0", name: name, uid: userId, description: description};
-            var newWebsite = WebsiteService.createWebsite(userId, website);
-            if(newWebsite)
-            {
-                $location.url("/user/" + vm.userId+"/website");
-            }
-            else
-            {
-                vm.error = "Unable to create website";
-            }
+            var promise = WebsiteService.createWebsite(userId, website);
+            promise
+                .success(function website(website){
+                    if(website)
+                    {
+                        $location.url("/user/" + vm.userId+"/website");
+                    }
+                })
+                .error(function(aaa){
+                    console.log(aaa);
+                });
+
         }
 
         vm.goToPageList = goToPageList;
@@ -38,5 +40,25 @@
             console.log("/user/" + userId + "/website/" + website._id + "/page");
             $location.url("/user/" + userId.toString() + "/website/" + website._id.toString() + "/page");
         }
+
+
+        function init(){
+            var promise = WebsiteService.findWebsitesByUser(userId);
+            promise
+                .success(function website(websites){
+                    if(websites)
+                    {
+
+                        vm.websites = websites;
+                        console.log(websites);
+                    }
+
+                })
+                .error(function errorHandler(aaa){
+                    console.log(aaa);
+                });
+
+        }
+        init();
     }
 })();

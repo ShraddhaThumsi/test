@@ -16,19 +16,19 @@
         vm.createPage = createPage;
         function createPage(name)
         {
-            console.log(vm.name);
             var page = {_id: "0", name: name, wid: websiteId};
-            var newPage = PageService.createPage(websiteId, page);
-            if(newPage)
-            {
-                $location.url("/user/" + userId + "/website/" + websiteId + "/page");
+            var promise = PageService.createPage(websiteId, page);
+            promise
+                .success(function page(newPage){
+                    if(newPage)
+                    {
+                        $location.url("/user/" + userId + "/website/" + websiteId + "/page");
+                    }
+                })
+                .error(function(aaa){
+                console.log(aaa);
+                });
 
-            }
-
-            else
-            {
-                vm.error = "Unable to create page";
-            }
         }
     }
 })();

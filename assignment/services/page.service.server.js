@@ -75,6 +75,6 @@ module.exports = function(app)
                 return;
             }
         }
-        res.send('0');
+        /*res.send('0');*/
     }
 }

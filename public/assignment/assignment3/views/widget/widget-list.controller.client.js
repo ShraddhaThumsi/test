@@ -18,7 +18,7 @@
 
         var widgetId = parseInt($routeParams['wgid']);
         vm.widgetId = widgetId;
-        console.log(vm.widgets);
+        /*console.log(vm.widgets);*/
         vm.checkSafeHtml = checkSafeHtml;
         vm.checkSafeYouTubeUrl = checkSafeYouTubeUrl;
         vm.goToChooseWidget = goToChooseWidget;
@@ -26,6 +26,7 @@
         function checkSafeImageSrc(url)
         {
             return $sce.trustAsResourceUrl(url);
+
         }
 
         function checkSafeHtml(html)
@@ -50,10 +51,17 @@
 
 
         function init(){
-            var widgets = WidgetService.findWidgetsByPageId(pageId);
-            vm.widgets = widgets;
-            var allWidgets = $(".wam-widgets");
-            alert(allWidgets.length);
+            var promise = WidgetService.findWidgetsByPageId(pageId);
+            promise
+                .success(function widgets(widgets){
+                    vm.widgets = widgets;
+                })
+                .error(function(aaa){
+                    console.log(aaa);
+                })
+
+            /*var allWidgets = $(".wam-widgets");
+            alert(allWidgets.length);*/
         }
         init();
 

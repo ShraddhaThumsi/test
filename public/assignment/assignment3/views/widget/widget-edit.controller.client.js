@@ -31,55 +31,97 @@
             console.log(widget.widgetType.toString() == "YOUTUBE");
             if(widget.widgetType.toString() == "HEADER")
             {
-                var updatedWidget = WidgetService.updateWidget(widgetId, widget);
-                $location.url("/user/" + vm.userId + "/website/" +
-                    vm.websiteId + "/page/" + vm.pageId + "/widget/");
+                var promise = WidgetService.updateWidget(widgetId, widget);
+                promise
+                    .success(function updatedWidget(updatedWidget){
+                        if(updatedWidget)
+                        {
+                            $location.url("/user/" + vm.userId + "/website/" +
+                            vm.websiteId + "/page/" + vm.pageId + "/widget");
+                        }
+                    })
+                    .error(function(aaa){
+                        console.log(aaa);
+                    })
+
+
             }
 
             else if(widget.widgetType.toString() == "HTML")
             {
-                var updatedWidget = WidgetService.updateWidget(widgetId, {text: widget.text});
-                $location.url("/user/" + vm.userId + "/website/" +
-                    vm.websiteId + "/page/" + vm.pageId + "/widget/" + widgetId);
+                var promise = WidgetService.updateWidget(widgetId, {text: widget.text});
+                promise
+                    .success(function updatedWidget(updatedWidget){
+                        if(updatedWidget)
+                        {
+                            $location.url("/user/" + vm.userId + "/website/" +
+                            vm.websiteId + "/page/" + vm.pageId + "/widget");
+                        }
+                    })
+                    .error(function(aaa){
+                        console.log(aaa);
+                    })
+
             }
 
             else if(widget.widgetType.toString() == "YOUTUBE")
             {
                 console.log(widget.widgetType);
-                var updatedWidget =
+                var promise =
                     WidgetService.updateWidget(widgetId, {width: widget.width, url:widget.url});
-                $location.url("/user/" + vm.userId + "/website/" +
-                    vm.websiteId + "/page/" + vm.pageId + "/widget/" + widgetId);
+
+                promise
+                    .success(function updatedWidget(updatedWidget){
+                        if(updatedWidget)
+                        {
+                            $location.url("/user/" + vm.userId + "/website/" +
+                                vm.websiteId + "/page/" + vm.pageId + "/widget");
+                        }
+                    })
+                    .error(function(aaa)
+                    {
+                        console.log(aaa);
+                    });
             }
 
             else if(widget.widgetType.toString() == "IMAGE")
             {
-                var updatedWidget =
+                var promise =
                     WidgetService.updateWidget(widgetId, {width: widget.width, url:widget.url});
-                $location.url("/user/" + vm.userId + "/website/" +
-                    vm.websiteId + "/page/" + vm.pageId + "/widget/" + widgetId);
+
+                promise
+                    .success(function updatedWidget(updatedWidget)
+                    {
+                        if(updatedWidget)
+                        {
+                            $location.url("/user/" + vm.userId + "/website/" +
+                                vm.websiteId + "/page/" + vm.pageId + "/widget");
+                        }
+                    })
+                    .error(function(aaa)
+                    {
+                        console.log(aaa);
+                    });
             }
-
-
         }
 
         vm.deleteWidget = deleteWidget;
         function deleteWidget(widgetId)
         {
             console.log("deleting widget no. : " + widgetId);
-            var result = WidgetService.deleteWidget(widgetId);
+            var promise = WidgetService.deleteWidget(widgetId);
             console.log(result);
-            if(result)
-            {
-                $location.url("/user/" + vm.userId + "/website/" +
-                    vm.websiteId + "/page/" + vm.pageId + "/widget");
-            }
-
-            else
-            {
-                vm.error = "Unable to delete widget";
-            }
+            promise
+                .success(function result(result){
+                    if(result)
+                    {
+                        $location.url("/user/" + vm.userId + "/website/" +
+                            vm.websiteId + "/page/" + vm.pageId + "/widget");
+                    }
+                })
+                .error(function(aaa){
+                    console.log(aaa);
+                })
         }
-
     }
 })();
