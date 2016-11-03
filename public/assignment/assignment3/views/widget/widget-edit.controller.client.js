@@ -31,8 +31,14 @@
             console.log(widget.widgetType.toString() == "YOUTUBE");
             if(widget.widgetType.toString() == "HEADER")
             {
-                var promise = WidgetService.updateWidget(widgetId, widget);
-                promise
+                var updatedWidget = WidgetService.updateWidget(widgetId, widget);
+                if(updatedWidget)
+                {
+                    $location.url("/user/" + vm.userId + "/website/" +
+                        vm.websiteId + "/page/" + vm.pageId + "/widget");
+                }
+                /*var promise = WidgetService.updateWidget(widgetId, widget);*/
+                /*promise
                     .success(function updatedWidget(updatedWidget){
                         if(updatedWidget)
                         {
@@ -42,14 +48,20 @@
                     })
                     .error(function(aaa){
                         console.log(aaa);
-                    })
+                    })*/
 
 
             }
 
             else if(widget.widgetType.toString() == "HTML")
             {
-                var promise = WidgetService.updateWidget(widgetId, {text: widget.text});
+                var updatedWidget = WidgetService.updateWidget(widgetId, {text: widget.text});
+                if(updatedWidget)
+                {
+                    $location.url("/user/" + vm.userId + "/website/" +
+                        vm.websiteId + "/page/" + vm.pageId + "/widget");
+                }
+                /*var promise = WidgetService.updateWidget(widgetId, {text: widget.text});
                 promise
                     .success(function updatedWidget(updatedWidget){
                         if(updatedWidget)
@@ -60,13 +72,19 @@
                     })
                     .error(function(aaa){
                         console.log(aaa);
-                    })
+                    })*/
 
             }
 
             else if(widget.widgetType.toString() == "YOUTUBE")
             {
-                console.log(widget.widgetType);
+                var updatedWidget = WidgetService.updateWidget(widgetId, {width: widget.width, url:widget.url});
+                if(updatedWidget)
+                {
+                    $location.url("/user/" + vm.userId + "/website/" +
+                        vm.websiteId + "/page/" + vm.pageId + "/widget");
+                }
+                /*console.log(widget.widgetType);
                 var promise =
                     WidgetService.updateWidget(widgetId, {width: widget.width, url:widget.url});
 
@@ -81,12 +99,18 @@
                     .error(function(aaa)
                     {
                         console.log(aaa);
-                    });
+                    });*/
             }
 
             else if(widget.widgetType.toString() == "IMAGE")
             {
-                var promise =
+                var updatedWidget = WidgetService.updateWidget(widgetId, {width: widget.width, url:widget.url});
+                if(updatedWidget)
+                {
+                    $location.url("/user/" + vm.userId + "/website/" +
+                        vm.websiteId + "/page/" + vm.pageId + "/widget");
+                }
+                /*var promise =
                     WidgetService.updateWidget(widgetId, {width: widget.width, url:widget.url});
 
                 promise
@@ -101,14 +125,20 @@
                     .error(function(aaa)
                     {
                         console.log(aaa);
-                    });
+                    });*/
             }
         }
 
         vm.deleteWidget = deleteWidget;
         function deleteWidget(widgetId)
         {
-            console.log("deleting widget no. : " + widgetId);
+            var result = WidgetService.deleteWidget(widgetId);
+            if(result)
+            {
+                $location.url("/user/" + vm.userId + "/website/" +
+                    vm.websiteId + "/page/" + vm.pageId + "/widget");
+            }
+            /*console.log("deleting widget no. : " + widgetId);
             var promise = WidgetService.deleteWidget(widgetId);
             console.log(result);
             promise
@@ -121,7 +151,7 @@
                 })
                 .error(function(aaa){
                     console.log(aaa);
-                })
+                })*/
         }
     }
 })();

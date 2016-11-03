@@ -51,14 +51,16 @@
 
 
         function init(){
-            var promise = WidgetService.findWidgetsByPageId(pageId);
+            var widgets = WidgetService.findWidgetsByPageId(pageId);
+            vm.widgets = widgets;
+            /*var promise = WidgetService.findWidgetsByPageId(pageId);
             promise
                 .success(function widgets(widgets){
                     vm.widgets = widgets;
                 })
                 .error(function(aaa){
                     console.log(aaa);
-                })
+                });*/
 
             /*var allWidgets = $(".wam-widgets");
             alert(allWidgets.length);*/
