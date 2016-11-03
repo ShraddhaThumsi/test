@@ -114,7 +114,7 @@ module.exports = function(app)
 
     function findWidgetById(req, res)
     {
-        var widgetId = req.params.wid;
+        var widgetId = req.params.wgid;
         for(var wg in widgets)
         {
             if(widgets[wg]._id== widgetId)
