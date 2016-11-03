@@ -148,6 +148,7 @@ module.exports = function(app)
     {
         var widget = req.body;
         var pageId = req.params['pid'];
+        console.log("hello from update widget");
         if(widget.widgetType.toString() == "HEADER")
         {
             var newWidget = {
