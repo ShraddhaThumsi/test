@@ -21,9 +21,11 @@
 
 
 
+
+
         function updatePage(pageId, name, title)
         {
-            var promise = PageService.updatePage(pageId, {name: vm.name, title: vm.title});
+            var promise = PageService.updatePage(pageId, {name: vm.page.name, title: vm.page.title});
             promise
                 .success(function page(page){
                     $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
@@ -49,6 +51,25 @@
 
 
         }
+
+        function init()
+        {
+
+            var promise = PageService.findPageById(userId, websiteId, pageId);
+            promise
+                .success(function page(page){
+                    if(page)
+                    {
+                        vm.page = page;
+                        console.log("found page");
+                    }
+                })
+                .error(function(aaa){
+                    console.log(aaa);
+                });
+        }
+        init();
+
 
 
     }

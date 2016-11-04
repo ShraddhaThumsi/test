@@ -74,7 +74,7 @@ module.exports = function(app){
                 websites.splice(w, 1);
             }
         }
-        res.send(200);
+        res.sendStatus(200);
     }
 
 }

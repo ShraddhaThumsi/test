@@ -46,7 +46,7 @@ module.exports = function(app)
                 pages.splice(p, 1);
             }
         }
-        res.send(200);
+        res.sendStatus(200);
     }
 
     function findAllPagesForWebsite(req, res)
@@ -65,6 +65,7 @@ module.exports = function(app)
 
     function findPageById(req, res)
     {
+        console.log(req.params);
         var pageId = req.params.pid;
         console.log(pageId);
         for (var p in pages)

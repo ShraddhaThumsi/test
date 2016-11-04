@@ -19,13 +19,13 @@
 <div class="container" id = "newPageSpaceMaker">
     <form class = "form-group">
         <label for = "newPageName" class = "newWebsiteSpaceMaker">Name</label>
-        <input ng-model ="model.name" type = "text" id = "newPageName" placeholder = "Blog Post"
+        <input ng-model ="model.page.name" type = "text" id = "newPageName" placeholder = "Blog Post"
                class = "form-control"/>
         <label for = "newPageDescription">Title</label>
-        <input type = "text" id = "newpageDescription" placeholder = "Page Title" class = "form-control"/>
+        <input ng-model = "model.page.title" type = "text" id = "newpageDescription" placeholder = "Page Title" class = "form-control"/>
     </form>
     <a class="btn btn-primary btn-block form-group"
-       ng-click = "model.updatePage(model.pageId, model.name, model.title)">Submit</a>
+       ng-click = "model.updatePage(model.pageId, model.page.name, model.page.title)">Submit</a>
 
     <a class="btn btn-danger btn-block form-group"
        ng-click = "model.deletePage(model.pageId)">Delete Page</a>

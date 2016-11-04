@@ -21,7 +21,7 @@
 
         function updateWebsite(websiteId, name, description)
         {
-            var promise = WebsiteService.updateWebsite(websiteId, {name: vm.name, description: vm.description});
+            var promise = WebsiteService.updateWebsite(websiteId, {name: vm.website.name, description: vm.website.description});
             promise
                 .success(function website(website){
                     $location.url("/user/"+vm.userId+"/website");
@@ -51,8 +51,9 @@
         function goToPageList(website)
         {
             console.log(website);
+            vm.website = website;
             console.log("/user/" + userId + "/website/" + website._id + "/page");
-            $location.url("/user/" + userId.toString() + "/website/" + website._id.toString() + "/page");
+            $location.url("/user/" + userId.toString() + "/website/" + vm.website._id.toString() + "/page");
         }
 
 
@@ -71,6 +72,20 @@
                 .error(function errorHandler(aaa){
                     console.log(aaa);
                 });
+
+            var findWeb = WebsiteService.findWebsiteById(websiteId);
+            findWeb
+                .success(function website(website){
+                    if(website)
+                    {
+                        vm.website = website;
+                        console.log("found website");
+                    }
+                })
+                .error(function errorHandler(aaa)
+                {
+                    console.log(aaa);
+                })
 
         }
         init();
