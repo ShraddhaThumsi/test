@@ -16,19 +16,42 @@
         vm.pageId = pageId;
         var widgetId = parseInt($routeParams['wgid']);
         vm.widgetId = widgetId;
-        var currentWidget = WidgetService.findWidgetById(widgetId);
-        vm.currentWidget = currentWidget;
+        /*var currentWidget = WidgetService.findWidgetById(widgetId);
+        vm.currentWidget = currentWidget;*/
+
         vm.updateWidget = updateWidget;
+
+        function init()
+        {
+            var currentWidget = WidgetService.findWidgetById(widgetId);
+            console.log(currentWidget);
+
+            currentWidget
+                .success(function widget1(widget){
+                    if(widget)
+                    {
+                        vm.currentWidget = widget;
+                        console.log(vm.currentWidget);
+                    }
+                })
+                .error(function(aaa)
+                {
+                    console.log(aaa);
+                });
+        }
+        init();
 
         function updateWidget(widgetId, widget)
         {
 
-            console.log(widgetId);
+
+            /*console.log(widgetId);
             console.log(widget);
             console.log(widget.widgetType.toString() == "HEADER");
             console.log(widget.widgetType.toString() == "HTML");
             console.log(widget.widgetType.toString() == "IMAGE");
-            console.log(widget.widgetType.toString() == "YOUTUBE");
+            console.log(widget.widgetType.toString() == "YOUTUBE");*/
+
 
             if(widget.widgetType.toString() == "HEADER")
             {
@@ -48,7 +71,7 @@
                         }
                     })
                     .error(function(aaa){
-                        console.log("reporting from widget choose controller, header widget could not be updated")
+                        console.log("reporting from widget choose controller, header widget could not be updated");
                         console.log(aaa);
                     })
 
@@ -128,11 +151,16 @@
                     })
                     .error(function(aaa)
                     {
-                        console.log("reporting from widget choose controller, image widget could not be updated")
+                        console.log("reporting from widget choose controller, image widget could not be updated");
                         console.log(aaa);
                     });
             }
+
+
         }
+
+
+
 
         vm.deleteWidget = deleteWidget;
         function deleteWidget(widgetId)
@@ -155,7 +183,7 @@
                     }
                 })
                 .error(function(aaa){
-                    console.log("reporting from widget choose controller, widget could not be deleted")
+                    console.log("reporting from widget choose controller, widget could not be deleted");
                     console.log(aaa);
                 })
         }

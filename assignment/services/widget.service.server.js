@@ -33,7 +33,7 @@ module.exports = function(app)
         if(newWidget.widgetType.toString() == "HEADER")
         {
             var newWidget = {
-                _id: (new Date()).getTime(),
+                _id: (new Date()).getTime().toString(),
                 widgetType: newWidget.widgetType,
                 pageId: newWidget.pageId,
                 size: newWidget.size,
@@ -52,7 +52,7 @@ module.exports = function(app)
         if(newWidget.widgetType.toString() == "IMAGE")
         {
             var newWidget = {
-                _id: (new Date()).getTime(),
+                _id: (new Date()).getTime().toString(),
                 widgetType: newWidget.widgetType,
                 pageId: newWidget.pageId,
                 width: newWidget.width,
@@ -69,7 +69,7 @@ module.exports = function(app)
         if(newWidget.widgetType.toString() == "YOUTUBE")
         {
             var newWidget = {
-                _id: (new Date()).getTime(),
+                _id: (new Date()).getTime().toString(),
                 widgetType: newWidget.widgetType,
                 pageId: newWidget.pageId,
                 width: newWidget.width,
@@ -87,7 +87,7 @@ module.exports = function(app)
         if(newWidget.widgetType.toString() == "HTML")
         {
             var newWidget = {
-                _id: (new Date()).getTime(),
+                _id: (new Date()).getTime().toString(),
                 widgetType: newWidget.widgetType,
                 pageId: newWidget.pageId,
                 text: newWidget.text
@@ -106,9 +106,7 @@ module.exports = function(app)
 
     function findWidgetsByPageId(req, res)
     {
-        console.log(req.params);
-        console.log(typeof req.params.pid);
-        console.log("above is the datatype of the pid parameter of the incoming request, check how to extract pageId");
+
         var pageId = parseInt(req.params.pid);
         var result = [];
         for(var wg in widgets)
@@ -116,9 +114,7 @@ module.exports = function(app)
             if(parseInt(widgets[wg].pageId) === pageId)
             {
                 result.push(widgets[wg]);
-                console.log("reporting from widget server service, " +
-                    "this is the status of the list of widgets for the given pageId");
-                console.log(result);
+
             }
         }
         /*res.sendStatus(result);*/
@@ -128,10 +124,13 @@ module.exports = function(app)
 
     function findWidgetById(req, res)
     {
-        var widgetId = req.params.wgid;
+        var widgetId = parseInt(req.params['wgid']);
+        console.log(widgetId);
+        console.log("widget id received as request by widget service");
+
         for(var wg in widgets)
         {
-            if(widgets[wg]._id == widgetId)
+            if(parseInt(widgets[wg]._id) === widgetId)
             {
                 /*res.sendStatus(widgets[wg]);*/
                 /*res.sendStatus(200);*/
