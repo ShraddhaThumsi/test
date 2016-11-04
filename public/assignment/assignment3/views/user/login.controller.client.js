@@ -29,17 +29,7 @@
                 .error(function(bbb){
                     console.log(bbb);
                 })
-            /*if(user === null)
-                {
-                    vm.error = "No such user";
-                }
-            else
-                {
-                    $location.url("/user/" + user._id);
-                    vm.success = "Your Profile was successfully saved!";
-                }
 
-            var userByName = UserService.findUserByUsername(username);*/
         }
 
     }

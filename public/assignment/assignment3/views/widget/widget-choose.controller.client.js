@@ -23,13 +23,6 @@
         {
             var widget = {"_id": 0, "widgetType": "HEADER", "pageId": pageId, "size": 2, "text": " "};
             var promise = WidgetService.createWidget(pageId, widget);
-            /*var newHeaderWidget = WidgetService.createWidget(pageId, widget);
-
-            if(newHeaderWidget)
-            {
-                $location.url("/user/" + vm.userId + "/website/" +
-                    vm.websiteId + "/page/" + vm.pageId + "/widget/" + newHeaderWidget._id);
-            }*/
 
             promise
                 .success(function headerWidget(newHeaderWidget)
@@ -53,12 +46,7 @@
         {
             var widget = {"_id": 0, "widgetType": "HTML", "pageId": pageId, "text": " "};
             var promise = WidgetService.createWidget(pageId, widget);
-            /*var newHtmlWidget = WidgetService.createWidget(pageId, widget);
-            if(newHtmlWidget)
-            {
-                $location.url("/user/" + vm.userId + "/website/" +
-                    vm.websiteId + "/page/" + vm.pageId + "/widget/" + newHtmlWidget._id);
-            }*/
+
 
             promise
                 .success(function newHtmlWidget(newHtmlWidget){
@@ -80,14 +68,9 @@
         vm.createImageWidget = createImageWidget;
         function createImageWidget()
         {
-            var widget = {"_id": 0, "widgetType": "IMAGE", "pageId": pageId, "width": 0, "url": " "};
+            var widget = {"_id": 0, "widgetType": "IMAGE", "pageId": pageId, "width": 100, "url": "http://lorempixel.com/400/200"};
             var promise = WidgetService.createWidget(pageId, widget);
-            /*var newImageWidget = WidgetService.createWidget(pageId, widget);
-            if(newImageWidget)
-            {
-                $location.url("/user/" + vm.userId + "/website/" +
-                    vm.websiteId + "/page/" + vm.pageId + "/widget/" + newImageWidget._id);
-            }*/
+
 
             promise
                 .success(function newImageWidget(newImageWidget)
@@ -109,14 +92,8 @@
         vm.createYoutubeWidget = createYoutubeWidget;
         function createYoutubeWidget()
         {
-            var widget = {"_id": 0, "widgetType": "YOUTUBE", "pageId": pageId, "width": 0, "url": " "};
+            var widget = {"_id": 0, "widgetType": "YOUTUBE", "pageId": pageId, "width": 100, "url": "https://www.youtube.com/watch?v=o032WQMzUcI"};
             var promise = WidgetService.createWidget(pageId, widget);
-            /*var newYoutubeWidget = WidgetService.createWidget(pageId, widget);
-            if(newYoutubeWidget)
-            {
-                $location.url("/user/" + vm.userId + "/website/" +
-                    vm.websiteId + "/page/" + vm.pageId + "/widget/" + newYoutubeWidget._id);
-            }*/
 
             promise
                 .success(function newYoutubeWidget(newYoutubeWidget){

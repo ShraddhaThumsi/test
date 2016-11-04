@@ -17,7 +17,7 @@
                 if(pages != '0')
                 {
                     vm.pages = pages;
-                    console.log(pages);
+
                     var userId = parseInt($routeParams['uid']);
                     vm.websiteId = websiteId;
                     vm.userId = userId;
@@ -25,8 +25,7 @@
                     vm.goToWidgetList = goToWidgetList;
                     function goToWidgetList(page)
                     {
-                        console.log(page);
-                        console.log("/user/" + userId + "/website/" + websiteId + "/page/" + page._id + "/widget");
+
                         $location.url("/user/" + userId.toString() + "/website/" + websiteId.toString() + "/page/" +
                             page._id.toString() + "/widget");
 

@@ -25,7 +25,7 @@ module.exports = function(app)
     app.get("/api/user/:uid/website/:wid/page/:pid/widget", findWidgetsByPageId);
     app.get("/api/user/:uid/website/:wid/page/:pid/widget/:wgid", findWidgetById);
     app.put("/api/user/:uid/website/:wid/page/:pid/widget/:wgid", updateWidget);
-    app.delete("/api/user/:uid/website/:wid/page/:pid/widget/:wid", deleteWidget);
+    app.delete("/api/user/:uid/website/:wid/page/:pid/widget/:wgid", deleteWidget);
 
     function createWidget(req,res)
     {
@@ -40,11 +40,7 @@ module.exports = function(app)
                 text: newWidget.text
             };
             widgets.push(newWidget);
-            console.log("widget id:" + newWidget._id);
-            console.log("updated list of widgets: " + widgets);
-            console.log(newWidget);
-            console.log("HEADER created");
-            console.log(widgets);
+
             /*res.sendStatus(newWidget);*/
             res.send(newWidget);
         }
@@ -56,12 +52,11 @@ module.exports = function(app)
                 widgetType: newWidget.widgetType,
                 pageId: newWidget.pageId,
                 width: newWidget.width,
-                text: newWidget.text
+                text: newWidget.text,
+                url: newWidget.url
             };
             widgets.push(newWidget);
-            console.log(newWidget);
-            console.log("IMAGE created")
-            console.log(widgets);
+
             /*res.sendStatus(newWidget);*/
             res.send(newWidget);
         }
@@ -76,9 +71,7 @@ module.exports = function(app)
                 text: newWidget.text
             };
             widgets.push(newWidget);
-            console.log("YOUTUBE created")
-            console.log(newWidget);
-            console.log(widgets);
+
             /*res.sendStatus(newWidget);*/
             /*res.sendStatus(200);*/
             res.send(newWidget);
@@ -93,9 +86,7 @@ module.exports = function(app)
                 text: newWidget.text
             };
             widgets.push(newWidget);
-            console.log("HTML created");
-            console.log(newWidget);
-            console.log(widgets);
+
             /*res.sendStatus(newWidget);*/
             /*res.sendStatus(200);*/
             res.send(newWidget);
@@ -125,8 +116,7 @@ module.exports = function(app)
     function findWidgetById(req, res)
     {
         var widgetId = parseInt(req.params['wgid']);
-        console.log(widgetId);
-        console.log("widget id received as request by widget service");
+
 
         for(var wg in widgets)
         {
@@ -146,64 +136,69 @@ module.exports = function(app)
     function updateWidget(req, res)
     {
         var widget = req.body;
-        var pageId = req.params['pid'];
-        console.log("hello from update widget");
-        if(widget.widgetType.toString() == "HEADER")
+        var widgetId = req.params['wgid'];
+
+        for(var wg in widgets)
         {
-            var newWidget = {
-                _id: widget._id,
-                widgetType: widget.widgetType,
-                pageId: widget.pageId,
-                size: widget.size,
-                text: widget.text
-            };
-            res.sendStatus(200);
+            if(widgets[wg]._id == widgetId)
+            {
+                widgets[wg] = widget;
+            }
+            /*if (widget.widgetType.toString() == "HEADER") {
+                var newWidget = {
+                    _id: widget._id,
+                    widgetType: widget.widgetType,
+                    pageId: widget.pageId,
+                    size: widget.size,
+                    text: widget.text
+                };
+                res.sendStatus(200);
 
+            }
+
+            if (widget.widgetType.toString() == "HTML") {
+                var newWidget = {
+                    _id: widget._id,
+                    widgetType: widget.widgetType,
+                    pageId: widget.pageId,
+                    text: widget.text
+                };
+                res.sendStatus(200);
+
+            }
+
+            if (widget.widgetType.toString() == "IMAGE") {
+                var newWidget = {
+                    _id: widget._id,
+                    widgetType: widget.widgetType,
+                    pageId: widget.pageId,
+                    width: widget.width,
+                    text: widget.text
+                };
+                res.sendStatus(200);
+
+            }
+
+            if (widget.widgetType.toString() == "YOUTUBE") {
+                var newWidget = {
+                    _id: widget._id,
+                    widgetType: widget.widgetType,
+                    pageId: widget.pageId,
+                    width: widget.width,
+                    text: widget.text
+                };
+                res.sendStatus(200);
+
+            }*/
         }
-
-        if(widget.widgetType.toString() == "HTML")
-        {
-            var newWidget = {
-                _id: widget._id,
-                widgetType: widget.widgetType,
-                pageId: widget.pageId,
-                text: widget.text
-            };
-            res.sendStatus(200);
-
-        }
-
-        if(widget.widgetType.toString() == "IMAGE")
-        {
-            var newWidget = {
-                _id: widget._id,
-                widgetType: widget.widgetType,
-                pageId: widget.pageId,
-                width: widget.width,
-                text: widget.text
-            };
-            res.sendStatus(200);
-
-        }
-
-        if(widget.widgetType.toString() == "YOUTUBE")
-        {
-            var newWidget = {
-                _id: widget._id,
-                widgetType: widget.widgetType,
-                pageId: widget.pageId,
-                width: widget.width,
-                text: widget.text
-            };
-            res.sendStatus(200);
-
-        }
+        res.sendStatus(200);
     }
 
 
     function deleteWidget(req, res)
     {
         var widgetId = req.params['wgid'];
+
         for(var w in widgets)
         {
             if(widgets[w]._id == widgetId)
@@ -211,6 +206,6 @@ module.exports = function(app)
                 widgets.splice(w, 1);
             }
         }
-        res.send(200);
+        res.sendStatus(200);
     }
 }

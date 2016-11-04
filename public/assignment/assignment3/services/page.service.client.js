@@ -55,6 +55,7 @@
         function deletePage(pageId)
         {
             var url = "/api/user/:uid/website/:wid/page/"+pageId;
+
             return $http.delete(url, pageId);
 
         }

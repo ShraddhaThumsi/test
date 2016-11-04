@@ -36,8 +36,7 @@
         vm.goToPageList = goToPageList;
         function goToPageList(website)
         {
-            console.log(website);
-            console.log("/user/" + userId + "/website/" + website._id + "/page");
+
             $location.url("/user/" + userId.toString() + "/website/" + website._id.toString() + "/page");
         }
 

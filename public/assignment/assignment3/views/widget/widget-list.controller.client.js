@@ -16,9 +16,7 @@
         var pageId = parseInt($routeParams['pid']);
         vm.pageId = pageId;
         var widgetId = parseInt($routeParams['wgid']);
-        console.log("reporting from widget list controller client, i have the following datatype and contents of page id, as received from the view.");
-        console.log(vm.pageId);
-        console.log(typeof vm.pageId);
+
         var widgetId = parseInt($routeParams['wgid']);
         vm.widgetId = widgetId;
         vm.checkSafeHtml = checkSafeHtml;
@@ -42,7 +40,7 @@
             var id = parts[parts.length - 1];
 
             url = "https://www.youtube.com/embed/"+id;
-            console.log(url);
+
             return $sce.trustAsResourceUrl(url);
 
         }
@@ -53,15 +51,13 @@
 
 
 
-            /*var widgets = WidgetService.findWidgetsByPageId(pageId);
-            vm.widgets = widgets;*/
+            
 
 
             var promise = WidgetService.findWidgetsByPageId(pageId);
             promise
                 .success(function widgets(widgets){
-                    console.log("reporting from widget list controller, the following is the status of list of widgets, that i received from widget service");
-                    console.log(widgets);
+
                     vm.widgets = widgets;
                 })
                 .error(function(aaa){
@@ -69,14 +65,7 @@
                     console.log(aaa);
                 });
 
-            /*var allWidgets = $(".wam-widgets");
-            alert(allWidgets.length);*/
 
-
-
-
-
-            //#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}
 
 
     }

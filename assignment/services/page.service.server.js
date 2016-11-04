@@ -65,9 +65,9 @@ module.exports = function(app)
 
     function findPageById(req, res)
     {
-        console.log(req.params);
+
         var pageId = req.params.pid;
-        console.log(pageId);
+
         for (var p in pages)
         {
             if(pages[p]._id == pageId)
