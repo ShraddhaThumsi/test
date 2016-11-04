@@ -3,16 +3,15 @@
 <div class="container form-group" id = "newPageSpaceMaker">
     <form class = "form-group" class = "newWebsiteSpaceMaker" id = "websitelistSpaceMaker">
         <label for="text">Please enter the heading that you desire, in the box given below.</label>
-        <input class = "form-control" id="text" ng-model="model.currentWidget.text" placeholder="Heading"
-               value="{{model.currentWidget.text}}">
+        <input class = "form-control" id="text" ng-model="model.widget.text" placeholder="Heading"
+               value="{{model.widget.text}}">
     </form>
     <div>
         <a class="btn btn-primary btn-block form-group"
-           ng-click="model.updateWidget(model.widgetId, model.currentWidget)">
+           ng-click="model.updateWidget(model.widgetId, model.widget)">
             Submit
         </a>
-        <a class="btn btn-danger btn-block form-group"
-           ng-click="model.deleteWidget(model.currentWidget._id)">
+        <a ng-click="model.deleteWidget(model.widget._id)" class="btn btn-danger btn-block form-group">
             Delete Widget
         </a>
     </div>

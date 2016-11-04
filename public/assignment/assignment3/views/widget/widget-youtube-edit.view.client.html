@@ -25,12 +25,12 @@
         <input type = "text" id = "newImageText"  class = "form-control"/>
         <label for = "newImageURL">URL</label>
         <input type = "text" id = "newImageURL" class = "form-control"
-               placeholder="https://www.youtube.com/embed/Uks8psEpmB4"/>
+               ng-model="model.widget.url" placeholder="https://www.youtube.com/embed/Uks8psEpmB4"/>
         <label for = "newImageWidth">Width</label>
-        <input type = "text" id = "newImageWidth" class = "form-control"/>
+        <input ng-model = "model.widget.width" type = "text" id = "newImageWidth" class = "form-control"/>
     </form>
     <a class="btn btn-primary btn-block form-group"
-       ng-click="model.updateWidget(model.widgetId, model.currentWidget)">
+       ng-click="model.updateWidget(model.widgetId, model.widget)">
     Submit
     </a>
     <a class="btn btn-danger btn-block form-group"

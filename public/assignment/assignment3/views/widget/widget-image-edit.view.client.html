@@ -10,18 +10,21 @@
                class = "form-control"/>
         <label for = "newImageURL">URL</label>
         <input type = "text" id = "newImageURL" class = "form-control"
-               placeholder="https://static.pexels.com/photos/186422/pexels-photo-186422.jpeg"/>
+               ng-model = "model.widget.url" placeholder="https://static.pexels.com/photos/186422/pexels-photo-186422.jpeg"/>
         <label for = "newImageWidth">Width</label>
-        <input type = "text" id = "newImageWidth" class = "form-control" placeholder = "100%"/>
+        <input ng-model="model.widget.width" type = "text" id = "newImageWidth" class = "form-control" placeholder = "100%"/>
         <label for = "newImageSource">Upload</label>
         <input type = "file" id = "newImageSource" class = "form-control" placeholder = "100%"/>
     </form>
-    <div class = "row">
-        <div class = "col-xs-12">
+
+            <a class="btn btn-primary btn-block form-control"
+                ng-click = "model.updateWidget(model.widgetId, model.widget)">
+                Submit</a>
+
             <a class="btn btn-danger btn-block form-control"
                href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
                 Delete Widget</a>
-        </div>
-    </div>
+
+
 </div>
 

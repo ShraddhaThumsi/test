@@ -21,25 +21,7 @@
 
         vm.updateWidget = updateWidget;
 
-        function init()
-        {
-            var currentWidget = WidgetService.findWidgetById(widgetId);
-            console.log(currentWidget);
 
-            currentWidget
-                .success(function widget1(widget){
-                    if(widget)
-                    {
-                        vm.currentWidget = widget;
-                        console.log(vm.currentWidget);
-                    }
-                })
-                .error(function(aaa)
-                {
-                    console.log(aaa);
-                });
-        }
-        init();
 
         function updateWidget(widgetId, widget)
         {
@@ -187,5 +169,23 @@
                     console.log(aaa);
                 })
         }
+
+        function init()
+        {
+            var promise = WidgetService.findWidgetById(widgetId);
+            promise
+                .success(function widget(widget){
+                    if(widget)
+                    {
+                        vm.widget = widget;
+                        console.log("found widget");
+                    }
+                })
+                .error(function errorHandler(aaa)
+                {
+                    console.log(aaa);
+                })
+        }
+        init();
     }
 })();
