@@ -21,11 +21,31 @@ module.exports = function(app)
             { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
         ];
 
+    var multer = require('multer'); // npm install multer --save
+    var upload = multer({dest: __dirname + '/../public/assignment/assignment3/views/widget/upload'});
     app.post("/api/user/:uid/website/:wid/page/:pid/widget", createWidget);
     app.get("/api/user/:uid/website/:wid/page/:pid/widget", findWidgetsByPageId);
     app.get("/api/user/:uid/website/:wid/page/:pid/widget/:wgid", findWidgetById);
     app.put("/api/user/:uid/website/:wid/page/:pid/widget/:wgid", updateWidget);
     app.delete("/api/user/:uid/website/:wid/page/:pid/widget/:wgid", deleteWidget);
+    app.post("/api/upload", upload.single('myFile'), uploadImage);
+
+
+
+    function uploadImage(req, res) {
+        var widgetId = req.body.widgetId;
+        var width = req.body.width;
+        var myFile = req.file;
+        var originalname = myFile.originalname; // file name on user's computer
+        var filename = myFile.filename;     // new file name in upload folder
+        var path = myFile.path;         // full path of uploaded file
+        var destination = myFile.destination;  // folder where file is saved to
+        var size = myFile.size;
+        var mimetype = myFile.mimetype;
+        widgets.push(myFile);
+        console.log("widget list after pushing uploaded image");
+        res.send(widgets);
+    }
 
     function createWidget(req,res)
     {
@@ -41,7 +61,7 @@ module.exports = function(app)
             };
             widgets.push(newWidget);
 
-            /*res.sendStatus(newWidget);*/
+
             res.send(newWidget);
         }
 
@@ -57,7 +77,7 @@ module.exports = function(app)
             };
             widgets.push(newWidget);
 
-            /*res.sendStatus(newWidget);*/
+
             res.send(newWidget);
         }
 
@@ -72,8 +92,7 @@ module.exports = function(app)
             };
             widgets.push(newWidget);
 
-            /*res.sendStatus(newWidget);*/
-            /*res.sendStatus(200);*/
+
             res.send(newWidget);
         }
 
@@ -87,8 +106,7 @@ module.exports = function(app)
             };
             widgets.push(newWidget);
 
-            /*res.sendStatus(newWidget);*/
-            /*res.sendStatus(200);*/
+
             res.send(newWidget);
         }
     }
@@ -108,8 +126,7 @@ module.exports = function(app)
 
             }
         }
-        /*res.sendStatus(result);*/
-        /*res.sendStatus(200);*/
+
         res.send(result);
     }
 
@@ -122,8 +139,7 @@ module.exports = function(app)
         {
             if(parseInt(widgets[wg]._id) === widgetId)
             {
-                /*res.sendStatus(widgets[wg]);*/
-                /*res.sendStatus(200);*/
+
                 console.log("reporting from widget server service, this is the widget found for the given ID");
                 console.log(widgets[wg]);
                 res.send(widgets[wg]);
@@ -144,52 +160,7 @@ module.exports = function(app)
             {
                 widgets[wg] = widget;
             }
-            /*if (widget.widgetType.toString() == "HEADER") {
-                var newWidget = {
-                    _id: widget._id,
-                    widgetType: widget.widgetType,
-                    pageId: widget.pageId,
-                    size: widget.size,
-                    text: widget.text
-                };
-                res.sendStatus(200);
 
-            }
-
-            if (widget.widgetType.toString() == "HTML") {
-                var newWidget = {
-                    _id: widget._id,
-                    widgetType: widget.widgetType,
-                    pageId: widget.pageId,
-                    text: widget.text
-                };
-                res.sendStatus(200);
-
-            }
-
-            if (widget.widgetType.toString() == "IMAGE") {
-                var newWidget = {
-                    _id: widget._id,
-                    widgetType: widget.widgetType,
-                    pageId: widget.pageId,
-                    width: widget.width,
-                    text: widget.text
-                };
-                res.sendStatus(200);
-
-            }
-
-            if (widget.widgetType.toString() == "YOUTUBE") {
-                var newWidget = {
-                    _id: widget._id,
-                    widgetType: widget.widgetType,
-                    pageId: widget.pageId,
-                    width: widget.width,
-                    text: widget.text
-                };
-                res.sendStatus(200);
-
-            }*/
         }
         res.sendStatus(200);
     }
