@@ -24,8 +24,10 @@
 </nav>
 
 <div class="container-fluid spaceMaker">
+<div sortable>
     <div ng-switch = "widget.widgetType" class = "wam-widget"
          ng-repeat = "widget in model.widgets" class = "row">
+
         <div class = "col-xs-10 pos-rect">
 
             <div ng-switch = "widget.size" ng-switch-when = "HEADER">
@@ -57,8 +59,9 @@
         <div class = "col-xs-1 pos-rect">
             <span class="glyphicon glyphicon-align-justify "></span>
         </div>
-    </div>
 
+    </div>
+</div>
 </div>
 
 
