@@ -11,8 +11,18 @@ module.exports = function (app){
         {_id: 567, name: "Todo 567"},
         {_id: 678, name: "Todo 678"}];
     app.get("/api/experiments/todo", getAllTodos);
+    app.put("/api/experiments/todo", updateTodos);
     function getAllTodos(req, res)
     {
         res.json(todos);
+    }
+
+    function updateTodos(req, res)
+    {
+        var start = req.query.start;
+        var stop = req.query.stop;
+        /*console.log([start, stop]);*/
+        todos.splice(stop, 0, todos.splice(start, 1)[0]);
+        console.log([start, stop]);
     }
 };

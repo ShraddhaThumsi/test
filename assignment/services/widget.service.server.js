@@ -29,8 +29,16 @@ module.exports = function(app)
     app.put("/api/user/:uid/website/:wid/page/:pid/widget/:wgid", updateWidget);
     app.delete("/api/user/:uid/website/:wid/page/:pid/widget/:wgid", deleteWidget);
     app.post("/api/upload", upload.single('myFile'), uploadImage);
+    app.put("/api/user/:uid/website/:wid/page/:pid/widget", updateWidgetPosition);
 
 
+    function updateWidgetPosition(req, res)
+    {
+        var start = req.query.start;
+        var stop = req.query.stop;
+        widgets.splice(stop, 0, widgets.splice(start, 1)[0]);
+        console.log([start, stop]);
+    }
 
     function uploadImage(req, res) {
         var widgetId = req.body.widgetId;
