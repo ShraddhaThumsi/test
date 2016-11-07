@@ -25,10 +25,10 @@
             return $http.get(url);
         }
 
-        function findWebsiteById(websiteId){
+        function findWebsiteById(userId, websiteId){
 
 
-            var url = "/api/user/:uid/website/" + websiteId;
+            var url = "/api/user/"+userId+"/website/" + websiteId;
             return $http.get(url);
         }
 
@@ -39,18 +39,18 @@
 
         }
 
-        function updateWebsite(websiteId, website)
+        function updateWebsite(userId, websiteId, website)
         {
             console.log("website to be updated");
             console.log(website);
-            var url = "/api/user/:uid/website/"+websiteId;
+            var url = "/api/user/"+userId+"/website/"+websiteId;
             return $http.put(url, website);
 
         }
 
-        function deleteWebsite(websiteId)
+        function deleteWebsite(userId, websiteId)
         {
-            var url = "/api/user/:uid/website/"+websiteId;
+            var url = "/api/user/"+userId+"/website/"+websiteId;
             return $http.delete(url);
 
         }

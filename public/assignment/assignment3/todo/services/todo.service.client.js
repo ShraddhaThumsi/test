@@ -19,8 +19,13 @@
             return $http.get(url);
         }
 
-        function sort(){
-
+        function sort(start, stop){
+            var url ="/api/experiments/todo?start=START&stop=STOP";
+            url = url.replace("START", start)
+                     .replace("STOP", stop);
+            console.log(start + "start");
+            console.log(stop + "stop");
+            $http.put(url);
         }
 
     }

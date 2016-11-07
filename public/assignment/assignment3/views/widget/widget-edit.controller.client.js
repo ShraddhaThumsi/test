@@ -33,7 +33,7 @@
             if(widget.widgetType.toString() == "HEADER")
             {
 
-                var promise = WidgetService.updateWidget(widgetId, widget);
+                var promise = WidgetService.updateWidget(userId, websiteId, pageId, widgetId, widget);
                 promise
                     .success(function updatedWidget(updatedWidget){
                         if(updatedWidget)
@@ -53,7 +53,7 @@
             else if(widget.widgetType.toString() == "HTML")
             {
 
-                var promise = WidgetService.updateWidget(widgetId, {text: widget.text});
+                var promise = WidgetService.updateWidget(userId, websiteId, pageId, widgetId, {text: widget.text});
                 promise
                     .success(function updatedWidget(updatedWidget){
                         if(updatedWidget)
@@ -73,7 +73,7 @@
             {
 
                 var promise =
-                    WidgetService.updateWidget(widgetId, {width: widget.width, url:widget.url});
+                    WidgetService.updateWidget(userId, websiteId, pageId, widgetId, {width: widget.width, url:widget.url});
 
                 promise
                     .success(function updatedWidget(updatedWidget){
@@ -94,7 +94,7 @@
             {
 
                 var promise =
-                    WidgetService.updateWidget(widgetId, {width: widget.width, url:widget.url});
+                    WidgetService.updateWidget(userId, websiteId, pageId, widgetId, {width: widget.width, url:widget.url});
 
                 promise
                     .success(function updatedWidget(updatedWidget)
@@ -122,7 +122,7 @@
         function deleteWidget(widgetId)
         {
 
-            var promise = WidgetService.deleteWidget(widgetId);
+            var promise = WidgetService.deleteWidget(userId, websiteId, pageId, widgetId);
 
             promise
                 .success(function result(result){
@@ -141,7 +141,7 @@
         function init()
         {
 
-            var promise = WidgetService.findWidgetById(widgetId);
+            var promise = WidgetService.findWidgetById(userId, websiteId, pageId, widgetId);
             promise
                 .success(function widget(widget){
                     if(widget)

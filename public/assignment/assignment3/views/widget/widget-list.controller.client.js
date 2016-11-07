@@ -49,7 +49,7 @@
             $location.url("user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/new");
         }
 
-            var promise = WidgetService.findWidgetsByPageId(pageId);
+            var promise = WidgetService.findWidgetsByPageId(userId, websiteId, pageId);
             promise
                 .success(function widgets(widgets){
 

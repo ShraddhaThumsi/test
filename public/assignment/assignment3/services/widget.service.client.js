@@ -18,48 +18,59 @@
             findWidgetsByPageId: findWidgetsByPageId,
             findWidgetById: findWidgetById,
             updateWidget: updateWidget,
-            deleteWidget: deleteWidget
+            deleteWidget: deleteWidget,
+            sort: sort
 
         };
         return api;
 
-        function createWidget(pageId, widget)
+        function createWidget(userId, websiteId, pageId, widget)
         {
-            var url = "/api/user/:uid/website/:wid/page/"+pageId+"/widget";
+            var url = "/api/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget";
             return $http.post(url, widget);
 
         }
 
-        function findWidgetsByPageId(pageId)
+        function findWidgetsByPageId(userId, websiteId, pageId)
         {
-            var url = "/api/user/:uid/website/:wid/page/"+pageId.toString()+"/widget";
+            var url = "/api/user/"+userId+"/website/"+websiteId+"/page/"+pageId.toString()+"/widget";
 
             return $http.get(url);
 
 
         }
 
-        function findWidgetById(widgetId)
+        function findWidgetById(userId, websiteId, pageId, widgetId)
         {
-            var url = "/api/user/:uid/website/:wid/page/:pid/widget/"+widgetId;
+            var url = "/api/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId;
             return $http.get(url);
 
 
         }
 
-        function updateWidget(widgetId, widget)
+        function updateWidget(userId, websiteId, pageId, widgetId, widget)
         {
-            var url = "/api/user/:uid/website/:wid/page/:pid/widget/"+widgetId;
+            var url = "/api/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId;
             return $http.put(url, widget);
 
         }
 
-        function deleteWidget(widgetId)
+        function deleteWidget(userId, websiteId, pageId, widgetId, widgetId)
         {
-            var url = "/api/user/:uid/website/:wid/page/:pid/widget/"+widgetId;
+            var url = "/api/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId;
             return $http.delete(url, widgetId);
 
 
+        }
+
+        function sort(start, stop, userId, websiteId, pageId)
+        {
+            var url = "/api/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget?start=START&stop=STOP";
+            url = url.replace("START", start)
+                .replace("STOP", stop);
+            console.log(start + "start");
+            console.log(stop + "stop");
+            $http.put(url);
         }
 
 

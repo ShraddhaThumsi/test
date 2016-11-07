@@ -22,20 +22,21 @@
                 }
             });
         }
-        return{
+        var directive = {
             scope:{},
             link: linker,
             controller: sortableController,
             controllerAs: 'sortableController'
-        }
+        };
+        return directive;
     }
 
-    function sortableController(){
+    function sortableController(ToDoService){
         var vm = this;
         vm.sort = sort;
 
         function sort(start, stop){
-            console.log([start, stop]);
+            ToDoService.sort(start, stop);
         }
     }
 })();

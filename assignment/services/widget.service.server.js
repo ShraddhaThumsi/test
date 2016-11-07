@@ -37,11 +37,15 @@ module.exports = function(app)
         var start = req.query.start;
         var stop = req.query.stop;
         widgets.splice(stop, 0, widgets.splice(start, 1)[0]);
+        res.send(widgets);
         console.log([start, stop]);
     }
 
     function uploadImage(req, res) {
         var widgetId = req.body.widgetId;
+        var userId = req.body.userId;
+        var websiteId = req.body.websiteId;
+        var pageId = req.body.pageId;
         var width = req.body.width;
         var myFile = req.file;
         var originalname = myFile.originalname; // file name on user's computer
@@ -50,9 +54,20 @@ module.exports = function(app)
         var destination = myFile.destination;  // folder where file is saved to
         var size = myFile.size;
         var mimetype = myFile.mimetype;
-        widgets.push(myFile);
+        for(var wg in widgets)
+        {
+            if(widgets[wg]._id == widgetId)
+            {
+                widgets[wg].url = '/../public/assignment/assignment3/views/widget/upload'+filename;
+                break;
+            }
+        }
+
+        var url = "/assignment/assignment3/index.html#/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId;
+        res.redirect(url);
+        /*widgets.push(myFile);
         console.log("widget list after pushing uploaded image");
-        res.send(widgets);
+        res.send(widgets);*/
     }
 
     function createWidget(req,res)

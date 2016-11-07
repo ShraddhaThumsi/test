@@ -6,6 +6,13 @@ body {
     padding-top: 36px;
 }
 
+.wam-widget {
+    border: solid 1px #dddddd;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
+    background-color: #eeeeee;
+}
 .container .websitelistSpaceMaker
 {
     padding-top: 15px;

@@ -22,7 +22,7 @@
         function createHeaderWidget()
         {
             var widget = {"_id": 0, "widgetType": "HEADER", "pageId": pageId, "size": 2, "text": " "};
-            var promise = WidgetService.createWidget(pageId, widget);
+            var promise = WidgetService.createWidget(userId, websiteId, pageId, widget);
 
             promise
                 .success(function headerWidget(newHeaderWidget)
@@ -45,7 +45,7 @@
         function createHtmlWidget()
         {
             var widget = {"_id": 0, "widgetType": "HTML", "pageId": pageId, "text": " "};
-            var promise = WidgetService.createWidget(pageId, widget);
+            var promise = WidgetService.createWidget(userId, websiteId, pageId, widget);
 
 
             promise
@@ -69,7 +69,7 @@
         function createImageWidget()
         {
             var widget = {"_id": 0, "widgetType": "IMAGE", "pageId": pageId, "width": 100, "url": "http://lorempixel.com/400/200"};
-            var promise = WidgetService.createWidget(pageId, widget);
+            var promise = WidgetService.createWidget(userId, websiteId, pageId, widget);
 
 
             promise
@@ -93,7 +93,7 @@
         function createYoutubeWidget()
         {
             var widget = {"_id": 0, "widgetType": "YOUTUBE", "pageId": pageId, "width": 100, "url": "https://www.youtube.com/watch?v=o032WQMzUcI"};
-            var promise = WidgetService.createWidget(pageId, widget);
+            var promise = WidgetService.createWidget(userId, websiteId, pageId, widget);
 
             promise
                 .success(function newYoutubeWidget(newYoutubeWidget){

@@ -21,7 +21,7 @@
 
         function updateWebsite(websiteId, name, description)
         {
-            var promise = WebsiteService.updateWebsite(websiteId, {name: vm.website.name, description: vm.website.description});
+            var promise = WebsiteService.updateWebsite(userId, websiteId, {name: vm.website.name, description: vm.website.description});
             promise
                 .success(function website(website){
                     $location.url("/user/"+vm.userId+"/website");
@@ -36,7 +36,7 @@
 
         function deleteWebsite()
         {
-            var promise = WebsiteService.deleteWebsite(vm.websiteId);
+            var promise = WebsiteService.deleteWebsite(userId, vm.websiteId);
             promise
                 .success(function(){
                     $location.url("/user/"+vm.userId+"/website");
@@ -73,7 +73,7 @@
                     console.log(aaa);
                 });
 
-            var findWeb = WebsiteService.findWebsiteById(websiteId);
+            var findWeb = WebsiteService.findWebsiteById(userId, websiteId);
             findWeb
                 .success(function website(website){
                     if(website)
