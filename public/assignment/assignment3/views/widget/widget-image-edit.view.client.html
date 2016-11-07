@@ -34,7 +34,7 @@
         <input  name="widgetId" value="123"   style="display: none"/><br>
         <!--<button type="submit"   class="btn btn-block btn-primary">Upload Image</button>-->
     </form>
-    <form action="/api/example/upload" id="imageUploadForm" method="post" enctype="multipart/form-data">
+    <form action="/api/upload" id="imageUploadForm" method="post" enctype="multipart/form-data">
         <input  name="myFile" onchange="previewImage(this)" type="file" class="form-control"/>
         <img src="{{model.widget.url}}" width="100px">
     </form>

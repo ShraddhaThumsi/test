@@ -44,6 +44,7 @@ module.exports = function(app)
     }
 
     function uploadImage(req, res) {
+        console.log("hello");
         var widgetId = req.body.widgetId;
         var userId = req.body.userId;
         var websiteId = req.body.websiteId;
@@ -61,23 +62,25 @@ module.exports = function(app)
             if(widgets[wg]._id == widgetId)
             {
                 widgets[wg].url = '/../public/assignment/assignment3/views/widget/upload'+filename;
-                res.send(widgets[wg]);
+                break;
             }
         }
         for(var wg in tmpWidgets)
         {
             if(tmpWidgets[wg]._id == widgetId)
             {
-                var toupdate = tmpWidgets[wg];
-                toupdate.url = '/../public/assignment/assignment3/views/widget/upload'+filename;
-                tmpWidgets = [];
-                tmpWidgets.push(toupdate)
-                console.log(tmpWidgets);
-                res.send(toupdate);
+                tmpWidgets[wg].url = '/../public/assignment/assignment3/views/widget/upload'+filename;
+                break;
             }
         }
         //var url = "/assignment/assignment3/index.html#/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId;
-        //res.redirect(url);
+        console.log(req.body);
+        console.log("above is the request body");
+        console.log("hello");
+        /*res.redirect("/assignment/assignment3/index.html#/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget");*/
+        res.redirect(req.referrer);
+        console.log(req.referrer);
+        console.log("above is the request referrer");
         /*widgets.push(myFile);
         console.log("widget list after pushing uploaded image");
         res.send(widgets);*/
@@ -181,6 +184,7 @@ module.exports = function(app)
         {
             if(parseInt(widgets[wg]._id) === widgetId)
             {
+
 
                 console.log("reporting from widget server service, this is the widget found for the given ID");
                 console.log(widgets[wg]);

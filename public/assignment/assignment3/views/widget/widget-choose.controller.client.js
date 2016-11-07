@@ -69,8 +69,9 @@
         function createImageWidget()
         {
             var widget = {"_id": 0, "widgetType": "IMAGE", "pageId": pageId, "width": 100, "url": null, "imageData": ""};
-            var promise = WidgetService.createWidget(userId, websiteId, pageId, widget);
             vm.widget = widget;
+            var promise = WidgetService.createWidget(vm.userId, vm.websiteId, vm.pageId, vm.widget);
+
             console.log(widget);
             promise
                 .success(function newImageWidget(newImageWidget)
