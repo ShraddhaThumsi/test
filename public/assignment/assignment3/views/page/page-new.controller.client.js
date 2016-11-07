@@ -17,7 +17,7 @@
         function createPage(name)
         {
             var page = {_id: "0", name: name, wid: websiteId};
-            var promise = PageService.createPage(websiteId, page);
+            var promise = PageService.createPage(userId, websiteId, page);
             promise
                 .success(function page(newPage){
                     if(newPage)

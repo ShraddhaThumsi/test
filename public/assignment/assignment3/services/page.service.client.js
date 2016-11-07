@@ -21,17 +21,17 @@
         };
         return api;
 
-        function createPage(websiteId, page)
+        function createPage(userId, websiteId, page)
         {
-            var url = "/api/user/:uid/website/"+websiteId+"/page"
+            var url = "/api/user/"+userId+"/website/"+websiteId+"/page";
             return $http.post(url, page);
 
 
         }
 
-        function findPageByWebsiteId(websiteId)
+        function findPageByWebsiteId(userId, websiteId)
         {
-            var url = "/api/user/:uid/website/"+websiteId+"/page";
+            var url = "/api/user/"+userId+"/website/"+websiteId+"/page";
             return $http.get(url);
 
 
@@ -44,17 +44,17 @@
 
         }
 
-        function updatePage(pageId, page)
+        function updatePage(userId, websiteId, pageId, page)
         {
 
-            var url = "/api/user/:uid/website/:wid/page/"+pageId;
+            var url = "/api/user/"+userId+"/website/"+websiteId+"/page/"+pageId;
             return $http.put(url, page);
 
         }
 
-        function deletePage(pageId)
+        function deletePage(userId, websiteId,pageId)
         {
-            var url = "/api/user/:uid/website/:wid/page/"+pageId;
+            var url = "/api/user/"+userId+"/website/"+websiteId+"/page/"+pageId;
 
             return $http.delete(url, pageId);
 

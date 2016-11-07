@@ -21,6 +21,8 @@ module.exports = function(app)
             { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
         ];
 
+    var tmpWidgets = [];
+
     var multer = require('multer'); // npm install multer --save
     var upload = multer({dest: __dirname + '/../public/assignment/assignment3/views/widget/upload'});
     app.post("/api/user/:uid/website/:wid/page/:pid/widget", createWidget);
@@ -59,12 +61,23 @@ module.exports = function(app)
             if(widgets[wg]._id == widgetId)
             {
                 widgets[wg].url = '/../public/assignment/assignment3/views/widget/upload'+filename;
-                break;
+                res.send(widgets[wg]);
             }
         }
-
-        var url = "/assignment/assignment3/index.html#/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId;
-        res.redirect(url);
+        for(var wg in tmpWidgets)
+        {
+            if(tmpWidgets[wg]._id == widgetId)
+            {
+                var toupdate = tmpWidgets[wg];
+                toupdate.url = '/../public/assignment/assignment3/views/widget/upload'+filename;
+                tmpWidgets = [];
+                tmpWidgets.push(toupdate)
+                console.log(tmpWidgets);
+                res.send(toupdate);
+            }
+        }
+        //var url = "/assignment/assignment3/index.html#/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId;
+        //res.redirect(url);
         /*widgets.push(myFile);
         console.log("widget list after pushing uploaded image");
         res.send(widgets);*/
@@ -73,6 +86,7 @@ module.exports = function(app)
     function createWidget(req,res)
     {
         var newWidget = req.body;
+        tmpWidgets = [];
         if(newWidget.widgetType.toString() == "HEADER")
         {
             var newWidget = {
@@ -80,9 +94,10 @@ module.exports = function(app)
                 widgetType: newWidget.widgetType,
                 pageId: newWidget.pageId,
                 size: newWidget.size,
-                text: newWidget.text
+                text: newWidget.text,
+                isNew: true
             };
-            widgets.push(newWidget);
+            tmpWidgets.push(newWidget);
 
 
             res.send(newWidget);
@@ -96,9 +111,11 @@ module.exports = function(app)
                 pageId: newWidget.pageId,
                 width: newWidget.width,
                 text: newWidget.text,
-                url: newWidget.url
+                url: newWidget.url,
+                imageData:null,
+                isNew: true
             };
-            widgets.push(newWidget);
+            tmpWidgets.push(newWidget);
 
 
             res.send(newWidget);
@@ -111,9 +128,10 @@ module.exports = function(app)
                 widgetType: newWidget.widgetType,
                 pageId: newWidget.pageId,
                 width: newWidget.width,
-                text: newWidget.text
+                text: newWidget.text,
+                isNew: true
             };
-            widgets.push(newWidget);
+            tmpWidgets.push(newWidget);
 
 
             res.send(newWidget);
@@ -125,9 +143,10 @@ module.exports = function(app)
                 _id: (new Date()).getTime().toString(),
                 widgetType: newWidget.widgetType,
                 pageId: newWidget.pageId,
-                text: newWidget.text
+                text: newWidget.text,
+                isNew: true
             };
-            widgets.push(newWidget);
+            tmpWidgets.push(newWidget);
 
 
             res.send(newWidget);
@@ -168,6 +187,16 @@ module.exports = function(app)
                 res.send(widgets[wg]);
             }
         }
+        for(var wg in tmpWidgets)
+        {
+            if(parseInt(tmpWidgets[wg]._id) === widgetId)
+            {
+
+                console.log("reporting from widget server service, this is the widget found for the given ID");
+                console.log(tmpWidgets[wg]);
+                res.send(tmpWidgets[wg]);
+            }
+        }
 
     }
 
@@ -175,16 +204,21 @@ module.exports = function(app)
     function updateWidget(req, res)
     {
         var widget = req.body;
-        var widgetId = req.params['wgid'];
-
-        for(var wg in widgets)
-        {
-            if(widgets[wg]._id == widgetId)
+        if(widget.isNew) {
+            widget.isNew = false;
+            widgets.push(widget)
+        } else {
+            var widgetId = req.params['wgid'];
+            for(var wg in widgets)
             {
-                widgets[wg] = widget;
-            }
+                if(widgets[wg]._id == widgetId)
+                {
+                    widgets[wg] = widget;
+                }
 
+            }
         }
+
         res.sendStatus(200);
     }
 

@@ -68,10 +68,10 @@
         vm.createImageWidget = createImageWidget;
         function createImageWidget()
         {
-            var widget = {"_id": 0, "widgetType": "IMAGE", "pageId": pageId, "width": 100, "url": "http://lorempixel.com/400/200"};
+            var widget = {"_id": 0, "widgetType": "IMAGE", "pageId": pageId, "width": 100, "url": null, "imageData": ""};
             var promise = WidgetService.createWidget(userId, websiteId, pageId, widget);
-
-
+            vm.widget = widget;
+            console.log(widget);
             promise
                 .success(function newImageWidget(newImageWidget)
                 {

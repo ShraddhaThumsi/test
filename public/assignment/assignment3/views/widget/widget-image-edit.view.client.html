@@ -29,14 +29,18 @@
         <label for = "newImageWidth">Width</label>
         <input ng-model="model.widget.width" type = "text" id = "newImageWidth" class = "form-control" placeholder = "100%"/>
 
-        <input  name="myFile"   type="file" class="form-control"/>
+
         <input  name="width"    value="50%" style="display: none"/>
         <input  name="widgetId" value="123"   style="display: none"/><br>
         <!--<button type="submit"   class="btn btn-block btn-primary">Upload Image</button>-->
     </form>
+    <form action="/api/example/upload" id="imageUploadForm" method="post" enctype="multipart/form-data">
+        <input  name="myFile" onchange="previewImage(this)" type="file" class="form-control"/>
+        <img src="{{model.widget.url}}" width="100px">
+    </form>
 
             <a class="btn btn-primary btn-block form-control"
-                ng-click = "model.updateWidget(model.widgetId, model.widget)">
+                ng-click = "model.updateImageWidget(model.widgetId, model.widget)">
                 Submit</a>
 
             <a class="btn btn-danger btn-block form-control"
@@ -46,3 +50,40 @@
 
 </div>
 
+<script type="application/javascript">
+    function previewImage(element) {
+        var preview = document.querySelector('img');
+        var file    = document.querySelector('input[type=file]').files[0];
+
+        var reader  = new FileReader();
+
+         reader.addEventListener("load", function () {
+             preview.src = reader.result;
+             $('#imageUploadForm').submit();
+         }, false);
+
+         if (file) {
+         reader.readAsDataURL(file);
+         }
+    }
+   /* $(function() {
+        $('#imageUploadForm').on('submit', function(e) {
+            var data = new FormData();
+            jQuery.each(jQuery('#myFile')[0].files, function(i, file) {
+                data.append('file-'+i, file);
+            });
+            jQuery.ajax({
+                url: '/api/example/upload',
+                data: data,
+                cache: false,
+                contentType: false,
+                processData: false,
+                type: 'POST',
+                success: function(data){
+                    alert(data);
+                }
+            });
+            e.preventDefault();
+        });
+    });*/
+</script>

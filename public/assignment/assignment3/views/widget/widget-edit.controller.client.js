@@ -5,7 +5,7 @@
     angular
         .module("WebAppMaker")
         .controller("EditWidgetController", EditWidgetController);
-    function EditWidgetController($routeParams, $location, WidgetService)
+    function EditWidgetController($routeParams, $location, WidgetService, $window)
     {
         var vm = this;
         var userId = parseInt($routeParams['uid']);
@@ -18,31 +18,57 @@
         vm.widgetId = widgetId;
 
 
+        vm.updateImageWidget = updateImageWidget;
+
+
+
+        function updateImageWidget(widgetId, widget) {
+            if($window.imgData) {
+                widget.imageData = $window.imgData;
+            }
+            console.log(widget);
+
+            if (!widget.url && !widget.imageData) {
+                alert("No URL or Image uploaded");
+            }
+            else {
+                var promise =
+                    WidgetService.updateWidget(userId, websiteId, pageId, widgetId, widget);
+
+                promise
+                    .success(function updatedWidget(updatedWidget) {
+                        if (updatedWidget) {
+                            vm.widget = updatedWidget;
+                            $location.url("/user/" + vm.userId + "/website/" +
+                                vm.websiteId + "/page/" + vm.pageId + "/widget");
+                        }
+                    })
+                    .error(function (aaa) {
+                        console.log("reporting from widget choose controller, image widget could not be updated");
+                        console.log(aaa);
+                    });
+            }
+        }
+
         vm.updateWidget = updateWidget;
 
 
 
-        function updateWidget(widgetId, widget)
-        {
+        function updateWidget(widgetId, widget) {
 
 
-
-
-
-
-            if(widget.widgetType.toString() == "HEADER")
-            {
+            if (widget.widgetType.toString() == "HEADER") {
 
                 var promise = WidgetService.updateWidget(userId, websiteId, pageId, widgetId, widget);
                 promise
-                    .success(function updatedWidget(updatedWidget){
-                        if(updatedWidget)
-                        {
+                    .success(function updatedWidget(updatedWidget) {
+                        if (updatedWidget) {
+                            vm.widget = updatedWidget;
                             $location.url("/user/" + vm.userId + "/website/" +
-                            vm.websiteId + "/page/" + vm.pageId + "/widget");
+                                vm.websiteId + "/page/" + vm.pageId + "/widget");
                         }
                     })
-                    .error(function(aaa){
+                    .error(function (aaa) {
                         console.log("reporting from widget choose controller, header widget could not be updated");
                         console.log(aaa);
                     })
@@ -50,73 +76,73 @@
 
             }
 
-            else if(widget.widgetType.toString() == "HTML")
-            {
+            else if (widget.widgetType.toString() == "HTML") {
 
                 var promise = WidgetService.updateWidget(userId, websiteId, pageId, widgetId, {text: widget.text});
                 promise
-                    .success(function updatedWidget(updatedWidget){
-                        if(updatedWidget)
-                        {
+                    .success(function updatedWidget(updatedWidget) {
+                        if (updatedWidget) {
+                            vm.widget = updatedWidget;
                             $location.url("/user/" + vm.userId + "/website/" +
-                            vm.websiteId + "/page/" + vm.pageId + "/widget");
+                                vm.websiteId + "/page/" + vm.pageId + "/widget");
                         }
                     })
-                    .error(function(aaa){
+                    .error(function (aaa) {
                         console.log("reporting from widget choose controller, html widget could not be updated")
                         console.log(aaa);
                     })
 
             }
 
-            else if(widget.widgetType.toString() == "YOUTUBE")
-            {
+            else if (widget.widgetType.toString() == "YOUTUBE") {
 
                 var promise =
-                    WidgetService.updateWidget(userId, websiteId, pageId, widgetId, {width: widget.width, url:widget.url});
+                    WidgetService.updateWidget(userId, websiteId, pageId, widgetId, {
+                        width: widget.width,
+                        url: widget.url
+                    });
 
                 promise
-                    .success(function updatedWidget(updatedWidget){
-                        if(updatedWidget)
-                        {
+                    .success(function updatedWidget(updatedWidget) {
+                        if (updatedWidget) {
+                            vm.widget = updatedWidget;
                             $location.url("/user/" + vm.userId + "/website/" +
                                 vm.websiteId + "/page/" + vm.pageId + "/widget");
                         }
                     })
-                    .error(function(aaa)
-                    {
+                    .error(function (aaa) {
                         console.log("reporting from widget choose controller, youtube widget could not be updated");
                         console.log(aaa);
                     });
             }
 
-            else if(widget.widgetType.toString() == "IMAGE")
-            {
+            else if (widget.widgetType.toString() == "IMAGE") {
+                console.log(widget);
+                if (!widget.url && !widget.imageData) {
+                    alert("No URL or Image uploaded");
+                }
+                else {
+                    var promise =
+                        WidgetService.updateWidget(userId, websiteId, pageId, widgetId, widget);
 
-                var promise =
-                    WidgetService.updateWidget(userId, websiteId, pageId, widgetId, {width: widget.width, url:widget.url});
+                    promise
+                        .success(function updatedWidget(updatedWidget) {
+                            if (updatedWidget) {
+                                vm.widget = updatedWidget;
+                                $location.url("/user/" + vm.userId + "/website/" +
+                                    vm.websiteId + "/page/" + vm.pageId + "/widget");
+                            }
+                        })
+                        .error(function (aaa) {
+                            console.log("reporting from widget choose controller, image widget could not be updated");
+                            console.log(aaa);
+                        });
+                }
 
-                promise
-                    .success(function updatedWidget(updatedWidget)
-                    {
-                        if(updatedWidget)
-                        {
-                            $location.url("/user/" + vm.userId + "/website/" +
-                                vm.websiteId + "/page/" + vm.pageId + "/widget");
-                        }
-                    })
-                    .error(function(aaa)
-                    {
-                        console.log("reporting from widget choose controller, image widget could not be updated");
-                        console.log(aaa);
-                    });
             }
 
 
         }
-
-
-
 
         vm.deleteWidget = deleteWidget;
         function deleteWidget(widgetId)

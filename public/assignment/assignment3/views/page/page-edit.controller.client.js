@@ -23,9 +23,9 @@
 
 
 
-        function updatePage(pageId, name, title)
+        function updatePage(userId, websiteId, pageId, name, title)
         {
-            var promise = PageService.updatePage(pageId, {name: vm.page.name, title: vm.page.title});
+            var promise = PageService.updatePage(userId, websiteId, pageId, {name: vm.page.name, title: vm.page.title});
             promise
                 .success(function page(page){
                     $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
@@ -38,9 +38,9 @@
         }
 
 
-        function deletePage(pageId)
+        function deletePage(userId, websiteId, pageId)
         {
-            var promise = PageService.deletePage(vm.pageId);
+            var promise = PageService.deletePage(userId, websiteId, vm.pageId);
             promise
                 .success(function(){
                     $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
