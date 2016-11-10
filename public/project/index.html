@@ -1,20 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app = "RecipeMaker">
 <head>
     <meta charset="UTF-8">
-    <title>Project Home Page</title>
+    <meta name = "viewport" content = "width=device-width, initial-scale=1">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <!--<link href="../css/style.css" rel="stylesheet"/>-->
+    <link href="css/jquery-ui.css" rel="stylesheet"/>
+    <script src="../jquery/jquery-3.1.1.min.js"></script>
+    <script src="../jquery/jquery-ui.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.min.js"></script>
+    <link href="css/style.css" rel="stylesheet"/>
+    <script src = "app.js" rel = "script"></script>
+    <script src = "config.js" rel = "script"></script>
+    <script src = "../project/views/recipeSearchEngine.controller.client.js"></script>
+    <script src = "../project/views/login.controller.client.js"></script>
 
-    <script src = "./app.js" rel ="script"></script>
+    <title>Project Home page</title>
 </head>
 <body>
-    <h1>Project Home Page</h1>
-    <form>
-        <input name = "query1">
 
-        <button onclick="loadDoc(document.getElementsByName('query1')[0].value)" type="button">Ask for query</button>
-    </form>
-
-    <p id = "enterJSON"></p>
-
+<div ng-view id = "MainDiv"></div>
 </body>
 </html>
