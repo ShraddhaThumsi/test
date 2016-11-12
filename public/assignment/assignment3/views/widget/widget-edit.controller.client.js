@@ -148,6 +148,8 @@
         function deleteWidget(widgetId)
         {
 
+            console.log(widgetId);
+            console.log("above the is widget id that gets sent to the service for deleting");
             var promise = WidgetService.deleteWidget(userId, websiteId, pageId, widgetId);
 
             promise

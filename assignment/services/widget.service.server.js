@@ -213,6 +213,7 @@ module.exports = function(app)
             widgets.push(widget)
         } else {
             var widgetId = req.params['wgid'];
+            console.log(req.params['wgid']);
             for(var wg in widgets)
             {
                 if(widgets[wg]._id == widgetId)
@@ -233,6 +234,7 @@ module.exports = function(app)
 
         for(var w in widgets)
         {
+
             if(widgets[w]._id == widgetId)
             {
                 widgets.splice(w, 1);

@@ -31,6 +31,7 @@ module.exports = function(app)
             if(pages[p]._id == pageId)
             {
                 pages[p].name = page.name;
+                pages[p].title = page.title;
             }
         }
         res.sendStatus(200);

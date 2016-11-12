@@ -4,8 +4,10 @@ var app = express();
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/assignment');
 
-
+var postSchema = mongoose.Schema({});
 // Add headers
 app.use(function (req, res, next) {
 
@@ -29,7 +31,8 @@ app.use(function (req, res, next) {
 // configure a public directory to host static content
 app.use(express.static(__dirname + '/public'));
 
-require ("./test/app.js")(app);
+
+/*require ("./test/app.js")(app);*/
 require("./image upload practice/app.js")(app);
 require("./assignment/todo/todo.service.server.js")(app);
 
@@ -37,6 +40,9 @@ require("./assignment/todo/todo.service.server.js")(app);
 require("./assignment/app")(app);
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP;
 var port      = process.env.OPENSHIFT_NODEJS_PORT || 3000;
+require("./project/app")(app);
+
+
 
 
 app.listen(port, ipaddress);

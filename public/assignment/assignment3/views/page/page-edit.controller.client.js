@@ -25,7 +25,13 @@
 
         function updatePage(userId, websiteId, pageId, name, title)
         {
-            var promise = PageService.updatePage(userId, websiteId, pageId, {name: vm.page.name, title: vm.page.title});
+            console.log(userId + " userId");
+            console.log(websiteId + " websiteId");
+            console.log(pageId + " pageId");
+            console.log(name + " page name");
+            console.log(title + " page title");
+
+            var promise = PageService.updatePage(userId, websiteId, pageId, {name: name, title: title});
             promise
                 .success(function page(page){
                     $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
