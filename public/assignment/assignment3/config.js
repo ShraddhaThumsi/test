@@ -10,7 +10,7 @@
         $routeProvider
 
             .when("/login", {
-                templateUrl: "views/user/login.view.client.html",
+                templateUrl: "views/user/loginSignup.view.client.html",
                 controller: "LoginController",
                 controllerAs: "model"
             })
