@@ -3,28 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name = "viewport" content = "width=device-width, initial-scale=1">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <!--<link href="../css/style.css" rel="stylesheet"/>-->
-    <link href="css/jquery-ui.css" rel="stylesheet"/>
-    <script src="../jquery/jquery-3.1.1.min.js"></script>
-    <script src="../jquery/jquery-ui.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.min.js"></script>
-    <link href="css/style.css" rel="stylesheet"/>
-    <script src = "app.js" rel = "script"></script>
-    <script src = "config.js" rel = "script"></script>
-    <script src = "views/recipe/recipeSearchEngine.controller.client.js" rel = "script"></script>
-    <script src = "views/recipe/addRecipeFromMemory.controller.client.js" rel = "script"></script>
-    <script src = "views/user/loginSignup.controller.client.js" rel = "script"></script>
-    <script src = "views/user/register.controller.client.js" rel = "script"></script>
-    <script src = "views/user/updateUser.controller.client.js" rel = "script"></script>
 
-    <script src = "views/recipe/userRecipe.controller.client.js" rel = "script"></script>
 
+    <script src = "./app.js" rel = "script"></script>
     <title>Project Home page</title>
 </head>
 <body>
+<h1>Search for Recipes</h1>
 
-<div ng-view id = "MainDiv"></div>
+<form>
+    <input name = "query1">
+    <button onclick="loadDoc(document.getElementsByName('query1')[0].value)" type="button">Ask for query</button>
+</form>
+
+<p id = "enterJSON"></p>
+<!--<div ng-view id = "MainDiv"></div>-->
 </body>
 </html>

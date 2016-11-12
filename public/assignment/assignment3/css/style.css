@@ -192,7 +192,7 @@ body {
 .youtube-widget
 {
     position: relative;
-    padding-bottom: 56.25%; /* 16:9 */
+    padding-bottom: 45.25%; /* 16:9 */
     height: 0;
 }
 
@@ -201,6 +201,16 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 85%;
     height: 100%;
+}
+
+.glyphicon .glyphicon-cog
+{
+    z-index: 2000;
+}
+
+.glyphicon .glyphicon-align-justify
+{
+    z-index: 2000;
 }
