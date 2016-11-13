@@ -6,7 +6,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/assignment');
-
+var multer  = require('multer');
 var postSchema = mongoose.Schema({});
 // Add headers
 app.use(function (req, res, next) {
@@ -40,9 +40,22 @@ require("./assignment/todo/todo.service.server.js")(app);
 require("./assignment/app")(app);
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP;
 var port      = process.env.OPENSHIFT_NODEJS_PORT || 3000;
-/*require("./project/app")(app);*/
+require("./public/project/app")(app);
+require("../web-dev-template/project/app")(app);
 
+app.use('/uploads', express.static(__dirname + "./uploads"));
+var multer = require('multer');
+var upload = multer({ dest: './uploads' });
 
-
+//to upload file to mongodb
+var router = express.Router();
 
 app.listen(port, ipaddress);
+
+
+
+
+//------------------------------------------------------------------------
+//File upload code
+
+
