@@ -205,12 +205,3 @@ body {
     height: 100%;
 }
 
-.glyphicon .glyphicon-cog
-{
-    z-index: 2000;
-}
-
-.glyphicon .glyphicon-align-justify
-{
-    z-index: 2000;
-}

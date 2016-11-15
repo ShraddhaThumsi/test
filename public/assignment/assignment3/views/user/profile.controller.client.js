@@ -7,7 +7,7 @@
         .controller("ProfileController", ProfileController);
     function ProfileController($routeParams, $location, UserService) {
         var vm = this;
-        var userId = parseInt($routeParams.uid);
+        var userId = $routeParams.uid;
         vm.userId = userId;
         function init()
         {
@@ -30,7 +30,7 @@
         vm.updateUser = updateUser;
         function updateUser()
         {
-            var updatedUser = UserService.updateUser(vm.user);
+            var updatedUser = UserService.updateUser(userId, vm.user);
 
 
             $location.url("/user/" + userId);

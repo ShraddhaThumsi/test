@@ -5,7 +5,7 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/assignment');
+/*mongoose.connect('mongodb://localhost/assignment');*/
 var multer  = require('multer');
 var postSchema = mongoose.Schema({});
 // Add headers
@@ -51,8 +51,32 @@ var upload = multer({ dest: './uploads' });
 var router = express.Router();
 
 app.listen(port, ipaddress);
+/*
 
+var courseSchema = new mongoose.Schema({
+    title: String,
+    seats: {type: Number, default: 25},
+    starts: {type: Date, default: Date.now}
+}, {collection: "course"});
 
+app.get("/rest/course", function(req, res){
+    res.send("Hello world");
+
+})
+
+var course = mongoose.model("Course", courseSchema);
+course.create({title: "ASP.NET", seats: 34}, function(err, results){
+    console.log(err);
+    console.log(results);
+});
+
+course.create({title: "JAVA", seats: 45}, function(err, results){
+    console.log(err);
+    console.log("above is the error in inserting row, if any");
+    console.log(results);
+    console.log("above is the resultant record after inserting into database");
+})
+*/
 
 
 //------------------------------------------------------------------------

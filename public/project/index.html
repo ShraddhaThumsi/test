@@ -6,14 +6,18 @@
 
 
     <script src = "./app.js" rel = "script"></script>
+    <!--<script src = "./appForupload.js" rel = "script"></script>-->
+    <script src = "../../project/app.js" rel = "script"></script>
     <title>Project Home page</title>
 </head>
 <body>
 <h1>Search for Recipes</h1>
 
-<form>
+<form action="/api/example/upload" method="POST" enctype="multipart/form-data">
     <input name = "query1">
     <button onclick="loadDoc(document.getElementsByName('query1')[0].value)" type="button">Ask for query</button>
+    <input name="myFile" type = "file" id = "fileUpload">
+    <button type="submit">Upload Recipe</button>
 </form>
 
 <p id = "enterJSON"></p>

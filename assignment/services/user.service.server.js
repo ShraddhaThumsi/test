@@ -1,7 +1,7 @@
 /**
  * Created by shraddha on 10/27/16.
  */
-module.exports = function(app){
+module.exports = function(app, model){
     var users = [
         {_id: "123", username: "alice", password: "alice",
             firstName: "Alice", lastName: "Wonder", email: "alice@wonderland.com"},
@@ -20,15 +20,41 @@ module.exports = function(app){
 
     function createUser(req, res){
         var user = req.body;
-        user._id = (new Date()).getTime();
-        users.push(user);
-        res.send(user);
+        /*user._id = (new Date()).getTime();
+        users.push(user);*/
+        model
+            .userModel
+            .createUser(user)
+            .then(function(newUser) {
+                res.send(newUser);
+            },
+                function(error)
+                {
+                    res.sendStatus(400).send(error);
+                }
+
+            );
+
     }
 
     function updateUser(req, res)
     {
         var user = req.body;
-        var userId = req.params['uid'];
+        var userId = req.params.uid;
+        model
+            .userModel
+            .updateUser(req.params.uid, user)
+            .then(function(status) {
+                if(status)
+                {
+                    res.send(200);
+                }
+
+            }, function(error) {
+                res.sendStatus(400).send(error);
+
+            });
+        /*var userId = req.params['uid'];
         for(var u in users)
         {
             if(users[u]._id == userId)
@@ -36,7 +62,7 @@ module.exports = function(app){
                 users[u] = user;
             }
         }
-        res.send(200);
+        res.send(200);*/
     }
 
     function deleteUser(req, res)
@@ -98,8 +124,29 @@ module.exports = function(app){
 
     function findUserById(req, res)
     {
-        var userId = parseInt(req.params.uid);
-        for(var u in users)
+        var userId = req.params.uid;
+        model
+            .userModel
+            .findUserById(req.params.uid)
+            .then(function(user){
+
+                if(user)
+                {
+                    res.send(user);
+                }
+
+                else
+                {
+                    res.send('0');
+                }
+                },
+                function(error)
+                {
+                    res.sendStatus(400).send(error);
+                }
+            )
+        /*res.send('0');*/
+        /*for(var u in users)
         {
             if(parseInt(users[u]._id) === userId)
             {
@@ -107,6 +154,6 @@ module.exports = function(app){
                 return;
             }
         }
-        res.send('0');
+        res.send('0');*/
     }
 }
