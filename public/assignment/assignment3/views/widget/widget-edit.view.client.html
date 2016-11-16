@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-default navbar-fixed-top pageColorRenderer">
     <div class="container-fluid">
         <div class="navbar-header floatRectifier">
@@ -23,11 +24,10 @@
 
 <div class="container">
     <div class = "container">
-        <div ng-include="'views/widget/widget-'+model.widget.widgetType.toLowerCase()+
+        <div ng-if="model.widget.widgetType" ng-include="'views/widget/widget-'+model.widget.widgetType.toLowerCase()+
         '-edit.view.client.html'"></div>
     </div>
 </div>
-
 
 <nav class="navbar navbar-default navbar-fixed-bottom profileColorRenderer">
     <div class="container-fluid">
