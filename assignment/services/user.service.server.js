@@ -45,7 +45,7 @@ module.exports = function(app, model){
             .userModel
             .updateUser(req.params.uid, user)
             .then(function(status) {
-                    res.send(200);
+                    res.sendStatus(status);
 
 
             }, function(error) {

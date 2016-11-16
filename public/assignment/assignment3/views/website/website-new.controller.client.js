@@ -18,7 +18,7 @@
         vm.createWebsite = createWebsite;
         function createWebsite(name, description){
 
-            var website = {_id:"0", name: name, uid: userId, description: description};
+            var website = {name: name, uid: userId, description: description};
             var promise = WebsiteService.createWebsite(userId, website);
             promise
                 .success(function website(website){
