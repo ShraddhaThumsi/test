@@ -9,7 +9,9 @@ module.exports = function(){
     var api = {
         createUser: createUser,
         findUserById: findUserById,
-        updateUser: updateUser
+        updateUser: updateUser,
+        deleteUser: deleteUser,
+        findUserByCredentials:findUserByCredentials
     }
     return api;
     function createUser(user)
@@ -32,5 +34,18 @@ module.exports = function(){
                first: user.first,
                 last: user.last
             })
+    }
+
+    function deleteUser(userId)
+    {
+        return UserModel.remove({_id: userId});
+    }
+
+    function findUserByCredentials(username, password)
+    {
+        UserModel.find({
+            username: username,
+            password: password
+        })
     }
 };

@@ -45,10 +45,8 @@ module.exports = function(app, model){
             .userModel
             .updateUser(req.params.uid, user)
             .then(function(status) {
-                if(status)
-                {
                     res.send(200);
-                }
+
 
             }, function(error) {
                 res.sendStatus(400).send(error);
@@ -66,8 +64,21 @@ module.exports = function(app, model){
     }
 
     function deleteUser(req, res)
+
     {
-        var userId = req.params['uid'];
+        var userId = req.params.uid;
+        model
+            .userModel
+            .deleteUser(userId)
+            .then(function(status){
+                res.send(200);
+
+
+            }, function(error){
+                res.sendStatus(400).send(error);
+
+            });
+        /*var userId = req.params['uid'];
         for(var u in users)
         {
             if(users[u]._id == userId)
@@ -75,7 +86,7 @@ module.exports = function(app, model){
                 users.splice(u, 1);
             }
         }
-        res.send(200);
+        res.send(200);*/
     }
 
     function findUser(req,res)
@@ -111,7 +122,26 @@ module.exports = function(app, model){
     {
         var userName = req.query.username;
         var userPassword = req.query.password;
-        for(var u in users)
+        model
+            .userModel
+            .findUserByCredentials(userName, userPassword)
+            .then(function(users){
+                if(users)
+                {
+                    res.json(users[0]);
+                }
+                else
+                    {
+                        res.send('0');
+                    }
+
+
+            }, function(error){
+
+                res.sendStatus(400).send(error);
+            })
+
+        /*for(var u in users)
         {
             if((users[u].username === userName) && (users[u].password === userPassword))
             {
@@ -119,7 +149,7 @@ module.exports = function(app, model){
                 return;
             }
         }
-        res.send('0');
+        res.send('0');*/
     }
 
     function findUserById(req, res)
