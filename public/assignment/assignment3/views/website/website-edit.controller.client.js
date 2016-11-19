@@ -8,9 +8,9 @@
     function editWebsiteController($routeParams, WebsiteService, $location)
     {
         var vm = this;
-        var userId = parseInt($routeParams['uid']);
+        var userId = $routeParams['uid'];
         vm.userId = userId;
-        var websiteId = parseInt($routeParams['wid']);
+        var websiteId = $routeParams['wid'];
         vm.websiteId = websiteId;
         /*var websites = WebsiteService.findWebsitesByUser(userId);
         vm.websites = websites;*/

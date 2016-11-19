@@ -1,6 +1,7 @@
 /**
  * Created by shraddha on 11/9/16.
  */
+/*
 
 module.exports = function (app) {
     var multer = require('multer'); // npm install multer --save
@@ -20,6 +21,7 @@ module.exports = function (app) {
     }
 }
 
+*/
 
 
 function loadDoc(queryName) {

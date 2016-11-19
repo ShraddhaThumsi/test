@@ -9,7 +9,7 @@
     function WebsiteListController($routeParams, $location, WebsiteService)
     {
         var vm = this;
-        var userId = parseInt($routeParams['uid']);
+        var userId = $routeParams['uid'];
         vm.goToPageList = goToPageList;
         vm.userId = userId;
 

@@ -9,9 +9,9 @@
     function newPageController($routeParams, $location, PageService)
     {
         var vm = this;
-        var userId = parseInt($routeParams['uid']);
+        var userId = $routeParams['uid'];
         vm.userId = userId;
-        var websiteId = parseInt($routeParams['wid']);
+        var websiteId = $routeParams['wid'];
         vm.websiteId = websiteId;
         vm.createPage = createPage;
         function createPage(name)

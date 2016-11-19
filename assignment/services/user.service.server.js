@@ -71,7 +71,7 @@ module.exports = function(app, model){
             .userModel
             .deleteUser(userId)
             .then(function(status){
-                res.send(200);
+                res.sendStatus(200);
 
 
             }, function(error){
@@ -107,7 +107,23 @@ module.exports = function(app, model){
     function findUserByUsername(req, res)
     {
         var userName = req.query.username;
-        for(var u in users)
+        model
+            .userModel
+            .findUserByUserName(userName)
+            .then(function(users){
+                if(users)
+                {
+                    res.json(users[0]);
+                }
+
+            else
+                {
+                    res.send('0');
+                }
+            }, function(error){
+                res.sendStatus(400).send(error);
+            })
+        /*for(var u in users)
         {
             if(users[u].username === userName)
             {
@@ -115,7 +131,7 @@ module.exports = function(app, model){
                 return;
             }
         }
-        res.send('0');
+        res.send('0');*/
     }
 
     function findUserByCredentials(req, res)

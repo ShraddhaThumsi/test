@@ -15,7 +15,7 @@
             promise
                 .success(function(user){
                     /*console.log(aaa);*/
-                    if(user === '0')
+                    if(user == '0')
                     {
                         vm.error = "No such user";
                     }

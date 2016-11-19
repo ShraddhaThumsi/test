@@ -205,3 +205,10 @@ body {
     height: 100%;
 }
 
+.widgetRender
+{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 0px;
+    margin-top: 10px;
+}

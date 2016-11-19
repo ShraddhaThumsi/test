@@ -9,9 +9,10 @@
         var vm = this;
         var userId = $routeParams.uid;
         vm.userId = userId;
+        console.log(vm.userId);
         function init()
         {
-        var promise = UserService.findUserById(userId);
+        var promise = UserService.findUserById(vm.userId);
             promise
             .success(function user(user){
 
@@ -44,6 +45,9 @@
         {
 
             var promise = UserService.deleteUser(vm.user._id);
+           // console.log(vm.user._id);
+           // console.log("above is the user id sent from profile controller, to the database, for fetching user by id");
+
             promise
                 .success(function(){
                     $location.url("/login");

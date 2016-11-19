@@ -11,7 +11,8 @@ module.exports = function(){
         findUserById: findUserById,
         updateUser: updateUser,
         deleteUser: deleteUser,
-        findUserByCredentials:findUserByCredentials
+        findUserByCredentials:findUserByCredentials,
+        findUserByUserName: findUserByUserName
     }
     return api;
     function createUser(user)
@@ -21,7 +22,9 @@ module.exports = function(){
 
     function findUserById(userId)
     {
-        return UserModel.findById(userId);
+        var user = UserModel.findById(userId);
+
+        return user;
     }
 
     function updateUser(userId, user)
@@ -31,8 +34,8 @@ module.exports = function(){
                 _id: userId
             },
             {
-               first: user.first,
-                last: user.last
+               firstName: user.firstName,
+                lastName: user.lastName
             })
     }
 
@@ -43,9 +46,14 @@ module.exports = function(){
 
     function findUserByCredentials(username, password)
     {
-        UserModel.find({
+        return UserModel.find({
             username: username,
             password: password
         })
+    }
+
+    function findUserByUserName(username)
+    {
+        return UserModel.find({username: username})
     }
 };

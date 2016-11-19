@@ -8,8 +8,7 @@
 
     function UserService($http) {
 
-        var idGenerator = 700;
-        console.log(idGenerator);
+
 
 
         var api = {
@@ -58,7 +57,7 @@
 
         function updateUser(user) {
             var url = "/api/user/"+user._id;
-            $http.put(url, user);
+            return $http.put(url, user);
 
         }
 

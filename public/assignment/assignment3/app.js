@@ -4,6 +4,8 @@
 (function()
     {
     angular
+        // .module("WebAppMaker", ['ngRoute', 'utility', 'textAngular']);
+
         .module("WebAppMaker", ["ngRoute", "utility"]);
 
     })();
