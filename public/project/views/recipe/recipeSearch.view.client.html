@@ -1,0 +1,15 @@
+
+
+<h1>Search for Recipes</h1>
+
+<form action="/api/example/upload" method="POST" enctype="multipart/form-data">
+    <input name = "query1">
+    <a ng-click="model.loadDoc(document.getElementsByName('query1')[0].value)" class = "btn btn-success">Ask for query</a>
+    <input name="myFile" type = "file" id = "fileUpload">
+    <button type="submit">Upload Recipe</button>
+</form>
+<a href="#/login" class = "btn btn-warning">Logout</a>
+<a href="#/myRecipes" class = "btn btn-info"> View your Recipes </a>
+<p id = "enterJSON"></p>
+<!--<div ng-view id = "MainDiv"></div>-->
+
