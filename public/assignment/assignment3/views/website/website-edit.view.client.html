@@ -48,14 +48,14 @@
 
         <div class = "col-md-8">
             <form class = "form-group">
-                <label for = "newWebsiteName" class = "newWebsiteSpaceMaker"></label>
-                <input ng-model = "model.website.name" type = "text" id = "newWebsiteName" placeholder = "Name" class = "form-control">Name</input>
-                <label for = "newWebsiteDescription"></label>
+                <label for = "newWebsiteName" class = "newWebsiteSpaceMaker">Name</label>
+                <input ng-model = "model.website.name" type = "text" id = "newWebsiteName" placeholder = "Name" class = "form-control">
+                <label for = "newWebsiteDescription"> Description</label>
                 <textarea ng-model = "model.website.description" rows = "10" cols = "50" id = "newWebsiteDescription" class = "form-control" placeholder="Description">
-                    Description
+
                 </textarea>
 
-                <a ng-click="model.updateWebsite(model.websiteId, model.name, model.description)" class = "btn btn-block btn-primary form-group">Submit</a>
+                <a ng-click="model.updateWebsite(model.websiteId, model.website.name, model.website.description)" class = "btn btn-block btn-primary form-group">Submit</a>
 
                 <a ng-click="model.deleteWebsite()" class = "btn btn-block btn-danger form-group">Delete Website</a>
             </form>

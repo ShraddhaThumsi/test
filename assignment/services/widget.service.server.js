@@ -1,7 +1,7 @@
 /**
  * Created by shraddha on 10/27/16.
  */
-module.exports = function(app)
+module.exports = function(app, model)
 {
     var widgets =
         [
@@ -25,7 +25,7 @@ module.exports = function(app)
     app.get("/api/user/:uid/website/:wid/page/:pid/widget/:wgid", findWidgetById);
     app.put("/api/user/:uid/website/:wid/page/:pid/widget/:wgid", updateWidget);
     app.delete("/api/user/:uid/website/:wid/page/:pid/widget/:wgid", deleteWidget);
-    app.post("/api/upload", upload.single('myFile'), uploadImage);
+   // app.post("/api/upload", upload.single('myFile'), uploadImage);
     app.put("/api/user/:uid/website/:wid/page/:pid/widget", updateWidgetPosition);
 
 
@@ -52,22 +52,30 @@ module.exports = function(app)
         var destination = myFile.destination;  // folder where file is saved to
         var size = myFile.size;
         var mimetype = myFile.mimetype;
-        for(var wg in widgets)
+        model
+            .widgetModel
+            .createWidget(pageId, myFile)
+            .then(function(newWidget){
+                res.send(newWidget);
+            }, function(error){
+                res.sendStatus(400).send(error);
+            })
+        /*for(var wg in widgets)
         {
             if(widgets[wg]._id == widgetId)
             {
                 widgets[wg].url = '/../public/assignment/assignment3/views/widget/upload'+filename;
                 break;
             }
-        }
-        for(var wg in tmpWidgets)
+        }*/
+        /*for(var wg in tmpWidgets)
         {
             if(tmpWidgets[wg]._id == widgetId)
             {
                 tmpWidgets[wg].url = '/../public/assignment/assignment3/views/widget/upload'+filename;
                 break;
             }
-        }
+        }*/
         //var url = "/assignment/assignment3/index.html#/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId;
         console.log(req.body);
         console.log("above is the request body");
@@ -88,35 +96,45 @@ module.exports = function(app)
         if(newWidget.widgetType.toString() == "HEADER")
         {
             var newWidget = {
-                _id: (new Date()).getTime().toString(),
+
                 widgetType: newWidget.widgetType,
-                pageId: newWidget.pageId,
+                _page: newWidget._page,
                 size: newWidget.size,
-                text: newWidget.text,
-                isNew: true
+                text: newWidget.text
+                //isNew: true
             };
-            tmpWidgets.push(newWidget);
+            model
+                .widgetModel
+                .createWidget(req.params.uid, newWidget)
+                .then(function(newWidget){
+                    res.send(newWidget);
+                }, function(error){
+                    res.sendStatus(400).send(error);
+                })
 
-
-            res.send(newWidget);
         }
 
         if(newWidget.widgetType.toString() == "IMAGE")
         {
             var newWidget = {
-                _id: (new Date()).getTime().toString(),
+
                 widgetType: newWidget.widgetType,
-                pageId: newWidget.pageId,
+                _page: newWidget._page,
                 width: newWidget.width,
                 text: newWidget.text,
-                url: newWidget.url,
-                imageData:null,
-                isNew: true
+                url: newWidget.url
             };
-            tmpWidgets.push(newWidget);
+            model
+                .widgetModel
+                .createWidget(req.params.uid, newWidget)
+                .then(function(newWidget){
+                    res.send(newWidget);
+                }, function(error){
+                    res.sendStatus(400).send(error);
+                })
 
 
-            res.send(newWidget);
+
         }
 
         if(newWidget.widgetType.toString() == "YOUTUBE")
@@ -126,13 +144,19 @@ module.exports = function(app)
                 widgetType: newWidget.widgetType,
                 pageId: newWidget.pageId,
                 width: newWidget.width,
-                text: newWidget.text,
-                isNew: true
+                text: newWidget.text
             };
-            tmpWidgets.push(newWidget);
+            model
+                .widgetModel
+                .createWidget(req.params.uid, newWidget)
+                .then(function(newWidget){
+                    res.send(newWidget);
+                }, function(error){
+                    res.sendStatus(400).send(error);
+                })
 
 
-            res.send(newWidget);
+
         }
 
         if(newWidget.widgetType.toString() == "HTML")
@@ -141,13 +165,16 @@ module.exports = function(app)
                 _id: (new Date()).getTime().toString(),
                 widgetType: newWidget.widgetType,
                 pageId: newWidget.pageId,
-                text: newWidget.text,
-                isNew: true
-            };
-            tmpWidgets.push(newWidget);
+                text: newWidget.text};
 
-
-            res.send(newWidget);
+            model
+                .widgetModel
+                .createWidget(req.params.uid, newWidget)
+                .then(function(newWidget){
+                    res.send(newWidget);
+                }, function(error){
+                    res.sendStatus(400).send(error);
+                })
         }
     }
 
@@ -156,28 +183,60 @@ module.exports = function(app)
     function findWidgetsByPageId(req, res)
     {
 
-        var pageId = parseInt(req.params.pid);
-        var result = [];
-        for(var wg in widgets)
+        var pageId = req.body._page;
+        model
+            .widgetModel
+            .findAllWidgetsForPage(pageId)
+            .then(function(widgets){
+                if(widgets)
+                {
+                    res.send(widgets);
+                }
+
+                else
+                {
+                    res.send('0');
+                }
+            }, function(error){
+                res.sendStatus(400).send(error);
+            })
+        /*for(var wg in widgets)
         {
-            if(parseInt(widgets[wg].pageId) === pageId)
+            if(widgets[wg].pageId== pageId)
             {
                 result.push(widgets[wg]);
 
             }
         }
 
-        res.send(result);
+        res.send(result);*/
     }
 
     function findWidgetById(req, res)
     {
-        var widgetId = parseInt(req.params['wgid']);
+        var widgetId = req.params['wgid'];
 
+        var pageId = req.body._page;
 
-        for(var wg in widgets)
+        model
+            .widgetModel
+            .findWidgetById(pageId, widgetId)
+            .then(function(widget){
+                if(widget)
+                {
+                    res.send(widget);
+                }
+                else
+                {
+                    res.send('0');
+                }
+            }, function(error){
+                res.sendStatus(400).send(error);
+            })
+
+        /*for(var wg in widgets)
         {
-            if(parseInt(widgets[wg]._id) === widgetId)
+            if(widgets[wg]._id == widgetId)
             {
 
 
@@ -185,17 +244,8 @@ module.exports = function(app)
                 console.log(widgets[wg]);
                 res.send(widgets[wg]);
             }
-        }
-        for(var wg in tmpWidgets)
-        {
-            if(parseInt(tmpWidgets[wg]._id) === widgetId)
-            {
+        }*/
 
-                console.log("reporting from widget server service, this is the widget found for the given ID");
-                console.log(tmpWidgets[wg]);
-                res.send(tmpWidgets[wg]);
-            }
-        }
 
     }
 
@@ -227,7 +277,16 @@ module.exports = function(app)
     {
         var widgetId = req.params['wgid'];
 
-        for(var w in widgets)
+        model
+            .widgetModel
+            .deleteWidget(widgetId)
+            .then(function(status)
+            {
+                res.send(200);
+;            }, function(error){
+                res.sendStatus(400).send(error);
+            })
+        /*for(var w in widgets)
         {
 
             if(widgets[w]._id == widgetId)
@@ -235,6 +294,6 @@ module.exports = function(app)
                 widgets.splice(w, 1);
             }
         }
-        res.sendStatus(200);
+        res.sendStatus(200);*/
     }
 }

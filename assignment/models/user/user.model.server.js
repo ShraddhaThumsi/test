@@ -2,6 +2,7 @@
  * Created by shraddha on 11/14/16.
  */
 module.exports = function(){
+    var model = {};
     var mongoose = require("mongoose");
     var UserSchema = require("./user.schema.server")();
     var UserModel = mongoose.model("UserModel", UserSchema);
@@ -12,9 +13,24 @@ module.exports = function(){
         updateUser: updateUser,
         deleteUser: deleteUser,
         findUserByCredentials:findUserByCredentials,
-        findUserByUserName: findUserByUserName
+        findUserByUserName: findUserByUserName,
+        findAllWebsitesForUser: findAllWebsitesForUser,
+        setModel: setModel
     }
     return api;
+    function setModel(_model)
+    {
+        model = _model;
+    }
+
+    function findAllWebsitesForUser(userId){
+
+        return UserModel
+            .findById(userId)
+            .populate("websites", "name")
+            .exec();
+
+    }
     function createUser(user)
     {
         return UserModel.create(user);

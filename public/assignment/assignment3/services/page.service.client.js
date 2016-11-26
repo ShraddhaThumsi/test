@@ -7,9 +7,6 @@
         .factory("PageService", PageService);
 
     function PageService($http){
-        var idGenerator = 1200;
-        console.log(idGenerator);
-
 
         var api =
         {

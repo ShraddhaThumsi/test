@@ -43,7 +43,7 @@ module.exports = function(app, model){
         var userId = req.params.uid;
         model
             .userModel
-            .updateUser(req.params.uid, user)
+            .updateUser(userId, user)
             .then(function(status) {
                     res.sendStatus(status);
 
@@ -91,8 +91,27 @@ module.exports = function(app, model){
 
     function findUser(req,res)
     {
+        var username = req.query.username;
+        var password = req.query.password;
+        model
+            .userModel
+            .findUserByCredentials(username, password)
+            .then(function(users){
+                if(users)
+                {
+                    res.json(users[0]);
+                }
+
+                else
+                {
+                    res.send('0');
+                }
+            } , function(error){
+                res.sendStatus(400).send(error);
+            });
+
         /*var params = req.params;*/
-        var query = req.query;
+        /*var query = req.query;
 
         if(query.username && query.password)
         {
@@ -101,7 +120,7 @@ module.exports = function(app, model){
         {
             findUserByUsername(req, res);
         }
-        res.send(users);
+        res.send(users);*/
     }
 
     function findUserByUsername(req, res)

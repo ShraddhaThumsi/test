@@ -18,6 +18,7 @@
 </nav>
 
 
+
 <div class="container">
     <form>
        <div class="form-group">
@@ -50,6 +51,11 @@
         <a class="btn btn-warning  btn-block"
            ng-click = "model.deleteUser(model.user._id)">Delete Profile</a>
 </div>
+
+<div ng-show = "model.success" class ="alert alert-success" role="alert">
+    {{model.success}}
+</div>
+
 
 <nav class="navbar navbar-default navbar-fixed-bottom profileColorRenderer">
     <div class="container-fluid">

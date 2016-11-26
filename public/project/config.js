@@ -20,20 +20,20 @@
                 controllerAs: "model"
             })
 
-            .when("/reset", {
+            .when("/user/:uid/reset", {
                 templateUrl: "views/user/resetLogin.view.client.html",
                 controller: "ResetController",
                 controllerAs: "model"
             })
 
-            .when("/recipeSearch", {
-                templateUrl: "views/user/:uid/recipeSearch.view.client.html",
+            .when("/user/:uid/recipeSearch", {
+                templateUrl: "views/recipe/recipeSearch.view.client.html",
                 controller: "RecipeSearchController",
                 controllerAs: "model"
             })
 
-            .when("/myRecipes", {
-                templateUrl: "views/user/:uid/myRecipes.view.client.html",
+            .when("/user/:uid/myRecipes", {
+                templateUrl: "views/recipe/myRecipes.view.client.html",
                 controller: "MyRecipeController",
                 controllerAs: "model"
             })

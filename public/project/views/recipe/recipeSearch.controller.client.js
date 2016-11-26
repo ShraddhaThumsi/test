@@ -6,10 +6,13 @@
         .module("RecipeMaker")
         .controller("RecipeSearchController", RecipeSearchController);
 
-    function RecipeSearchController() {
+    function RecipeSearchController($routeParams) {
         var vm = this;
+        var userId =  $routeParams.uid;
+        vm.userId = userId;
         vm.loadDoc = loadDoc;
         function loadDoc(queryName) {
+            vm.queryName = queryName;
             var recipe = null;
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {

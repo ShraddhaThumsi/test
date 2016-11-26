@@ -1,7 +1,12 @@
 /**
  * Created by shraddha on 11/16/16.
  */
+
+
+
+
 module.exports = function(){
+    var model = {};
     var mongoose = require("mongoose");
     var WebsiteSchema = require("./website.schema.server")();
     var WebsiteModel = mongoose.model("WebsiteModel", WebsiteSchema);
@@ -11,23 +16,54 @@ module.exports = function(){
         findWebsiteById: findWebsiteById,
         findAllWebsitesForUser: findAllWebsitesForUser,
         updateWebsite: updateWebsite,
-        deleteWebsite: deleteWebsite
+        deleteWebsite: deleteWebsite,
+        findPagesForWebsite: findPagesForWebsite,
+        setModel: setModel
 
 }
     return api;
-    function createWebsite(website)
+
+    function setModel(_model){
+        model = _model;
+    }
+
+    function findPagesForWebsite(websiteId)
     {
-        return WebsiteModel.create(website);
+         return WebsiteModel
+            .findById(websiteId)
+            .populate("pages")
+            .exec();
+            /*.populate("pages", "name")
+            .exec();*/
+
+    }
+    function createWebsite(userId, website)
+    {
+        return WebsiteModel
+            .create(website)
+            .then(function(WebsiteObj){
+                model
+                    .userModel
+                    .findUserById(userId)
+                    .then(function(userObj){
+                        userObj.websites.push(WebsiteObj);
+                        userObj.save();
+                        return userObj;
+                    })
+            })
+
     }
 
     function findWebsiteById(websiteId)
     {
-        return WebsiteModel.find({_id: websiteId})
+      //  return WebsiteModel.find({_id: websiteId})
+        return WebsiteModel.find({_id: websiteId});
     }
 
     function findAllWebsitesForUser(userId)
     {
-        return WebsiteModel.find({uid: userId})
+        return model.userModel.findAllWebsitesForUser(userId);
+        //return WebsiteModel.find({uid: userId})
     }
 
     function updateWebsite(websiteId, website)

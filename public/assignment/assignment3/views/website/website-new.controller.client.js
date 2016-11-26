@@ -22,10 +22,9 @@
             var promise = WebsiteService.createWebsite(userId, website);
             promise
                 .success(function website(website){
-                    if(website)
-                    {
+
                         $location.url("/user/" + vm.userId+"/website");
-                    }
+
                 })
                 .error(function(aaa){
                     console.log(aaa);
@@ -44,12 +43,12 @@
         function init(){
             var promise = WebsiteService.findWebsitesByUser(userId);
             promise
-                .success(function website(websites){
-                    if(websites)
+                .success(function website(user){
+                    if(user.websites)
                     {
 
-                        vm.websites = websites;
-                        console.log(websites);
+                        vm.websites = user.websites;
+                        console.log(user.websites);
                     }
 
                 })

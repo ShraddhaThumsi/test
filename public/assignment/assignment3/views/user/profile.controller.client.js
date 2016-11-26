@@ -31,10 +31,20 @@
         vm.updateUser = updateUser;
         function updateUser()
         {
-            var updatedUser = UserService.updateUser(userId, vm.user);
+            console.log(vm.user);
+            var promise = UserService.updateUser(userId, vm.user);
+            promise
+                .success(function(updatedUser)
+                {
+                    $location.url("/user/" + userId);
+                    vm.success = "Your profile was successfully saved."
+                })
+                .error(function(error){
+                    console.log(error);
+                })
 
 
-            $location.url("/user/" + userId);
+
         }
 
 

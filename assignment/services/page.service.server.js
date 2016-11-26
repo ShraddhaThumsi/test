@@ -17,11 +17,12 @@ module.exports = function(app, model)
     function createPage(req, res)
     {
         var page = req.body;
+
         model
             .pageModel
-            .createPage(page)
+            .createPage(req.params.wid, req.body)
             .then(function(newPage){
-                res.send(newPage)
+                res.json(newPage);
             }, function(error){
                 res.sendStatus(400).send(error);
             })
@@ -76,23 +77,17 @@ module.exports = function(app, model)
 
     function findAllPagesForWebsite(req, res)
     {
-        var websiteId = parseInt(req.params.wid);
-        var pagesToReturn = [];
+        var websiteId = req.params.wid;
         model
             .pageModel
-            .findAllPagesForWebsite(websiteId)
+            .findAllPagesForWebsite(req.params.wid)
             .then(function(pages){
-                if(pages)
-                {
-                    res.send(pages)
-                }
-                else
-                {
-                    res.send('0');
-                }
+
+                    res.json(pages)
+
             }, function(error){
                 res.sendStatus(400).send(error);
-            })
+            });
         /*for (var p in pages)
         {
             if(parseInt(pages[p].wid) === websiteId)

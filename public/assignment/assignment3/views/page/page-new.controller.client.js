@@ -14,16 +14,16 @@
         var websiteId = $routeParams['wid'];
         vm.websiteId = websiteId;
         vm.createPage = createPage;
-        function createPage(name)
+        function createPage(name, description)
         {
-            var page = {_id: "0", name: name, wid: websiteId};
+
+            var page = {name: vm.name, title: vm.title}
             var promise = PageService.createPage(userId, websiteId, page);
             promise
                 .success(function page(newPage){
-                    if(newPage)
-                    {
+
                         $location.url("/user/" + userId + "/website/" + websiteId + "/page");
-                    }
+
                 })
                 .error(function(aaa){
                 console.log(aaa);

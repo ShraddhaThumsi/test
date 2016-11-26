@@ -9,11 +9,11 @@
     function NewWidgetController($routeParams, $location, WidgetService)
     {
         var vm = this;
-        var userId = parseInt($routeParams['uid']);
+        var userId = $routeParams['uid'];
         vm.userId = userId;
-        var websiteId = parseInt($routeParams['wid']);
+        var websiteId = $routeParams['wid'];
         vm.websiteId = websiteId;
-        var pageId = parseInt($routeParams['pid']);
+        var pageId = $routeParams['pid'];
         vm.pageId = pageId;
 
         console.log(pageId)
@@ -21,7 +21,7 @@
         vm.createHeaderWidget = createHeaderWidget;
         function createHeaderWidget()
         {
-            var widget = {"_id": 0, "widgetType": "HEADER", "pageId": pageId, "size": 2, "text": " "};
+            var widget = { "widgetType": "HEADER", "pageId": pageId, "size": 2, "text": " "};
             var promise = WidgetService.createWidget(userId, websiteId, pageId, widget);
 
             promise

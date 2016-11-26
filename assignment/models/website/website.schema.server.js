@@ -3,12 +3,13 @@
  */
 module.exports = function(){
     var mongoose = require("mongoose");
+   // var PageSchema = require("../page/page.schema.server")();
     var WebsiteSchema = mongoose.Schema({
         name: String,
-        uid: String,
-        description: String
-
-    }, {collection: "website"});
+        description: String,
+       // dateCreated: {type: new Date(), default: Date.now()},
+        pages: [{type: mongoose.Schema.Types.ObjectId, ref: 'PageModel'}]
+    });
 
     return WebsiteSchema;
 };

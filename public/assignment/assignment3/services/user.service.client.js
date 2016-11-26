@@ -9,8 +9,6 @@
     function UserService($http) {
 
 
-
-
         var api = {
             findUserByCredentials: findUserByCredentials,
             findUserById: findUserById,
@@ -55,8 +53,8 @@
             return $http.get(url);
         }
 
-        function updateUser(user) {
-            var url = "/api/user/"+user._id;
+        function updateUser(userId, user) {
+            var url = "/api/user/"+userId;
             return $http.put(url, user);
 
         }

@@ -19,9 +19,10 @@ module.exports = function(app, model){
     function createWebsite(req,res)
     {
         var website = req.body;
+        console.log(website);
         model
             .websiteModel
-            .createWebsite(website)
+            .createWebsite(req.params.uid, website)
             .then(function(newWebsite)
             {
 
@@ -42,7 +43,7 @@ module.exports = function(app, model){
             .then(function(websites){
                 if(websites)
                 {
-                    res.send(websites);
+                    res.json(websites);
                 }
                 else
                 {
@@ -64,9 +65,10 @@ module.exports = function(app, model){
 
     function findWebsiteById(req, res){
         var websiteId = req.params.wid;
+        var userId = req.params.uid;
         model
             .websiteModel
-            .findWebsiteById(websiteId)
+            .findWebsiteById(userId, websiteId)
             .then(function(website){
                 if(website)
                 {
@@ -79,14 +81,6 @@ module.exports = function(app, model){
             }, function(error){
                 res.sendStatus(400).send(error);
             });
-        /*for(var w in websites){
-            if(parseInt(websites[w]._id) === websiteId)
-            {
-                res.send(websites[w]);
-                return;
-            }
-        }
-        res.send('0');*/
     }
 
     function updateWebsite(req, res)

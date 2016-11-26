@@ -1,0 +1,70 @@
+
+.aboutMeBackground
+{
+    background: url("../imagesForCustomStyling/tentativeBackground2.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.h1FontRender
+{
+    color: whitesmoke;
+}
+
+.h2FontRender
+{
+    color: burlywood;
+}
+
+
+.h3FontRender
+{
+    color: #fddfdf;
+}
+
+.h4FontRender
+{
+    color: deeppink;
+    display: none;
+}
+.navigationGlyph
+{
+    color: white;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
+.webdevImage
+{
+    position: relative;
+}
+
+.photoRender
+{
+    width: 200px;
+    height: 220px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.quoteRender
+{
+    color: limegreen;
+
+}
+
+.gejjeRender
+{
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+
+
+
+}

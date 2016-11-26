@@ -21,6 +21,7 @@
 
         function updateWebsite(websiteId, name, description)
         {
+
             var promise = WebsiteService.updateWebsite(userId, websiteId, {name: vm.website.name, description: vm.website.description});
             promise
                 .success(function website(website){
@@ -60,12 +61,12 @@
         function init(){
             var promise = WebsiteService.findWebsitesByUser(userId);
             promise
-                .success(function website(websites){
-                    if(websites)
+                .success(function website(user){
+                    if(user.websites)
                     {
 
-                        vm.websites = websites;
-                        console.log(websites);
+                        vm.websites = user.websites;
+                        console.log(user.websites);
                     }
 
                 })
