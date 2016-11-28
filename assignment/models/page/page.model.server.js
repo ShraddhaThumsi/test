@@ -22,32 +22,44 @@ module.exports = function(){
     }
     function createPage(websiteId, page)
     {
+
         return PageModel
             .create(page)
             .then(function(PageObj){
-                model
-                    .websiteModel
-                    .findWebsiteById(websiteId)
-                    .then(function(WebsiteObj){
-                        WebsiteObj.pages.push(PageObj);
-                        PageObj._website = WebsiteObj._id;
-                        PageObj.save();
-                        return WebsiteObj.save();
-                    })
-            },
+                    console.log(__filename);
+                    console.log(PageObj);
+                    //return PageObj;
+                    return model
+                        .websiteModel
+                        .findWebsiteById(websiteId)
+                        .then(function(WebsiteObj){
+
+                                WebsiteObj.pages.push(PageObj);
+                                PageObj._website = WebsiteObj._id;
+                                PageObj.save();
+                                WebsiteObj.save();
+                                console.log(__filename);
+                                console.log(PageObj);
+                                console.log(WebsiteObj);
+                                return PageObj;
+                            },
+                            function (error) {
+                                console.log(error);
+                            })
+                },
                 function(error)
                 {
                     console.log(error);
                 });
 
-      // return PageModel.create(page);
+        // return PageModel.create(page);
 
 
 
     }
 
     function findPageById(pageId){
-       return PageModel.find({_id: pageId})
+       return PageModel.findById(pageId)
 
     }
 

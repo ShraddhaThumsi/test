@@ -22,6 +22,8 @@ module.exports = function(app, model)
             .pageModel
             .createPage(req.params.wid, req.body)
             .then(function(newPage){
+                console.log(__filename);
+                console.log(newPage);
                 res.json(newPage);
             }, function(error){
                 res.sendStatus(400).send(error);

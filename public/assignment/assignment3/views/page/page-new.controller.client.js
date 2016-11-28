@@ -21,6 +21,7 @@
             var promise = PageService.createPage(userId, websiteId, page);
             promise
                 .success(function page(newPage){
+                    console.log(newPage);
 
                         $location.url("/user/" + userId + "/website/" + websiteId + "/page");
 

@@ -57,7 +57,8 @@ module.exports = function(){
     function findWebsiteById(websiteId)
     {
       //  return WebsiteModel.find({_id: websiteId})
-        return WebsiteModel.find({_id: websiteId});
+        //return WebsiteModel.find({_id: websiteId});
+        return WebsiteModel.findById(websiteId);
     }
 
     function findAllWebsitesForUser(userId)
