@@ -38,6 +38,10 @@
                 controllerAs: "model"
             })
 
+            /*.when("/guestRecipeSearch", {
+                templateUrl: "views/recipe/recipeSearch.view.client.html"
+            })*/
+
             .otherwise({redirectTo: "/login"});
 
     }

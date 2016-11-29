@@ -20,6 +20,7 @@
                     /*console.log(aaa);*/
                     if(user)
                     {
+                        vm.user = user;
                         $location.url("/user/" + user._id);
                     }
 
