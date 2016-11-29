@@ -26,7 +26,7 @@
                 controllerAs: "model"
             })
 
-            .when("/user/:uid/recipeSearch", {
+            .when("/user/:uid", {
                 templateUrl: "views/recipe/recipeSearch.view.client.html",
                 controller: "RecipeSearchController",
                 controllerAs: "model"

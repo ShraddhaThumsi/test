@@ -27,14 +27,6 @@
                     {
                         vm.error = "No such user";
                     }
-                    /*if(user == '0')
-                    {
-
-                    }
-                    else
-                    {
-
-                    }*/
 
                 })
                 .error(function(bbb){

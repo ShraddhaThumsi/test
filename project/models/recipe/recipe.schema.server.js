@@ -4,13 +4,11 @@
 module.exports = function(){
     var mongoose = require("mongoose");
     var RecipeSchema = mongoose.Schema({
-
-        userId: String,
         recipeName: String,
         recipeDescription: String,
         recipeJSON: JSON
 
-    }, {collection: "recipe"});
+    }, {collection: "recipeProject"});
 
     return RecipeSchema;
 }

@@ -3,12 +3,13 @@
 <h1>Search for Recipes</h1>
 
 <form action="/api/example/upload" method="POST" enctype="multipart/form-data">
-    <input ng-model = "model.queryName">
-    <a ng-click="model.loadDoc(model.queryName)" class = "btn btn-success">Ask for query</a>
-    <input name="myFile" type = "file" id = "fileUpload">
+    <input ng-model = "model.queryName" class="form-control">
+    <a ng-click="model.loadDoc(model.queryName)" class = "btn btn-block btn-success">Ask for query</a>
+    <input name="myFile" type = "file" id = "fileUpload" class="form-control">
     <button type="submit">Upload Recipe</button>
 </form>
-<a href="#/login" class = "btn btn-warning">Logout</a>
-<a href="#/user/{{model.userId}}/myRecipes" class = "btn btn-info"> View your Recipes </a>
+<a href="#/login" class = "btn btn-block btn-warning">Logout</a>
+<a href="#/user/{{model.userId}}/myRecipes" class = "btn btn-block btn-info"> View your Recipes </a>
+<a href= "#/user/{{model.userId}}/reset" class = "btn btn-block btn-warning form-group">Reset Credentials</a>
 <p id = "enterJSON"></p>
 

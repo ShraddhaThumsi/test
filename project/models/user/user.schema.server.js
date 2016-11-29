@@ -4,12 +4,12 @@
 module.exports = function(){
     var mongoose = require("mongoose");
     var UserSchema = mongoose.Schema({
-        _id: String,
         email: String,
         password: String,
         firstName: String,
-        lastName: String
-    }, {collection: "user"});
+        lastName: String,
+        recipes: [{type: mongoose.Schema.Types.ObjectId, ref: "RecipeModel"}]
+    }, {collection: "userProject"});
 
     return UserSchema;
 }

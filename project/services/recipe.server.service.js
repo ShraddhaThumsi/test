@@ -2,7 +2,7 @@
  * Created by shraddha on 11/18/16.
  */
 var exports = module.exports = {};
-module.exports = function (app) {
+module.exports = function (app, model) {
     var multer = require('multer'); // npm install multer --save
     var upload = multer({dest: __dirname + '/../project/uploads'});
     app.post("/api/example/upload", upload.single('myFile'), uploadImage);

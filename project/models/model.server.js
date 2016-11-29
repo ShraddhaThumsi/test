@@ -8,6 +8,8 @@ module.exports = function(){
         userModel: userModel
        // recipeModel: recipeModel
     };
+    userModel.setModel(model);
+    //recipeModel.setModel(model);
     return model;
 
 

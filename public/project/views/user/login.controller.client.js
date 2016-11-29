@@ -6,14 +6,32 @@
         .module("RecipeMaker")
         .controller("LoginController", LoginController);
 
-    function LoginController()
+    function LoginController(UserService, $location)
     {
         var vm = this;
-        vm.loginUser = loginUser();
-        function loginUser()
+        vm.loginUser = loginUser;
+        function loginUser(email, password)
         {
-            console.log("hello from login controller");
+            vm.email = email;
+            vm.password = password;
+            var promise = UserService.findUserByCredentials(email, password);
+            promise
+                .success(function(user){
+                    /*console.log(aaa);*/
+                    if(user)
+                    {
+                        $location.url("/user/" + user._id);
+                    }
 
+                    else
+                    {
+                        vm.error = "No such user";
+                    }
+
+                })
+                .error(function(bbb){
+                    console.log(bbb);
+                })
         }
 
     }
