@@ -32,7 +32,14 @@
                     for (var hit in tempoArray) {
                         //console.log(tempoArray[hit]);
                         //console.log("above is the hits for the given query");
-                        document.getElementById("enterJSON").innerHTML += " <a href ='" + tempoArray[hit].recipe.url + "' ><img src = '" + tempoArray[hit].recipe.image + "'></img></a>";
+                        var apiCallString = "http://api.edamam.com/search?app_id=be979c85&app_key=a6ded68b7dd66370c211045072bcb1a8&r=";
+                        var imageUri = tempoArray[hit].recipe.uri;
+                        var imageUriNew = imageUri.replace("#", "%23");
+                        document.getElementById("enterJSON").innerHTML +=
+                            " <a href ='" +
+                            apiCallString
+                            + imageUriNew + "' ><img src = '" + tempoArray[hit].recipe.image + "'>" +
+                            "</img></a>";
                     }
 
                 }
