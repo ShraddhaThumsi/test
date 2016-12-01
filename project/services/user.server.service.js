@@ -2,12 +2,76 @@
  * Created by shraddha on 11/18/16.
  */
 module.exports = function(app, model){
+    /*var passport = require('passport');
+    var localStrategy = require('passport-local').Strategy;
+    var cookieParser = require('cookie-parser');
+    var session = require('express-session');
+    app.use(session({
+        secret: 'this is the secret',
+        resave: true,
+        saveUninitialized: true
+    }));
+    app.use(cookieParser());
+    app.use(passport.initialize());
+    app.use(passport.session());
+    passport.use(new localStrategy(localStrategy));*/
+   // passport.serializeUser(serializeUser);
+   // passport.deserializeUser(deserializeUser);
+   // app.post("/api/login", passport.authenticate('local'),login);
+   // app.post("/api/checkLogin", checkLogin);
     app.post("/api/user", createUser);
     app.get('/api/user', findUserByCredentials);
     app.get('/api/user/:uid', findUserById);
     app.put('/api/user/:uid', updateUser);
     app.delete('/api/user/:uid', deleteUser);
 
+
+    /*function checkLogin(req, res){
+        res.send(req.isAuthenticated() ? req.user: '0');
+    }*/
+    /*function serializeUser(user, done){
+        done(null, user);
+    }
+
+    function deserializeUser(user, done){
+        model
+            .userModel
+            .findUserById(user._id)
+            .then(function(user)
+            {
+                done(null,user);
+            }, function(error)
+            {
+                done(error, null);
+            })
+
+    }*/
+
+    /*function localStrategy(email, password, done)
+    {
+
+
+        model
+            .userModel
+            .findUserByCredentials(email, password)
+            .then(function(user){
+                if(!user)
+                {
+                    return done(null, false);
+                }
+                return done(null, user);
+            } , function(error){
+                res.sendStatus(400).send(error);
+            });
+
+    }
+
+    function login(req, res)
+    {
+        var user = req.user;
+        res.json(user);
+
+    }*/
     function createUser(req, res)
     {
         var user = req.body;

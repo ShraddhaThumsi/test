@@ -13,10 +13,27 @@
             findUserByCredentials: findUserByCredentials,
             updateUser: updateUser,
             deleteUser: deleteUser,
-            findUserById: findUserById
+            findUserById: findUserById,
+            login: login
+           // checkLogin: checkLogin
         };
         return api;
 
+        /*function checkLogin()
+        {
+            return $http.post("/api/checkLogin")
+        }*/
+
+        function login(email, password)
+        {
+            var user =
+            {
+                email: email,
+                password: password
+            };
+
+            return $http.post("/api/login", user);
+        }
         function createUser(newUser)
         {
             return $http.post("/api/user", newUser);

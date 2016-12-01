@@ -24,18 +24,27 @@
                 templateUrl: "views/user/resetLogin.view.client.html",
                 controller: "ResetController",
                 controllerAs: "model"
+                /*resolve: {
+                    checkLogin: checkLogin
+                }*/
             })
 
             .when("/user/:uid", {
                 templateUrl: "views/recipe/recipeSearch.view.client.html",
                 controller: "RecipeSearchController",
                 controllerAs: "model"
+                /*resolve: {
+                    checkLogin: checkLogin
+                }*/
             })
 
             .when("/user/:uid/myRecipes", {
                 templateUrl: "views/recipe/myRecipes.view.client.html",
                 controller: "MyRecipeController",
                 controllerAs: "model"
+                /*resolve: {
+                    checkLogin: checkLogin
+                }*/
             })
 
             /*.when("/guestRecipeSearch", {
@@ -43,6 +52,26 @@
             })*/
 
             .otherwise({redirectTo: "/login"});
+
+        /*function checkLogin($q, UserService){
+            var deferred = $q.defer();
+            UserService
+                .checkLogin()
+                .success(function(user){
+                    if(user)
+                    {
+                        deferred.resolve();
+                    }
+                    else
+                    {
+                        deferred.reject();
+                    }
+
+                })
+
+            return deferred.promise;
+
+        }*/
 
     }
 })();

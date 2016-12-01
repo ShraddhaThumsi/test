@@ -2,21 +2,78 @@
  * Created by shraddha on 10/27/16.
  */
 module.exports = function(app, model){
-    var users = [
-        {_id: "123", username: "alice", password: "alice",
-            firstName: "Alice", lastName: "Wonder", email: "alice@wonderland.com"},
-        {_id: "234", username: "bob", password: "bob",
-            firstName: "Bob", lastName: "Marley", email: "bob@marley.com"},
-        {_id: "345", username: "charly", password: "charly",
-            firstName: "Charly", lastName: "Garcia", email: "charly@garcia.com"},
-        {_id: "456", username: "jannunzi", password: "jannunzi",
-            firstName: "Jose", lastName: "Annunzi", email: "jose@annunzi.com"}
-    ];
+    var passport = require('passport');
+    var localStrategy = require('passport-local').Strategy;
+    var cookieParser = require('cookie-parser');
+    var session = require('express-session');
+    app.use(session({
+        secret: 'this is the secret',
+        resave: true,
+        saveUninitialized: true
+    }));
+    app.use(cookieParser());
+    app.use(passport.initialize());
+    app.use(passport.session());
+    passport.use(new localStrategy(localStrategy));
+    passport.serializeUser(serializeUser);
+    passport.deserializeUser(deserializeUser);
+    app.post('/api/login', passport.authenticate('local'),login);
+   // app.post("/api/checkLogin", checkLogin);
     app.get('/api/user', findUser);
     app.get('/api/user/:uid', findUserById);
     app.post('/api/user', createUser);
     app.put('/api/user/:uid', updateUser);
     app.delete('/api/user/:uid', deleteUser);
+
+
+    /*function checkLogin(req, res){
+        res.send(req.isAuthenticated() ? req.user: '0');
+    }*/
+    function serializeUser(user, done){
+        done(null, user);
+    }
+
+    function deserializeUser(user, done){
+       model
+           .userModel
+           .findUserById(user._id)
+           .then(function(user)
+           {
+               done(null,user);
+           }, function(error)
+           {
+               done(error, null);
+           })
+
+    }
+
+    function localStrategy(username, password, done)
+    {
+
+        model
+            .userModel
+            .findUserByCredentials(username, password)
+            .then(function(user){
+                if(!user)
+                {
+                    return done(null, false);
+                }
+                return done(null, user);
+
+            }, function(error){
+
+                res.sendStatus(400).send(error);
+            })
+
+    }
+
+    function login(req, res)
+    {
+
+        var user = req.user;
+        res.json(user);
+
+    }
 
     function createUser(req, res){
         var user = req.body;
@@ -176,15 +233,7 @@ module.exports = function(app, model){
                 res.sendStatus(400).send(error);
             })
 
-        /*for(var u in users)
-        {
-            if((users[u].username === userName) && (users[u].password === userPassword))
-            {
-                res.send(users[u]);
-                return;
-            }
-        }
-        res.send('0');*/
+
     }
 
     function findUserById(req, res)

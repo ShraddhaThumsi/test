@@ -14,7 +14,9 @@
         {
             vm.email = email;
             vm.password = password;
+            console.log(email, password);
             var promise = UserService.findUserByCredentials(email, password);
+           // var promise = UserService.login(email, password);
             promise
                 .success(function(user){
                     /*console.log(aaa);*/
