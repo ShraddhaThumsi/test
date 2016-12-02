@@ -11,6 +11,11 @@ module.exports = function(){
         email: String,
         firstName: String,
         lastName: String,
+        google: {
+            id: String,
+            email: String,
+            token: String
+        },
        // dateCreated: {type: new Date(), default: Date.now()},
         websites: [{type: mongoose.Schema.Types.ObjectId, ref: 'WebsiteModel'}]
        // websites: [WebsiteSchema]

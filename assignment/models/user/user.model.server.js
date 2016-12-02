@@ -15,7 +15,8 @@ module.exports = function(){
         findUserByCredentials:findUserByCredentials,
         findUserByUserName: findUserByUserName,
         findAllWebsitesForUser: findAllWebsitesForUser,
-        setModel: setModel
+        setModel: setModel,
+        findUserByGoogleId: findUserByGoogleId
     }
     return api;
     function setModel(_model)
@@ -23,6 +24,11 @@ module.exports = function(){
         model = _model;
     }
 
+    function findUserByGoogleId(googleId)
+    {
+        return UserModel
+            .findOne({"google.id" : googleId});
+    }
     function findAllWebsitesForUser(userId){
 
         return UserModel

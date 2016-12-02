@@ -3,7 +3,11 @@
  */
 module.exports = function(){
     var mongoose = require('mongoose');
-    mongoose.connect('mongodb://localhost/wam-fall-2016');
+    var connectionString = "mongodb://localhost/assignment";
+    if (process.env.MONGODB_URI) {
+        connectionString = process.env.MONGODB_URI;
+    }
+    mongoose.connect(connectionString);
     var userModel = require("./user/user.model.server")();
     var websiteModel = require("./website/website.model.server")();
     var pageModel = require("./page/page.model.server")();
