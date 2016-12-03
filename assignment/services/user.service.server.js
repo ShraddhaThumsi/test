@@ -21,7 +21,8 @@ module.exports = function(app, model){
 
     app.get('/auth/google', passport.authenticate('google', {scope:['profile', 'email'] }));
     app.post('/api/login', passport.authenticate('local'),login);
-   // app.post("/api/checkLogin", checkLogin);
+    app.post("/api/checkLogin", checkLogin);
+    app.post("/api/logout", logout);
     app.get('/api/user', findUser);
     app.get('/api/user/:uid', findUserById);
     app.post('/api/user', createUser);
@@ -40,10 +41,15 @@ module.exports = function(app, model){
     };
 
 
-    /*function checkLogin(req, res){
+    function checkLogin(req, res){
         res.send(req.isAuthenticated() ? req.user: '0');
-    }*/
+    }
 
+    function logout(req, res)
+    {
+        req.logout();
+        res.send(200);
+    }
     passport.use(new GoogleStrategy(googleConfig, googleStrategy));
     function serializeUser(user, done){
         done(null, user);

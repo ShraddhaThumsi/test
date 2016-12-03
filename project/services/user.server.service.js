@@ -2,8 +2,8 @@
  * Created by shraddha on 11/18/16.
  */
 module.exports = function(app, model){
-    /*var passport = require('passport');
-    var localStrategy = require('passport-local').Strategy;
+    var passport = require('passport');
+    var LocalStrategy = require('passport-local').Strategy;
     var cookieParser = require('cookie-parser');
     var session = require('express-session');
     app.use(session({
@@ -14,10 +14,10 @@ module.exports = function(app, model){
     app.use(cookieParser());
     app.use(passport.initialize());
     app.use(passport.session());
-    passport.use(new localStrategy(localStrategy));*/
-   // passport.serializeUser(serializeUser);
-   // passport.deserializeUser(deserializeUser);
-   // app.post("/api/login", passport.authenticate('local'),login);
+    passport.use(new LocalStrategy(localStrategy));
+    passport.serializeUser(serializeUser);
+    passport.deserializeUser(deserializeUser);
+    app.post('/api/login', passport.authenticate('local'),login);
    // app.post("/api/checkLogin", checkLogin);
     app.post("/api/user", createUser);
     app.get('/api/user', findUserByCredentials);
@@ -29,7 +29,7 @@ module.exports = function(app, model){
     /*function checkLogin(req, res){
         res.send(req.isAuthenticated() ? req.user: '0');
     }*/
-    /*function serializeUser(user, done){
+    function serializeUser(user, done){
         done(null, user);
     }
 
@@ -45,9 +45,9 @@ module.exports = function(app, model){
                 done(error, null);
             })
 
-    }*/
+    }
 
-    /*function localStrategy(email, password, done)
+    function localStrategy(email, password, done)
     {
 
 
@@ -71,7 +71,7 @@ module.exports = function(app, model){
         var user = req.user;
         res.json(user);
 
-    }*/
+    }
     function createUser(req, res)
     {
         var user = req.body;

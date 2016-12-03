@@ -38,6 +38,15 @@
                 }*/
             })
 
+            .when("/user", {
+                templateUrl: "views/recipe/recipeSearch.view.client.html",
+                controller: "RecipeSearchController",
+                controllerAs: "model"
+                /*resolve: {
+                 checkLogin: checkLogin
+                 }*/
+            })
+
             .when("/user/:uid/myRecipes", {
                 templateUrl: "views/recipe/myRecipes.view.client.html",
                 controller: "MyRecipeController",

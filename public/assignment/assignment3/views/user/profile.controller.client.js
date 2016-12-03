@@ -68,5 +68,15 @@
 
         }
 
+        vm.logOut = logOut;
+        function logOut()
+        {
+            var promise = UserService.logout();
+            promise
+                .success(function(){
+                    $location.url("/login");
+                });
+        }
+
     }
 })();

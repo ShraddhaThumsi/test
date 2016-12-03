@@ -16,15 +16,20 @@
             findUserByUsername: findUserByUsername,
             updateUser: updateUser,
             deleteUser: deleteUser,
-            login: login
-            //checkLogin: checkLogin
+            login: login,
+            checkLogin: checkLogin,
+            logout: logout
 
         };
         return api;
 
-        /*function checkLogin(){
+        function checkLogin(){
             return $http.post("/api/checkLogin")
-        }*/
+        }
+
+        function logout(){
+            return $http.post("/api/logout");
+        }
 
         function login(username, password)
         {
