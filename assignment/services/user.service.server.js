@@ -3,7 +3,7 @@
  */
 module.exports = function(app, model){
     var passport = require('passport');
-    var localStrategy = require('passport-local').Strategy;
+    var LocalStrategy = require('passport-local').Strategy;
     var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
     var cookieParser = require('cookie-parser');
     var session = require('express-session');
@@ -15,7 +15,7 @@ module.exports = function(app, model){
     app.use(cookieParser());
     app.use(passport.initialize());
     app.use(passport.session());
-    passport.use(new localStrategy(localStrategy));
+    passport.use(new LocalStrategy(localStrategy));
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
 
@@ -104,6 +104,7 @@ module.exports = function(app, model){
             .userModel
             .findUserByCredentials(username, password)
             .then(function(user){
+                console.log(user);
                 if(!user)
                 {
                     return done(null, false);
@@ -206,7 +207,7 @@ module.exports = function(app, model){
             .then(function(users){
                 if(users)
                 {
-                    res.json(users[0]);
+                    res.json(users);
                 }
 
                 else
