@@ -37,10 +37,10 @@ app.use(express.static(__dirname + '/public'));
 //require("./assignment/todo/todo.service.server.js")(app);
 
 
-require("./assignment/app")(app);
+//require("./assignment/app")(app);
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP;
 var port      = process.env.OPENSHIFT_NODEJS_PORT || 3000;
-//require("./project/app")(app);
+require("./project/app")(app);
 /*require("../web-dev-template/project/app")(app);*/
 
 app.use('/uploads', express.static(__dirname + "./uploads"));

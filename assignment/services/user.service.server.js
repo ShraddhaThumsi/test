@@ -72,7 +72,7 @@ module.exports = function(app, model){
                                 token:       token
                             }
                         };
-                        return userModel.createUser(newGoogleUser);
+                        return model.userModel.createUser(newGoogleUser);
                     }
                 },
                 function(err) {

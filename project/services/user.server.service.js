@@ -4,6 +4,7 @@
 module.exports = function(app, model){
     var passport = require('passport');
     var LocalStrategy = require('passport-local').Strategy;
+    var FacebookStrategy = require('passport-facebook').Strategy;
     var cookieParser = require('cookie-parser');
     var session = require('express-session');
     app.use(session({
@@ -24,11 +25,62 @@ module.exports = function(app, model){
     app.get('/api/user/:uid', findUserById);
     app.put('/api/user/:uid', updateUser);
     app.delete('/api/user/:uid', deleteUser);
+    app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
 
 
+    app.get('/auth/facebook/callback',
+        passport.authenticate('facebook', {
+            successRedirect : '/user',
+            failureRedirect : '/login'
+        }));
+
+    var facebookConfig = {
+            clientID      : '1105625596221973', // your App ID
+            clientSecret  : '8bdc9b5390eeb9c6fe81984a919eb981', // your App Secret
+            callbackURL   : 'https://shraddhathumsi.herokuapp.com/auth/facebook/callback'
+    };
     /*function checkLogin(req, res){
         res.send(req.isAuthenticated() ? req.user: '0');
     }*/
+
+    passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
+    function facebookStrategy(token, refreshToken, profile, done)
+    {
+
+        model
+            .userModel
+            .findUserByFacebookId(profile.id)
+            .then(
+                function(user) {
+                    if(user) {
+                        return done(null, user);
+                    } else {
+                        var newFacebookUser = {
+                            lastName: profile.name.familyName,
+                            firstName: profile.name.givenName,
+                            email: profile.emails[0].value,
+                            facebook: {
+                                id:          profile.id,
+                                token:       token
+                            }
+                        };
+                        return model.userModel.createUser(newFacebookUser);
+                    }
+                },
+                function(err) {
+                    if (err) { return done(err); }
+                }
+            )
+            .then(
+                function(user){
+                    return done(null, user);
+                },
+                function(err){
+                    if (err) { return done(err); }
+                }
+            );
+
+    }
     function serializeUser(user, done){
         done(null, user);
     }
