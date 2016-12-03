@@ -44,7 +44,7 @@
 
                 }
             };
-            var url = encodeURI("http://api.edamam.com/search?app_id=be979c85&app_key=a6ded68b7dd66370c211045072bcb1a8&q=" + queryName);
+            var url = encodeURI("https://api.edamam.com/search?app_id=be979c85&app_key=a6ded68b7dd66370c211045072bcb1a8&q=" + queryName);
 
 
             xhttp.open("GET", url, true);
