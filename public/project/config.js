@@ -7,6 +7,25 @@
         .config(Config);
 
     function Config($routeProvider){
+        function checkLogin($q, UserService){
+         var deferred = $q.defer();
+         UserService
+         .checkLogin()
+         .success(function(user){
+         if(user)
+         {
+         deferred.resolve();
+         }
+         else
+         {
+         deferred.reject();
+         }
+
+         })
+
+         return deferred.promise;
+
+         }
         $routeProvider
             .when("/login", {
                 templateUrl: "views/user/login.view.client.html",
@@ -23,64 +42,48 @@
             .when("/user/:uid/reset", {
                 templateUrl: "views/user/resetLogin.view.client.html",
                 controller: "ResetController",
-                controllerAs: "model"
-                /*resolve: {
+                controllerAs: "model",
+                resolve: {
                     checkLogin: checkLogin
-                }*/
+                }
             })
 
             .when("/user/:uid", {
                 templateUrl: "views/recipe/recipeSearch.view.client.html",
                 controller: "RecipeSearchController",
-                controllerAs: "model"
-                /*resolve: {
+                controllerAs: "model",
+                resolve: {
                     checkLogin: checkLogin
-                }*/
+                }
             })
 
             .when("/user", {
                 templateUrl: "views/recipe/recipeSearch.view.client.html",
                 controller: "RecipeSearchController",
-                controllerAs: "model"
-                /*resolve: {
+                controllerAs: "model",
+                resolve: {
                  checkLogin: checkLogin
-                 }*/
+                 }
             })
 
             .when("/user/:uid/myRecipes", {
                 templateUrl: "views/recipe/myRecipes.view.client.html",
                 controller: "MyRecipeController",
-                controllerAs: "model"
-                /*resolve: {
+                controllerAs: "model",
+                resolve: {
                     checkLogin: checkLogin
-                }*/
+                }
             })
 
-            /*.when("/guestRecipeSearch", {
-                templateUrl: "views/recipe/recipeSearch.view.client.html"
-            })*/
+            .when("/recipeDetails", {
+                templateUrl: "views/recipe/recipeDetails.view.client.html",
+                controller: "RecipeDetailsController",
+                controllerAs: "model"
+            })
 
             .otherwise({redirectTo: "/login"});
 
-        /*function checkLogin($q, UserService){
-            var deferred = $q.defer();
-            UserService
-                .checkLogin()
-                .success(function(user){
-                    if(user)
-                    {
-                        deferred.resolve();
-                    }
-                    else
-                    {
-                        deferred.reject();
-                    }
 
-                })
-
-            return deferred.promise;
-
-        }*/
 
     }
 })();

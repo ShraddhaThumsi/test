@@ -14,15 +14,15 @@
             updateUser: updateUser,
             deleteUser: deleteUser,
             findUserById: findUserById,
-            login: login
-           // checkLogin: checkLogin
+            login: login,
+            checkLogin: checkLogin
         };
         return api;
 
-        /*function checkLogin()
+        function checkLogin()
         {
             return $http.post("/api/checkLogin")
-        }*/
+        }
 
         function login(email, password)
         {

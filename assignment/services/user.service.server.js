@@ -56,7 +56,7 @@ module.exports = function(app, model){
     }
 
     function googleStrategy(token, refreshToken, profile, done){
-        userModel
+        model.userModel
             .findUserByGoogleId(profile.id)
             .then(
                 function(user) {

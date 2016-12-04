@@ -19,7 +19,7 @@ module.exports = function(app, model){
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
     app.post('/api/login', passport.authenticate('local'),login);
-   // app.post("/api/checkLogin", checkLogin);
+    app.post("/api/checkLogin", checkLogin);
     app.post("/api/user", createUser);
     app.get('/api/user', findUserByCredentials);
     app.get('/api/user/:uid', findUserById);
@@ -39,9 +39,9 @@ module.exports = function(app, model){
             clientSecret  : '8bdc9b5390eeb9c6fe81984a919eb981', // your App Secret
             callbackURL   : 'https://shraddhathumsi.herokuapp.com/auth/facebook/callback'
     };
-    /*function checkLogin(req, res){
+    function checkLogin(req, res){
         res.send(req.isAuthenticated() ? req.user: '0');
-    }*/
+    }
 
     passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
     function facebookStrategy(token, refreshToken, profile, done)
