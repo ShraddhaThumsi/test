@@ -6,13 +6,12 @@
         .module("RecipeMaker")
         .controller("MyRecipeController", MyRecipeController);
 
-    function MyRecipeController()
+    function MyRecipeController($routeParams, RecipeService, $location)
     {
         var vm = this;
-        vm.clickMe = clickMe;
-        function clickMe()
-        {
-            console.log("Hello from my recipe controller");
-        }
+        var userId = $routeParams.uid;
+        vm.userId = userId;
+
+
     }
 })();
