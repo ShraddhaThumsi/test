@@ -42,7 +42,6 @@
 
 
             xhttp.open("GET", url, true);
-
             xhttp.setRequestHeader('Access-Control-Allow-Headers', '*');
             xhttp.setRequestHeader('Access-Control-Allow-Origin', '*');
             xhttp.withCredentials = false;
