@@ -6,7 +6,7 @@
         .module("WebAppMaker")
         .controller("RegisterController", RegisterController);
 
-    function RegisterController($location, UserService)
+    function RegisterController($location, UserService, $rootScope)
     {
         var vm = this;
         vm.registerUser = registerUser;
@@ -39,10 +39,12 @@
                     alert("User exists");
                 }
 
-                else {var userId = userExists._id;
+                else {
+                    var userId = userExists._id;
                     vm.userId = userId;
                     vm.registerUser = userExists;
-                $location.url("/user/" + vm.userId);
+                    $rootScope.currentUser = user;
+                    $location.url("/user/" + vm.userId);
                 }
                 })
                     .error(function(aaa){
