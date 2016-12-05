@@ -6,21 +6,29 @@
         .module("RecipeMaker")
         .controller("RecipeSearchController", RecipeSearchController);
 
-    function RecipeSearchController($routeParams, $location, $http) {
+    function RecipeSearchController($routeParams, $location, RecipeService) {
         var vm = this;
         var userId =  $routeParams.uid;
         vm.userId = userId;
         vm.loadDoc = loadDoc;
+        vm.loadRecipeDetails = loadRecipeDetails;
         function loadDoc(queryName) {
             console.log("You have asked for recipes on: " +  queryName);
             vm.queryName = queryName;
             var recipe = null;
 
 
-            $http.get("https://api.edamam.com/search?app_id=be979c85&app_key=a6ded68b7dd66370c211045072bcb1a8&q=" + queryName)
+            var promise = RecipeService.getRecipeByQueryName(queryName);
+            promise
                 .success(function (result) {
                     console.log(result);
-                    vm.hitArray = result.hits;
+                    var recipes = result.hits;
+                    vm.recipes = recipes;
+
+                })
+                .error(function(error)
+                {
+                    console.log(error);
                 });
 
             // var xhttp = new XMLHttpRequest();
@@ -66,6 +74,19 @@
             //
             // xhttp.send();
 
+        }
+
+
+        function loadRecipeDetails(recipe)
+        {
+            var promise = RecipeService.getRecipeByUri(recipe.uri);
+            promise
+                .success(function(uri){
+                    console.log(uri);
+                })
+                .error(function(error){
+                    console.log(error);
+                })
         }
     }
 })();

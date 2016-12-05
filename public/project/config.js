@@ -75,7 +75,7 @@
                 }
             })
 
-            .when("/recipeDetails", {
+            .when("/recipeDetails/:rid", {
                 templateUrl: "views/recipe/recipeDetails.view.client.html",
                 controller: "RecipeDetailsController",
                 controllerAs: "model"
