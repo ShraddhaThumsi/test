@@ -7,14 +7,14 @@ module.exports = function(){
     mongoose.connect(connectionString);
    // mongoose.connect('mongodb://localhost/wam-fall-2016');
     var userModel = require("./user/user.model.server")();
-  //  var recipeModel = require("./recipe/recipe.model.server")();
+    var recipeModel = require("./recipe/recipe.model.server")();
 
     var model = {
-        userModel: userModel
-       // recipeModel: recipeModel
+        userModel: userModel,
+        recipeModel: recipeModel
     };
     userModel.setModel(model);
-    //recipeModel.setModel(model);
+    recipeModel.setModel(model);
     return model;
 
 

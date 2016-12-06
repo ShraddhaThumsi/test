@@ -6,7 +6,7 @@
         .module("RecipeMaker")
         .controller("RecipeDetailsController", RecipeDetailsController);
 
-    function RecipeDetailsController($routeParams, RecipeService)
+    function RecipeDetailsController($routeParams, RecipeService, $location)
     {
         var vm = this;
         var recipeID = $routeParams.rid;
@@ -28,9 +28,29 @@
         init();
 
 
-        function bookMark()
+        function bookMark(recipe, chefNotes)
         {
 
+            vm.recipe = recipe;
+            vm.chefNotes = chefNotes;
+            console.log(chefNotes);
+
+            var promise = RecipeService.bookMarkRecipe(recipe, chefNotes);
+            promise
+                .success(function(recipeExists){
+                    if (recipeExists == true) {
+                        alert("User exists");
+                    }
+
+                    else {var recipeId = recipeExists._id;
+                        vm.bookMark = recipeExists;
+                        $location.url("/user/" + vm.userId + "/myRecipes");
+                    }
+                })
+                .error(function(aaa){
+                    console.log(aaa);
+                });
+            console.log(recipe);
             console.log("will bookmark this recipe upon clicking");
         }
 

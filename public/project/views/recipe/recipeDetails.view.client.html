@@ -2,7 +2,9 @@
 <div class = "container container-fluid">
     <h1>Details of the recipe you requested</h1>
 
-    <a ng-click="model.bookMark()" class = "btn btn-success">Bookmark this recipe</a>
+    <a ng-click="model.bookMark(model.recipe, model.chefNotes)" class = "btn btn-success">Bookmark this recipe</a>
+    <textarea rows="4" cols="50" placeholder = "Enter chef notes here" ng-model = "model.chefNotes">
+    </textarea>
     <a href = "#/user/{{model.userId}}" class = "btn btn-info">Back to search recipes</a>
 
     <div class = "row">

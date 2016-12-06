@@ -4,9 +4,8 @@
 module.exports = function(){
     var mongoose = require("mongoose");
     var RecipeSchema = mongoose.Schema({
-        recipeName: String,
-        recipeDescription: String,
-        recipeJSON: JSON
+        chefNotes: String,
+        recipe: JSON
 
     }, {collection: "recipeProject"});
 

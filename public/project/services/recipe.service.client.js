@@ -13,7 +13,8 @@
         var api = {
 
             getRecipeByQueryName: getRecipeByQueryName,
-            getRecipeById: getRecipeById
+            getRecipeById: getRecipeById,
+            bookMarkRecipe: bookMarkRecipe
 
         };
         return api;
@@ -32,6 +33,17 @@
             var recipeId = recipeId;
             var requestRecipeDetails = apiCallString + recipeId;
             return $http.get(requestRecipeDetails);
+
+        }
+
+        function bookMarkRecipe(sourceRecipe, chefNotes)
+        {
+            var recipe = {
+                chefNotes: chefNotes,
+                recipe: sourceRecipe
+            };
+
+            return $http.post("/api/recipe", recipe);
 
         }
 

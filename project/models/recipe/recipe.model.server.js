@@ -11,6 +11,7 @@ module.exports = function(){
         createRecipeForUser: createRecipeForUser,
         setModel: setModel
     }
+    return api;
 
     function setModel(_model){
         model = _model;
@@ -18,6 +19,6 @@ module.exports = function(){
 
     function createRecipeForUser(recipe)
     {
-        return RecipeModel.create(recipe);
+        return model.recipeModel.create(recipe);
     }
 }
