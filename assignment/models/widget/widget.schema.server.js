@@ -18,10 +18,12 @@ module.exports = function(){
         icon: String,
         deletable: Boolean,
         formatted: Boolean,
+        dateCreated: {type: Date, default: Date.now()},
        // dateCreated: {type: new Date(), default: Date.now()},
         widgetType: {
             type: String,
-            enum: ['HEADING', 'IMAGE', 'YOUTUBE', 'HTML', 'INPUT']
+            enum: ['HEADING', 'IMAGE', 'YOUTUBE', 'HTML', 'INPUT'],
+            required: true
         }
     });
 
