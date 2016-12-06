@@ -11,11 +11,13 @@ module.exports = function (app, model) {
         var recipe = req.body;
         model
             .recipeModel
-
-
-
-
-
+            .bookMarkRecipe(req.params.uid, recipe)
+            .then(function(bookMarkedRecipe)
+            {
+                res.send(bookMarkedRecipe);
+            },
+            function(error){
+                res.sendStatus(400).send(error);
+            });
     }
-
 }

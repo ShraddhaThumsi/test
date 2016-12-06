@@ -39,7 +39,7 @@
             promise
                 .success(function(recipeExists){
                     if (recipeExists == true) {
-                        alert("User exists");
+                        alert("Recipe exists");
                     }
 
                     else {var recipeId = recipeExists._id;
