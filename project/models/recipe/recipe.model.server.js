@@ -8,17 +8,30 @@ module.exports = function(){
     var RecipeSchema = require("./recipe.schema.server")();
     var RecipeModel = mongoose.model("RecipeModel", RecipeSchema);
     var api = {
-        createRecipeForUser: createRecipeForUser,
+        bookMarkRecipe: bookMarkRecipe,
         setModel: setModel
-    }
+    };
     return api;
 
     function setModel(_model){
         model = _model;
     }
 
-    function createRecipeForUser(recipe)
+    function bookMarkRecipe(userId, recipe)
     {
-        return model.recipeModel.create(recipe);
+        console.log(recipe);
+        return RecipeModel
+            .create(recipe)
+            .then(function(recipeObj){
+                model
+                    .userModel
+                    .findUserById(userId)
+                    .then(function(userObj){
+                        userObj.recipes.push(recipeObj);
+                        userObj.save();
+                        return userObj;
+                    })
+
+            })
     }
 }
