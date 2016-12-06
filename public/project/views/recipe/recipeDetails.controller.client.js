@@ -11,6 +11,10 @@
         var vm = this;
         var recipeID = $routeParams.rid;
         console.log(recipeID);
+        var userId = $routeParams.uid;
+        vm.userId = userId;
+        vm.bookMark = bookMark;
+
         function init(){
         var promise = RecipeService.getRecipeById(recipeID);
         promise
@@ -23,7 +27,7 @@
 
         init();
 
-        vm.bookMark = bookMark;
+
         function bookMark()
         {
 

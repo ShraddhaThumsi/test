@@ -17,5 +17,6 @@
     <a ng-click="model.updateUser(model.userId, model.user)" class = "btn btn-block btn-success form-group">Submit changes</a>
     <a ng-click="model.deleteUser(model.userId)" class = "btn btn-block btn-danger form-group">Delete Profile</a>
     <a href="#/user/{{model.userId}}/myRecipes" class = "btn btn-block btn-info"> View your Recipes </a>
-    <a href="#/login" class = "btn btn-block btn-warning form-group">Logout</a>
+    <a ng-click = "model.logout()" class = "btn btn-block btn-warning">Logout</a>
+
 </form>

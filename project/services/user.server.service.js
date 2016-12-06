@@ -18,30 +18,29 @@ module.exports = function(app, model){
     passport.use(new LocalStrategy(localStrategy));
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
-    app.post('/api/login', passport.authenticate('local'),login);
+   // app.post("/api/login", passport.authenticate('local'), login);
     app.post("/api/checkLogin", checkLogin);
+
+    app.post("/api/login", login);
     app.post("/api/user", createUser);
     app.get('/api/user', findUserByCredentials);
     app.get('/api/user/:uid', findUserById);
     app.put('/api/user/:uid', updateUser);
     app.delete('/api/user/:uid', deleteUser);
     app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
-
-
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', {
             successRedirect : '/user',
             failureRedirect : '/login'
         }));
 
+    app.post("/api/logout", logout);
+
     var facebookConfig = {
             clientID      : '1105625596221973', // your App ID
             clientSecret  : '8bdc9b5390eeb9c6fe81984a919eb981', // your App Secret
             callbackURL   : 'https://shraddhathumsi.herokuapp.com/auth/facebook/callback'
     };
-    function checkLogin(req, res){
-        res.send(req.isAuthenticated() ? req.user: '0');
-    }
 
     passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
     function facebookStrategy(token, refreshToken, profile, done)
@@ -81,6 +80,60 @@ module.exports = function(app, model){
             );
 
     }
+
+    function logout(req, res)
+    {
+        req.logout();
+        res.send(200);
+    }
+    function checkLogin(req, res)
+    {
+        res.send(req.isAuthenticated() ? req.user : '0')
+    }
+
+    function localStrategy(email, password, done){
+
+        model
+            .userModel
+            .findUserByCredentials(email, password)
+            .then(function(user){
+                if(!user)
+                {
+                    return done(null,false);
+                }
+                return done(null, user);
+
+            } , function(error){
+                res.sendStatus(400).send(error);
+            });
+    }
+
+    function login(req, res)
+    {
+        /*var user = req.user;
+        res.json(user);*/
+
+        var user = req.body;
+        var email = user.email;
+        var password = user.password;
+        model
+            .userModel
+            .findUserByCredentials(email, password)
+            .then(function(user){
+                if(user)
+                {
+                    res.json(user);
+                }
+
+                else
+                {
+                    res.send('0');
+                }
+            } , function(error){
+                res.sendStatus(400).send(error);
+            });
+
+    }
     function serializeUser(user, done){
         done(null, user);
     }
@@ -99,31 +152,6 @@ module.exports = function(app, model){
 
     }
 
-    function localStrategy(email, password, done)
-    {
-
-
-        model
-            .userModel
-            .findUserByCredentials(email, password)
-            .then(function(user){
-                if(!user)
-                {
-                    return done(null, false);
-                }
-                return done(null, user);
-            } , function(error){
-                res.sendStatus(400).send(error);
-            });
-
-    }
-
-    function login(req, res)
-    {
-        var user = req.user;
-        res.json(user);
-
-    }
     function createUser(req, res)
     {
         var user = req.body;

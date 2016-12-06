@@ -13,6 +13,7 @@
         vm.userId = userId;
         vm.updateUser = updateUser;
         vm.deleteUser = deleteUser;
+        vm.logout = logout;
 
         function init()
         {
@@ -64,6 +65,15 @@
 
                 })
 
+        }
+
+        function logout()
+        {
+            var promise = UserService.logout();
+            promise
+                .success(function(){
+                    $location.url("/login")
+                })
         }
     }
 })();
