@@ -78,6 +78,13 @@
                 controllerAs: "model"
             })
 
+            .when("/user/:uid/viewGroup", {
+                templateUrl: "views/user/group.view.client.html",
+                controller: "ViewGroupController",
+                controllerAs: "model"
+            })
+
+
             .otherwise({redirectTo: "/login"});
 
 

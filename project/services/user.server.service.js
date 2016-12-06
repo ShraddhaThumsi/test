@@ -20,9 +20,9 @@ module.exports = function(app, model){
     passport.deserializeUser(deserializeUser);
    // app.post("/api/login", passport.authenticate('local'), login);
     app.post("/api/checkLogin", checkLogin);
-
     app.post("/api/login", login);
     app.post("/api/user", createUser);
+    app.get("/api/user/:uid", viewGroup);
     app.get('/api/user', findUserByCredentials);
     app.get('/api/user/:uid', findUserById);
     app.put('/api/user/:uid', updateUser);
@@ -246,5 +246,19 @@ module.exports = function(app, model){
                 res.sendStatus(400).send(error);
 
             });
+    }
+    
+    function viewGroup(req, res)
+    {
+        var userId = req.params.uid;
+        model
+            .userModel
+            .viewGroup(userId)
+            .then(function(user){
+                res.json(user);
+            }, function(error){
+                res.sendStatus(400).send(error);
+            });
+
     }
 }

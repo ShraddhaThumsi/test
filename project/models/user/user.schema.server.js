@@ -16,6 +16,7 @@ module.exports = function(){
         },
         recipes: [{type: mongoose.Schema.Types.ObjectId, ref: "RecipeModel"}],
         role: {type: String, enum: ['member', 'admin'], default: 'member'},
+        group: []
     }, {collection: "userProject"});
 
     return UserSchema;

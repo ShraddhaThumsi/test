@@ -16,7 +16,8 @@
             findUserById: findUserById,
             login: login,
             checkLogin: checkLogin,
-            logout: logout
+            logout: logout,
+            viewGroup: viewGroup
         };
         return api;
 
@@ -67,5 +68,12 @@
             var url = "/api/user/"+userId;
             return $http.delete(url);
         }
+
+        function viewGroup(userId)
+        {
+            var url = "/api/user/"+userId;
+            return $http.get(url);
+        }
+
     }
 })();

@@ -14,7 +14,8 @@ module.exports = function(){
         updateUser: updateUser,
         deleteUser: deleteUser,
         setModel: setModel,
-        findUserByFacebookId: findUserByFacebookId
+        findUserByFacebookId: findUserByFacebookId,
+        viewGroup: viewGroup
     }
     return api;
 
@@ -65,6 +66,14 @@ module.exports = function(){
     function deleteUser(userId)
     {
         return UserModel.remove({_id: userId});
+    }
+
+    function viewGroup(userId)
+    {
+
+        var group = [];
+        console.log(group);
+        return UserModel.findById(userId);
     }
 
 }
