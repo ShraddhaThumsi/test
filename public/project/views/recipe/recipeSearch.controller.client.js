@@ -6,12 +6,12 @@
         .module("RecipeMaker")
         .controller("RecipeSearchController", RecipeSearchController);
 
-    function RecipeSearchController($routeParams, $location, RecipeService) {
+    function RecipeSearchController($routeParams, RecipeService) {
         var vm = this;
         var userId =  $routeParams.uid;
         vm.userId = userId;
         vm.loadDoc = loadDoc;
-        vm.loadRecipeDetails = loadRecipeDetails;
+        //vm.loadRecipeDetails = loadRecipeDetails;
         function loadDoc(queryName) {
             console.log("You have asked for recipes on: " +  queryName);
             vm.queryName = queryName;
@@ -24,6 +24,13 @@
                     console.log(result);
                     var recipes = result.hits;
                     vm.recipes = recipes;
+                    var uriTempo = recipes[0].recipe.uri;
+                    console.log(uriTempo);
+                    var uri = uriTempo.split("#");
+                    var rid = uri[1];
+                    vm.rid = rid;
+                    console.log(uri);
+                    console.log(rid);
 
                 })
                 .error(function(error)
@@ -76,17 +83,18 @@
 
         }
 
-
+/*
         function loadRecipeDetails(recipe)
         {
             var promise = RecipeService.getRecipeByUri(recipe.uri);
             promise
                 .success(function(uri){
                     console.log(uri);
+                    $location.url("/recipeDetails");
                 })
                 .error(function(error){
                     console.log(error);
                 })
-        }
+        }*/
     }
 })();

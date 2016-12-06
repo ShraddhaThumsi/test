@@ -13,7 +13,7 @@
         var api = {
 
             getRecipeByQueryName: getRecipeByQueryName,
-            getRecipeByUri: getRecipeByUri
+            getRecipeById: getRecipeById
 
         };
         return api;
@@ -25,13 +25,14 @@
                     + queryName)
         }
 
-        function getRecipeByUri(uri)
+        function getRecipeById(recipeId)
         {
-            var apiCallString = "http://api.edamam.com/search?app_id=be979c85&app_key=a6ded68b7dd66370c211045072bcb1a8&r=";
-            var recipeUriHash = uri;
-            var recipeUri = recipeUriHash.replace("#", "%23");
-            var finalUri = apiCallString + recipeUri;
-            return $http.get(finalUri);
+            var apiCallString = "http://api.edamam.com/search?app_id=be979c85&app_key=a6ded68b7dd66370c211045072bcb1a8" +
+                "&r=http://www.edamam.com/ontologies/edamam.owl%23";
+            var recipeId = recipeId;
+            var requestRecipeDetails = apiCallString + recipeId;
+            return $http.get(requestRecipeDetails);
+
         }
 
 

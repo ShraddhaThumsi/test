@@ -1,1 +1,116 @@
-{{model.message}}
+
+<div class = "container container-fluid">
+    <h1>Details of the recipe you requested</h1>
+
+    <a ng-click="model.bookMark()" class = "btn btn-success">Bookmark this recipe</a>
+
+    <div class = "row">
+        <div class = "col-sm-8 hidden-xs">
+            <a href = "{{model.recipe.url}}">{{model.recipe.label}}</a>
+        </div>
+        <div class = "col-sm-4 hidden-xs">
+            <a href = "{{model.recipe.url}}"><img ng-src="{{model.recipe.image}}" width = "300" height = "300"/></a>
+        </div>
+    </div>
+
+
+    <div class = "row" >Ingredients</div>
+    <div class = "row" >
+        <ul ng-repeat = "ingredient in model.recipe.ingredientLines">
+            <li>
+                {{ingredient}}
+            </li>
+        </ul>
+    </div>
+
+
+
+    <table class = "table">
+        <thead>
+            <th>
+                Nutrient content
+            </th>
+            <th>
+                Quantity
+            </th>
+            <th>
+                Unit
+            </th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    {{model.recipe.totalNutrients.ENERC_KCAL.label}}
+                </td>
+                <td>
+                    {{model.recipe.totalNutrients.ENERC_KCAL.quantity}}
+                </td>
+                <td>
+                    {{model.recipe.totalNutrients.ENERC_KCAL.unit}}
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    {{model.recipe.totalNutrients.FAT.label}}
+                </td>
+                <td>
+                    {{model.recipe.totalNutrients.FAT.quantity}}
+                </td>
+                <td>
+                    {{model.recipe.totalNutrients.FAT.unit}}
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    {{model.recipe.totalNutrients.FIBTG.label}}
+                </td>
+                <td>
+                    {{model.recipe.totalNutrients.FIBTG.quantity}}
+                </td>
+                <td>
+                    {{model.recipe.totalNutrients.FIBTG.unit}}
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    {{model.recipe.totalNutrients.NA.label}}
+                </td>
+                <td>
+                    {{model.recipe.totalNutrients.NA.quantity}}
+                </td>
+                <td>
+                    {{model.recipe.totalNutrients.NA.unit}}
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    {{model.recipe.totalNutrients.VITC.label}}
+                </td>
+                <td>
+                    {{model.recipe.totalNutrients.VITC.quantity}}
+                </td>
+                <td>
+                    {{model.recipe.totalNutrients.VITC.unit}}
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    {{model.recipe.totalNutrients.FOLDFE.label}}
+                </td>
+                <td>
+                    {{model.recipe.totalNutrients.FOLDFE.quantity}}
+                </td>
+                <td>
+                    {{model.recipe.totalNutrients.FOLDFE.unit}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+</div>
