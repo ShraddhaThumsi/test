@@ -27,8 +27,8 @@
 
         function getRecipeById(recipeId)
         {
-            var apiCallString = "http://api.edamam.com/search?app_id=be979c85&app_key=a6ded68b7dd66370c211045072bcb1a8" +
-                "&r=http://www.edamam.com/ontologies/edamam.owl%23";
+            var apiCallString = "https://api.edamam.com/search?app_id=be979c85&app_key=a6ded68b7dd66370c211045072bcb1a8" +
+                "&r=https://www.edamam.com/ontologies/edamam.owl%23";
             var recipeId = recipeId;
             var requestRecipeDetails = apiCallString + recipeId;
             return $http.get(requestRecipeDetails);
