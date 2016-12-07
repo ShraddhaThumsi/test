@@ -249,16 +249,20 @@ module.exports = function(app, model){
 
     function sendEmail(req, res)
     {
+        console.log(__dirname);
         var message = req.body;
+        console.log(message);
         var userId = req.params.uid;
         model
             .userModel
             .sendEmail(userId, message)
-            .then(function(mail){
-                res.send(mail);
-            }, function(error){
+            .then(function(status){
+                res.sendStatus(status);
+            },
+                function(error){
                 res.sendStatus(400).send(error);
-            })
+                })
+
     }
 
     function deleteUser(req, res)

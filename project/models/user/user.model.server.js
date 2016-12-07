@@ -16,7 +16,8 @@ module.exports = function(){
         setModel: setModel,
         findUserByFacebookId: findUserByFacebookId,
         viewInbox: viewInbox,
-        findAllUsers: findAllUsers
+        findAllUsers: findAllUsers,
+        sendEmail: sendEmail
     }
     return api;
 
@@ -80,6 +81,17 @@ module.exports = function(){
     function findAllUsers()
     {
         return UserModel.find();
+    }
+
+    function sendEmail(userId, message)
+    {
+        console.log(__dirname);
+        return UserModel.update({
+            _id: userId
+        },
+            {
+                inbox: [{firstName: "Most Popular", message: message}]
+            })
     }
 
 }

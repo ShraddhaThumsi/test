@@ -46,6 +46,14 @@
             vm.message = message;
             console.log(message);
             var promise = UserService.sendEmail(userId, message);
+            promise
+                .success(function(user){
+                    vm.user = user;
+                    vm.successMessage = "your message has been sent";
+                })
+                .error(function(error){
+                    console.log(error);
+                })
         }
     }
 
