@@ -17,7 +17,8 @@ module.exports = function(){
         findUserByFacebookId: findUserByFacebookId,
         viewInbox: viewInbox,
         findAllUsers: findAllUsers,
-        sendEmail: sendEmail
+        sendEmail: sendEmail,
+        findAllRecipesForUser: findAllRecipesForUser
     }
     return api;
 
@@ -92,6 +93,15 @@ module.exports = function(){
             {
                 inbox: [{firstName: "Most Popular", message: message}]
             })
+    }
+
+    function findAllRecipesForUser(userId)
+    {
+        return UserModel
+            .findById(userId)
+            .populate("recipes")
+            .exec();
+
     }
 
 }

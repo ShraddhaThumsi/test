@@ -14,7 +14,11 @@
 
             getRecipeByQueryName: getRecipeByQueryName,
             getRecipeById: getRecipeById,
-            bookMarkRecipe: bookMarkRecipe
+            bookMarkRecipe: bookMarkRecipe,
+            findAllRecipesForUser: findAllRecipesForUser,
+            findBookMarkedRecipeById: findBookMarkedRecipeById,
+            updateBookMarkedRecipeById: updateBookMarkedRecipeById,
+            deleteBookMarkedRecipeById: deleteBookMarkedRecipeById,
 
         };
         return api;
@@ -36,14 +40,32 @@
 
         }
 
-        function bookMarkRecipe(sourceRecipe, chefNotes)
+        function bookMarkRecipe(userId, sourceRecipe, chefNotes)
         {
             var recipe = {
                 chefNotes: chefNotes,
                 recipe: sourceRecipe
             };
 
-            return $http.post("/api/recipe", recipe);
+            return $http.post("/api/user/" + userId + "/bookMarkRecipe", recipe);
+
+        }
+
+        function findAllRecipesForUser(userId){
+            var url = "/api/user/" + userId + "/myRecipes";
+            return $http.get(url);
+        }
+
+
+        function findBookMarkedRecipeById(){
+
+        }
+
+        function updateBookMarkedRecipeById(){
+
+        }
+
+        function deleteBookMarkedRecipeById(){
 
         }
 

@@ -4,6 +4,7 @@
 module.exports = function(){
     var mongoose = require("mongoose");
     var RecipeSchema = mongoose.Schema({
+        _user: {type: mongoose.Schema.Types.ObjectId, ref: "UserModel"},
         chefNotes: String,
         recipe: JSON
 

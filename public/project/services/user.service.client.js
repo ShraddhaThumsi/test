@@ -76,10 +76,12 @@
             return $http.get(url);
         }
 
-        function sendEmail(userId, message)
+        function sendEmail(userId, popularUserId, message)
         {
-            var url = "/api/user" + userId;
-            return $http.put(url, message);
+            console.log(userId + " current user id");
+            console.log(popularUserId + " receiver user id");
+            var url = "/api/user/" + userId + "/receiver/" + popularUserId;
+            return $http.put(url, {message:message});
         }
 
     }

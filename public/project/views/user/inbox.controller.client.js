@@ -45,7 +45,7 @@
         {
             vm.message = message;
             console.log(message);
-            var promise = UserService.sendEmail(userId, message);
+            var promise = UserService.sendEmail(userId, popularUserId, message);
             promise
                 .success(function(user){
                     vm.user = user;

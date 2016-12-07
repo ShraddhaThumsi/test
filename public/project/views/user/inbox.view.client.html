@@ -35,19 +35,19 @@
     </h1>
 
     <div class = "row">
-        <div class="col-sm-3 hidden-xs">
+        <div class="col-xs-3">
           First Name:  {{model.popularUser.firstName}}
         </div>
 
-        <div class = "col-sm-3 hidden-xs">
+        <div class = "col-xs-3">
            Last Name: {{model.popularUser.lastName}}
         </div>
 
-        <div class = "col-sm-3 hidden-xs">
+        <div class = "col-xs-3">
            Email id: {{model.popularUser.email}}
         </div>
 
-        <div class = "col-sm-3 hidden-xs">
+        <div class = "col-xs-3">
             <input ng-model = "model.message" placeholder = "your message here"/>
             <a ng-click="model.sendEmail(model.message)"><span class="btn btn-info">Send</span></a>
         </div>

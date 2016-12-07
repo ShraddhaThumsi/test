@@ -9,6 +9,10 @@ module.exports = function(){
     var RecipeModel = mongoose.model("RecipeModel", RecipeSchema);
     var api = {
         bookMarkRecipe: bookMarkRecipe,
+        findAllRecipesForUser: findAllRecipesForUser,
+        findBookMarkedRecipeById: findBookMarkedRecipeById,
+        updateBookMarkedRecipeById: updateBookMarkedRecipeById,
+        deleteBookMarkedRecipeById: deleteBookMarkedRecipeById,
         setModel: setModel
     };
     return api;
@@ -19,19 +23,42 @@ module.exports = function(){
 
     function bookMarkRecipe(userId, recipe)
     {
-        console.log(recipe);
         return RecipeModel
             .create(recipe)
-            .then(function(recipeObj){
+            .then(function(RecipeObj){
                 model
                     .userModel
                     .findUserById(userId)
-                    .then(function(userObj){
-                        userObj.recipes.push(recipeObj);
-                        userObj.save();
-                        return userObj;
+                    .then(function(UserObj){
+                        UserObj.recipes.push(RecipeObj);
+                        RecipeObj._user = UserObj._id;
+                        RecipeObj.save();
+                        return UserObj.save()
                     })
-
             })
     }
+
+    function findAllRecipesForUser(userId)
+    {
+        //console.log(model.userModel.findAllRecipesForUser(userId));
+        return model.userModel.findAllRecipesForUser(userId);
+
+    }
+
+    function findBookMarkedRecipeById(recipeId)
+    {
+
+    }
+
+    function updateBookMarkedRecipeById(recipeId)
+    {
+
+    }
+
+    function deleteBookMarkedRecipeById(recipeId)
+    {
+
+    }
+
+
 }

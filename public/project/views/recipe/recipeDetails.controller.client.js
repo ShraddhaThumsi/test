@@ -35,7 +35,7 @@
             vm.chefNotes = chefNotes;
             console.log(chefNotes);
 
-            var promise = RecipeService.bookMarkRecipe(recipe, chefNotes);
+            var promise = RecipeService.bookMarkRecipe(userId, recipe, chefNotes);
             promise
                 .success(function(recipeExists){
                     if (recipeExists == true) {

@@ -26,7 +26,7 @@ module.exports = function(app, model){
     app.get('/api/user', findUserByCredentials);
     app.get('/api/user/:uid', findUserById);
     app.put('/api/user/:uid', updateUser);
-    app.put("/api/user/:uid", sendEmail);
+    app.put("/api/user/:uid/receiver/:rid", sendEmail);
     app.delete('/api/user/:uid', deleteUser);
     app.get("/api/user", findAllUsers);
     app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
@@ -249,13 +249,15 @@ module.exports = function(app, model){
 
     function sendEmail(req, res)
     {
-        console.log(__dirname);
-        var message = req.body;
+        console.log(__filename);
+        var message = req.body.message;
         console.log(message);
         var userId = req.params.uid;
+        var popularUserId = req.params.rid;
+        console.log(popularUserId);
         model
             .userModel
-            .sendEmail(userId, message)
+            .sendEmail(popularUserId, message)
             .then(function(status){
                 res.sendStatus(status);
             },
