@@ -1,7 +1,39 @@
-{{model.message}}
 
-{{model.group}}
 
-{{model.user}}
+<div class = "container container-fluid">
+    <table class = "table">
+        <thead>
+            <th>
+                From
+            </th>
+            <th>
+                Message
+            </th>
+            <th>
+                Time Received
+            </th>
+        </thead>
+        <tbody>
+            <tr ng-repeat = "message in model.user.inbox">
+                <td>
+                    {{message.firstName}}
+                </td>
+                <td>
+                    {{message.message}}
+                </td>
+                <td>
+                    {{message.timeReceived.default}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
-<h1>Hi</h1>
+    <h1>
+        Get in touch with some of our users
+    </h1>
+
+
+    {{model.users}}
+</div>
+
+

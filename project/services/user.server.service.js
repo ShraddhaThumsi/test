@@ -254,8 +254,8 @@ module.exports = function(app, model){
         model
             .userModel
             .viewGroup(userId)
-            .then(function(user){
-                res.json(user);
+            .then(function(users){
+                res.send(users);
             }, function(error){
                 res.sendStatus(400).send(error);
             });

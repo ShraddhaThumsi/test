@@ -16,7 +16,8 @@ module.exports = function(){
         },
         recipes: [{type: mongoose.Schema.Types.ObjectId, ref: "RecipeModel"}],
         role: {type: String, enum: ['member', 'admin'], default: 'member'},
-        group: []
+        inbox: {type: Array, default: [{firstName: "Chief Chef", message: "Hi! Welcome to Homestraunt! Here you can whip up state-of-the-art restaurant standard dishes at home. @automailNoReply",
+        timeReceived: {type: Date, default: Date()}}]}
     }, {collection: "userProject"});
 
     return UserSchema;
