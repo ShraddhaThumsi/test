@@ -36,7 +36,7 @@
             promise
                 .success(function(user){
                     vm.recipes = user.recipes;
-                    console.log(recipes);
+                    console.log(vm.recipes);
                 })
                 .error(function(error){
                     console.log(error);

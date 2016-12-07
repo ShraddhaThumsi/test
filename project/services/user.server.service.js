@@ -238,10 +238,12 @@ module.exports = function(app, model){
             .userModel
             .updateUser(userId, user)
             .then(function(status) {
+                console.log(status);
                 res.sendStatus(status);
 
 
             }, function(error) {
+                console.log("error",error);
                 res.sendStatus(400).send(error);
 
             });

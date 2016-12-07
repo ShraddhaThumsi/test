@@ -51,14 +51,23 @@ module.exports = function(){
 
     function updateUser(userId, user)
     {
-        return UserModel.update(
+        var prom = UserModel.update(
+            {
+                _id: userId
+            },
+            {
+                firstName: user.firstName,
+                lastName: user.lastName
+            })
+        console.log(prom);
+        /*return UserModel.update(
             {
                 _id: userId
             },
             {
                firstName: user.firstName,
                 lastName: user.lastName
-            })
+            })*/
     }
 
     function deleteUser(userId)

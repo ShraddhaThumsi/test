@@ -56,14 +56,18 @@ module.exports = function(){
 
     function updateUser(userId, user)
     {
-        return UserModel.update(
+        console.log("in model",userId);
+        var prom = UserModel.update(
             {
                 _id: userId
             },
             {
                 firstName: user.firstName,
                 lastName: user.lastName
-            })
+            });
+        console.log(prom);
+
+        return prom;
     }
 
     function deleteUser(userId)
