@@ -26,7 +26,9 @@ module.exports = function(app, model){
     app.get('/api/user', findUserByCredentials);
     app.get('/api/user/:uid', findUserById);
     app.put('/api/user/:uid', updateUser);
+    app.put("/api/user/:uid", sendEmail);
     app.delete('/api/user/:uid', deleteUser);
+    app.get("/api/user", findAllUsers);
     app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', {
@@ -189,6 +191,19 @@ module.exports = function(app, model){
             });
     }
 
+    function findAllUsers(req, res)
+    {
+        model
+            .userModel
+            .findAllUsers()
+            .then(function(users){
+                console.log(users);
+                res.send(users);
+            },
+            function(error){
+                res.sendStatus(400).send(error);
+            })
+    }
 
     function findUserById(req,res)
     {
@@ -232,6 +247,20 @@ module.exports = function(app, model){
             });
     }
 
+    function sendEmail(req, res)
+    {
+        var message = req.body;
+        var userId = req.params.uid;
+        model
+            .userModel
+            .sendEmail(userId, message)
+            .then(function(mail){
+                res.send(mail);
+            }, function(error){
+                res.sendStatus(400).send(error);
+            })
+    }
+
     function deleteUser(req, res)
     {
         var userId = req.params.uid;
@@ -253,7 +282,7 @@ module.exports = function(app, model){
         var userId = req.params.uid;
         model
             .userModel
-            .viewGroup(userId)
+            .viewInbox(userId)
             .then(function(users){
                 res.send(users);
             }, function(error){

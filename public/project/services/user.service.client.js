@@ -17,7 +17,8 @@
             login: login,
             checkLogin: checkLogin,
             logout: logout,
-            viewGroup: viewGroup
+            viewInbox: viewInbox,
+            sendEmail: sendEmail
         };
         return api;
 
@@ -69,10 +70,16 @@
             return $http.delete(url);
         }
 
-        function viewGroup(userId)
+        function viewInbox(userId)
         {
             var url = "/api/user/"+userId;
             return $http.get(url);
+        }
+
+        function sendEmail(userId, message)
+        {
+            var url = "/api/user" + userId;
+            return $http.put(url, message);
         }
 
     }

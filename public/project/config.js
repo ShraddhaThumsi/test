@@ -78,9 +78,9 @@
                 controllerAs: "model"
             })
 
-            .when("/user/:uid/viewGroup", {
-                templateUrl: "views/user/group.view.client.html",
-                controller: "ViewGroupController",
+            .when("/user/:uid/viewInbox", {
+                templateUrl: "views/user/inbox.view.client.html",
+                controller: "ViewInboxController",
                 controllerAs: "model"
             })
 
