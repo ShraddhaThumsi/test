@@ -31,9 +31,11 @@
             {queryByName: "https://api.edamam.com/search?app_id=be979c85&app_key=a6ded68b7dd66370c211045072bcb1a8&q="
             + queryName};
             return $http.get(url, queryBody);*/
-            return $http
+            /*return $http
                 .get("https://api.edamam.com/search?app_id=be979c85&app_key=a6ded68b7dd66370c211045072bcb1a8&q="
-                    + queryName)
+                    + queryName)*/
+            var url = "/api/user/recipeSearch/" + queryName;
+            return $http.get(url);
         }
 
         function getRecipeById(recipeId)
