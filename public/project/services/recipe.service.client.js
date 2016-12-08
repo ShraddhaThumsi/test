@@ -50,11 +50,16 @@
                 queryById: requestRecipeDetails
             }
             return $http.get(url, queryBody)*/
-            var apiCallString = "https://api.edamam.com/search?app_id=be979c85&app_key=a6ded68b7dd66370c211045072bcb1a8" +
+
+
+            /*var apiCallString = "https://api.edamam.com/search?app_id=be979c85&app_key=a6ded68b7dd66370c211045072bcb1a8" +
                 "&r=http://www.edamam.com/ontologies/edamam.owl%23";
             var recipeId = recipeId;
             var requestRecipeDetails = apiCallString + recipeId;
-            return $http.get(requestRecipeDetails);
+            return $http.get(requestRecipeDetails);*/
+
+            var url = "/api/user/recipeDetails/" + recipeId;
+            return $http.get(url);
 
         }
 

@@ -27,7 +27,19 @@
 
         }
 
-        function checkIfAdmin($q, UserService, $location)
+        function isAdmin($rootScope, $q){
+            console.log($rootScope.currentUser);
+            console.log("Called Is Admin");
+            var deferred = $q.defer();
+            if($rootScope.currentUser.role == "admin"){
+                deferred.resolve();
+            }else {
+                deferred.reject();
+            }
+            return deferred.promise;
+        }
+
+        function checkIfAdmin($q, UserService, $location, $rootScope)
         {
             var deferred = $q.defer();
             UserService
@@ -36,6 +48,7 @@
                     var currentUser = result.data;
                     if(currentUser != null && currentUser.role == "admin")
                     {
+                        $rootScope.currentUser = currentUser;
                         deferred.resolve();
                     }
                     else
@@ -114,15 +127,10 @@
                 controller: "AdminRightsController",
                 controllerAs: "model",
                 resolve:{
-                    checkLogin: checkLogin,
-                    checkIfAdmin: checkIfAdmin
+                    //checkLogin: checkLogin,
+                    isAdmin: isAdmin
                 }
             })
-
-
-
-
-
 
             .otherwise({redirectTo: "/login"});
 

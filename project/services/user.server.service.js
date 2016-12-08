@@ -18,7 +18,7 @@ module.exports = function(app, model){
     passport.use(new LocalStrategy(localStrategy));
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
-   // app.post("/api/login", passport.authenticate('local'), login);
+  //  app.post("/api/login", passport.authenticate('local'), login);
     app.post("/api/checkLogin", checkLogin);
     app.post("/api/login", login);
     app.post("/api/user", createUser);

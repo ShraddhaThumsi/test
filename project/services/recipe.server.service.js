@@ -11,6 +11,7 @@ module.exports = function (app, model) {
     app.put("/api/user/:uid/editRecipe/:rid", editBookmarkedRecipe);
     app.delete("/api/user/:uid/deleteBookMarkedRecipe/:rid", deleteBookMarkedRecipe);
     app.get("/api/user/recipeSearch/:queryName", recipeSearch);
+    app.get("/api/user/recipeDetails/:rid", recipeDetails);
 
     function bookMarkRecipe(req, res)
     {
@@ -99,10 +100,32 @@ module.exports = function (app, model) {
         var query = req.params.queryName;
         var apiCallString = "http://api.edamam.com/search?app_id=be979c85&app_key=a6ded68b7dd66370c211045072bcb1a8&q=" + query;
         console.log(apiCallString);
+        callback = function(response)
+        {
+            var str = "";
+            //console.log(response);
 
+            response.on('data', function (chunk) {
+                str = str + chunk;
+            });
 
+            response.on('end', function () {
+                console.log("String Made " , str);
+                res.writeHead(200, {"Content-Type" : "application/json"});
+                res.end(str);
+            });
+        }
 
+        http.request(apiCallString, callback).end();
+    }
 
+    function recipeDetails(req, res)
+    {
+        var recipeId = req.params.rid;
+        var urlConstructor = "http://api.edamam.com/search?app_id=be979c85&app_key=a6ded68b7dd66370c211045072bcb1a8" +
+            "&r=http://www.edamam.com/ontologies/edamam.owl%23";
+        var apiCallString = urlConstructor + recipeId;
+        console.log(apiCallString);
         callback = function(response)
         {
             var str = "";
