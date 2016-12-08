@@ -1,6 +1,4 @@
-/**
- * Created by shraddha on 11/18/16.
- */
+
 var exports = module.exports = {};
 module.exports = function (app, model) {
 
