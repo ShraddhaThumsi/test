@@ -26,7 +26,7 @@ module.exports = function(app, model){
     app.get('/api/user', findUserByCredentials);
     app.get('/api/user/:uid', findUserById);
     app.put('/api/user/:uid', updateUser);
-    app.put("/api/user/:uid/receiver/:rid", sendEmail);
+    app.put('/api/user/:uid/receiver/:rid', sendEmail);
     app.delete('/api/user/:uid', deleteUser);
     app.get("/api/user/getAllUsers", getAllUsers);
   //  app.get("/api/user", findAllUsers);
@@ -253,8 +253,10 @@ module.exports = function(app, model){
 
     function sendEmail(req, res)
     {
-        console.log(__filename);
-        var message = req.body.message;
+        console.log("Send Mail Function", req.body);
+        //console.log(__filename);
+        var message = req.body;
+        message = message.message;
         console.log(message);
         var userId = req.params.uid;
         var popularUserId = req.params.rid;
@@ -262,10 +264,10 @@ module.exports = function(app, model){
         model
             .userModel
             .sendEmail(popularUserId, message)
-            .then(function(status){
-                res.sendStatus(status);
+            .then(function(stats){
+                res.sendStatus(200).send(stats);
             },
-                function(error){
+                function(err){
                 res.sendStatus(400).send(error);
                 })
 

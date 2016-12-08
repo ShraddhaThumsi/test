@@ -106,13 +106,34 @@ module.exports = function(){
 
     function sendEmail(userId, message)
     {
-        console.log(__dirname);
-        return UserModel.update({
-            _id: userId
-        },
-            {
-                inbox: [{firstName: "Most Popular", message: message}]
-            })
+        console.log(__filename);
+        console.log(message);
+        var deferred = q.defer();
+        var user;
+        UserModel.findById(userId,function(err, doc){
+            if(doc){
+                doc.inbox.push({"firstName": "Sample mail sender", "message" : message});
+                console.log(doc);
+                UserModel.update({
+                        _id: userId
+                    },
+
+                    {$set: doc}
+                    // {$set: {inbox: {firstName: "most popular", message: message.message}}}
+                    //inbox: [{firstName: "Most Popular", message: message}]
+                    , function(err, stats){
+                        if(!err){
+                            deferred.resolve(stats);
+                        }else {
+                            deferred.reject(err);
+                        }
+                    })
+
+            }
+        });
+        console.log(user);
+
+        return deferred.promise;
     }
 
     function findAllRecipesForUser(userId)

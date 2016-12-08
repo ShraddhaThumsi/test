@@ -5,7 +5,7 @@ module.exports = function (app, model) {
     app.post("/api/user/:uid/bookMarkRecipe", bookMarkRecipe);
     app.get("/api/user/:uid/myRecipes", findAllRecipesForUser);
     app.get("/api/user/:uid/bookMarkedRecipe/:rid", findBookMarkedRecipeById);
-    app.get("/api/recipeSearchByQuery", getRecipeByQueryName);
+  //  app.get("/api/recipeSearchByQuery", getRecipeByQueryName);
     app.get("/api/recipeSearchById", getRecipeByQueryId);
     app.put("/api/user/:uid/editRecipe/:rid", editBookmarkedRecipe);
     app.delete("/api/user/:uid/deleteBookMarkedRecipe/:rid", deleteBookMarkedRecipe);
@@ -51,11 +51,11 @@ module.exports = function (app, model) {
             })
     }
 
-    function getRecipeByQueryName(req, res)
+   /* function getRecipeByQueryName(req, res)
     {
         var queryBody = req.body;
         res.json(queryBody.queryByName)
-    }
+    }*/
 
     function getRecipeByQueryId(req, res)
     {
