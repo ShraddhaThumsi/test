@@ -7,6 +7,7 @@ module.exports = function(app, model){
     var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
     var cookieParser = require('cookie-parser');
     var session = require('express-session');
+    var bcrypt = require("bcrypt-nodejs");
     app.use(session({
         secret: 'this is the secret',
         resave: true,
@@ -28,6 +29,7 @@ module.exports = function(app, model){
     app.post('/api/user', createUser);
     app.put('/api/user/:uid', updateUser);
     app.delete('/api/user/:uid', deleteUser);
+    app.post("/api/register", register);
     app.get('http://www.example.com/auth/google/oath2callback',
     passport.authenticate('google', {
         successRedirect: "/assignment/index.html/#/user",
@@ -111,11 +113,17 @@ module.exports = function(app, model){
             .findUserByCredentials(username, password)
             .then(function(user){
                 console.log(user);
-                if(!user)
+                /*if(!user)
                 {
                     return done(null, false);
                 }
-                return done(null, user);
+                return done(null, user);*/
+
+                if(user && bcrypt.compareSync(password, user.password)) {
+                    return done(null, user);
+                } else {
+                    return done(null, false);
+                }
 
             }, function(error){
 
@@ -326,5 +334,31 @@ module.exports = function(app, model){
             }
         }
         res.send('0');*/
+    }
+
+    function register(req, res)
+    {
+        var newUser = req.body;
+        newUser.password = bcrypt.hashSync(newUser.password);
+        model
+            .userModel
+            .createUser(newUser)
+            .then(function(newUser){
+                if(newUser)
+                {
+                    req.login(user, function(err){
+                        if(err)
+                        {
+                            res.sendStatus(400).send(err);
+                        }
+                        else
+                        {
+                            res.json(user);
+                        }
+                    })
+                }
+            }, function(error){
+                res.sendStatus(400).send(error);
+            })
     }
 }

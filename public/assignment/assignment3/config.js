@@ -9,13 +9,14 @@
     function Config($routeProvider) {
 
 
-        function checkLogin($q, UserService, $location){
+        function checkLogin($q, UserService, $location, $rootScope){
          var deferred = $q.defer();
          UserService
          .checkLogin()
          .success(function(user){
              if(user != '0')
              {
+                 $rootScope.currentUser = user;
                  deferred.resolve();
              }
              else

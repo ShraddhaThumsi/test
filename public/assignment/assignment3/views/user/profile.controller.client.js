@@ -5,7 +5,7 @@
     angular
         .module("WebAppMaker")
         .controller("ProfileController", ProfileController);
-    function ProfileController($routeParams, $location, UserService) {
+    function ProfileController($routeParams, $location, UserService, $rootScope) {
         var vm = this;
         var userId = $routeParams.uid;
         vm.userId = userId;
@@ -73,7 +73,8 @@
         {
             var promise = UserService.logout();
             promise
-                .success(function(){
+                .success(function(response){
+                    $rootScope.currentUser = null;
                     $location.url("/login");
                 });
         }

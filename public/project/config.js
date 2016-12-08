@@ -26,6 +26,26 @@
             return deferred.promise;
 
         }
+
+        function checkIfAdmin($q, UserService, $location)
+        {
+            var deferred = $q.defer();
+            UserService
+                .checkLogin()
+                .success(function(result){
+                    var currentUser = result.data;
+                    if(currentUser != null && currentUser.role == "admin")
+                    {
+                        deferred.resolve();
+                    }
+                    else
+                    {
+                        deferred.reject();
+                    }
+                });
+
+            return deferred.promise;
+        }
         $routeProvider
             .when("/login", {
                 templateUrl: "views/user/login.view.client.html",
@@ -87,6 +107,16 @@
                 templateUrl: "views/user/inbox.view.client.html",
                 controller: "ViewInboxController",
                 controllerAs: "model"
+            })
+
+            .when("/user/:uid/admin", {
+                templateUrl: "views/user/admin.view.client.html",
+                controller: "AdminRightsController",
+                controllerAs: "model",
+                resolve:{
+                    checkLogin: checkLogin,
+                    checkIfAdmin: checkIfAdmin
+                }
             })
 
 

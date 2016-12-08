@@ -6,7 +6,7 @@
         .module("RecipeMaker")
         .controller("LoginController", LoginController);
 
-    function LoginController(UserService, $location)
+    function LoginController(UserService, $location, $rootScope)
     {
         var vm = this;
         vm.loginUser = loginUser;

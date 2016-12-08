@@ -6,7 +6,7 @@
         .module("WebAppMaker")
         .controller("RegisterController", RegisterController);
 
-    function RegisterController($location, UserService)
+    function RegisterController($location, UserService, $rootScope)
     {
         var vm = this;
         vm.registerUser = registerUser;
@@ -31,10 +31,12 @@
                 };
 
 
-                var promise = UserService.createUser(newUser);
+               // var promise = UserService.createUser(newUser);
+                var promise = UserService.register(newUser);
 
                 promise
-                    .success(function(userExists){
+                    .success(function(response){
+                        var userExists = response.data;
                 if (userExists == true) {
                     alert("User exists");
                 }
@@ -43,7 +45,7 @@
                     var userId = userExists._id;
                     vm.userId = userId;
                     vm.registerUser = userExists;
-                    //$rootScope.currentUser = user;
+                    $rootScope.currentUser = user;
                     $location.url("/user/" + vm.userId);
                 }
                 })
