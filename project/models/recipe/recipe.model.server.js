@@ -50,14 +50,18 @@ module.exports = function(){
         return RecipeModel.findById(recipeId)
     }
 
-    function updateBookMarkedRecipeById(recipeId)
+    function updateBookMarkedRecipeById(recipeId, recipe)
     {
-
+        return RecipeModel.update({
+            _id: recipeId
+        }, {
+            chefNotes: recipe.chefNotes
+        })
     }
 
     function deleteBookMarkedRecipeById(recipeId)
     {
-
+        return RecipeModel.remove({_id : recipeId})
     }
 
 

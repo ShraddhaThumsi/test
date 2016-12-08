@@ -34,11 +34,27 @@
         {
             vm.recipeId = recipeId;
             vm.recipe = recipe;
+           // console.log(vm.recipe)
+            var promise = RecipeService.updateBookMarkedRecipeById(vm.userId, vm.recipeId, vm.recipe);
+            promise
+                .success(function(updatedRecipe){
+                    vm.recipe = updatedRecipe;
+                    $location.url("/user/" + userId + "/myRecipes");
+                })
+                .error(function(){})
         }
 
         function deleteRecipe(recipeId)
         {
             vm.recipeId = recipeId;
+            var promise = RecipeService.deleteBookMarkedRecipeById(vm.userId, vm.recipeId);
+            promise
+                .success(function(){
+                    $location.url("/user/" + userId + "/myRecipes");
+                })
+                .error(function(error){
+                    console.log(error);
+                })
         }
 
 

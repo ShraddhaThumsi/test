@@ -7,6 +7,8 @@ module.exports = function (app, model) {
     app.get("/api/user/:uid/bookMarkedRecipe/:rid", findBookMarkedRecipeById);
     app.get("/api/recipeSearchByQuery", getRecipeByQueryName);
     app.get("/api/recipeSearchById", getRecipeByQueryId);
+    app.put("/api/user/:uid/editRecipe/:rid", editBookmarkedRecipe);
+    app.delete("/api/user/:uid/deleteBookMarkedRecipe/:rid", deleteBookMarkedRecipe);
 
     function bookMarkRecipe(req, res)
     {
@@ -59,5 +61,34 @@ module.exports = function (app, model) {
     {
         var queryBody = req.body;
         res.json(queryBody.queryById);
+    }
+
+    function editBookmarkedRecipe(req, res)
+    {
+        var userId = req.params.uid;
+        var recipeId = req.params.rid;
+        var recipe = req.body;
+        var chefNotes = recipe.chefNotes;
+        model
+            .recipeModel
+            .updateBookMarkedRecipeById(recipeId, recipe)
+            .then(function(status){
+                res.send(status);
+            }, function(error){
+                res.sendStatus(400).send(error);
+            })
+    }
+
+    function deleteBookMarkedRecipe(req, res)
+    {
+        var recipeId = req.params.rid;
+        model
+            .recipeModel
+            .deleteBookMarkedRecipeById(recipeId)
+            .then(function(status){
+                res.send(status)
+            }, function(error){
+                res.sendStatus(400).send(error)
+            })
     }
 }

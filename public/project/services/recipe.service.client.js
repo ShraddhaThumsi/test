@@ -78,11 +78,14 @@
             return $http.get(url);
         }
 
-        function updateBookMarkedRecipeById(){
-
+        function updateBookMarkedRecipeById(userId, recipeId, recipe){
+            var url = "/api/user/" + userId + "/editRecipe/" + recipeId;
+            return $http.put(url, recipe);
         }
 
-        function deleteBookMarkedRecipeById(){
+        function deleteBookMarkedRecipeById(userId, recipeId){
+            var url = "/api/user/" + userId + "/deleteBookMarkedRecipe/" + recipeId;
+            return $http.delete(url);
 
         }
 
