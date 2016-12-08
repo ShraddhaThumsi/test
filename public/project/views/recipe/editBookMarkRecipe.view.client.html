@@ -1,0 +1,12 @@
+
+
+                <a ng-click = "model.editRecipe(model.recipeId, model.recipe)"><span class = "btn btn-warning">Edit</span></a>
+                <a ng-click = "model.deleteRecipe(model.recipeId)"><span class = "btn btn-danger">Delete</span></a>
+
+
+                <div class = "container container-fluid">
+                    <h1>Manage your bookmark</h1>
+                    <textarea rows="4" cols="50" placeholder = "Enter chef notes here" ng-model = "model.recipe.chefNotes">
+                    </textarea>
+                    <h3>{{model.recipe.recipe.label}}</h3>
+                </div>

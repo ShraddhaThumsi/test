@@ -2,4 +2,43 @@
 
 <h1>My Recipes</h1>
 <a href="#/user/{{model.userId}}" class = "btn btn-info"> Search More Recipes</a>
-{{model.recipes}}
+<table class = "table">
+    <thead>
+        <th>
+            Recipe Name
+        </th>
+        <th>
+            Chef Notes
+        </th>
+        <!--<th>
+            Edit/Delete Bookmark
+        </th>-->
+        <th>
+            Dish - click to view recipe
+        </th>
+    </thead>
+
+    <tbody>
+        <tr ng-repeat = "recipe in model.recipes">
+            <td>
+                <a href="#/user/{{model.userId}}/recipeDetails/editRecipe/{{recipe._id}}">{{recipe.recipe.label}}</a>
+            </td>
+            <td>
+               <input ng-model = "recipe.chefNotes" placeholder="no chef notes yet">
+            </td>
+            <!--<td>
+                <a ng-click = "model.editRecipe(recipe.chefNotes)"><span class = "btn btn-warning">Edit</span></a>
+                <a ng-click = "model.deleteRecipe(model.recipeId)"><span class = "btn btn-danger">Delete</span></a>
+            </td>-->
+            <td>
+               <a href="{{recipe.recipe.url}}"><img ng-src = "{{recipe.recipe.image}}" height = "300" width = "300"/></a>
+            </td>
+
+        </tr>
+    </tbody>
+</table>
+
+
+
+
+

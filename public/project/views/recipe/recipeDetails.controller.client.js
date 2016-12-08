@@ -20,8 +20,8 @@
         promise
             .success(function(recipe){
                 vm.recipe = recipe[0];
-                console.log(vm.recipe.image);
-                console.log(recipe);
+              //  console.log(vm.recipe.image);
+                console.log(vm.recipe);
             })
         }
 

@@ -11,24 +11,11 @@
         var vm = this;
         var userId = $routeParams.uid;
         vm.userId = userId;
-        /*vm.findAllRecipesForUser = findAllRecipesForUser;
-        function findAllRecipesForUser(userId)
-        {
+        var recipeId = $routeParams.rid;
+        vm.recipeId = recipeId;
+        /*vm.editRecipe = editRecipe;
+        vm.deleteRecipe = deleteRecipe;*/
 
-        }*/
-        /*function init()
-        {
-            var promise = RecipeService.findAllRecipesForUser(vm.userId);
-            promise
-                .success(function(recipes){
-                    vm.recipes = recipes;
-                    console.log(recipes);
-                })
-                .error(function(error){
-                    console.log(error);
-                })
-        }
-        init();*/
 
         function init()
         {
@@ -43,6 +30,18 @@
                 })
         }
         init();
+/*
+        function editRecipe(chefNotes)
+        {
+            vm.chefNotes = chefNotes;
+            console.log("will allow user to edit/delete recipe");
+        }
+
+        function deleteRecipe(recipeId)
+        {
+            vm.recipeId = recipeId;
+            console.log("deleting recipe no. " + recipeId);
+        }*/
 
 
     }

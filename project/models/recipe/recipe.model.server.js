@@ -47,7 +47,7 @@ module.exports = function(){
 
     function findBookMarkedRecipeById(recipeId)
     {
-
+        return RecipeModel.findById(recipeId)
     }
 
     function updateBookMarkedRecipeById(recipeId)

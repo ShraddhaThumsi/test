@@ -71,6 +71,11 @@
                 controllerAs: "model"
 
             })
+            .when("/user/:uid/recipeDetails/editRecipe/:rid", {
+                templateUrl: "views/recipe/editBookMarkRecipe.view.client.html",
+                controller: "EditBookmarkRecipe",
+                controllerAs: "model"
+            })
 
             .when("/user/:uid/recipeDetails/:rid", {
                 templateUrl: "views/recipe/recipeDetails.view.client.html",
@@ -83,6 +88,10 @@
                 controller: "ViewInboxController",
                 controllerAs: "model"
             })
+
+
+
+
 
 
             .otherwise({redirectTo: "/login"});
