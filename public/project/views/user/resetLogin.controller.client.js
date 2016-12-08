@@ -39,6 +39,7 @@
             vm.userId = userId;
             vm.user = user;
             var promise = UserService.updateUser(userId, user);
+            console.log(promise);
             promise
                 .success(function(updatedUser)
                 {

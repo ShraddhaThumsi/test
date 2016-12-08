@@ -17,6 +17,14 @@
         var popularUserId = "5847698abf6670c3bd4f0c76";
 
         function init(){
+            /*var promise = UserService.findAllUsers();
+            promise
+                .success(function(users){
+                    vm.users = users;
+                })
+                .error(function(error){
+                    console.log(error);
+                })*/
             var promise = UserService.findUserById(popularUserId);
             promise
                 .success(function(popularUser){

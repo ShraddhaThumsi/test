@@ -18,7 +18,8 @@
             checkLogin: checkLogin,
             logout: logout,
             viewInbox: viewInbox,
-            sendEmail: sendEmail
+            sendEmail: sendEmail,
+            findAllUsers: findAllUsers
         };
         return api;
 
@@ -82,6 +83,11 @@
             console.log(popularUserId + " receiver user id");
             var url = "/api/user/" + userId + "/receiver/" + popularUserId;
             return $http.put(url, {message:message});
+        }
+
+        function findAllUsers(){
+            var url = "/api/user/getAllUsers";
+            return $http.get(url);
         }
 
     }

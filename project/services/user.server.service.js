@@ -28,7 +28,8 @@ module.exports = function(app, model){
     app.put('/api/user/:uid', updateUser);
     app.put("/api/user/:uid/receiver/:rid", sendEmail);
     app.delete('/api/user/:uid', deleteUser);
-    app.get("/api/user", findAllUsers);
+    app.get("/api/user/getAllUsers", getAllUsers);
+  //  app.get("/api/user", findAllUsers);
     app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', {
@@ -191,7 +192,7 @@ module.exports = function(app, model){
             });
     }
 
-    function findAllUsers(req, res)
+    /*function findAllUsers(req, res)
     {
         model
             .userModel
@@ -203,7 +204,7 @@ module.exports = function(app, model){
             function(error){
                 res.sendStatus(400).send(error);
             })
-    }
+    }*/
 
     function findUserById(req,res)
     {
@@ -237,9 +238,10 @@ module.exports = function(app, model){
         model
             .userModel
             .updateUser(userId, user)
-            .then(function(status) {
-                console.log(status);
-                res.sendStatus(status);
+            .then(function(promise) {
+                console.log(promise);
+                res.send(promise);
+              //  res.sendStatus(status);
 
 
             }, function(error) {
@@ -297,5 +299,18 @@ module.exports = function(app, model){
                 res.sendStatus(400).send(error);
             });
 
+    }
+
+    function getAllUsers(req, res)
+    {
+        model
+            .userModel
+            .getAllUsers()
+            .then(function(users){
+
+               res.send(users);
+            }, function(error){
+                res.sendStatus(400).send(error);
+            })
     }
 }

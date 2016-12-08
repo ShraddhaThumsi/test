@@ -1,9 +1,10 @@
 /**
  * Created by shraddha on 11/18/16.
  */
-
+var q = require("q");
 module.exports = function(){
     var model = {};
+
     var mongoose = require('mongoose');
     var UserSchema = require("./user.schema.server")();
     var UserModel = mongoose.model("UserModel", UserSchema);
@@ -16,7 +17,7 @@ module.exports = function(){
         setModel: setModel,
         findUserByFacebookId: findUserByFacebookId,
         viewInbox: viewInbox,
-        findAllUsers: findAllUsers,
+        getAllUsers: getAllUsers,
         sendEmail: sendEmail,
         findAllRecipesForUser: findAllRecipesForUser
     }
@@ -56,7 +57,22 @@ module.exports = function(){
 
     function updateUser(userId, user)
     {
-        console.log("in model",userId);
+        var deferred = q.defer();
+        UserModel
+            .update({_id: userId},
+                { $set : user},
+            function(error, status) {
+                if(!error)
+                {
+                    deferred.resolve(status);
+                }
+                else
+                {
+                    deferred.reject(error);
+                }
+            });
+        return deferred.promise;
+        /*console.log("in model",userId);
         var prom = UserModel.update(
             {
                 _id: userId
@@ -67,7 +83,7 @@ module.exports = function(){
             });
         console.log(prom);
 
-        return prom;
+        return prom;*/
     }
 
     function deleteUser(userId)
@@ -83,7 +99,7 @@ module.exports = function(){
         return UserModel.findById(userId);
     }
 
-    function findAllUsers()
+    function getAllUsers()
     {
         return UserModel.find();
     }
