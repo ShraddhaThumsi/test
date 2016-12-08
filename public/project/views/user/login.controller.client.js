@@ -22,6 +22,7 @@
                     /*console.log(aaa);*/
                     if(user)
                     {
+                        console.log(user);
                         vm.user = user;
                         $rootScope.currentUser = user;
                         $location.url("/user/" + user._id);

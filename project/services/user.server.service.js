@@ -15,10 +15,10 @@ module.exports = function(app, model){
     app.use(cookieParser());
     app.use(passport.initialize());
     app.use(passport.session());
-    passport.use(new LocalStrategy(localStrategy));
+    passport.use('test' , new LocalStrategy(localStrategy));
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
-  //  app.post("/api/login", passport.authenticate('local'), login);
+    //app.post("/api/login", passport.authenticate('test'), login);
     app.post("/api/checkLogin", checkLogin);
     app.post("/api/login", login);
     app.post("/api/user", createUser);
@@ -113,9 +113,9 @@ module.exports = function(app, model){
 
     function login(req, res)
     {
-        /*var user = req.user;
+        /*console.log("in Login");
+        var user = req.user;
         res.json(user);*/
-
         var user = req.body;
         var email = user.email;
         var password = user.password;
