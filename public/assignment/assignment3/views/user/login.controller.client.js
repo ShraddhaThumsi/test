@@ -23,7 +23,7 @@
                     {
 
                         $rootScope.currentUser = user;
-                        $location.url("/user/" + user._id);
+                        $location.url("/user");
                         vm.success = "Your Profile was successfully saved!";
                     }
 
