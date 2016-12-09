@@ -19,7 +19,7 @@
             logout: logout,
             viewInbox: viewInbox,
             sendEmail: sendEmail,
-            findAllUsers: findAllUsers
+            getAllUsers: getAllUsers
         };
         return api;
 
@@ -85,9 +85,10 @@
             return $http.put(url, {message:message});
         }
 
-        function findAllUsers(){
-            var url = "/api/user/getAllUsers";
-            return $http.get(url);
+        function getAllUsers(user){
+            console.log(user + " user object, reporting from user service client, this has been received from admin rights controller");
+            var url = "/api/admin/users";
+            return $http.get(url, user);
         }
 
     }

@@ -28,8 +28,7 @@ module.exports = function(app, model){
     app.put('/api/user/:uid', updateUser);
     app.put('/api/user/:uid/receiver/:rid', sendEmail);
     app.delete('/api/user/:uid', deleteUser);
-    app.get("/api/user/getAllUsers", getAllUsers);
-  //  app.get("/api/user", findAllUsers);
+    app.get('/api/admin/users', getAllUsers);
     app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', {
@@ -305,14 +304,25 @@ module.exports = function(app, model){
 
     function getAllUsers(req, res)
     {
-        model
-            .userModel
-            .getAllUsers()
-            .then(function(users){
+        var user = req.body;
+        console.log(__filename);
+        if(user.role == "admin")
+        {
+            model
+                .userModel
+                .getAllUsers()
+                .then(function(users){
+                    res.json(users);
+                }, function(error){
+                    res.sendStatus(400).send(error);
+                })
 
-               res.send(users);
-            }, function(error){
-                res.sendStatus(400).send(error);
-            })
+        }
+        else
+        {
+            res.sendStatus(403);
+        }
     }
+
+
 }

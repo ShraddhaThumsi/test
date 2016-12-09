@@ -22,7 +22,7 @@
                     /*console.log(aaa);*/
                     if(user)
                     {
-                        console.log(user);
+                        console.log(user + " user at login controller");
                         vm.user = user;
                         $rootScope.currentUser = user;
                         $location.url("/user/" + user._id);
