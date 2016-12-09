@@ -1,10 +1,9 @@
 /**
  * Created by shraddha on 11/14/16.
  */
+var q = require("q");
 module.exports = function(mongoose){
     var model = {};
-   // var mongoose = require("mongoose");
-   //  console.log(mongoose);
     var UserSchema = require("./user.schema.server")(mongoose);
     var UserModel = mongoose.model("UserModelAssignment", UserSchema);
 
@@ -19,7 +18,7 @@ module.exports = function(mongoose){
         setModel: setModel,
         findUserByGoogleId: findUserByGoogleId,
         findUserByFacebookId: findUserByFacebookId
-    }
+    };
     return api;
     function setModel(_model)
     {
@@ -52,7 +51,7 @@ module.exports = function(mongoose){
     }
 
     function updateUser(userId, user)
-    {
+    {/*
         var prom = UserModel.update(
             {
                 _id: userId
@@ -61,15 +60,24 @@ module.exports = function(mongoose){
                 firstName: user.firstName,
                 lastName: user.lastName
             })
-        console.log(prom);
-        /*return UserModel.update(
-            {
-                _id: userId
-            },
-            {
-               firstName: user.firstName,
-                lastName: user.lastName
-            })*/
+        console.log(prom);*/
+
+        var deferred = q.defer();
+        UserModel
+            .update({_id: userId},
+                { $set : user},
+                function(error, status) {
+                    if(!error)
+                    {
+                        deferred.resolve(status);
+                    }
+                    else
+                    {
+                        deferred.reject(error);
+                    }
+                });
+        return deferred.promise;
+
     }
 
     function deleteUser(userId)

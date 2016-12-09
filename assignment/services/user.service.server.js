@@ -76,7 +76,7 @@ module.exports = function(app, model, passport){
             .userModel
             .updateUser(userId, user)
             .then(function(status) {
-                    res.sendStatus(status);
+                    res.send(status);
 
 
             }, function(error) {
