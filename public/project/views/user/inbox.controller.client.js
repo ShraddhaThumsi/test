@@ -6,27 +6,23 @@
         .module("RecipeMaker")
         .controller("ViewInboxController", ViewInboxController);
 
-    function ViewInboxController($routeParams, $location, UserService)
+    function ViewInboxController($routeParams, $location, UserService, $rootScope)
     {
         var vm = this;
         vm.message = "hello, I would like to connect with you";
         vm.reply = "hi, thanks for the message";
-        var userId = $routeParams.uid;
-        vm.userId = userId;
+        if($rootScope.currentUser){
+            var userId =  $rootScope.currentUser._id;
+            vm.userId = userId;
+        }
+
         vm.sendEmail = sendEmail;
         vm.replyMail = replyMail;
 
         var popularUserId = "5847698abf6670c3bd4f0c76";
 
         function init(){
-            /*var promise = UserService.findAllUsers();
-            promise
-                .success(function(users){
-                    vm.users = users;
-                })
-                .error(function(error){
-                    console.log(error);
-                })*/
+
             var promise = UserService.findUserById(popularUserId);
             promise
                 .success(function(popularUser){

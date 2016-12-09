@@ -6,11 +6,14 @@
         .module("RecipeMaker")
         .controller("MyRecipeController", MyRecipeController);
 
-    function MyRecipeController($routeParams, RecipeService, $location)
+    function MyRecipeController($routeParams, RecipeService, $location, $rootScope)
     {
         var vm = this;
-        var userId = $routeParams.uid;
-        vm.userId = userId;
+        if($rootScope.currentUser){
+            var userId =  $rootScope.currentUser._id;
+            vm.userId = userId;
+        }
+
         var recipeId = $routeParams.rid;
         vm.recipeId = recipeId;
         /*vm.editRecipe = editRecipe;

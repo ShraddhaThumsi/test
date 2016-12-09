@@ -25,55 +25,55 @@
 
         function checkLogin()
         {
-            return $http.post("/api/checkLogin")
+            return $http.post("/project/checkLogin")
         }
 
         function logout()
         {
-            return $http.post("/api/logout");
+            return $http.post("/project/logout");
         }
 
         function login(email, password)
         {
             var user =
             {
-                email: email,
+                username: email,
                 password: password
             };
 
-            return $http.post("/api/login", user);
+            return $http.post("/project/login", user);
         }
         function createUser(newUser)
         {
-            return $http.post("/api/user", newUser);
+            return $http.post("/project/user", newUser);
         }
 
         function findUserByCredentials(email, password) {
-            var url = "/api/user?email="+email+"&password="+password;
+            var url = "/project/user?email="+email+"&password="+password;
             return $http.get(url);
 
         }
 
         function findUserById(userId)
         {
-            var url = "/api/user/" + userId;
+            var url = "/project/user/" + userId;
             return $http.get(url);
         }
 
         function updateUser(userId, user){
-            var url = "/api/user/"+userId;
+            var url = "/project/user/"+userId;
             return $http.put(url, user);
         }
 
         function deleteUser(userId)
         {
-            var url = "/api/user/"+userId;
+            var url = "/project/user/"+userId;
             return $http.delete(url);
         }
 
         function viewInbox(userId)
         {
-            var url = "/api/user/"+userId;
+            var url = "/project/user/"+userId;
             return $http.get(url);
         }
 
@@ -81,13 +81,13 @@
         {
             console.log(userId + " current user id");
             console.log(popularUserId + " receiver user id");
-            var url = "/api/user/" + userId + "/receiver/" + popularUserId;
+            var url = "/project/user/" + userId + "/receiver/" + popularUserId;
             return $http.put(url, {message:message});
         }
 
         function getAllUsers(user){
             console.log(user + " user object, reporting from user service client, this has been received from admin rights controller");
-            var url = "/api/admin/users";
+            var url = "/project/admin/users";
             return $http.get(url, user);
         }
 

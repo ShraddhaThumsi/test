@@ -5,16 +5,16 @@ module.exports = function(app, model, passport){
 
     var pp = passport.passportObject();
     var bcr = passport.bcryptObject();
-    app.post("/api/checkLogin", checkLogin);
-    app.post("/api/login", login);
-    app.post("/api/user", createUser);
-    app.get("/api/user/:uid", viewGroup);
-    app.get('/api/user', findUserByCredentials);
-    app.get('/api/user/:uid', findUserById);
-    app.put('/api/user/:uid', updateUser);
-    app.put('/api/user/:uid/receiver/:rid', sendEmail);
-    app.delete('/api/user/:uid', deleteUser);
-    app.get('/api/admin/users', getAllUsers);
+    app.post("/project/checkLogin", checkLogin);
+    app.post("/project/login", pp.authenticate('projectLocalStrategy'), login);
+    app.post("/project/user", createUser);
+    app.get("/project/user/:uid", viewGroup);
+    app.get('/project/user', findUserByCredentials);
+    app.get('/project/user/:uid', findUserById);
+    app.put('/project/user/:uid', updateUser);
+    app.put('/project/user/:uid/receiver/:rid', sendEmail);
+    app.delete('/project/user/:uid', deleteUser);
+    app.get('/project/admin/users', getAllUsers);
     app.get('/auth/facebook', pp.authenticate('facebook', { scope : 'email' }));
     app.get('/auth/facebook/callback',
         pp.authenticate('facebook', {
@@ -22,7 +22,7 @@ module.exports = function(app, model, passport){
             failureRedirect : '/login'
         }));
 
-    app.post("/api/logout", logout);
+    app.post("/project/logout", logout);
 
    /* app.post("/api/user/admin/:adminId/create", createUserByAdmin);
     app.put("/api/user/admin/:adminId/update", updateUserByAdmin);
@@ -40,14 +40,12 @@ module.exports = function(app, model, passport){
         res.send(req.isAuthenticated() ? req.user : '0')
     }
 
-
-
     function login(req, res)
     {
-        /*console.log("in Login");
+        console.log("in Login");
         var user = req.user;
-        res.json(user);*/
-        var user = req.body;
+        res.json(user);
+        /*var user = req.body;
         var email = user.email;
         var password = user.password;
         model
@@ -65,7 +63,7 @@ module.exports = function(app, model, passport){
                 }
             } , function(error){
                 res.sendStatus(400).send(error);
-            });
+            });*/
 
     }
 

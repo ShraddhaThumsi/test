@@ -30,8 +30,8 @@ module.exports = function(app, database){
         callbackURL  : "http://www.example.com/auth/google/oath2callback"
     };
 
-    passport.use(new LocalStrategy(assignmentLocalStrategy));
-    passport.use(new LocalStrategy(projectLocalStrategy));
+    passport.use('assignmentLocalStrategy', new LocalStrategy(assignmentLocalStrategy));
+    passport.use('projectLocalStrategy',new LocalStrategy(projectLocalStrategy));
     passport.use('assignmentFB', new FacebookStrategy(facebookConfig, assignmentFacebookStrategy));
     passport.use('projectFB', new FacebookStrategy(facebookConfig, projectFacebookStrategy));
     passport.use(new GoogleStrategy(googleConfig, assignmentGoogleStrategy));
@@ -40,7 +40,7 @@ module.exports = function(app, database){
     passport.deserializeUser(deserializeUser);
 
     function assignmentFacebookStrategy(token, refreshToken, profile, done){
-        database.assignment.userModel
+        database.assignment().userModel
             .findUserByFacebookId(profile.id)
             .then(
                 function(user) {
@@ -74,7 +74,7 @@ module.exports = function(app, database){
     }
 
     function projectFacebookStrategy(token, refreshToken, profile, done){
-        database.project.userModel
+        database.project().userModel
             .findUserByFacebookId(profile.id)
             .then(
                 function(user) {
@@ -109,7 +109,7 @@ module.exports = function(app, database){
 
 
     function assignmentGoogleStrategy(token, refreshToken, profile, done){
-        database.assignment.userModel
+        database.assignment().userModel
             .findUserByGoogleId(profile.id)
             .then(
                 function(user) {
@@ -143,7 +143,7 @@ module.exports = function(app, database){
     }
 
     function projectGoogleStrategy(token, refreshToken, profile, done){
-        database.project.userModel
+        database.project().userModel
             .findUserByGoogleId(profile.id)
             .then(
                 function(user) {
@@ -184,7 +184,7 @@ module.exports = function(app, database){
         if(user.type === "assignment")
         {
             database
-                .assignment
+                .assignment()
                 .userModel
                 .findUserById(user._id)
                 .then(function(user)
@@ -199,7 +199,7 @@ module.exports = function(app, database){
         else
         {
             database
-                .project
+                .project()
                 .userModel
                 .findUserById(user._id)
                 .then(function(user)
@@ -219,7 +219,7 @@ module.exports = function(app, database){
     function assignmentLocalStrategy(username, password, done)
     {
         database
-            .assignment
+            .assignment()
             .userModel
             .findUserByCredentials(username, password)
             .then(function(user){
@@ -243,12 +243,12 @@ module.exports = function(app, database){
     {
 
         database
-            .project
+            .project()
             .userModel
             .findUserByCredentials(username, password)
             .then(function(user){
                 console.log(user);
-                if(user && bcrypt.compareSync(password, user.password)) {
+                if(user && user.password === password) {
                     return done(null, user);
                 } else {
                     return done(null, false);

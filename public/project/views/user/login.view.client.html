@@ -23,7 +23,7 @@
                 <tr ng-repeat = "oneRecipe in model.recipes">
 
                     <td>
-                        <a href="#/user/{{model.userId}}/recipeDetails/{{model.rid}}">{{oneRecipe.recipe.label}} </a>
+                        <a href="#/user/recipeDetails/{{model.rid}}">{{oneRecipe.recipe.label}} </a>
                     </td>
                     <td>
                         <a href="{{oneRecipe.recipe.url}}"><img ng-src = "{{oneRecipe.recipe.image}}" height = "300" width = "300"/></a>

@@ -6,10 +6,13 @@
         .module("RecipeMaker")
         .controller("RecipeSearchController", RecipeSearchController);
 
-    function RecipeSearchController($routeParams, RecipeService) {
+    function RecipeSearchController($routeParams, RecipeService, $rootScope) {
         var vm = this;
-        var userId =  $routeParams.uid;
-        vm.userId = userId;
+        if($rootScope.currentUser){
+            var userId =  $rootScope.currentUser._id;
+            vm.userId = userId;
+        }
+
         vm.loadDoc = loadDoc;
 
 

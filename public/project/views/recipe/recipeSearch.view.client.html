@@ -9,11 +9,11 @@
     <button type="submit">Upload Recipe</button>-->
 </form>
 
-<a href="#/user/{{model.userId}}/myRecipes" class = "btn btn-block btn-info"> View your Recipes </a>
-<a href= "#/user/{{model.userId}}/reset" class = "btn btn-block btn-warning form-group">Reset Credentials</a>
-<a href="#/user/{{model.userId}}/viewInbox" class = "btn btn-warning">View group</a>
+<a href="#/user/myRecipes" class = "btn btn-block btn-info"> View your Recipes </a>
+<a href= "#/user/reset" class = "btn btn-block btn-warning form-group">Reset Credentials</a>
+<a href="#/user/viewInbox" class = "btn btn-warning">View group</a>
 <!--{{model.hitArray}}-->
-<a href = "#/user/{{model.userId}}/admin"><span class = "btn btn-info">Manage as admin</span></a>
+<a href = "#/user/admin"><span class = "btn btn-info">Manage as admin</span></a>
 <div class="container container-fluid">
     <table class = "table">
         <thead>
@@ -27,7 +27,7 @@
         <tr ng-repeat = "oneRecipe in model.recipes">
 
                 <td>
-                    <a href="#/user/{{model.userId}}/recipeDetails/{{model.rid}}">{{oneRecipe.recipe.label}} </a>
+                    <a href="#/user/recipeDetails/{{model.rid}}">{{oneRecipe.recipe.label}} </a>
                 </td>
                 <td>
                      <img ng-src = "{{oneRecipe.recipe.image}}" height = "300" width = "300"/>

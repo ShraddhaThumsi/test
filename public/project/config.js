@@ -7,13 +7,18 @@
         .config(Config);
 
     function Config($routeProvider){
-        function checkLogin($q, UserService, $location){
+        function checkLogin($q, UserService, $location, $rootScope){
 
             var deferred = $q.defer();
             UserService
                 .checkLogin()
                 .success(function (user){
+                    console.log(user);
+                   // $rootScope.currentUser = null;
                     if(user != '0'){
+                        console.log(user);
+
+                        $rootScope.currentUser = user;
                         deferred.resolve();
                     }
                     else
@@ -72,64 +77,60 @@
                 controllerAs: "model"
             })
 
-            .when("/user/:uid/reset", {
+            .when("/user/reset", {
                 templateUrl: "views/user/resetLogin.view.client.html",
                 controller: "ResetController",
-                controllerAs: "model"
-                /*resolve: {
+                controllerAs: "model",
+                resolve: {
                     checkLogin: checkLogin
-                }*/
+                }
             })
-
-            .when("/user/:uid", {
-                templateUrl: "views/recipe/recipeSearch.view.client.html",
-                controller: "RecipeSearchController",
-                controllerAs: "model"
-                /*resolve: {
-                    checkLogin: checkLogin
-                }*/
-            })
-
 
             .when("/user", {
                 templateUrl: "views/recipe/recipeSearch.view.client.html",
                 controller: "RecipeSearchController",
-                controllerAs: "model"
-
+                controllerAs: "model",
+                resolve: {
+                    checkLogin: checkLogin
+                }
             })
 
-            .when("/user/:uid/myRecipes", {
+
+            /*.when("/user", {
+                templateUrl: "views/recipe/recipeSearch.view.client.html",
+                controller: "RecipeSearchController",
+                controllerAs: "model"
+
+            })*/
+
+            .when("/user/myRecipes", {
                 templateUrl: "views/recipe/myRecipes.view.client.html",
                 controller: "MyRecipeController",
                 controllerAs: "model"
 
             })
-            .when("/user/:uid/recipeDetails/editRecipe/:rid", {
+            .when("/user/recipeDetails/editRecipe/:rid", {
                 templateUrl: "views/recipe/editBookMarkRecipe.view.client.html",
                 controller: "EditBookmarkRecipe",
                 controllerAs: "model"
             })
 
-            .when("/user/:uid/recipeDetails/:rid", {
+            .when("/user/recipeDetails/:rid", {
                 templateUrl: "views/recipe/recipeDetails.view.client.html",
                 controller: "RecipeDetailsController",
                 controllerAs: "model"
             })
 
-            .when("/user/:uid/viewInbox", {
+            .when("/user/viewInbox", {
                 templateUrl: "views/user/inbox.view.client.html",
                 controller: "ViewInboxController",
                 controllerAs: "model"
             })
 
-            .when("/user/:uid/admin", {
+            .when("/user/admin", {
                 templateUrl: "views/user/admin.view.client.html",
                 controller: "AdminRightsController",
                 controllerAs: "model"
-                /*resolve:{
-                    //checkLogin: checkLogin,
-                    isAdmin: isAdmin
-                }*/
             })
 
             .otherwise({redirectTo: "/login"});

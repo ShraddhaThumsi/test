@@ -6,11 +6,14 @@
         .module("RecipeMaker")
         .controller("EditBookmarkRecipe", EditBookmarkRecipe);
 
-    function EditBookmarkRecipe(RecipeService, $routeParams, $location)
+    function EditBookmarkRecipe(RecipeService, $routeParams, $location, $rootScope)
     {
         var vm = this;
-        var recipeId = $routeParams.rid;
-        vm.recipeId = recipeId;
+        if($rootScope.currentUser){
+            var userId =  $rootScope.currentUser._id;
+            vm.userId = userId;
+        }
+
         console.log(recipeId + " recipe id from route params, seems to come from database");
         var userId = $routeParams.uid;
         vm.userId = userId;

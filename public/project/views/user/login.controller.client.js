@@ -15,7 +15,7 @@
         {
             vm.email = email;
             vm.password = password;
-            console.log(email, password);
+           // console.log(email, password);
            // var promise = UserService.findUserByCredentials(email, password);
             var promise = UserService.login(email, password);
             promise
@@ -23,10 +23,10 @@
                     /*console.log(aaa);*/
                     if(user)
                     {
-                        console.log(user + " user at login controller");
+                        console.log(user);
                         vm.user = user;
                         $rootScope.currentUser = user;
-                        $location.url("/user/" + user._id);
+                        $location.url("/user");
                     }
 
                     else

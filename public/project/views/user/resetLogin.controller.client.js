@@ -6,11 +6,14 @@
         .module("RecipeMaker")
         .controller("ResetController", ResetController);
 
-    function ResetController($routeParams, $location, UserService)
+    function ResetController($routeParams, $location, UserService, $rootScope)
     {
         var vm = this;
-        var userId = $routeParams.uid;
-        vm.userId = userId;
+        if($rootScope.currentUser){
+            var userId =  $rootScope.currentUser._id;
+            vm.userId = userId;
+        }
+
         vm.updateUser = updateUser;
         vm.deleteUser = deleteUser;
         vm.logout = logout;
@@ -43,7 +46,7 @@
             promise
                 .success(function(updatedUser)
                 {
-                    $location.url("/user/" + userId);
+                    $location.url("/user");
                     vm.user = updatedUser;
                     vm.success = "Your profile was successfully saved"
                 })

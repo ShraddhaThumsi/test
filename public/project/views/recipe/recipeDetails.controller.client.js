@@ -6,13 +6,16 @@
         .module("RecipeMaker")
         .controller("RecipeDetailsController", RecipeDetailsController);
 
-    function RecipeDetailsController($routeParams, RecipeService, $location)
+    function RecipeDetailsController($routeParams, RecipeService, $location, $rootScope)
     {
         var vm = this;
         var recipeID = $routeParams.rid;
         console.log(recipeID);
-        var userId = $routeParams.uid;
-        vm.userId = userId;
+        if($rootScope.currentUser){
+            var userId =  $rootScope.currentUser._id;
+            vm.userId = userId;
+        }
+
         vm.bookMark = bookMark;
 
         function init(){

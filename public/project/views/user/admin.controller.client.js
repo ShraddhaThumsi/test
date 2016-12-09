@@ -9,8 +9,11 @@
     function AdminRightsController(UserService, $routeParams, $location, $rootScope)
     {
         var vm = this;
-        var userId = $routeParams.uid;
+        if($rootScope.currentUser){
+        var userId =  $rootScope.currentUser._id;
         vm.userId = userId;
+        }
+
         var message = "welcome to admin rights page";
         vm.message = message;
         function init()

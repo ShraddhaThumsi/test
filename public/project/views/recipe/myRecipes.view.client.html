@@ -1,7 +1,7 @@
 
 
 <h1>My Recipes</h1>
-<a href="#/user/{{model.userId}}" class = "btn btn-info"> Search More Recipes</a>
+<a href="#/user" class = "btn btn-info"> Search More Recipes</a>
 <table class = "table">
     <thead>
         <th>
@@ -21,7 +21,7 @@
     <tbody>
         <tr ng-repeat = "recipe in model.recipes">
             <td>
-                <a href="#/user/{{model.userId}}/recipeDetails/editRecipe/{{recipe._id}}">{{recipe.recipe.label}}</a>
+                <a href="#/user/recipeDetails/editRecipe/{{recipe._id}}">{{recipe.recipe.label}}</a>
             </td>
             <td>
                <input ng-model = "recipe.chefNotes" placeholder="no chef notes yet">
