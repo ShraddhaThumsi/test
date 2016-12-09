@@ -26,20 +26,20 @@
             return deferred.promise;
 
         }
-
+/*
         function isAdmin($rootScope, $q){
             console.log($rootScope.currentUser);
             console.log("Called Is Admin");
             var deferred = $q.defer();
-            if($rootScope.currentUser.role == "admin"){
+            if($rootScope.currentUser.role === "admin"){
                 deferred.resolve();
             }else {
                 deferred.reject();
             }
             return deferred.promise;
-        }
+        }*/
 
-        function checkIfAdmin($q, UserService, $location, $rootScope)
+        /*function checkIfAdmin($q, UserService, $location, $rootScope)
         {
             var deferred = $q.defer();
             UserService
@@ -58,7 +58,7 @@
                 });
 
             return deferred.promise;
-        }
+        }*/
         $routeProvider
             .when("/login", {
                 templateUrl: "views/user/login.view.client.html",
@@ -125,11 +125,11 @@
             .when("/user/:uid/admin", {
                 templateUrl: "views/user/admin.view.client.html",
                 controller: "AdminRightsController",
-                controllerAs: "model",
-                resolve:{
+                controllerAs: "model"
+                /*resolve:{
                     //checkLogin: checkLogin,
                     isAdmin: isAdmin
-                }
+                }*/
             })
 
             .otherwise({redirectTo: "/login"});

@@ -1,6 +1,6 @@
-module.exports = function(app)
+module.exports = function(app, database, passport)
 {
-    var model = require("./models/model.server")();
-    require("./services/user.server.service")(app, model);
+    var model = database.project();
+    require("./services/user.server.service")(app, model, passport);
     require("./services/recipe.server.service")(app, model);
 }

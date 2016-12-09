@@ -1,9 +1,9 @@
 /**
  * Created by shraddha on 11/16/16.
  */
-module.exports = function()
+module.exports = function(mongoose)
 {
-    var mongoose = require("mongoose");
+   // var mongoose = require("mongoose");
     var PageSchema = mongoose.Schema({
         _website: {type: mongoose.Schema.Types.ObjectId, ref:"WebsiteModel"},
         name: {type: String, required: true},

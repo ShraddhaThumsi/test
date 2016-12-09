@@ -1,24 +1,10 @@
 /**
  * Created by shraddha on 11/18/16.
  */
-module.exports = function(app, model){
-    var passport = require('passport');
-    var LocalStrategy = require('passport-local').Strategy;
-    var FacebookStrategy = require('passport-facebook').Strategy;
-    var cookieParser = require('cookie-parser');
-    var session = require('express-session');
-    app.use(session({
-        secret: 'this is the secret',
-        resave: true,
-        saveUninitialized: true
-    }));
-    app.use(cookieParser());
-    app.use(passport.initialize());
-    app.use(passport.session());
-    passport.use('test' , new LocalStrategy(localStrategy));
-    passport.serializeUser(serializeUser);
-    passport.deserializeUser(deserializeUser);
-    //app.post("/api/login", passport.authenticate('test'), login);
+module.exports = function(app, model, passport){
+
+    var pp = passport.passportObject();
+    var bcr = passport.bcryptObject();
     app.post("/api/checkLogin", checkLogin);
     app.post("/api/login", login);
     app.post("/api/user", createUser);
@@ -29,59 +15,20 @@ module.exports = function(app, model){
     app.put('/api/user/:uid/receiver/:rid', sendEmail);
     app.delete('/api/user/:uid', deleteUser);
     app.get('/api/admin/users', getAllUsers);
-    app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+    app.get('/auth/facebook', pp.authenticate('facebook', { scope : 'email' }));
     app.get('/auth/facebook/callback',
-        passport.authenticate('facebook', {
+        pp.authenticate('facebook', {
             successRedirect : '/user',
             failureRedirect : '/login'
         }));
 
     app.post("/api/logout", logout);
 
-    var facebookConfig = {
-            clientID      : '1105625596221973', // your App ID
-            clientSecret  : '8bdc9b5390eeb9c6fe81984a919eb981', // your App Secret
-            callbackURL   : 'https://shraddhathumsi.herokuapp.com/auth/facebook/callback'
-    };
+   /* app.post("/api/user/admin/:adminId/create", createUserByAdmin);
+    app.put("/api/user/admin/:adminId/update", updateUserByAdmin);
+    app.get("/api/user/admin/:adminId/getAllUsers", getAllUsersByAdmin);*/
 
-    passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
-    function facebookStrategy(token, refreshToken, profile, done)
-    {
 
-        model
-            .userModel
-            .findUserByFacebookId(profile.id)
-            .then(
-                function(user) {
-                    if(user) {
-                        return done(null, user);
-                    } else {
-                        var newFacebookUser = {
-                            lastName: profile.name.familyName,
-                            firstName: profile.name.givenName,
-                            email: profile.emails[0].value,
-                            facebook: {
-                                id:          profile.id,
-                                token:       token
-                            }
-                        };
-                        return model.userModel.createUser(newFacebookUser);
-                    }
-                },
-                function(err) {
-                    if (err) { return done(err); }
-                }
-            )
-            .then(
-                function(user){
-                    return done(null, user);
-                },
-                function(err){
-                    if (err) { return done(err); }
-                }
-            );
-
-    }
 
     function logout(req, res)
     {
@@ -93,22 +40,7 @@ module.exports = function(app, model){
         res.send(req.isAuthenticated() ? req.user : '0')
     }
 
-    function localStrategy(email, password, done){
 
-        model
-            .userModel
-            .findUserByCredentials(email, password)
-            .then(function(user){
-                if(!user)
-                {
-                    return done(null,false);
-                }
-                return done(null, user);
-
-            } , function(error){
-                res.sendStatus(400).send(error);
-            });
-    }
 
     function login(req, res)
     {
@@ -136,23 +68,7 @@ module.exports = function(app, model){
             });
 
     }
-    function serializeUser(user, done){
-        done(null, user);
-    }
 
-    function deserializeUser(user, done){
-        model
-            .userModel
-            .findUserById(user._id)
-            .then(function(user)
-            {
-                done(null,user);
-            }, function(error)
-            {
-                done(error, null);
-            })
-
-    }
 
     function createUser(req, res)
     {
@@ -163,6 +79,7 @@ module.exports = function(app, model){
             .then(function(newUser){
                 res.send(newUser);
             }, function(error){
+                console.log(error);
                 res.sendStatus(400).send(error);
             });
     }
@@ -191,19 +108,7 @@ module.exports = function(app, model){
             });
     }
 
-    /*function findAllUsers(req, res)
-    {
-        model
-            .userModel
-            .findAllUsers()
-            .then(function(users){
-                console.log(users);
-                res.send(users);
-            },
-            function(error){
-                res.sendStatus(400).send(error);
-            })
-    }*/
+
 
     function findUserById(req,res)
     {
@@ -306,8 +211,8 @@ module.exports = function(app, model){
     {
         var user = req.body;
         console.log(__filename);
-        if(user.role == "admin")
-        {
+        /*if(user.role == "admin")
+        {*/
             model
                 .userModel
                 .getAllUsers()
@@ -315,13 +220,13 @@ module.exports = function(app, model){
                     res.json(users);
                 }, function(error){
                     res.sendStatus(400).send(error);
-                })
+                });
 
-        }
-        else
-        {
-            res.sendStatus(403);
-        }
+       // }
+        /*else
+        {*/
+           // res.sendStatus(403);
+        //}
     }
 
 

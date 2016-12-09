@@ -5,10 +5,10 @@
 
 
 
-module.exports = function(){
+module.exports = function(mongoose){
     var model = {};
-    var mongoose = require("mongoose");
-    var WebsiteSchema = require("./website.schema.server")();
+   // var mongoose = require("mongoose");
+    var WebsiteSchema = require("./website.schema.server")(mongoose);
     var WebsiteModel = mongoose.model("WebsiteModel", WebsiteSchema);
 
     var api = {

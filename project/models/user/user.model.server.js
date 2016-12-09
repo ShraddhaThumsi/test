@@ -2,12 +2,12 @@
  * Created by shraddha on 11/18/16.
  */
 var q = require("q");
-module.exports = function(){
+module.exports = function(mongoose){
     var model = {};
 
-    var mongoose = require('mongoose');
-    var UserSchema = require("./user.schema.server")();
-    var UserModel = mongoose.model("UserModel", UserSchema);
+   // var mongoose = require('mongoose');
+    var UserSchema = require("./user.schema.server")(mongoose);
+    var UserModel = mongoose.model("UserModelProject", UserSchema);
     var api = {
         createUser: createUser,
         findUserByCredentials: findUserByCredentials,

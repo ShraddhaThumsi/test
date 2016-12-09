@@ -1,10 +1,10 @@
 /**
  * Created by shraddha on 11/16/16.
  */
-module.exports = function(){
+module.exports = function(mongoose){
     var model = {};
-    var mongoose = require("mongoose");
-    var PageSchema = require("./page.schema.server")();
+   // var mongoose = require("mongoose");
+    var PageSchema = require("./page.schema.server")(mongoose);
     var PageModel = mongoose.model("PageModel", PageSchema);
     var api = {
         createPage: createPage,

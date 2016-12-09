@@ -1,10 +1,10 @@
 /**
  * Created by shraddha on 11/26/16.
  */
-module.exports = function(){
+module.exports = function(mongoose){
     var model = {};
-    var mongoose = require("mongoose");
-    var WidgetSchema = require("./widget.schema.server")();
+   // var mongoose = require("mongoose");
+    var WidgetSchema = require("./widget.schema.server")(mongoose);
     var WidgetModel = mongoose.model("WidgetModel", WidgetSchema);
     var api = {
         createWidget: createWidget,

@@ -1,8 +1,8 @@
 /**
  * Created by shraddha on 11/26/16.
  */
-module.exports = function(){
-    var mongoose = require("mongoose");
+module.exports = function(mongoose){
+  //  var mongoose = require("mongoose");
     var WidgetSchema = mongoose.Schema({
         _page: [{type: mongoose.Schema.Types.ObjectId, ref: "PageModel"}],
         name: String,

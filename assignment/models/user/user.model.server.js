@@ -1,11 +1,12 @@
 /**
  * Created by shraddha on 11/14/16.
  */
-module.exports = function(){
+module.exports = function(mongoose){
     var model = {};
-    var mongoose = require("mongoose");
-    var UserSchema = require("./user.schema.server")();
-    var UserModel = mongoose.model("UserModel", UserSchema);
+   // var mongoose = require("mongoose");
+   //  console.log(mongoose);
+    var UserSchema = require("./user.schema.server")(mongoose);
+    var UserModel = mongoose.model("UserModelAssignment", UserSchema);
 
     var api = {
         createUser: createUser,

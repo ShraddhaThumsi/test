@@ -1,10 +1,11 @@
 /**
  * Created by shraddha on 11/14/16.
  */
-module.exports = function(){
+module.exports = function(mongoose){
 
-    var mongoose = require("mongoose");
+   // var mongoose = require("mongoose");
     //var WebsiteSchema = require("../website/website.schema.server")();
+    // console.log(mongoose);
     var UserSchema = mongoose.Schema({
         username: {type: String, required: true},
         password: String,
@@ -22,9 +23,9 @@ module.exports = function(){
             token: String
         },
         dateCreated: {type: Date, default: Date.now()},
-       // dateCreated: {type: new Date(), default: Date.now()},
+        type: {type: String, default: "assignment"},
         websites: [{type: mongoose.Schema.Types.ObjectId, ref: 'WebsiteModel'}]
-       // websites: [WebsiteSchema]
+
     }, {collection: "user"});
 
     return UserSchema;

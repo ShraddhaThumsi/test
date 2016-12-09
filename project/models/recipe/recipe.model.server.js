@@ -2,10 +2,10 @@
  * Created by shraddha on 11/18/16.
  */
 
-module.exports = function(){
+module.exports = function(mongoose){
     var model = {};
-    var mongoose = require('mongoose');
-    var RecipeSchema = require("./recipe.schema.server")();
+   // var mongoose = require('mongoose');
+    var RecipeSchema = require("./recipe.schema.server")(mongoose);
     var RecipeModel = mongoose.model("RecipeModel", RecipeSchema);
     var api = {
         bookMarkRecipe: bookMarkRecipe,

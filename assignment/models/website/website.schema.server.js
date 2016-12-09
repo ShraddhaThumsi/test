@@ -1,8 +1,8 @@
 /**
  * Created by shraddha on 11/16/16.
  */
-module.exports = function(){
-    var mongoose = require("mongoose");
+module.exports = function(mongoose){
+   // var mongoose = require("mongoose");
    // var PageSchema = require("../page/page.schema.server")();
     var WebsiteSchema = mongoose.Schema({
         name: {type: String, required: true},
