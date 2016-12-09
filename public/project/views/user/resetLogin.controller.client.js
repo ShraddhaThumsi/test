@@ -46,6 +46,7 @@
             promise
                 .success(function(updatedUser)
                 {
+                    console.log(updatedUser)
                     $location.url("/user");
                     vm.user = updatedUser;
                     vm.success = "Your profile was successfully saved"

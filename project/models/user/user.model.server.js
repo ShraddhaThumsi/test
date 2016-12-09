@@ -19,7 +19,10 @@ module.exports = function(mongoose){
         viewInbox: viewInbox,
         getAllUsers: getAllUsers,
         sendEmail: sendEmail,
-        findAllRecipesForUser: findAllRecipesForUser
+        findAllRecipesForUser: findAllRecipesForUser,
+        promoteMemberByAdmin: promoteMemberByAdmin,
+        deleteMemberByAdmin: deleteMemberByAdmin,
+        createMemberByAdmin: createMemberByAdmin
     }
     return api;
 
@@ -144,5 +147,36 @@ module.exports = function(mongoose){
             .exec();
 
     }
+
+    function promoteMemberByAdmin(memberId, member)
+    {
+        var deferred = q.defer();
+        UserModel
+            .update({_id: memberId},
+                { $set : member},
+                function(error, status) {
+                    if(!error)
+                    {
+                        deferred.resolve(status);
+                    }
+                    else
+                    {
+                        deferred.reject(error);
+                    }
+                });
+        return deferred.promise;
+    }
+
+    function deleteMemberByAdmin(memberId)
+    {
+        return UserModel.remove({_id: memberId});
+    }
+
+    function createMemberByAdmin(newUser)
+    {
+        return UserModel.create(newUser);
+    }
+
+
 
 }

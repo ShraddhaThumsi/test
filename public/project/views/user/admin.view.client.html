@@ -29,6 +29,27 @@
     </thead>
 
     <tbody>
+        <tr>
+            <td>
+                <input ng-model = "model.newUserEmail" placeholder="new email"/>
+            </td>
+            <td>
+                <input ng-model = "model.newUserPassword" placeholder="new password" type = "password"/>
+            </td>
+            <td>
+                <input ng-model = "model.newUserFirstName" placeholder="first name"/>
+            </td>
+            <td>
+                <input ng-model = "model.newUserLastName" placeholder="last name"/>
+            </td>
+            <td>
+                <input ng-model = "model.newUserRole" placeholder="role"/>
+            </td>
+            <td>
+                <a ng-click = "model.newUserByAdmin(model.newUserEmail, model.newUserPassword, model.newUserFirstName, model.newUserLastName, model.newUserRole)"><span class = "btn btn-success">Create</span></a>
+            </td>
+
+        </tr>
         <tr ng-repeat = "user in model.users">
             <td>
                 {{user.email}}
@@ -47,7 +68,7 @@
             </td>
 
             <td>
-                <a ng-click = "model.promoteMember(user._id)"><span class = "btn btn-success">Promote</span></a>
+                <a ng-click = "model.promoteMember(user._id, user)"><span class = "btn btn-success">Promote</span></a>
             </td>
 
             <td>

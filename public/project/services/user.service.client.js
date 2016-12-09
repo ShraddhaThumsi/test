@@ -21,7 +21,8 @@
             sendEmail: sendEmail,
             getAllUsers: getAllUsers,
             promoteMemberByAdmin: promoteMemberByAdmin,
-            deleteMemberByAdmin: deleteMemberByAdmin
+            deleteMemberByAdmin: deleteMemberByAdmin,
+            createNewUserByAdmin: createNewUserByAdmin
         };
         return api;
 
@@ -93,10 +94,10 @@
             return $http.get(url, user);
         }
 
-        function promoteMemberByAdmin(memberId){
+        function promoteMemberByAdmin(memberId, memberBody){
             console.log(memberId + " member to be promoted");
             var url = "/project/admin/promoteMember/" + memberId;
-            return $http.put(url);
+            return $http.put(url, memberBody);
 
         }
 
@@ -106,6 +107,12 @@
             var url = "/project/admin/deleteMember/" + memberId;
             return $http.delete(url);
 
+        }
+
+        function createNewUserByAdmin(newUserByAdmin)
+        {
+            var url = "/project/admin/createMember";
+            return $http.post(url, newUserByAdmin);
         }
 
     }

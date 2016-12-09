@@ -15,6 +15,7 @@
         }
         vm.promoteMember = promoteMember;
         vm.deleteMember = deleteMember;
+        vm.newUserByAdmin = newUserByAdmin;
 
         var message = "welcome to admin rights page";
         vm.message = message;
@@ -28,14 +29,18 @@
         }
         init();
 
-        function promoteMember(memberId)
+        function promoteMember(memberId, memberBody)
         {
             vm.memberId = memberId;
-            console.log(memberId);
-            var promise = UserService.promoteMemberByAdmin(memberId);
+            vm.member = memberBody;
+            var promise = UserService.promoteMemberByAdmin(memberId, memberBody);
             promise
-                .success(function(){
-
+                .success(function(updatedMember){
+                    $location.url("/user/admin");
+                    console.log(updatedMember)
+                })
+                .error(function(error){
+                    console.log(error);
                 })
 
         }
@@ -44,6 +49,45 @@
         {
             vm.memberId = memberId;
             console.log(memberId);
+            var promise = UserService.deleteMemberByAdmin(memberId);
+            promise
+                .success(function(deletedMember)
+                {
+                    $location.url("/user/admin");
+                    console.log(deletedMember);
+
+                })
+                .error(function(error){
+                    console.log(error);
+                })
+        }
+
+        function newUserByAdmin(newUserEmail, newUserPassword, newUserFirstName, newUserLastName, newUserRole)
+        {
+            vm.newUserEmail = newUserEmail;
+            vm.newUserPassword = newUserPassword;
+            vm.newUserFirstName = newUserFirstName;
+            vm.newUserLastName = newUserLastName;
+            vm.newUserRole = newUserRole;
+            var newUserByAdmin = {
+                email: newUserEmail,
+                password: newUserPassword,
+                firstName: newUserFirstName,
+                lastName: newUserLastName,
+                role: newUserRole
+            }
+
+            //console.log(newUserByAdmin);
+
+            var promise = UserService.createNewUserByAdmin(newUserByAdmin);
+            promise
+                .success(function(newUser){
+                    $location.url("/user/admin");
+
+                })
+                .error(function(error){
+                    console.log(error);
+                })
 
         }
     }

@@ -27,6 +27,7 @@ module.exports = function(app, model, passport){
     app.get('/project/admin/users', getAllUsers);
     app.put("/project/admin/promoteMember/:memberId", promoteMemberByAdmin);
     app.delete("/project/admin/deleteMember/:memberId", deleteMemberByAdmin);
+    app.post("/project/admin/createMember", createNewUserByAdmin);
 
    /* app.post("/api/user/admin/:adminId/create", createUserByAdmin);
     app.put("/api/user/admin/:adminId/update", updateUserByAdmin);
@@ -49,26 +50,6 @@ module.exports = function(app, model, passport){
         console.log("in Login");
         var user = req.user;
         res.json(user);
-        /*var user = req.body;
-        var email = user.email;
-        var password = user.password;
-        model
-            .userModel
-            .findUserByCredentials(email, password)
-            .then(function(user){
-                if(user)
-                {
-                    res.json(user);
-                }
-
-                else
-                {
-                    res.send('0');
-                }
-            } , function(error){
-                res.sendStatus(400).send(error);
-            });*/
-
     }
 
 
@@ -213,39 +194,65 @@ module.exports = function(app, model, passport){
     {
         var user = req.body;
         console.log(__filename);
-        /*if(user.role == "admin")
-        {*/
-            model
-                .userModel
-                .getAllUsers()
-                .then(function(users){
-                    res.json(users);
-                }, function(error){
-                    res.sendStatus(400).send(error);
-                });
+        model
+            .userModel
+            .getAllUsers()
+            .then(function(users){
+                res.json(users);
+            }, function(error){
+                res.sendStatus(400).send(error);
+            });
 
-       // }
-        /*else
-        {*/
-           // res.sendStatus(403);
-        //}
+
     }
 
 
     function promoteMemberByAdmin(req, res)
     {
         var memberId = req.params.memberId;
-        console.log(memberId)
+        var member = req.body;
+        member.role = "admin";
+        model
+            .userModel
+            .promoteMemberByAdmin(memberId, member)
+            .then(function(promise)
+                {
+                    res.send(promise)
+                },
+                function(error)
+                {
+                    res.sendStatus(409).send(error);
+                })
+
+
+
+
     }
 
     function deleteMemberByAdmin(req, res)
     {
         var memberId = req.params.memberId;
-        console.log(memberId);
+        model
+            .userModel
+            .deleteMemberByAdmin(memberId)
+            .then(function(status){
+                res.send(200);
+            }, function(error){
+                res.sendStatus(409).send(error);
+            })
 
     }
 
-
-
-
+    function createNewUserByAdmin(req, res)
+    {
+        var newUserByAdmin = req.body;
+        model
+            .userModel
+            .createMemberByAdmin(newUserByAdmin)
+            .then(function(newUser){
+                res.send(newUser)
+            }, function(error){
+                res.sendStatus(400).send(error);
+            })
+    }
 }
