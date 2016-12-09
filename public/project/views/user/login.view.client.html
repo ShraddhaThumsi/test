@@ -8,6 +8,32 @@
         <!--<a href="/guestRecipeSearch" class = "btn btn-block btn-info form-group">Search Recipes as guest</a>-->
         <a href="#/register" class = "btn btn-block btn-primary form-group"> SignUp</a>
         <a href="/auth/facebook" class = "btn btn-primary btn-block"><span class = "fa fa-facebook"></span> Facebook</a>
+        <input ng-model = "model.queryName" class="form-control">
+        <a ng-click="model.loadDoc(model.queryName)" class = "btn btn-block btn-success">Search for recipes</a>
+        <div class="container container-fluid">
+            <table class = "table">
+                <thead>
+                <th>Name of the dish</th>
+                <th>How you could plate it</th>
+                </thead>
+                <tbody>
+
+
+
+                <tr ng-repeat = "oneRecipe in model.recipes">
+
+                    <td>
+                        <a href="#/user/{{model.userId}}/recipeDetails/{{model.rid}}">{{oneRecipe.recipe.label}} </a>
+                    </td>
+                    <td>
+                        <a href="{{oneRecipe.recipe.url}}"><img ng-src = "{{oneRecipe.recipe.image}}" height = "300" width = "300"/></a>
+
+                    </td>
+
+                </tr>
+
+                </tbody>
+            </table>
 
     </form>
 </div>

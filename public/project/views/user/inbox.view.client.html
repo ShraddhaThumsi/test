@@ -11,9 +11,9 @@
             <th>
                 Message
             </th>
-            <th>
-                Time Received
-            </th>
+            <!--<th>
+                Reply
+            </th>-->
         </thead>
         <tbody>
             <tr ng-repeat = "message in model.user.inbox">
@@ -23,9 +23,10 @@
                 <td>
                     {{message.message}}
                 </td>
-                <td>
-                    {{message.timeReceived.default}}
-                </td>
+                <!--<td>
+                    <input ng-model="model.reply">
+                    <a ng-click = "model.replyMail(model.reply)"<span class = "btn btn-success">Reply</span>
+                </td>-->
             </tr>
         </tbody>
     </table>

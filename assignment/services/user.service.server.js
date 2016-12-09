@@ -5,6 +5,7 @@ module.exports = function(app, model){
     var passport = require('passport');
     var LocalStrategy = require('passport-local').Strategy;
     var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+    var FacebookStrategy = require('passport-facebook').Strategy;
     var cookieParser = require('cookie-parser');
     var session = require('express-session');
     var bcrypt = require("bcrypt-nodejs");
@@ -17,9 +18,12 @@ module.exports = function(app, model){
     app.use(passport.initialize());
     app.use(passport.session());
     passport.use(new LocalStrategy(localStrategy));
+    passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
+    passport.use(new GoogleStrategy(googleConfig, googleStrategy));
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
 
+    app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
     app.get('/auth/google', passport.authenticate('google', {scope:['profile', 'email'] }));
     app.post('/api/login', passport.authenticate('local'),login);
     app.post("/api/checkLogin", checkLogin);
@@ -43,6 +47,23 @@ module.exports = function(app, model){
     };
 
 
+
+    app.get('/auth/facebook/callback',
+        passport.authenticate('facebook', {
+            successRedirect: '/#/user',
+            failureRedirect: '/#/login'
+        }));
+
+    var facebookConfig = {
+        clientID     : "1105625596221973",
+        clientSecret : "8bdc9b5390eeb9c6fe81984a919eb981",
+        callbackURL  : process.env.FACEBOOK_CALLBACK_URL
+    };
+
+
+
+
+
     function checkLogin(req, res){
         res.send(req.isAuthenticated() ? req.user: '0');
     }
@@ -56,6 +77,41 @@ module.exports = function(app, model){
     function serializeUser(user, done){
         done(null, user);
     }
+
+    function facebookStrategy(token, refreshToken, profile, done){
+        model.userModel
+            .findUserByFacebookId(profile.id)
+            .then(
+                function(user) {
+                    if(user) {
+                        return done(null, user);
+                    } else {
+                        var newFacebookUser = {
+                            lastName: profile.name.familyName,
+                            firstName: profile.name.givenName,
+                            email: profile.emails[0].value,
+                            facebook: {
+                                id:          profile.id,
+                                token:       token
+                            }
+                        };
+                        return model.userModel.createUser(newFacebookUser);
+                    }
+                },
+                function(err) {
+                    if (err) { return done(err); }
+                }
+            )
+            .then(
+                function(user){
+                    return done(null, user);
+                },
+                function(err){
+                    if (err) { return done(err); }
+                }
+            );
+    }
+
 
     function googleStrategy(token, refreshToken, profile, done){
         model.userModel
