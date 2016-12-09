@@ -13,6 +13,8 @@
         var userId =  $rootScope.currentUser._id;
         vm.userId = userId;
         }
+        vm.promoteMember = promoteMember;
+        vm.deleteMember = deleteMember;
 
         var message = "welcome to admin rights page";
         vm.message = message;
@@ -25,5 +27,24 @@
                 })
         }
         init();
+
+        function promoteMember(memberId)
+        {
+            vm.memberId = memberId;
+            console.log(memberId);
+            var promise = UserService.promoteMemberByAdmin(memberId);
+            promise
+                .success(function(){
+
+                })
+
+        }
+
+        function deleteMember(memberId)
+        {
+            vm.memberId = memberId;
+            console.log(memberId);
+
+        }
     }
 })();

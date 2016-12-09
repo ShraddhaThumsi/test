@@ -19,7 +19,9 @@
             logout: logout,
             viewInbox: viewInbox,
             sendEmail: sendEmail,
-            getAllUsers: getAllUsers
+            getAllUsers: getAllUsers,
+            promoteMemberByAdmin: promoteMemberByAdmin,
+            deleteMemberByAdmin: deleteMemberByAdmin
         };
         return api;
 
@@ -89,6 +91,21 @@
             console.log(user + " user object, reporting from user service client, this has been received from admin rights controller");
             var url = "/project/admin/users";
             return $http.get(url, user);
+        }
+
+        function promoteMemberByAdmin(memberId){
+            console.log(memberId + " member to be promoted");
+            var url = "/project/admin/promoteMember/" + memberId;
+            return $http.put(url);
+
+        }
+
+        function deleteMemberByAdmin(memberId)
+        {
+            console.log(memberId + " member to be deleted");
+            var url = "/project/admin/deleteMember/" + memberId;
+            return $http.delete(url);
+
         }
 
     }

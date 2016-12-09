@@ -1,2 +1,58 @@
 <h3>{{model.message}}</h3>
 
+<h4>Your Users</h4>
+<table class="table table-striped">
+    <thead>
+        <th>
+            Email
+        </th>
+
+        <th>
+            First Name
+        </th>
+
+        <th>
+            Last Name
+        </th>
+
+        <th>
+            Role
+        </th>
+
+        <th>
+            Promote
+        </th>
+
+        <th>
+            Delete
+        </th>
+    </thead>
+
+    <tbody>
+        <tr ng-repeat = "user in model.users">
+            <td>
+                {{user.email}}
+            </td>
+
+            <td>
+                {{user.firstName}}
+            </td>
+
+            <td>
+                {{user.lastName}}
+            </td>
+
+            <td>
+                {{user.role}}
+            </td>
+
+            <td>
+                <a ng-click = "model.promoteMember(user._id)"><span class = "btn btn-success">Promote</span></a>
+            </td>
+
+            <td>
+                <a ng-click = "model.deleteMember(user._id)"><span class = "btn btn-danger">Delete</span></a>
+            </td>
+        </tr>
+    </tbody>
+</table>

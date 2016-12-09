@@ -87,7 +87,7 @@ module.exports = function(mongoose){
 
     function findUserByUserName(username)
     {
-        return UserModel.find({username: username})
+        return UserModel.findOne({username: username})
     }
 
     function findUserByFacebookId(facebookId) {

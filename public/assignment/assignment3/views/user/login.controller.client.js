@@ -18,7 +18,7 @@
             promise
                 .success(function(response){
                     /*console.log(aaa);*/
-                    var user = response.data;
+                    var user = response;
                     if(user)
                     {
 

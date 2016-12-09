@@ -7,7 +7,7 @@ module.exports = function(app, model, passport){
     var bcr = passport.bcryptObject();
     app.get ('/auth/facebook', pp.authenticate('facebook', { scope : 'email' }));
     app.get('/auth/google', pp.authenticate('google', {scope:['profile', 'email'] }));
-    app.post('/api/login', pp.authenticate('local'),login);
+    app.post('/api/login', pp.authenticate('assignmentLocalStrategy'),login);
     app.post("/api/checkLogin", checkLogin);
     app.post("/api/logout", logout);
     app.get('/api/user', findUser);
@@ -208,16 +208,17 @@ module.exports = function(app, model, passport){
             .userModel
             .createUser(newUser)
             .then(function(newUser){
+                console.log(newUser);
                 if(newUser)
                 {
-                    req.login(user, function(err){
-                        if(err)
+                    req.login(newUser, function(err){
+                        if(err.code === 11000)
                         {
-                            res.sendStatus(400).send(err);
+                            res.sendStatus(409).send("duplicate user name");
                         }
                         else
                         {
-                            res.json(user);
+                            res.json(newUser);
                         }
                     })
                 }

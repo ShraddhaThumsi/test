@@ -14,7 +14,7 @@ module.exports = function(app, model, passport){
     app.put('/project/user/:uid', updateUser);
     app.put('/project/user/:uid/receiver/:rid', sendEmail);
     app.delete('/project/user/:uid', deleteUser);
-    app.get('/project/admin/users', getAllUsers);
+
     app.get('/auth/facebook', pp.authenticate('facebook', { scope : 'email' }));
     app.get('/auth/facebook/callback',
         pp.authenticate('facebook', {
@@ -23,6 +23,10 @@ module.exports = function(app, model, passport){
         }));
 
     app.post("/project/logout", logout);
+
+    app.get('/project/admin/users', getAllUsers);
+    app.put("/project/admin/promoteMember/:memberId", promoteMemberByAdmin);
+    app.delete("/project/admin/deleteMember/:memberId", deleteMemberByAdmin);
 
    /* app.post("/api/user/admin/:adminId/create", createUserByAdmin);
     app.put("/api/user/admin/:adminId/update", updateUserByAdmin);
@@ -226,6 +230,22 @@ module.exports = function(app, model, passport){
            // res.sendStatus(403);
         //}
     }
+
+
+    function promoteMemberByAdmin(req, res)
+    {
+        var memberId = req.params.memberId;
+        console.log(memberId)
+    }
+
+    function deleteMemberByAdmin(req, res)
+    {
+        var memberId = req.params.memberId;
+        console.log(memberId);
+
+    }
+
+
 
 
 }

@@ -8,12 +8,6 @@ module.exports = function(mongoose){
         password: String,
         firstName: String,
         lastName: String,
-        facebook: {
-            id: String,
-            email: String,
-            token: String,
-            name: String
-        },
         recipes: [{type: mongoose.Schema.Types.ObjectId, ref: "RecipeModel"}],
         type: {type: String, default: "project"},
         role: {type: String, enum: ['member', 'admin'], default: 'member'},

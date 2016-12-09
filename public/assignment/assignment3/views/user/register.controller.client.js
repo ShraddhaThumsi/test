@@ -36,7 +36,8 @@
 
                 promise
                     .success(function(response){
-                        var userExists = response.data;
+                        var userExists = response;
+                        console.log(userExists)
                 if (userExists == true) {
                     alert("User exists");
                 }
@@ -45,8 +46,8 @@
                     var userId = userExists._id;
                     vm.userId = userId;
                     vm.registerUser = userExists;
-                    $rootScope.currentUser = user;
-                    $location.url("/user/" + vm.userId);
+                    $rootScope.currentUser = userExists;
+                    $location.url("/user");
                 }
                 })
                     .error(function(aaa){

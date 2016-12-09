@@ -7,8 +7,10 @@
         .controller("ProfileController", ProfileController);
     function ProfileController($routeParams, $location, UserService, $rootScope) {
         var vm = this;
-        var userId = $routeParams.uid;
-        vm.userId = userId;
+        if($rootScope.currentUser){
+            var userId =  $rootScope.currentUser._id;
+            vm.userId = userId;
+        }
         console.log(vm.userId);
         function init()
         {
@@ -36,7 +38,7 @@
             promise
                 .success(function(updatedUser)
                 {
-                    $location.url("/user/" + userId);
+                    $location.url("/user");
                     vm.success = "Your profile was successfully saved."
                 })
                 .error(function(error){

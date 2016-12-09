@@ -31,39 +31,7 @@
             return deferred.promise;
 
         }
-/*
-        function isAdmin($rootScope, $q){
-            console.log($rootScope.currentUser);
-            console.log("Called Is Admin");
-            var deferred = $q.defer();
-            if($rootScope.currentUser.role === "admin"){
-                deferred.resolve();
-            }else {
-                deferred.reject();
-            }
-            return deferred.promise;
-        }*/
 
-        /*function checkIfAdmin($q, UserService, $location, $rootScope)
-        {
-            var deferred = $q.defer();
-            UserService
-                .checkLogin()
-                .success(function(result){
-                    var currentUser = result.data;
-                    if(currentUser != null && currentUser.role == "admin")
-                    {
-                        $rootScope.currentUser = currentUser;
-                        deferred.resolve();
-                    }
-                    else
-                    {
-                        deferred.reject();
-                    }
-                });
-
-            return deferred.promise;
-        }*/
         $routeProvider
             .when("/login", {
                 templateUrl: "views/user/login.view.client.html",

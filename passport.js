@@ -221,7 +221,7 @@ module.exports = function(app, database){
         database
             .assignment()
             .userModel
-            .findUserByCredentials(username, password)
+            .findUserByUserName(username)
             .then(function(user){
                 console.log(user);
 
@@ -277,7 +277,5 @@ module.exports = function(app, database){
     {
         return bcrypt;
     }
-
-
 
 };
