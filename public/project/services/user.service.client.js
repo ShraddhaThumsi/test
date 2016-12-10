@@ -22,7 +22,8 @@
             getAllUsers: getAllUsers,
             promoteMemberByAdmin: promoteMemberByAdmin,
             deleteMemberByAdmin: deleteMemberByAdmin,
-            createNewUserByAdmin: createNewUserByAdmin
+            createNewUserByAdmin: createNewUserByAdmin,
+            register: register
         };
         return api;
 
@@ -49,6 +50,11 @@
         function createUser(newUser)
         {
             return $http.post("/project/user", newUser);
+        }
+
+        function register(newUser)
+        {
+            return $http.post("/project/register", newUser);
         }
 
         function findUserByCredentials(email, password) {

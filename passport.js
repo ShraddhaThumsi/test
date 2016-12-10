@@ -239,16 +239,15 @@ module.exports = function(app, database){
     }
 
 
-    function projectLocalStrategy(username, password, done)
+    function projectLocalStrategy(email, password, done)
     {
-
         database
             .project()
             .userModel
-            .findUserByCredentials(username, password)
+            .findUserByEmail(email)
             .then(function(user){
                 console.log(user);
-                if(user && user.password === password) {
+                if(user && bcrypt.compareSync(password, user.password)) {
                     return done(null, user);
                 } else {
                     return done(null, false);

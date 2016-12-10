@@ -14,7 +14,7 @@ module.exports = function(app, model, passport){
     app.put('/project/user/:uid', updateUser);
     app.put('/project/user/:uid/receiver/:rid', sendEmail);
     app.delete('/project/user/:uid', deleteUser);
-
+    app.post("/project/register", register);
     app.get('/auth/facebook', pp.authenticate('facebook', { scope : 'email' }));
     app.get('/auth/facebook/callback',
         pp.authenticate('facebook', {
@@ -65,6 +65,33 @@ module.exports = function(app, model, passport){
                 console.log(error);
                 res.sendStatus(400).send(error);
             });
+    }
+
+    function register(req, res)
+    {
+        var newUser = req.body;
+        newUser.password = bcr.hashSync(newUser.password);
+        model
+            .userModel
+            .createUser(newUser)
+            .then(function(newUser){
+                console.log(newUser);
+                if(newUser)
+                {
+                    req.login(newUser, function(err){
+                        if(err.code === 11000)
+                        {
+                            res.sendStatus(409).send("duplicate user name");
+                        }
+                        else
+                        {
+                            res.json(newUser);
+                        }
+                    })
+                }
+            }, function(error){
+                res.sendStatus(400).send(error);
+            })
     }
 
 

@@ -6,7 +6,7 @@
         .module("RecipeMaker")
         .controller("RegisterController", RegisterController);
 
-    function RegisterController(UserService, $location)
+    function RegisterController(UserService, $location, $rootScope)
     {
         var vm = this;
 
@@ -24,7 +24,8 @@
                 };
 
 
-                var promise = UserService.createUser(newUser);
+              //  var promise = UserService.createUser(newUser);
+                var promise = UserService.register(newUser);
 
                 promise
                     .success(function(userExists){
@@ -35,7 +36,8 @@
                         else {var userId = userExists._id;
                             vm.userId = userId;
                             vm.SignUp = userExists;
-                            $location.url("/user/" + vm.userId);
+                            $rootScope.currentUser = userExists;
+                            $location.url("/user");
                         }
                     })
                     .error(function(aaa){

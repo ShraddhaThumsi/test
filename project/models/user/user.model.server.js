@@ -11,6 +11,7 @@ module.exports = function(mongoose){
     var api = {
         createUser: createUser,
         findUserByCredentials: findUserByCredentials,
+        findUserByEmail: findUserByEmail,
         findUserById: findUserById,
         updateUser: updateUser,
         deleteUser: deleteUser,
@@ -56,6 +57,10 @@ module.exports = function(mongoose){
         var user = UserModel.findById(userId);
 
         return user;
+    }
+
+    function findUserByEmail(email){
+        return UserModel.findOne({email: email});
     }
 
     function updateUser(userId, user)

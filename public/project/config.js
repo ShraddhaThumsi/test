@@ -16,7 +16,7 @@
                     console.log(user);
                    // $rootScope.currentUser = null;
                     if(user != '0'){
-                        console.log(user);
+                       // console.log(user);
 
                         $rootScope.currentUser = user;
                         deferred.resolve();
