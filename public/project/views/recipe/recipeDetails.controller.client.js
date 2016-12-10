@@ -23,7 +23,6 @@
         promise
             .success(function(recipe){
                 vm.recipe = recipe[0];
-              //  console.log(vm.recipe.image);
                 console.log(vm.recipe);
             })
         }
@@ -47,7 +46,7 @@
 
                     else {var recipeId = recipeExists._id;
                         vm.bookMark = recipeExists;
-                        $location.url("/user/" + vm.userId + "/myRecipes");
+                        $location.url("/user/myRecipes");
                     }
                 })
                 .error(function(aaa){

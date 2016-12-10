@@ -51,17 +51,7 @@ module.exports = function(mongoose){
     }
 
     function updateUser(userId, user)
-    {/*
-        var prom = UserModel.update(
-            {
-                _id: userId
-            },
-            {
-                firstName: user.firstName,
-                lastName: user.lastName
-            })
-        console.log(prom);*/
-
+    {
         var deferred = q.defer();
         UserModel
             .update({_id: userId},

@@ -14,9 +14,8 @@
             vm.userId = userId;
         }
 
-        console.log(recipeId + " recipe id from route params, seems to come from database");
-        var userId = $routeParams.uid;
-        vm.userId = userId;
+       // console.log(recipeId + " recipe id from route params, seems to come from database");
+
         vm.editRecipe = editRecipe;
         vm.deleteRecipe = deleteRecipe;
 
@@ -37,12 +36,11 @@
         {
             vm.recipeId = recipeId;
             vm.recipe = recipe;
-           // console.log(vm.recipe)
             var promise = RecipeService.updateBookMarkedRecipeById(vm.userId, vm.recipeId, vm.recipe);
             promise
                 .success(function(updatedRecipe){
                     vm.recipe = updatedRecipe;
-                    $location.url("/user/" + userId + "/myRecipes");
+                    $location.url("/user/myRecipes");
                 })
                 .error(function(){})
         }
@@ -53,7 +51,7 @@
             var promise = RecipeService.deleteBookMarkedRecipeById(vm.userId, vm.recipeId);
             promise
                 .success(function(){
-                    $location.url("/user/" + userId + "/myRecipes");
+                    $location.url("/user/myRecipes");
                 })
                 .error(function(error){
                     console.log(error);

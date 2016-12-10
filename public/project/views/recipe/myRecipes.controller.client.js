@@ -14,12 +14,6 @@
             vm.userId = userId;
         }
 
-        var recipeId = $routeParams.rid;
-        vm.recipeId = recipeId;
-        /*vm.editRecipe = editRecipe;
-        vm.deleteRecipe = deleteRecipe;*/
-
-
         function init()
         {
             var promise = RecipeService.findAllRecipesForUser(vm.userId);
@@ -32,19 +26,6 @@
                     console.log(error);
                 })
         }
-        init();
-/*
-        function editRecipe(chefNotes)
-        {
-            vm.chefNotes = chefNotes;
-            console.log("will allow user to edit/delete recipe");
-        }
-
-        function deleteRecipe(recipeId)
-        {
-            vm.recipeId = recipeId;
-            console.log("deleting recipe no. " + recipeId);
-        }*/
 
 
     }

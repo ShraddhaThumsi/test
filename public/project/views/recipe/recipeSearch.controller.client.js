@@ -8,9 +8,17 @@
 
     function RecipeSearchController($routeParams, RecipeService, $rootScope) {
         var vm = this;
+        var isAdmin = false;
+        vm.isAdmin = isAdmin;
         if($rootScope.currentUser){
             var userId =  $rootScope.currentUser._id;
             vm.userId = userId;
+        }
+
+        if($rootScope.currentUser.role === "admin")
+        {
+            isAdmin = true;
+            vm.isAdmin = isAdmin;
         }
 
         vm.loadDoc = loadDoc;

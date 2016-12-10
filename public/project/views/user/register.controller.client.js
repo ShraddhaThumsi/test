@@ -24,7 +24,6 @@
                 };
 
 
-              //  var promise = UserService.createUser(newUser);
                 var promise = UserService.register(newUser);
 
                 promise

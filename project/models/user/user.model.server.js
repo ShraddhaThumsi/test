@@ -4,8 +4,6 @@
 var q = require("q");
 module.exports = function(mongoose){
     var model = {};
-
-   // var mongoose = require('mongoose');
     var UserSchema = require("./user.schema.server")(mongoose);
     var UserModel = mongoose.model("UserModelProject", UserSchema);
     var api = {
@@ -80,18 +78,7 @@ module.exports = function(mongoose){
                 }
             });
         return deferred.promise;
-        /*console.log("in model",userId);
-        var prom = UserModel.update(
-            {
-                _id: userId
-            },
-            {
-                firstName: user.firstName,
-                lastName: user.lastName
-            });
-        console.log(prom);
 
-        return prom;*/
     }
 
     function deleteUser(userId)
@@ -126,10 +113,8 @@ module.exports = function(mongoose){
                         _id: userId
                     },
 
-                    {$set: doc}
-                    // {$set: {inbox: {firstName: "most popular", message: message.message}}}
-                    //inbox: [{firstName: "Most Popular", message: message}]
-                    , function(err, stats){
+                    {$set: doc},
+                    function(err, stats){
                         if(!err){
                             deferred.resolve(stats);
                         }else {
@@ -181,7 +166,5 @@ module.exports = function(mongoose){
     {
         return UserModel.create(newUser);
     }
-
-
 
 }

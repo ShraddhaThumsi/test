@@ -13,7 +13,7 @@
 <a href= "#/user/reset" class = "btn btn-block btn-warning form-group">Reset Credentials</a>
 <a href="#/user/viewInbox" class = "btn btn-warning">View group</a>
 <!--{{model.hitArray}}-->
-<a href = "#/user/admin"><span class = "btn btn-info">Manage as admin</span></a>
+<a href = "#/user/admin" ng-if = "model.isAdmin"><span class = "btn btn-info">Manage as admin</span></a>
 <div class="container container-fluid">
     <table class = "table">
         <thead>

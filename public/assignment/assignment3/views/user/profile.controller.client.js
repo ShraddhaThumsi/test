@@ -57,9 +57,6 @@
         {
 
             var promise = UserService.deleteUser(vm.user._id);
-           // console.log(vm.user._id);
-           // console.log("above is the user id sent from profile controller, to the database, for fetching user by id");
-
             promise
                 .success(function(){
                     $location.url("/login");

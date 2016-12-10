@@ -4,7 +4,6 @@
 
 module.exports = function(mongoose){
     var model = {};
-   // var mongoose = require('mongoose');
     var RecipeSchema = require("./recipe.schema.server")(mongoose);
     var RecipeModel = mongoose.model("RecipeModel", RecipeSchema);
     var api = {
@@ -40,7 +39,6 @@ module.exports = function(mongoose){
 
     function findAllRecipesForUser(userId)
     {
-        //console.log(model.userModel.findAllRecipesForUser(userId));
         return model.userModel.findAllRecipesForUser(userId);
 
     }

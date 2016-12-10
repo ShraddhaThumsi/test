@@ -25,38 +25,12 @@
 
         function getRecipeByQueryName(queryName)
         {
-
-            /*var url = "/api/recipeSearchByQuery";
-            var queryBody =
-            {queryByName: "https://api.edamam.com/search?app_id=be979c85&app_key=a6ded68b7dd66370c211045072bcb1a8&q="
-            + queryName};
-            return $http.get(url, queryBody);*/
-            /*return $http
-                .get("https://api.edamam.com/search?app_id=be979c85&app_key=a6ded68b7dd66370c211045072bcb1a8&q="
-                    + queryName)*/
             var url = "/api/user/recipeSearch/" + queryName;
             return $http.get(url);
         }
 
         function getRecipeById(recipeId)
         {
-            /*var url = "/api/recipeSearchById";
-            var apiCallString = "https://api.edamam.com/search?app_id=be979c85&app_key=a6ded68b7dd66370c211045072bcb1a8" +
-            "&r=http://www.edamam.com/ontologies/edamam.owl%23";
-            var recipeId = recipeId;
-            var requestRecipeDetails = apiCallString + recipeId;
-            var queryBody =
-            {
-                queryById: requestRecipeDetails
-            }
-            return $http.get(url, queryBody)*/
-
-
-            /*var apiCallString = "https://api.edamam.com/search?app_id=be979c85&app_key=a6ded68b7dd66370c211045072bcb1a8" +
-                "&r=http://www.edamam.com/ontologies/edamam.owl%23";
-            var recipeId = recipeId;
-            var requestRecipeDetails = apiCallString + recipeId;
-            return $http.get(requestRecipeDetails);*/
 
             var url = "/api/user/recipeDetails/" + recipeId;
             return $http.get(url);

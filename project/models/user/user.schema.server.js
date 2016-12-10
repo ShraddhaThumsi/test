@@ -2,7 +2,7 @@
  * Created by shraddha on 11/18/16.
  */
 module.exports = function(mongoose){
-   // var mongoose = require("mongoose");
+
     var UserSchema = mongoose.Schema({
         email: {type: String, required: true},
         password: String,

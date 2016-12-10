@@ -13,7 +13,7 @@
         {
             vm.username = username;
             vm.password = password;
-           // var promise = UserService.findUserByCredentials(username, password);
+
             var promise = UserService.login(username, password);
             promise
                 .success(function(response){

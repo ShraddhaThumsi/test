@@ -3,9 +3,7 @@
  */
 module.exports = function(mongoose){
 
-   // var mongoose = require("mongoose");
-    //var WebsiteSchema = require("../website/website.schema.server")();
-    // console.log(mongoose);
+
     var UserSchema = mongoose.Schema({
         username: {type: String, required: true, unique: true},
         password: String,

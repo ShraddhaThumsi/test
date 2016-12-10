@@ -45,8 +45,6 @@
         init();
 
 
-
-
         function sendEmail(message)
         {
             vm.message = message;
@@ -65,7 +63,16 @@
         function replyMail(reply)
         {
             vm.reply = reply;
-            console.log(vm.reply);
+            console.log(reply);
+            var promise = UserService.sendEmail(popularUserId, userId, reply);
+            promise
+                .success(function(user){
+                    vm.user = user;
+                    vm.successMessage = "your message has been sent";
+                })
+                .error(function(error){
+                    console.log(error);
+                })
         }
     }
 

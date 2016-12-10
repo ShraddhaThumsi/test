@@ -77,7 +77,7 @@
                 role: newUserRole
             }
 
-            //console.log(newUserByAdmin);
+
 
             var promise = UserService.createNewUserByAdmin(newUserByAdmin);
             promise

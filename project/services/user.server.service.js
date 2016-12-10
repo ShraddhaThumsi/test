@@ -29,11 +29,6 @@ module.exports = function(app, model, passport){
     app.delete("/project/admin/deleteMember/:memberId", deleteMemberByAdmin);
     app.post("/project/admin/createMember", createNewUserByAdmin);
 
-   /* app.post("/api/user/admin/:adminId/create", createUserByAdmin);
-    app.put("/api/user/admin/:adminId/update", updateUserByAdmin);
-    app.get("/api/user/admin/:adminId/getAllUsers", getAllUsersByAdmin);*/
-
-
 
     function logout(req, res)
     {
@@ -155,7 +150,6 @@ module.exports = function(app, model, passport){
             .then(function(promise) {
                 console.log(promise);
                 res.send(promise);
-              //  res.sendStatus(status);
 
 
             }, function(error) {
@@ -168,7 +162,6 @@ module.exports = function(app, model, passport){
     function sendEmail(req, res)
     {
         console.log("Send Mail Function", req.body);
-        //console.log(__filename);
         var message = req.body;
         message = message.message;
         console.log(message);
