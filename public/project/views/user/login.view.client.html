@@ -1,39 +1,42 @@
-<div class = "container">
+<div class = "container" class = "projectBackGround">
     <form>
         <label for="loginEmail">Email</label>
-        <input type="email" id="loginEmail" name="loginEmail" ng-model = "model.email" class="form-control">
+        <input type="email" id="loginEmail" name="loginEmail" ng-model = "model.email">
         <label for="loginPassword">Password</label>
-        <input type="password" id="loginPassword" name="loginPassword" ng-model = "model.password" class="form-control">
-        <a ng-click="model.loginUser(model.email, model.password)" class = "btn btn-block btn-success form-group">Login</a>
+        <input type="password" id="loginPassword" name="loginPassword" ng-model = "model.password">
+        <a ng-click="model.loginUser(model.email, model.password)" class = "btn btn-success form-group">Login</a>
         <!--<a href="/guestRecipeSearch" class = "btn btn-block btn-info form-group">Search Recipes as guest</a>-->
-        <a href="#/register" class = "btn btn-block btn-primary form-group"> SignUp</a>
+        <a href="#/register" class = "btn btn-primary form-group"> SignUp</a>
+<!--
         <a href="/auth/facebook" class = "btn btn-primary btn-block"><span class = "fa fa-facebook"></span> Facebook</a>
+-->
         <input ng-model = "model.queryName" class="form-control">
-        <a ng-click="model.loadDoc(model.queryName)" class = "btn btn-block btn-success">Search for recipes</a>
-        <div class="container container-fluid">
-            <table class = "table">
-                <thead>
-                <th>Name of the dish</th>
-                <th>Click the image to view the recipe</th>
-                </thead>
-                <tbody>
-
-
-
-                <tr ng-repeat = "oneRecipe in model.recipes">
-
-                    <td>
-                        <a href="#/user/recipeDetails/{{model.rid}}">{{oneRecipe.recipe.label}} </a>
-                    </td>
-                    <td>
-                        <a href="{{oneRecipe.recipe.url}}"><img ng-src = "{{oneRecipe.recipe.image}}" height = "300" width = "300"/></a>
-
-                    </td>
-
-                </tr>
-
-                </tbody>
-            </table>
+        <a ng-click="model.loadDoc(model.queryName)" class = "btn btn-success">Search for recipes</a>
 
     </form>
+    <div class="container container-fluid">
+    <table class = "table">
+        <thead>
+        <th>Name of the dish</th>
+        <th>Click the image to view the recipe</th>
+        </thead>
+        <tbody>
+
+
+
+        <tr ng-repeat = "oneRecipe in model.recipes">
+
+            <td>
+                <a href="#/user/recipeDetails/{{model.rid}}">{{oneRecipe.recipe.label}} </a>
+            </td>
+            <td>
+                <a href="{{oneRecipe.recipe.url}}"><img ng-src = "{{oneRecipe.recipe.image}}" height = "300" width = "300"/></a>
+
+            </td>
+
+        </tr>
+
+        </tbody>
+    </table>
+</div>
 </div>
