@@ -11,10 +11,15 @@
         var vm = this;
         vm.loginUser = loginUser;
         vm.loadDoc = loadDoc;
+        vm.infoAlert = infoAlert;
+        var basicInformation = "Welcome to Homestraunt! This is an online recipe and nutrient guide that will help you whip up some restaurant standard dishes right at your own home. Try out our recipe search by entering an ingredient, which will give you a choice of recipes whose details you can see when you click on the image. You may have to wait just a couple of seconds till we fish out good recipes for you. By signing up, you can explore more features like bookmarking recipes, adding chef notes, and you can also get in touch with our most popular user. Happy Cooking!"
+
+        vm.basicInformation = basicInformation;
         function loginUser(email, password)
         {
             vm.email = email;
             vm.password = password;
+
            // console.log(email, password);
            // var promise = UserService.findUserByCredentials(email, password);
             var promise = UserService.login(email, password);
@@ -68,6 +73,12 @@
                 {
                     console.log(error);
                 });
+
+        }
+
+        function infoAlert()
+        {
+            alert(basicInformation);
 
         }
 
