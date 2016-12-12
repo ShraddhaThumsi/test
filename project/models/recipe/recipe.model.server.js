@@ -22,6 +22,9 @@ module.exports = function(mongoose){
 
     function bookMarkRecipe(userId, recipe)
     {
+        console.log(__filename);
+        console.log(userId + " userId from recipe server service");
+        console.log(recipe + " recipe body from recipe server service");
         return RecipeModel
             .create(recipe)
             .then(function(RecipeObj){

@@ -45,6 +45,8 @@
                 recipe: sourceRecipe
             };
 
+            console.log(recipe + " recipe with chef notes from recipe service client");
+
             return $http.post("/api/user/" + userId + "/bookMarkRecipe", recipe);
 
         }

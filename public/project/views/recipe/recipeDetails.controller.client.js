@@ -49,6 +49,7 @@
 
                     else {
                         recipeID = recipeExists._id;
+                        vm.recipeID = recipeID;
                         vm.bookMark = recipeExists;
                         $location.url("/user/myRecipes");
                     }
