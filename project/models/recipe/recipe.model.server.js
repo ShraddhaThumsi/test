@@ -30,8 +30,9 @@ module.exports = function(mongoose){
                     .findUserById(userId)
                     .then(function(UserObj){
                         UserObj.recipes.push(RecipeObj);
-                        RecipeObj._user = UserObj._id;
-                        RecipeObj.save();
+                      //  RecipeObj._user = UserObj._id;
+                       // RecipeObj.save();
+                        //return UserObj.save()
                         return UserObj.save()
                     })
             })

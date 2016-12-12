@@ -39,6 +39,7 @@
 
         function bookMarkRecipe(userId, sourceRecipe, chefNotes)
         {
+            console.log(userId + " userId from recipe service client");
             var recipe = {
                 chefNotes: chefNotes,
                 recipe: sourceRecipe

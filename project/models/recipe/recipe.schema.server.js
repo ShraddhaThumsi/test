@@ -4,7 +4,7 @@
 module.exports = function(mongoose){
 
     var RecipeSchema = mongoose.Schema({
-        _user: {type: mongoose.Schema.Types.ObjectId, ref: "UserModel"},
+       // _user: {type: mongoose.Schema.Types.ObjectId, ref: "UserModel"},
         chefNotes: String,
         recipe: JSON
 

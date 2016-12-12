@@ -11,10 +11,11 @@
         var vm = this;
         var recipeID = $routeParams.rid;
         console.log(recipeID);
-        if($rootScope.currentUser){
+       // if($rootScope.currentUser){
             var userId =  $rootScope.currentUser._id;
             vm.userId = userId;
-        }
+            console.log(userId + " this is the user id, reporting from recipe details controller");
+        //}
 
         vm.bookMark = bookMark;
 
@@ -36,6 +37,7 @@
             vm.recipe = recipe;
             vm.chefNotes = chefNotes;
             console.log(chefNotes);
+
 
             var promise = RecipeService.bookMarkRecipe(userId, recipe, chefNotes);
             promise
