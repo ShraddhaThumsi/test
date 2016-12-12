@@ -1,8 +1,10 @@
-<h3>{{model.message}}</h3>
+<div class = "container">
 
-<h4>Your Users</h4>
+<h3 class = "fontColorRectifier">{{model.message}}</h3>
+
+<h4 class = "fontColorRectifier">Your Users</h4>
 <table class="table table-striped">
-    <thead>
+    <thead class = "fontColorRectifier">
         <th>
             Email
         </th>
@@ -29,7 +31,7 @@
     </thead>
 
     <tbody>
-        <tr>
+        <tr class = "recipeNameColorMaker">
             <td>
                 <input ng-model = "model.newUserEmail" placeholder="new email"/>
             </td>
@@ -50,7 +52,7 @@
             </td>
 
         </tr>
-        <tr ng-repeat = "user in model.users">
+        <tr ng-repeat = "user in model.users" class = "recipeNameColorMaker">
             <td>
                 {{user.email}}
             </td>
@@ -77,3 +79,5 @@
         </tr>
     </tbody>
 </table>
+
+</div>

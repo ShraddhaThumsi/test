@@ -6,10 +6,12 @@
         .module("RecipeMaker")
         .controller("RecipeSearchController", RecipeSearchController);
 
-    function RecipeSearchController($routeParams, RecipeService, $rootScope) {
+    function RecipeSearchController($routeParams, RecipeService, $rootScope, $location, UserService) {
         var vm = this;
         var isAdmin = false;
         vm.isAdmin = isAdmin;
+        var isArrayEmpty = true;
+        vm.isArrayEmpty = isArrayEmpty;
         if($rootScope.currentUser){
             var userId =  $rootScope.currentUser._id;
             vm.userId = userId;
@@ -22,6 +24,7 @@
         }
 
         vm.loadDoc = loadDoc;
+        vm.logout = logout;
 
 
         function loadDoc(queryName) {
@@ -36,6 +39,11 @@
                     console.log(result);
                     var recipes = result.hits;
                     vm.recipes = recipes;
+                    if(recipes.length > 0)
+                    {
+                        isArrayEmpty = false;
+                        vm.isArrayEmpty = isArrayEmpty;
+                    }
                     var uriTempo = recipes[0].recipe.uri;
                     console.log(uriTempo);
                     var uri = uriTempo.split("#");
@@ -50,6 +58,15 @@
                     console.log(error);
                 });
 
+        }
+
+        function logout()
+        {
+            var promise = UserService.logout();
+            promise
+                .success(function(){
+                    $location.url("/login")
+                })
         }
 
     }

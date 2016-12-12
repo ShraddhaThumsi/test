@@ -1,9 +1,9 @@
 
 
-<h1>My Recipes</h1>
+<h1 class = "fontColorRectifier">My Recipes</h1>
 <a href="#/user" class = "btn btn-info"> Search More Recipes</a>
 <table class = "table">
-    <thead>
+    <thead class = "fontColorRectifier">
         <th>
             Recipe Name
         </th>
@@ -20,7 +20,7 @@
 
     <tbody>
         <tr ng-repeat = "recipe in model.recipes">
-            <td>
+            <td class = "recipeNameColorMaker">
                 <a href="#/user/recipeDetails/editRecipe/{{recipe._id}}">{{recipe.recipe.label}}</a>
             </td>
             <td>

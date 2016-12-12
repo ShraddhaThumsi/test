@@ -40,11 +40,13 @@
             var promise = RecipeService.bookMarkRecipe(userId, recipe, chefNotes);
             promise
                 .success(function(recipeExists){
+                    console.log(recipeExists);
                     if (recipeExists == true) {
                         alert("Recipe exists");
                     }
 
-                    else {var recipeId = recipeExists._id;
+                    else {
+                        recipeID = recipeExists._id;
                         vm.bookMark = recipeExists;
                         $location.url("/user/myRecipes");
                     }

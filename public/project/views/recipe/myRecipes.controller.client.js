@@ -14,6 +14,7 @@
             vm.userId = userId;
         }
 
+
         function init()
         {
             var promise = RecipeService.findAllRecipesForUser(vm.userId);

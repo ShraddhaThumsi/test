@@ -14,7 +14,8 @@
 
 .loginPageSpaceMaker
 {
-    margin-top: 70px;
+    margin-top: 30px;
+    margin-bottom: 70px;
 }
 
 .navigationGlyph
@@ -25,4 +26,30 @@
 .glyph-color-maker
 {
     color: navajowhite;
+}
+
+.fontColorRectifier
+{
+    color: #dad55e;
+}
+
+.recipeNameColorMaker
+{
+    color: #09D4FF;
+}
+
+.btn-space-maker
+{
+    margin-top: 25px;
+}
+
+.colorRender
+{
+    background-color: #5f3f3f;
+}
+
+.image-border-maker
+{
+    border: 2px;
+    border-color: #eeeeee;
 }

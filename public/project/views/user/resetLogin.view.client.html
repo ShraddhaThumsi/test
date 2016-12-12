@@ -1,5 +1,5 @@
-
-<h1>Reset Password</h1>
+<div class = "container">
+<h1 class = "fontColorRectifier">Reset Credentials</h1>
 
 <div ng-show = "model.success" class ="alert alert-success" role="alert">
     {{model.success}}
@@ -10,13 +10,14 @@
 </div>
 
 <form>
-    <label for="userfirstName">First Name</label>
+    <label for="userfirstName" class = "fontColorRectifier">First Name</label>
     <input id="userfirstName" name="userfirstName" class="form-control" ng-model="model.user.firstName">
-    <label for="userlastName">Last Name</label>
+    <label for="userlastName" class = "fontColorRectifier btn-space-maker">Last Name</label>
     <input id="userlastName" name="userlastName" class="form-control "ng-model="model.user.lastName">
-    <a ng-click="model.updateUser(model.userId, model.user)" class = "btn btn-block btn-success form-group">Submit changes</a>
-    <a ng-click="model.deleteUser(model.userId)" class = "btn btn-block btn-danger form-group">Delete Profile</a>
-    <a href="#/user/myRecipes" class = "btn btn-block btn-info"> View your Recipes </a>
-    <a ng-click = "model.logout()" class = "btn btn-block btn-warning">Logout</a>
+    <a ng-click="model.updateUser(model.userId, model.user)" class = "btn btn-success btn-space-maker">Submit changes</a>
+    <a ng-click="model.deleteUser(model.userId)" class = "btn btn-danger btn-space-maker">Delete Profile</a>
+    <a href="#/user/myRecipes" class = "btn btn-info btn-space-maker"> View your Recipes </a>
+    <a ng-click = "model.logout()" class = "btn btn-warning btn-space-maker">Logout</a>
 
 </form>
+</div>

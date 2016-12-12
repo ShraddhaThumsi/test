@@ -1,20 +1,23 @@
 
+<div class = "container">
+<h1 class = "fontColorRectifier">Your Profile</h1>
 
-<h1>Search for Recipes</h1>
+<!--<form action="/api/example/upload" method="POST" enctype="multipart/form-data">-->
+    <input ng-model = "model.queryName" placeholder="enter an ingredient, like cheese" class = "form-control">
+    <a ng-click="model.loadDoc(model.queryName)" class = "btn btn-success btn-space-maker"> Click to search for recipes</a>
 
-<form action="/api/example/upload" method="POST" enctype="multipart/form-data">
-    <input ng-model = "model.queryName" class="form-control">
-    <a ng-click="model.loadDoc(model.queryName)" class = "btn btn-block btn-success">Search for recipes</a>
+<!--</form>-->
 
-</form>
+<a href="#/user/myRecipes" class = "btn btn-info btn-space-maker"> View your bookmarked recipes </a>
+    <a href="#/user/viewInbox" class = "btn btn-warning btn-space-maker">View inbox</a>
 
-<a href="#/user/myRecipes" class = "btn btn-block btn-info"> View your Recipes </a>
-<a href= "#/user/reset" class = "btn btn-block btn-warning form-group">Reset Credentials</a>
-<a href="#/user/viewInbox" class = "btn btn-warning">View group</a>
-<a href = "#/user/admin" ng-if = "model.isAdmin"><span class = "btn btn-info">Manage as admin</span></a>
+    <a href= "#/user/reset" class = "btn btn-warning form-group btn-space-maker">Reset credentials</a>
+    <a ng-click = "model.logout()" class = "btn btn-danger btn-space-maker">Logout</a>
+
+<a href = "#/user/admin" ng-if = "model.isAdmin"><span class = "btn btn-info btn-space-maker">Manage as admin</span></a>
 <div class="container container-fluid">
-    <table class = "table">
-        <thead>
+    <table class = "table" ng-if = "!model.isArrayEmpty">
+        <thead class = "fontColorRectifier">
             <th>Name of the dish</th>
             <th>How you could plate it</th>
         </thead>
@@ -24,7 +27,7 @@
 
         <tr ng-repeat = "oneRecipe in model.recipes">
 
-                <td>
+                <td class = "recipeNameColorMaker">
                     <a href="#/user/recipeDetails/{{model.rid}}">{{oneRecipe.recipe.label}} </a>
                 </td>
                 <td>
@@ -37,5 +40,7 @@
         </tbody>
     </table>
 
+
+</div>
 
 </div>

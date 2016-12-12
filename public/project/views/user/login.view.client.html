@@ -1,26 +1,26 @@
 <div class = "container" class = "projectBackGround">
-    <h1>Welcome to Homestraunt!</h1>
+    <h1 class = "fontColorRectifier">Welcome to Homestraunt!</h1>
 
     <form>
-        <label for="loginEmail">Email</label>
-        <input type="email" id="loginEmail" name="loginEmail" ng-model = "model.email" placeholder="your email">
-        <label for="loginPassword">Password</label>
-        <input type="password" id="loginPassword" name="loginPassword" ng-model = "model.password" placeholder="your password">
-        <a ng-click="model.loginUser(model.email, model.password)" class = "btn btn-success form-group">Login</a>
+        <label for="loginEmail" class = "fontColorRectifier">Email</label>
+        <input type="email" id="loginEmail" name="loginEmail" ng-model = "model.email" placeholder="your email" class = "form-control"><br>
+        <label for="loginPassword" class = "fontColorRectifier">Password</label>
+        <input type="password" id="loginPassword" name="loginPassword" ng-model = "model.password" placeholder="your password" class = "form-control">
+        <a ng-click="model.loginUser(model.email, model.password)" class = "btn btn-success btn-space-maker">Login</a>
         <!--<a href="/guestRecipeSearch" class = "btn btn-block btn-info form-group">Search Recipes as guest</a>-->
-        <a href="#/register" class = "btn btn-primary form-group"> SignUp</a>
-        <a ng-click = "model.infoAlert()"><span class = "glyphicon glyphicon-info-sign glyph-color-maker"></span></a>
+        <a href="#/register" class = "btn btn-primary btn-space-maker"> SignUp</a>
+        <a ng-click = "model.infoAlert()" class = "btn-space-maker"><span class = "glyphicon glyphicon-info-sign glyph-color-maker"></span></a>
 <!--
 
         <a href="/auth/facebook" class = "btn btn-primary btn-block"><span class = "fa fa-facebook"></span> Facebook</a>
 -->
-        <input ng-model = "model.queryName" class="form-control" placeholder="enter an ingredient, like cheese">
-        <a ng-click="model.loadDoc(model.queryName)" class = "btn btn-success">Click to search for recipes</a>
+        <input ng-model = "model.queryName" class="form-control btn-space-maker" placeholder="enter an ingredient, like cheese">
+        <a ng-click="model.loadDoc(model.queryName)" class = "btn btn-success btn-space-maker">Click to search for recipes</a>
 
     </form>
     <div class="container container-fluid">
-    <table class = "table">
-        <thead>
+    <table class = "table" ng-if = "!model.isArrayEmpty">
+        <thead class = "fontColorRectifier">
         <th>Name of the dish</th>
         <th>Click the image to view the recipe</th>
         </thead>
@@ -30,11 +30,11 @@
 
         <tr ng-repeat = "oneRecipe in model.recipes">
 
-            <td>
-                <a href="#/user/recipeDetails/{{model.rid}}">{{oneRecipe.recipe.label}} </a>
+            <td class = "recipeNameColorMaker">
+                {{oneRecipe.recipe.label}}
             </td>
             <td>
-                <a href="{{oneRecipe.recipe.url}}"><img ng-src = "{{oneRecipe.recipe.image}}" height = "300" width = "300"/></a>
+                <a href="{{oneRecipe.recipe.url}}" target="_blank"><img ng-src = "{{oneRecipe.recipe.image}}" height = "300" width = "300"/></a>
 
             </td>
 

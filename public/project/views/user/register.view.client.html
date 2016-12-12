@@ -1,21 +1,22 @@
-<div class = "container">
+<div class = "container loginPageSpaceMaker">
     <div ng-show = "model.error" class ="alert alert-danger" role="alert">
         {{model.error}}
     </div>
+    <h1 class = "fontColorRectifier">Sign up</h1>
     <form>
-        <label for = "userEmail">Email</label>
+        <label for = "userEmail" class = "fontColorRectifier">Email</label>
         <input type = "email" id = "userEmail" name = "userEmail" ng-model = "model.email" class="form-control" placeholder="new email">
         <br>
-        <label for = "userPassword1">Password</label>
+        <label for = "userPassword1" class = "fontColorRectifier">Password</label>
         <input type = "password" id = "userPassword1" name = "userPassword" ng-model = "model.password1" class="form-control" placeholder="create a password">
         <br>
-        <label for = "userPassword2">Confirm Password</label>
+        <label for = "userPassword2" class = "fontColorRectifier">Confirm Password</label>
         <input type = "password" id = "userPassword2" name = "userPassword" ng-model = "model.password2" class="form-control" placeholder="verify password">
         <br>
-        <label for = "firstName">First Name</label>
+        <label for = "firstName" class = "fontColorRectifier">First Name</label>
         <input type = "text" id = "firstName" name="firstName" ng-model = "model.firstName" class="form-control" placeholder="your first name">
         <br>
-        <label for = "lastName">Last Name</label>
+        <label for = "lastName" class = "fontColorRectifier">Last Name</label>
         <input type = "text" id = "lastName" name="lastName" ng-model = "model.lastName"class="form-control" placeholder="your last name">
         <br>
         <a ng-click="model.SignUp(model.email, model.password1, model.password2, model.firstName, model.lastName)" class = "btn btn-block btn-success">Sign Up</a>
