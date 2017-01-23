@@ -16,15 +16,13 @@ module.exports = function (app, model) {
     {
         var userId = req.params.uid;
         var recipe = req.body;
-        /*console.log(__filename);
-        console.log(userId + " user id from recipe server service");
-        console.log(recipe + " new recipe from recipe server service");*/
+
         model
             .recipeModel
-            .bookMarkRecipe(userId, recipe)
+            .bookMarkRecipe(req.params.uid, req.body)
             .then(function(recipe){
                 console.log(recipe);
-                res.json(recipe);
+                res.send(recipe);
             })
     }
 

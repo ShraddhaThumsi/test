@@ -1,6 +1,8 @@
 /**
  * Created by shraddha on 11/18/16.
  */
+
+//changing code for heroku push
 module.exports = function(app, model, passport){
 
     var pp = passport.passportObject();

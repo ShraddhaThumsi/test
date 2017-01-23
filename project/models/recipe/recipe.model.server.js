@@ -36,7 +36,8 @@ module.exports = function(mongoose){
                       //  RecipeObj._user = UserObj._id;
                        // RecipeObj.save();
                         //return UserObj.save()
-                        return UserObj.save()
+                         UserObj.save();
+                        return UserObj;
                     })
             })
     }
